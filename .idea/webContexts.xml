@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Inde.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/index.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/about.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/cart.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/index.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/order.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-mac.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-watch.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-watch.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+      </map>
+    </option>
+  </component>
+</project>
