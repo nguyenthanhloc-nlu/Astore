@@ -22,4 +22,8 @@ public class Cart extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
     }
+
+    public static void main(String[] args) {
+        System.out.println("asas");
+    }
 }
