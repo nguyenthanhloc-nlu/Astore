@@ -111,4 +111,126 @@
 </div>
 
 
+<script>
+
+    $("#input-search").keypress(function (e) {
+        const value = $("#input-search").val();
+        if (e.keyCode == 13) {
+            $.ajax({
+                url: "search-product",
+                type: 'POST',
+                data: {
+                    params: value,
+                },
+                success: function (responseJson) {
+                    var row = '';
+                    var index = 1;
+                    const formatter = new Intl.NumberFormat('vi-VN', {
+                        style: 'currency',
+                        currency: 'VND',
+                        minimumFractionDigits: 2
+                    })
+                    $.each(responseJson, function (key, value) {
+
+                        if(value == null || value.id <1) return;
+                        var onclick = "JSconfirm("+ value.id + ",'Chắc chắn bạn muốn xóa')";
+
+                        row += '<tr id="'+ value.id+'tr">';
+                        row += '<td scope="row">'+ index++ +'</td> ';
+
+
+                        row += '<td>'+value.id+'</td>';
+                        row += '<td>'+value.name+'</td>';
+                        row += '<td>'+formatter.format(value.price)+'</td>';
+                        // row += '<td><'+'fmt:'+'se'+'tLocale value="vi_VN"'+'/>'+'<'+'fmt:formatNumber'+' value="'+value.price+'" type="currency"/></td>';
+                        row += '<td>'+ value.rom+'GB</td>';
+                        row += '<td>'+value.ram+'GB</td>';
+                        row += '<td>'+value.colorName+'</td>';
+                        row += '<input type="hidden" value="delete-product" id="'+value.id+'" style="display: none;"/>';
+                        row += ' <td>';
+                        row += '<button class="btn btn-danger"><a onclick="'+onclick+'">Xóa</a></button> \n';
+                        row += '<button class="btn btn-success"><a href="update-product?id='+value.id+'">Sửa</a></button>';
+                        row += '        </td>';
+                        row += '  </tr>';
+
+                    });
+
+                    document.getElementById("tbody").innerHTML =row;
+                 }
+            });
+        }
+    });
+
+
+    function page(index, totalPages) {
+
+        const currentPage = getCurrentPage();
+
+        if (index === 'prev') {
+            if (currentPage > 1)
+                index = (parseInt(currentPage) - 1);
+            else return;
+
+        }
+        if (index === 'next') {
+            if (currentPage < totalPages)
+                index = (parseInt(currentPage) + 1) ;
+            else return;
+        }
+        $.ajax({
+            url: "page-product",
+            type: 'POST',
+            data: {
+                page: index,
+            },
+            success: function (responseJson) {
+                var row = '';
+                var i = 1;
+                const formatter = new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                    minimumFractionDigits: 2
+                })
+                $.each(responseJson, function (key, value) {
+
+                    if(value == null || value.id <1) return;
+                    var onclick = "JSconfirm("+ value.id + ",'Chắc chắn bạn muốn xóa')";
+
+                    row += '<tr id="'+ value.id+'tr">';
+                    row += '<td scope="row">'+ i++ +'</td> ';
+
+
+                    row += '<td>'+value.id+'</td>';
+                    row += '<td>'+value.name+'</td>';
+                    row += '<td>'+formatter.format(value.price)+'</td>';
+                    // row += '<td><'+'fmt:'+'se'+'tLocale value="vi_VN"'+'/>'+'<'+'fmt:formatNumber'+' value="'+value.price+'" type="currency"/></td>';
+                    row += '<td>'+ value.rom+'GB</td>';
+                    row += '<td>'+value.ram+'GB</td>';
+                    row += '<td>'+value.colorName+'</td>';
+                    row += '<input type="hidden" value="delete-product" id="'+value.id+'" style="display: none;"/>';
+                    row += ' <td>';
+                    row += '<button class="btn btn-danger"><a onclick="'+onclick+'">Xóa</a></button> \n';
+                    row += '<button class="btn btn-success"><a href="update-product?id='+value.id+'">Sửa</a></button>';
+                    row += '        </td>';
+                    row += '  </tr>';
+
+                });
+
+                document.getElementById("tbody").innerHTML =row;
+                $("html, body").animate({scrollTop: 0}, 600);
+                $(".pagination a").filter(function () {
+                    return $(this).attr("class") == 'active'
+                }).removeClass("active");
+                $(".pagination a").filter(function () {
+                    return $(this).text() == index
+                }).addClass("active");
+            }
+        });
+    }
+
+
+
+</script>
+
+
 <jsp:include page="footer/footer.jsp" flush="true"/>

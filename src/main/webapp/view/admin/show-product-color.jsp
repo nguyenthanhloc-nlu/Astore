@@ -61,4 +61,43 @@
     </div>
 </div>
 
+<script>
+
+    $("#input-search").keypress(function (e) {
+        const value = $("#input-search").val();
+        if (e.keyCode == 13) {
+            $.ajax({
+                url: "search-color",
+                type: 'POST',
+                data: {
+                    params: value,
+                },
+                success: function (responseJson) {
+                    var row = '';
+                    var index = 1;
+                    $.each(responseJson, function (key, value) {
+                        if(value == null || value.id <1) return;
+                        var onclick = "JSconfirm("+ value.id + ",'Chắc chắn bạn muốn xóa')";
+                        row += '<tr id="'+ value.id+'tr">';
+                        row += '<td scope="row">'+ index++ +'</td> ';
+                        row += '<td>'+value.id+'</td>';
+                        row += '<td>'+value.name+'</td>';
+                        row += '<td>'+value.codeHex+'</td>';
+                        row += '<input type="hidden" value="delete-color" id="'+value.id+'" style="display: none" />';
+                        row += ' <td>';
+                        row += '<button class="btn btn-danger"><a onclick="'+onclick+'">Xóa</a></button> \n';
+                        row += '<button class="btn btn-success"><a href="update-color?id='+value.id+'">Sửa</a></button>';
+                        row += '        </td>';
+                        row += '  </tr>';
+
+                    });
+                    document.getElementById("tbody").innerHTML =row;
+                }
+            });
+        }
+    });
+
+</script>
+
+
 <jsp:include page="footer/footer.jsp" flush="true"/>
