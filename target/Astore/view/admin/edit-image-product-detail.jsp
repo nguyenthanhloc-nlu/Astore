@@ -20,8 +20,8 @@
                                        name="image_id" required value="${image.id}" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="input-2">Mã sản phẩm</label>
-                                <input type="text" class="form-control" id="input-2" placeholder="Mã sản phẩm"
+                                <label for="input-2">Mã dòng sản phẩm</label>
+                                <input type="text" class="form-control" id="input-2" placeholder="Mã dòng sản phẩm"
                                        name="product_id" required value="${image.productId}">
                             </div>
                             <div class="form-group">

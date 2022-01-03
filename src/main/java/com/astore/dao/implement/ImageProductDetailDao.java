@@ -12,7 +12,7 @@ public class ImageProductDetailDao implements IImageProductDetailDao {
     @Override
     public boolean insert(Image image) {
         Connection conn = ConnectDB.getInstance();
-        String sql = "INSERT INTO HINH_MOTA_SANPHAM (id_san_pham,link_hinh_mo_ta_san_pham) VALUES(?,?)";
+        String sql = "INSERT INTO HINH_MOTA_SANPHAM (id_dong_san_pham,link_hinh_mo_ta_san_pham) VALUES(?,?)";
 
         PreparedStatement ps = null;
         try {
@@ -33,7 +33,7 @@ public class ImageProductDetailDao implements IImageProductDetailDao {
     @Override
     public boolean update(Image image) {
         Connection conn = ConnectDB.getInstance();
-        String sql = "update HINH_MOTA_SANPHAM set id_san_pham = ?, link_hinh_mo_ta_san_pham = ?, thoi_gian_tao = ? where id = ?";
+        String sql = "update HINH_MOTA_SANPHAM set id_dong_san_pham = ?, link_hinh_mo_ta_san_pham = ?, thoi_gian_tao = ? where id = ?";
 
         PreparedStatement ps = null;
         try {
@@ -77,7 +77,7 @@ public class ImageProductDetailDao implements IImageProductDetailDao {
         List<Image> result = new ArrayList<>();
 
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT * FROM HINH_MOTA_SANPHAM where id_san_pham = ?";
+        String sql = "SELECT * FROM HINH_MOTA_SANPHAM where id_dong_san_pham = ?";
 
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -200,7 +200,7 @@ public class ImageProductDetailDao implements IImageProductDetailDao {
     private static void setValue(ResultSet rs, Image image){
         try {
             image.setId(rs.getInt("id"));
-            image.setProductId(rs.getInt("id_san_pham"));
+            image.setProductId(rs.getInt("id_dong_san_pham"));
             image.setUrl(rs.getString("link_hinh_mo_ta_san_pham"));
         }catch (SQLException e) {
 

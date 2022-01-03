@@ -10,11 +10,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddCategoryController", value = "/add-category")
+@WebServlet(name = "AddCategoryController", value = "/manage/add-category")
 public class AddCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/admin/add-category.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-category.jsp").forward(request, response);
     }
 
     @Override
@@ -29,12 +29,12 @@ public class AddCategoryController extends HttpServlet {
             List<Category> categories = CategoryServices.getInstance().getAll();
             request.setAttribute("category", categories);
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/show-category.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/show-category.jsp").forward(request,response);
         }else{
             request.setAttribute("category", category);
             request.setAttribute("error", "Đã xãy ra lỗi");
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/add-category.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/add-category.jsp").forward(request,response);
         }
 
     }
