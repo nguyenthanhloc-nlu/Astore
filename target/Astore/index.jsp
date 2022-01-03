@@ -19,7 +19,7 @@
 
 <body>
 <jsp:include page="view/client/header/header.jsp" flush="true"/>
-<jsp:include page="view/client/header/slide.jsp" flush="true"/>
+<%--<jsp:include page="view/client/header/slide.jsp" flush="true"/>--%>
 <!-- Feadtued Categories -->
 
 <div class="small-container id-products" id="id-categories">
@@ -66,7 +66,7 @@
                         <fmt:formatNumber value="${p.price}" type="currency"/>
                     </p>
                     <a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
-                    <span class="product-sale-rate">-<fmt:formatNumber value = "${p.saleRate}" type = "number"/>%</span>
+                    <span class="product-sale-rate">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</span>
                 </a>
             </div>
         </c:forEach>
@@ -88,7 +88,7 @@
                         <fmt:formatNumber value="${p.price}" type="currency"/>
                     </p>
                     <a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
-                    <span class="product-sale-rate">-<fmt:formatNumber value = "${p.saleRate}" type = "number"/>%</span>
+                    <span class="product-sale-rate">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</span>
                 </a>
             </div>
         </c:forEach>
@@ -110,7 +110,7 @@
                         <fmt:formatNumber value="${p.price}" type="currency"/>
                     </p>
                     <a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
-                    <span class="product-sale-rate">-<fmt:formatNumber value = "${p.saleRate}" type = "number"/>%</span>
+                    <span class="product-sale-rate">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</span>
                 </a>
             </div>
         </c:forEach>
@@ -133,7 +133,7 @@
                         <fmt:formatNumber value="${p.price}" type="currency"/>
                     </p>
                     <a href="#" class="add-to-cart">Thêm vào giỏ hàng</a>
-                    <span class="product-sale-rate">-<fmt:formatNumber value = "${p.saleRate}" type = "number"/>%</span>
+                    <span class="product-sale-rate">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</span>
                 </a>
             </div>
         </c:forEach>
@@ -144,7 +144,6 @@
 
 <!-- Footer -->
 <jsp:include page="view/client/footer/footer.jsp" flush="true"/>
-
 
 
 </body>
