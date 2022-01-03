@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.List;
 
-@WebServlet(name = "UpdateUser", value = "/update-user")
+@WebServlet(name = "UpdateUser", value = "/manage/update-user")
 public class UpdateUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,7 +23,7 @@ public class UpdateUserController extends HttpServlet {
 
             if(user != null) {
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("view/admin/edit-user.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/edit-user.jsp").forward(request, response);
             }
 
         }catch (Exception e){
@@ -68,13 +68,13 @@ public class UpdateUserController extends HttpServlet {
             request.setAttribute("users", users);
 
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/user.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/user.jsp").forward(request,response);
         }else{
             user = null;
             user = UserServices.getInstance().getById(2, Integer.parseInt(id));
             if(user != null) {
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("view/admin/edit-user.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/edit-user.jsp").forward(request, response);
             }
         }
 

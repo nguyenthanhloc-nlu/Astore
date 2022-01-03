@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateCategoryController", value = "/update-category")
+@WebServlet(name = "UpdateCategoryController", value = "/manage/update-category")
 public class UpdateCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -17,7 +17,7 @@ public class UpdateCategoryController extends HttpServlet {
         Category category = CategoryServices.getInstance().getById(Integer.parseInt(id));
         request.setAttribute("category", category);
 
-        request.getRequestDispatcher("view/admin/edit-category.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/edit-category.jsp").forward(request,response);
     }
 
     @Override
@@ -32,16 +32,16 @@ public class UpdateCategoryController extends HttpServlet {
                 List<Category> category = CategoryServices.getInstance().getAll();
                 request.setAttribute("category", category);
                 // chuyển hướng
-                request.getRequestDispatcher("view/admin/show-category.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/show-category.jsp").forward(request,response);
             }else {
                 request.setAttribute("category", c);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("view/admin/edit-category.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/edit-category.jsp").forward(request,response);
             }
         }catch (NumberFormatException e){
             request.setAttribute("category", c);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("view/admin/edit-category.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/edit-category.jsp").forward(request,response);
         }
 
 

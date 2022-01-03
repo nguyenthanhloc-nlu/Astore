@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "CaterogyController", value = "/category")
+@WebServlet(name = "CaterogyController", value = "/manage/category")
 public class CaterogyController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class CaterogyController extends HttpServlet {
         request.setAttribute("category", category);
 
         // chuyển hướng
-        request.getRequestDispatcher("view/admin/show-category.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/show-category.jsp").forward(request,response);
     }
 
     @Override

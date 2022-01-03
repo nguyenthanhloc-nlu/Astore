@@ -9,14 +9,14 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ImageProductController", value = "/image-product")
+@WebServlet(name = "ImageProductController", value = "/manage/image-product")
 public class ImageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Image> images = ImageProductServices.getInstance().getAll();
         request.setAttribute("images", images);
 
-        request.getRequestDispatcher("view/admin/show-image-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/show-image-product.jsp").forward(request, response);
     }
 
     @Override

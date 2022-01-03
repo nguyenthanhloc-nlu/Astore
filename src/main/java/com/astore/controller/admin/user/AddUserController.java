@@ -9,13 +9,13 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddUserController", value = "/add-user")
+@WebServlet(name = "AddUserController", value = "/manage/add-user")
 public class AddUserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 
-        request.getRequestDispatcher("view/admin/add-user.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-user.jsp").forward(request, response);
     }
 
     @Override
@@ -51,10 +51,10 @@ public class AddUserController extends HttpServlet {
             request.setAttribute("users", users);
 
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/user.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/user.jsp").forward(request, response);
         } else {
             request.setAttribute("user", user);
-            request.getRequestDispatcher("view/admin/add-user.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/add-user.jsp").forward(request, response);
         }
     }
 

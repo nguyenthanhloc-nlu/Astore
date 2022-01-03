@@ -9,11 +9,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddImageProductController", value = "/add-image-product")
+@WebServlet(name = "AddImageProductController", value = "/manage/add-image-product")
 public class AddImageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/admin/add-image-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
     }
 
     @Override
@@ -30,16 +30,16 @@ public class AddImageProductController extends HttpServlet {
             if (check) {
                 List<Image> images = ImageProductServices.getInstance().getAll();
                 request.setAttribute("images", images);
-                request.getRequestDispatcher("view/admin/show-image-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/show-image-product.jsp").forward(request, response);
             } else {
                 request.setAttribute("image", image);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("view/admin/add-image-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
             }
         }catch(NumberFormatException e){
             request.setAttribute("image", image);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("view/admin/add-image-product.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
         }
 
     }

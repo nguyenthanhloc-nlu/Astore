@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateColorController", value = "/update-color")
+@WebServlet(name = "UpdateColorController", value = "/manage/update-color")
 public class UpdateColorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class UpdateColorController extends HttpServlet {
         try {
             Color color = ColorServices.getInstance().getById(Integer.parseInt(id));
             request.setAttribute("color", color);
-            request.getRequestDispatcher("view/admin/edit-product-color.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/edit-product-color.jsp").forward(request,response);
         }catch(NumberFormatException e){
             response.sendError(404);
         }

@@ -9,14 +9,14 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddProductController", value = "/add-product")
+@WebServlet(name = "AddProductController", value = "/manage/add-product")
 public class AddProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        String params = request.getParameter("id");
 //        Product product = ProductServices.getInstance().getById(Integer.parseInt(params));
 //        request.setAttribute("product",product);
-        request.getRequestDispatcher("view/admin/add-product.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request, response);
     }
 
     @Override
@@ -47,18 +47,18 @@ public class AddProductController extends HttpServlet {
             if(check){
                 List<Product> products = ProductServices.getInstance().getAll();
                 request.setAttribute("products", products);
-                request.getRequestDispatcher("view/admin/show-product.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/show-product.jsp").forward(request,response);
             }else{
                 request.setAttribute("product", product);
                 request.setAttribute("error", "Đã xãy ra lỗi");
                 // chuyển hướng
-                request.getRequestDispatcher("view/admin/add-product.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request,response);
             }
         }catch(Exception e){
             request.setAttribute("product", product);
             request.setAttribute("error", "Đã xãy ra lỗi");
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/add-product.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request,response);
         }
     }
 }

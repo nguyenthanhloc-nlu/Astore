@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateImageProductController", value = "/update-image-product")
+@WebServlet(name = "UpdateImageProductController", value = "/manage/update-image-product")
 public class UpdateImageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,7 +20,7 @@ public class UpdateImageProductController extends HttpServlet {
             Image image = ImageProductServices.getInstance().getById(Integer.parseInt(id));
             request.setAttribute("image", image);
 
-            request.getRequestDispatcher("view/admin/edit-image-product.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/edit-image-product.jsp").forward(request,response);
         }catch(NumberFormatException e){
             response.sendError(404);
         }
@@ -43,16 +43,16 @@ public class UpdateImageProductController extends HttpServlet {
             if (check) {
                 List<Image> images = ImageProductServices.getInstance().getAll();
                 request.setAttribute("images", images);
-                request.getRequestDispatcher("view/admin/show-image-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/show-image-product.jsp").forward(request, response);
             } else {
                 request.setAttribute("image", image);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("view/admin/edit-image-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/edit-image-product.jsp").forward(request, response);
             }
         }catch(NumberFormatException e){
             request.setAttribute("image", image);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("view/admin/edit-image-product.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/edit-image-product.jsp").forward(request, response);
         }
 
     }

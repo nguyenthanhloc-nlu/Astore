@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "PaginationProductController", value = "/page-product")
+@WebServlet(name = "PaginationProductController", value = "/manage/page-product")
 public class PaginationProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

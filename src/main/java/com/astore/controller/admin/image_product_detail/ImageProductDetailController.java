@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "ImageProductDetailController", value = "/image-product-detail")
+@WebServlet(name = "ImageProductDetailController", value = "/manage/image-product-detail")
 public class ImageProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Image> images = ImageProductDetailServices.getInstance().getAll();
         request.setAttribute("images", images);
 
-        request.getRequestDispatcher("view/admin/show-image-product-detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/show-image-product-detail.jsp").forward(request, response);
     }
 
     @Override

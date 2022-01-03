@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateProductController", value = "/update-product")
+@WebServlet(name = "UpdateProductController", value = "/manage/update-product")
 public class UpdateProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class UpdateProductController extends HttpServlet {
             Product product = ProductServices.getInstance().getById(Integer.parseInt(id));
             System.out.println(product.getPrice());
             request.setAttribute("product", product);
-            request.getRequestDispatcher("view/admin/edit-product.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/edit-product.jsp").forward(request, response);
         }catch (NumberFormatException e){
             response.sendError(404);
         }

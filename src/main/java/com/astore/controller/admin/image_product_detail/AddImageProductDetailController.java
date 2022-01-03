@@ -12,11 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddImageProductDetailController", value = "/add-image-product-detail")
+@WebServlet(name = "AddImageProductDetailController", value = "/manage/add-image-product-detail")
 public class AddImageProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/admin/add-image-product-detail.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-image-product-detail.jsp").forward(request, response);
     }
 
     @Override
@@ -33,16 +33,16 @@ public class AddImageProductDetailController extends HttpServlet {
             if (check) {
                 List<Image> images = ImageProductDetailServices.getInstance().getAll();
                 request.setAttribute("images", images);
-                request.getRequestDispatcher("view/admin/show-image-product-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/show-image-product-detail.jsp").forward(request, response);
             } else {
                 request.setAttribute("image", image);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("view/admin/add-image-product-detail.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/add-image-product-detail.jsp").forward(request, response);
             }
         }catch(NumberFormatException e){
             request.setAttribute("image", image);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("view/admin/add-image-product-detail.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/add-image-product-detail.jsp").forward(request, response);
         }
 
     }

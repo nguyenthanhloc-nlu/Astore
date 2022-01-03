@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "DashboardController", value = "/dashboard")
+@WebServlet(name = "DashboardController", value = "/manage/dashboard")
 public class DashboardController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -15,7 +15,7 @@ public class DashboardController extends HttpServlet {
 
         // tính tổng sp từng loại trong tháng
 
-        request.getRequestDispatcher("view/admin/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/index.jsp").forward(request, response);
     }
 
     @Override

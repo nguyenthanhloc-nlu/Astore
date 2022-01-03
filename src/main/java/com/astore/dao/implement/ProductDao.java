@@ -22,7 +22,7 @@ public class ProductDao implements IProductDao {
             PreparedStatement ps = null;
             try {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, product.getSubCategoryID());
+                ps.setInt(1, product.getSubCategoryId());
                 ps.setDouble(2, product.getPrice());
                 ps.setInt(3, product.getColorId());
                 ps.setString(4, product.getRom());
@@ -249,7 +249,7 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
             }
             ps.close();
@@ -280,7 +280,7 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
             }
             ps.close();
@@ -312,7 +312,7 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
 
             }
@@ -364,7 +364,7 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
             }
             rs.close();
@@ -398,7 +398,7 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
             }
             rs.close();
@@ -455,7 +455,7 @@ public class ProductDao implements IProductDao {
 
         List<String> photoUrl = new ArrayList<>();
         try {
-            String sql = "select link_hinh_mo_ta_san_pham from HINH_MOTA_SANPHAM where id_san_pham = " + id;
+            String sql = "select link_hinh_mo_ta_san_pham from HINH_MOTA_SANPHAM where id_dong_san_pham = " + id;
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

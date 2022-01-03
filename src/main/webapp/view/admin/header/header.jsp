@@ -52,7 +52,7 @@
             <i class="icon-menu menu-icon"></i>
         </a>
         <div class="brand-logo" style="justify-content: flex-start;">
-            <a href="<%=request.getContextPath()%>/dashboard">
+            <a href="<%=request.getContextPath()%>/manage/dashboard">
                 <img src="<%=request.getContextPath()%>/view/admin/assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
                 <!-- <h5 class="logo-text">Admin website</h5> -->
             </a>
@@ -60,54 +60,54 @@
         <ul class="sidebar-menu do-nicescrol">
             <li class="sidebar-header">MENU ADMIN</li>
             <li>
-                <a href="<%=request.getContextPath()%>/dashboard">
+                <a href="<%=request.getContextPath()%>/manage/dashboard">
                     <i class="zmdi zmdi-view-dashboard"></i><span>Tổng quan</span>
                 </a>
             </li>
 
             <li>
-                <a href="${pageContext.request.contextPath}/admin">
+                <a href="${pageContext.request.contextPath}/manage/admin">
                     <i class="zmdi zmdi-account-box"></i><span>Quản lí Admin</span>
                 </a>
             </li>
             <li>
-                <a href="<%=request.getContextPath()%>/user">
+                <a href="<%=request.getContextPath()%>/manage/user">
                     <i class="zmdi zmdi-accounts"></i><span>Quản lí User</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/category">
+                <a href="<%=request.getContextPath()%>/manage/category">
                     <i class="zmdi zmdi-store"></i><span>Danh mục</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/subcategory">
+                <a href="<%=request.getContextPath()%>/manage/subcategory">
                     <i class="zmdi zmdi-collection-add"></i><span>Dòng sản phẩm</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/list-product">
+                <a href="<%=request.getContextPath()%>/manage/list-product">
                     <i class="fa fa-product-hunt"></i><span>Sản phẩm</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/image-product">
+                <a href="<%=request.getContextPath()%>/manage/image-product">
                     <i class="fa fa-image"></i><span>Ảnh sản phẩm</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/image-product-detail">
+                <a href="<%=request.getContextPath()%>/manage/image-product-detail">
                     <i class="zmdi zmdi-image-alt"></i><span>Mô tả sản phẩm</span>
                 </a>
             </li>
 
             <li>
-                <a href="<%=request.getContextPath()%>/color">
+                <a href="<%=request.getContextPath()%>/manage/color">
                     <i class="fa fa-paint-brush"></i><span>Màu sản phẩm</span>
                 </a>
             </li>

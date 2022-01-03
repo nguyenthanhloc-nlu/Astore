@@ -7,7 +7,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteImageProductController", value = "/delete-image-product")
+@WebServlet(name = "DeleteImageProductController", value = "/manage/delete-image-product")
 public class DeleteImageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

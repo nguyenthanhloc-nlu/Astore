@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SearchImageProductController", value = "/search-image-product")
+@WebServlet(name = "SearchImageProductController", value = "/manage/search-image-product")
 public class SearchImageProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

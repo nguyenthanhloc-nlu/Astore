@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SearchImageProductDetailController", value = "/search-image-product-detail")
+@WebServlet(name = "SearchImageProductDetailController", value = "/manage/search-image-product-detail")
 public class SearchImageProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

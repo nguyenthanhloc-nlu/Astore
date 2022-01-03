@@ -9,11 +9,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddAdminController", value = "/add-admin")
+@WebServlet(name = "AddAdminController", value = "/manage/add-admin")
 public class AddAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/admin/add-admin.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/add-admin.jsp").forward(request, response);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class AddAdminController extends HttpServlet {
             List<User> users = UserServices.getInstance().getAllUserByGroup(1);
             request.setAttribute("users", users);
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/admin.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/admin.jsp").forward(request,response);
         }else{
             request.setAttribute("user", user);
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/add-admin.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/add-admin.jsp").forward(request,response);
         }
     }
 }

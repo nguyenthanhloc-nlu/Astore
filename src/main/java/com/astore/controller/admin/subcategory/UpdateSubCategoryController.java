@@ -11,7 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateSubCategoryController", value = "/update-subcategory")
+@WebServlet(name = "UpdateSubCategoryController", value = "/manage/update-subcategory")
 public class UpdateSubCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,7 +19,7 @@ public class UpdateSubCategoryController extends HttpServlet {
         try {
             SubCategory subCategory = SubCategoryServices.getInstance().getById(Integer.parseInt(id));
             request.setAttribute("subcategory", subCategory);
-            request.getRequestDispatcher("view/admin/edit-subcategory.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/edit-subcategory.jsp").forward(request, response);
         } catch (Exception e) {
             response.sendError(404);
         }

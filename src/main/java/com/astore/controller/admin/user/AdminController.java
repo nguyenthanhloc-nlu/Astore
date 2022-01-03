@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Admin", value = "/admin")
+@WebServlet(name = "Admin", value = "/manage/admin")
 public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class AdminController extends HttpServlet {
         request.setAttribute("users", users);
 
         // chuyển hướng
-        request.getRequestDispatcher("view/admin/admin.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/admin.jsp").forward(request,response);
 
     }
 

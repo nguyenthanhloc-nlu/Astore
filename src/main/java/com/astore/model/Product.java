@@ -56,9 +56,7 @@ public class Product {
         this.id = id;
     }
 
-    public int getSubCategoryID() {
-        return subCategoryId;
-    }
+
 
     public void setSubCategoryId(int subCategoryId) {
         this.subCategoryId = subCategoryId;

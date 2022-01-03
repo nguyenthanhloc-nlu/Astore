@@ -9,7 +9,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateAdminController", value = "/update-admin")
+@WebServlet(name = "UpdateAdminController", value = "/manage/update-admin")
 public class UpdateAdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,7 +21,7 @@ public class UpdateAdminController extends HttpServlet {
 
             if(user != null) {
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("view/admin/edit-admin.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/edit-admin.jsp").forward(request, response);
             }
 
         }catch (Exception e){
@@ -48,13 +48,13 @@ public class UpdateAdminController extends HttpServlet {
             request.setAttribute("users", users);
 
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/admin.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/admin.jsp").forward(request,response);
         }else{
             user = null;
             user = UserServices.getInstance().getById(1,Integer.parseInt(id));
             if(user != null) {
                 request.setAttribute("user", user);
-                request.getRequestDispatcher("view/admin/edit-admin.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/edit-admin.jsp").forward(request, response);
             }
         }
 

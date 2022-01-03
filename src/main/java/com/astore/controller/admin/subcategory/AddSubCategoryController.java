@@ -9,11 +9,11 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "AddSubCategoryController", value = "/add-subcategory")
+@WebServlet(name = "AddSubCategoryController", value = "/manage/add-subcategory")
 public class AddSubCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("view/admin/add-subcategory.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
     }
 
     @Override
@@ -33,18 +33,18 @@ public class AddSubCategoryController extends HttpServlet {
             if(check) {
                 List<SubCategory> subCategories = SubCategoryServices.getInstance().getAll();
                 request.setAttribute("subCategories",subCategories);
-                request.getRequestDispatcher("view/admin/show-subcategory.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/show-subcategory.jsp").forward(request,response);
             }else{
                 request.setAttribute("subcategory", subCategory);
                 request.setAttribute("error", "Đã xãy ra lỗi");
                 // chuyển hướng
-                request.getRequestDispatcher("view/admin/add-subcategory.jsp").forward(request,response);
+                request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
             }
         }catch (Exception e) {
             request.setAttribute("subcategory", subCategory);
             request.setAttribute("error", "Đã xãy ra lỗi");
             // chuyển hướng
-            request.getRequestDispatcher("view/admin/add-subcategory.jsp").forward(request,response);
+            request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
         }
     }
 }

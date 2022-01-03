@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "SearchSubCategoryController", value = "/search-subcategory")
+@WebServlet(name = "SearchSubCategoryController", value = "/manage/search-subcategory")
 public class SearchSubCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

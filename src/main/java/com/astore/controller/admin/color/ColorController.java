@@ -10,13 +10,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet(name = "ColorController", value = "/color")
+@WebServlet(name = "ColorController", value = "/manage/color")
 public class ColorController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Color> colors = ColorServices.getInstance().getAll();
         request.setAttribute("colors",colors);
-        request.getRequestDispatcher("view/admin/show-product-color.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/show-product-color.jsp").forward(request,response);
     }
 
     @Override
