@@ -16,6 +16,10 @@ public interface IProductServices {
 
     List<Product> getAll();
 
+    List<Product> getAll(int start, int end);
+    int countProduct();
+
+
 
     List<Product> getByName(String productName);
 

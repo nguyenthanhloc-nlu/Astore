@@ -9,9 +9,17 @@ import java.util.List;
 public class SubCategoryServices implements ISubCategoryServices {
 
     private SubCategoryDao subCategoryDao;
+    private static SubCategoryServices categoryServices;
 
-    public SubCategoryServices() {
+    private SubCategoryServices() {
         subCategoryDao = new SubCategoryDao();
+    }
+
+    public static SubCategoryServices getInstance() {
+        if(categoryServices == null) {
+            categoryServices = new SubCategoryServices();
+        }
+        return categoryServices;
     }
 
     @Override

@@ -2,15 +2,14 @@ package com.astore.model;
 
 public class SubCategory {
     private int id;
-    private int categoryId;
+    private int idCategory;
     private String name;
     private String createdAt;
 
-    public SubCategory(int id, int categoryId, String name, String createdAt) {
+    public SubCategory(int id, int idCategory, String name) {
         this.id = id;
-        this.categoryId = categoryId;
+        this.idCategory = idCategory;
         this.name = name;
-        this.createdAt = createdAt;
     }
 
     public SubCategory() {
@@ -24,12 +23,12 @@ public class SubCategory {
         this.id = id;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
     public String getName() {

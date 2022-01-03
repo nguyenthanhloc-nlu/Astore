@@ -1,7 +1,11 @@
 package com.astore.model;
 
+import java.sql.Date;
+import java.util.Objects;
+
 public class User{
     private int id;
+    private String userName;
     private String name;
     private String email;
     private String gender;
@@ -16,8 +20,9 @@ public class User{
 
     public User(){}
 
-    public User(int id, String name, String email, String gender, String birthday, String phone, String address, String avatar, String password, String createdAt) {
+    public User(int id, String userName, String name, String email, String gender, String birthday, String phone, String address, String avatar, String password, String createdAt) {
         this.id = id;
+        this.userName = userName;
         this.name = name;
         this.email = email;
         this.gender = gender;
@@ -29,28 +34,20 @@ public class User{
         this.createdAt = createdAt;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(String birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getName() {
@@ -61,12 +58,28 @@ public class User{
         this.name = name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getGender() {
         return gender;
     }
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -85,14 +98,6 @@ public class User{
         this.address = address;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
     public String getAvatar() {
         return avatar;
     }
@@ -107,5 +112,43 @@ public class User{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", password='" + password + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
     }
 }

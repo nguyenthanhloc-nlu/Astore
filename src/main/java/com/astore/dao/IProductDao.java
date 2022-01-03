@@ -14,6 +14,10 @@ public interface IProductDao {
     Product getById(int id);
     List<Product> getAll();
 
+    List<Product> getAll(int start,int end);
+
+    int countProduct();
+
 
     List<Product> getByName(String productName);
 

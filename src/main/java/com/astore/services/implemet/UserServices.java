@@ -7,40 +7,60 @@ import com.astore.services.IUserServices;
 import java.util.List;
 
 public class UserServices implements IUserServices {
+
+    static UserServices userServices = null;
     private UserDao userdao;
 
-    public UserServices() {
+    private UserServices() {
         this.userdao = new UserDao();
     }
 
+    public static UserServices getInstance(){
+        if(userServices == null){
+            userServices = new UserServices();
+        }
+        return  userServices;
+    }
+
+
     @Override
-    public boolean insert(User user) {
-        return userdao.insert(user);
+    public boolean insertUser(User user) {
+        return userdao.insertUser(user);
     }
 
     @Override
-    public boolean update(User user) {
-        return userdao.update(user);
+    public boolean insertAdmin(User user) {
+        return userdao.insertAdmin(user);
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        return userdao.updateUser(user);
+    }
+
+    @Override
+    public boolean updateAdmin(User user) {
+        return userdao.updateAdmin(user);
+    }
+
 
     @Override
     public boolean delete(int id) {
-        return delete(id);
+        return userdao.delete(id);
     }
 
     @Override
-    public User getById(int id) {
-        return userdao.getById(id);
+    public User getById(int groupId, int id) {
+        return userdao.getById(groupId,id);
     }
 
     @Override
-    public List<User> getByName(String name) {
-        return userdao.getByName(name);
+    public List<User> getByName(int groupId, String name) {
+        return userdao.getByName(groupId,name);
     }
 
-
     @Override
-    public List<User> getAll() {
-        return userdao.getAll();
+    public List<User> getAllUserByGroup(int groupId) {
+        return userdao.getAllUserByGroup(groupId);
     }
 }

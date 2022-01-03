@@ -4,6 +4,7 @@ import com.astore.dao.IProductDao;
 import com.astore.jdbc.ConnectDB;
 import com.astore.model.Product;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,30 +14,109 @@ public class ProductDao implements IProductDao {
 
     @Override
     public boolean insert(Product product) {
+        if (product != null) {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "insert into San_pham(id_dong_san_pham, gia_san_pham, id_mau_sac, bo_nho_rom, ram,kich_thuoc_man_hinh, do_phan_giai_man_hinh, camera_truoc, camera_sau ) values (?,?,?,?,?,?,?,?,?)";
 
+
+            PreparedStatement ps = null;
+            try {
+                ps = conn.prepareStatement(sql);
+                ps.setInt(1, product.getSubCategoryID());
+                ps.setDouble(2, product.getPrice());
+                ps.setInt(3, product.getColorId());
+                ps.setString(4, product.getRom());
+                ps.setString(5, product.getRam());
+                ps.setString(6, product.getSizeScreen());
+                ps.setString(7, product.getScreenResolution());
+                ps.setString(8, product.getFrontCamera());
+                ps.setString(9, product.getBackCamera());
+
+                int row = ps.executeUpdate();
+                ps.close();
+                return row == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
 
         return false;
     }
 
     @Override
     public boolean edit(Product product) {
+        if (product != null) {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "update SAN_PHAM  set " +
+                    "gia_san_pham = ? , " +
+                    "bo_nho_rom = ? ," +
+                    "ram = ? ," +
+                    "kich_thuoc_man_hinh = ? ," +
+                    "do_phan_giai_man_hinh = ? ," +
+                    "camera_truoc = ? ," +
+                    "camera_sau = ? ," +
+                    "thoi_gian_tao = ? " +
+                    "where id = ?";
 
 
+
+            PreparedStatement ps = null;
+            try {
+                BigDecimal b = new BigDecimal(product.getPrice());
+                ps = conn.prepareStatement(sql);
+                ps.setBigDecimal(1, b);
+                ps.setString(2, product.getRom());
+                ps.setString(3, product.getRam());
+                ps.setString(4, product.getSizeScreen());
+                ps.setString(5, product.getScreenResolution());
+                ps.setString(6, product.getFrontCamera());
+                ps.setString(7, product.getBackCamera());
+                ps.setDate(8, new Date(System.currentTimeMillis()));
+                ps.setInt(9, product.getId());
+                int row = ps.executeUpdate();
+                return row == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+        }
 
         return false;
     }
 
     @Override
     public boolean delete(int id) {
+        PreparedStatement ps = null;
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "deleteProduct_proc ?";
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
 
-        return false;
+            String check = "select * from SAN_PHAM where id = ?";
+            ps = conn.prepareStatement(check);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            boolean deleted = rs.next();
+            rs.close();
+            ps.close();
+            return !deleted;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 
     @Override
     public Product getById(int id) {
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
                 "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "where SAN_PHAM.id = " + id;
 
@@ -48,6 +128,7 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 ps.close();
@@ -69,9 +150,10 @@ public class ProductDao implements IProductDao {
         List<Product> products = new ArrayList<Product>();
         Connection conn;
         conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham , HINH_MOTA_SANPHAM.link_hinh_mo_ta_san_pham" +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
-                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham join HINH_MOTA_SANPHAM on SAN_PHAM.id = HINH_MOTA_SANPHAM.id_san_pham";
+        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "order by SAN_PHAM.thoi_gian_tao desc ";
 
 
         try {
@@ -82,8 +164,6 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
-                product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
             }
             ps.close();
@@ -96,24 +176,78 @@ public class ProductDao implements IProductDao {
         return products;
     }
 
+    @Override
+    public List<Product> getAll(int start, int end) {
+        List<Product> products = new ArrayList<Product>();
+        Connection conn;
+        conn = ConnectDB.getInstance();
+        String sql = "getProductLimitAdmin_proc ?, ?";
+
+
+        try {
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, start);
+            ps.setInt(2, end);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                setValueProduct(product, rs);
+                products.add(product);
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return products;
+    }
 
     @Override
-    public List<Product> getByName(String productName) {
-        List<Product> products = new ArrayList<Product>();
+    public int countProduct() {
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham , HINH_MOTA_SANPHAM.link_hinh_mo_ta_san_pham" +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
-                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham join HINH_MOTA_SANPHAM on SAN_PHAM.id = HINH_MOTA_SANPHAM.id_san_pham" +
-                "where DONG_SAN_PHAM.ten_dong_san_pham =" + productName;
-
+        int count = 0;
+        String sql = "select count(*) from SAN_PHAM";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  count;
+    }
+
+
+    @Override
+    public List<Product> getByName(String productName) {
+        List<Product> products = new ArrayList<Product>();
+        Connection conn = ConnectDB.getInstance();
+        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "where DONG_SAN_PHAM.ten_dong_san_pham like ? order by thoi_gian_tao desc";
+
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            productName = "%" +productName +"%";
+            ps.setNString(1, productName);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
@@ -131,8 +265,8 @@ public class ProductDao implements IProductDao {
     public List<Product> getProductByIdCate(int idCate) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
                 "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id join LOAI_SAN_PHAM on LOAI_SAN_PHAM.id = DONG_SAN_PHAM.id_loai_san_pham " +
                 "where LOAI_SAN_PHAM.id =" + idCate;
 
@@ -144,6 +278,7 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
@@ -162,8 +297,8 @@ public class ProductDao implements IProductDao {
     public List<Product> getProductByIdDongSp(int idDongSp) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT  SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT  SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
                 "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
                 "where DONG_SAN_PHAM.id =" + idDongSp;
 
@@ -175,6 +310,7 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
@@ -226,7 +362,7 @@ public class ProductDao implements IProductDao {
                 Product product = new Product();
 
                 setValueProduct(product, rs);
-
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
@@ -246,8 +382,8 @@ public class ProductDao implements IProductDao {
     public List<Product> getProductByIdDongSp(int idDongSp, int numTop) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT top " + numTop + " SAN_PHAM.*, GIAM_GIA.phan_tram, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join GIAM_GIA on SAN_PHAM.id = GIAM_GIA.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT top " + numTop + " SAN_PHAM.*,MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
                 "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
                 "where DONG_SAN_PHAM.id =" + idDongSp;
 
@@ -260,7 +396,7 @@ public class ProductDao implements IProductDao {
                 Product product = new Product();
 
                 setValueProduct(product, rs);
-
+                product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 products.add(product);
@@ -334,22 +470,47 @@ public class ProductDao implements IProductDao {
         return photoUrl;
     }
 
+
+    private double getSaleRate(int productId){
+        double result  = 0;
+        Connection conn = ConnectDB.getInstance();
+        String sql = "select * from GIAM_GIA where id_san_pham = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+               result = Double.parseDouble(rs.getString("phan_tram"));
+            }
+            ps.close();
+            rs.close();
+        }catch (SQLException e){
+
+        }
+        return result;
+    }
+
     private void setValueProduct(Product product, ResultSet rs) {
         try {
             product.setId(rs.getInt("id"));
             product.setSubCategoryId(rs.getInt("id_dong_san_pham"));
             product.setName(rs.getString("ten_dong_san_pham"));
             product.setPrice(rs.getDouble("gia_san_pham"));
+
             product.setColorName(rs.getString("ten_mau_sac"));
             product.setColorHex(rs.getString("ma_mau_sac_hex"));
+            product.setColorId(rs.getInt("id_mau_sac"));
+
             product.setRom(rs.getString("bo_nho_rom"));
             product.setRam(rs.getString("ram"));
             product.setSizeScreen(rs.getString("kich_thuoc_man_hinh"));
             product.setScreenResolution(rs.getString("do_phan_giai_man_hinh"));
             product.setFrontCamera(rs.getString("camera_truoc"));
             product.setBackCamera(rs.getString("camera_sau"));
-            product.setSaleRate(rs.getDouble("phan_tram"));
             product.setCreatedAt(rs.getString("thoi_gian_tao"));
+//          product.setSaleRate(rs.getDouble("phan_tram"));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

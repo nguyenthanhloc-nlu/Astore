@@ -8,9 +8,17 @@ import java.util.List;
 
 public class ProductServices implements IProductServices {
     private  ProductDao p ;
+    private static ProductServices productServices;
 
     public ProductServices() {
         this.p = new ProductDao();
+    }
+
+    public static ProductServices getInstance() {
+        if(productServices == null){
+            productServices = new ProductServices();
+        }
+        return productServices;
     }
 
     @Override
@@ -41,6 +49,16 @@ public class ProductServices implements IProductServices {
     @Override
     public List<Product> getAll() {
         return p.getAll();
+    }
+
+    @Override
+    public List<Product> getAll(int start, int end) {
+        return p.getAll(start, end);
+    }
+
+    @Override
+    public int countProduct() {
+        return p.countProduct();
     }
 
 

@@ -2,11 +2,13 @@ package com.astore.model;
 
 public class Color {
     private int id;
+    private String codeHex;
     private String name;
     private String createdAt;
 
-    public Color(int id, String name, String createdAt) {
+    public Color(int id, String codeHex, String name, String createdAt) {
         this.id = id;
+        this.codeHex = codeHex;
         this.name = name;
         this.createdAt = createdAt;
     }
@@ -20,6 +22,14 @@ public class Color {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCodeHex() {
+        return codeHex;
+    }
+
+    public void setCodeHex(String codeHex) {
+        this.codeHex = codeHex;
     }
 
     public String getName() {

@@ -11,92 +11,160 @@ import java.util.List;
 public class UserDao implements IUserDao {
 
     @Override
-    public boolean insert(User user) {
+    public boolean insertUser(User user) {
+        if(user != null){
+            Connection conn = ConnectDB.getInstance();
+            // username, fullname, email, gioi_tinh,sdt,ngay_sinh,  dia_chi, duong_dan_avatar, mat_khau
+            String sql = "execute insertUser_proc ?, ?, ?, ?, ?, ?, ?, ?, ?";
+            try {
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1,user.getUserName());
+                ps.setString(2,user.getName());
+                ps.setString(3,user.getEmail());
+                ps.setString(4,user.getGender());
+                ps.setString(5,user.getPhone());
+                ps.setString(6,user.getBirthday());
+                ps.setString(7,user.getAddress());
+                ps.setString(8,user.getAvatar());
+                ps.setString(9,user.getPassword());
 
 
-        return  false;
+                int row = ps.executeUpdate();
+                ps.close();
+                System.out.println(row +" row");
+                if(row != 0) return  true;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        return false;
     }
 
     @Override
-    public boolean update(User user) {
+    public boolean insertAdmin(User user) {
         if(user != null){
             Connection conn = ConnectDB.getInstance();
-            String sql = "update SAN_PHAM  " +
-                    "set ten_nguoi_dung = ? , "+
-                    "email = ? ," +
-                    "gioi_tinh = ? ," +
-                    "ngay_sinh = ? ," +
-                    "sdt = ? ," +
-                    "dia_chi = ? ," +
-                    "avatar = ? ," +
-                    "mat_khau = ? ," +
-                    "thoi_gian_tao = ? ,"+
-                    "where id = ?";
-
-
-            PreparedStatement ps = null;
+            String sql = "execute insertAdmin_proc ?, ?, ?"; // username, fullname, password
             try {
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, user.getName());
-                ps.setString(2, user.getEmail());
-                ps.setString(3, user.getGender());
-                ps.setString(4, user.getBirthday());
-                ps.setString(5, user.getPhone());
-                ps.setString(6, user.getAddress());
-                ps.setString(7, user.getAvatar());
-                ps.setDate(8, new Date(System.currentTimeMillis()));
-                ps.setInt(9, user.getId());
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setString(1,user.getUserName());
+                ps.setString(2,user.getName());
+                ps.setString(3,user.getPassword());
+
                 int row = ps.executeUpdate();
-                return row == 0 ? false : true;
+                ps.close();
+                System.out.println(row +" row");
+                if(row != 0) return  true;
+
             } catch (SQLException e) {
                 e.printStackTrace();
-                return  false;
             }
         }
+
+
         return false;
     }
+
+    @Override
+    public boolean updateUser(User user) {
+        try {
+            Connection conn = ConnectDB.getInstance();
+            // id, fullname, email, gioitinh,  ngaysinh,  sdt, diachi, avt, password
+            String sql = "execute updateUser_proc ?, ?, ?, ?, ?, ?, ?, ?, ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getEmail());
+            ps.setString(4, user.getGender());
+            ps.setString(5, user.getPhone());
+            ps.setString(6, user.getBirthday());
+            ps.setString(7, user.getAddress());
+            ps.setString(8, user.getAvatar());
+            ps.setString(9, user.getPassword());
+
+
+
+            int row = ps.executeUpdate();
+            ps.close();
+            System.out.println("update user row " +row +" " +user);
+            return row != 0 ;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
+    @Override
+    public boolean updateAdmin(User user) {
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "execute updateAdmin_proc ?, ?, ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, user.getId());
+            ps.setString(2, user.getName());
+            ps.setString(3, user.getPassword());
+
+            System.out.println("update admin " +user.getId() + " " +user.getName() + " " +user.getPassword());
+
+            int row = ps.executeUpdate();
+            ps.close();
+            return row != 0 ;
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+    }
+
 
     @Override
     public boolean delete(int id) {
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "delete NGUOI_DUNG where id = ?";
+            String sql = "execute deleteUser_proc ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
             int row = ps.executeUpdate();
+
+            ps.close();
             return row == 0 ? false : true;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return  false;
+            return false;
         }
+
     }
 
     @Override
-    public User getById(int id) {
+    public User getById(int groupId, int id) {
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG where id = "+id;
-
+            String sql = "SELECT * FROM NGUOI_DUNG join PHAN_QUYEN ON NGUOI_DUNG.id = PHAN_QUYEN.id_nguoi_dung where NGUOI_DUNG.id = ? and PHAN_QUYEN.id_nhom =?";
             PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ps.setInt(2, groupId);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-               User user = new User();
-
-                user.setId(rs.getInt("id"));
-                user.setName(rs.getString("ten_nguoi_dung"));
-                user.setEmail(rs.getNString("email"));
-                user.setGender(rs.getNString("gioi_tinh"));
-                user.setBirthday(rs.getNString("ngay_sinh"));
-                user.setPhone(rs.getNString("sdt"));
-                user.setAddress(rs.getNString("dia_chi"));
-                user.setAvatar(rs.getNString("avatar"));
-                user.setCreatedAt(rs.getString("thoi_gian_tao"));
-
-                return  user;
+            User user = new User();
+            while (rs.next()) {
+              setValue(user, rs);
             }
+
+            rs.close();
+            ps.close();
+            return user;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -105,67 +173,79 @@ public class UserDao implements IUserDao {
     }
 
     @Override
-    public List<User> getByName(String name) {
+    public List<User> getByName(int groupId, String name) {
         List<User> results = new ArrayList<>();
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG where ten_nguoi_dung = "+name;
+            String sql = "SELECT NGUOI_DUNG.* FROM NGUOI_DUNG join PHAN_QUYEN on NGUOI_DUNG.id= PHAN_QUYEN.id_nguoi_dung  where ho_va_ten  like ? and PHAN_QUYEN.id_nhom = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
+            name = "%"+name+"%";
+            ps.setNString(1, name);
+            ps.setInt(2, groupId);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
 
-                user.setId(rs.getInt("id"));
-                user.setName(rs.getString("ten_nguoi_dung"));
-                user.setEmail(rs.getNString("email"));
-                user.setGender(rs.getNString("gioi_tinh"));
-                user.setBirthday(rs.getNString("ngay_sinh"));
-                user.setPhone(rs.getNString("sdt"));
-                user.setAddress(rs.getNString("dia_chi"));
-                user.setAvatar(rs.getNString("avatar"));
-                user.setCreatedAt(rs.getString("thoi_gian_tao"));
-
+                setValue(user, rs);
                 results.add(user);
             }
+
+            rs.close();
+            ps.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return results;
     }
-
 
     @Override
-    public List<User> getAll() {
+    public List<User> getAllUserByGroup(int groupId) {
         List<User> results = new ArrayList<>();
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG";
+            String sql = "select nguoi_dung.*  from nguoi_dung join phan_quyen on nguoi_dung.id = phan_quyen.id_nguoi_dung where PHAN_QUYEN.id_nhom = ? order by NGUOI_DUNG.thoi_gian_tao desc";
 
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, groupId);
+
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 User user = new User();
-
-                user.setId(rs.getInt("id"));
-                user.setName(rs.getString("ten_nguoi_dung"));
-                user.setEmail(rs.getNString("email"));
-                user.setGender(rs.getNString("gioi_tinh"));
-                user.setBirthday(rs.getNString("ngay_sinh"));
-                user.setPhone(rs.getNString("sdt"));
-                user.setAddress(rs.getNString("dia_chi"));
-                user.setAvatar(rs.getNString("avatar"));
-                user.setCreatedAt(rs.getString("thoi_gian_tao"));
-
+                setValue(user, rs);
                 results.add(user);
             }
+
+            rs.close();
+            ps.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return results;
     }
+
+
+
+    private void setValue(User user, ResultSet rs){
+        try{
+            user.setId(rs.getInt("id"));
+            user.setUserName(rs.getString("ten_nguoi_dung"));
+            user.setName(rs.getString("ho_va_ten"));
+            user.setEmail(rs.getString("email"));
+            user.setGender(rs.getString("gioi_tinh"));
+            user.setBirthday(rs.getDate("ngay_sinh") != null ? rs.getDate("ngay_sinh").toString() : "" );
+            user.setPhone(rs.getString("sdt"));
+            user.setAddress(rs.getString("dia_chi"));
+            user.setAvatar(rs.getString("duong_dan_avatar"));
+            user.setCreatedAt(rs.getString("thoi_gian_tao"));
+        }catch (SQLException e) {
+
+        }
+    }
+
+
 }

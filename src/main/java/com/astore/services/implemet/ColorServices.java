@@ -9,10 +9,17 @@ import java.util.List;
 public class ColorServices implements IColorServices {
 
     private ColorDao colorDao ;
-
-    public ColorServices() {
-        colorDao = new ColorDao();
+    private static ColorServices colorServices;
+    private ColorServices(){
+        this.colorDao = new ColorDao();
     }
+
+   public static ColorServices getInstance(){
+        if(colorServices == null){
+            colorServices = new ColorServices();
+        }
+        return colorServices;
+   }
 
     @Override
     public boolean insert(Color color) {
