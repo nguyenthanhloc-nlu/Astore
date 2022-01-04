@@ -5,24 +5,7 @@
 <title>Admin | Sản phẩm</title>
 
 <style>
-    /* thiết lập style cho thẻ a */
-    .pagination a {
-        color: white;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-        cursor: pointer;
-    }
-    /* thiết lập style cho class active */
-    .pagination a.active {
-        background-color: dodgerblue;
-        color: white;
-    }
-    /* thêm màu nền khi người dùng hover vào class không active */
-    .pagination a:hover:not(.active) {
-        background-color: #ddd;
-    }
+
 </style>
 
 <div class="content-wrapper">
@@ -224,11 +207,15 @@
                 $(".pagination a").filter(function () {
                     return $(this).text() == index
                 }).addClass("active");
+
+                collapsePage()
             }
         });
     }
 
-
+    $(document).ready(function(){
+        collapsePage()
+    })
 
 </script>
 

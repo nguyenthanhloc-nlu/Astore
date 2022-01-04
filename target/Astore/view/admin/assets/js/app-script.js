@@ -246,3 +246,54 @@ function getCurrentPage() {
     return active.text();
 }
 
+// tối ưu phần hiển thị phân trang
+function collapsePage() {
+    $(".pagination a").filter(function () {
+        return $(this).attr("class") == 'more'
+    }).remove();
+    const tagA = $(".pagination a");
+    const index =[0,1,tagA.length-2, tagA.length-1];
+    let  active = 0;
+    if(tagA.length > 7){
+
+        for (let i = 0; i < tagA.length; i++) {
+            if(tagA[i].getAttribute("class")== 'active'){
+                index.push(i)
+                active = i;
+                break;
+            }
+        }
+        index.sort((a,b)=>a-b);
+        let index1 = 1000;
+        let index2 = 0;
+        for (let i = 2; i < tagA.length-2; i++) {
+            if(active < 4){
+                if(i < 6) {
+                    $(tagA[i]).show()
+                }else{
+                    $(tagA[i]).hide()
+                }
+                if(i > index2)
+                    index2 =i;
+            }else{
+
+                if(Math.abs(active - i) < 2){
+                    $(tagA[i]).show()
+                    if(i < index1)
+                        index1 =i;
+                }
+                else{
+                    $(tagA[i]).hide()
+                    if(i > index2)
+                        index2 =i;
+                }
+            }
+        }
+        if(index1 != 1000)
+            $(tagA[index1]).before("<a class='more'>...</a>");
+        if(index2 != 0 && index2 > active)
+            $(tagA[index2]).after("<a class='more'>...</a>");
+    }
+
+}
+

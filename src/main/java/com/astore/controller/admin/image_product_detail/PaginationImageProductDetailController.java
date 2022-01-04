@@ -1,38 +1,41 @@
-package com.astore.controller.admin.product;
+package com.astore.controller.admin.image_product_detail;
 
-import com.astore.model.Product;
-import com.astore.services.implemet.ProductServices;
+import com.astore.model.Image;
+import com.astore.services.implemet.ImageProductDetailServices;
+import com.astore.services.implemet.ImageProductServices;
 import com.google.gson.Gson;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "PaginationProductController", value = "/manage/page-product")
-public class PaginationProductController extends HttpServlet {
+@WebServlet(name = "PaginationImageProductDetailController", value = "/manage/page-image-product-detail")
+public class PaginationImageProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("get page product");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String page = request.getParameter("page");
-        System.out.println(page +"page");
+        System.out.println(page);
         try {
             int pageInt = Integer.parseInt(page) - 1;
             int start = pageInt *50 +1;
             int end = start +49;
 
-            List<Product> products = ProductServices.getInstance().getAll(start, end);
+            List<Image> images = ImageProductDetailServices.getInstance().getAll(start, end);
 
             String json = null;
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             Gson gson = new Gson();
-            json = gson.toJson(products);
+            json = gson.toJson(images);
             response.getWriter().write(json);
 
 

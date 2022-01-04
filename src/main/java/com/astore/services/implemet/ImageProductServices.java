@@ -53,6 +53,16 @@ public class ImageProductServices implements IImageProductServices{
     }
 
     @Override
+    public List<Image> getAll(int start, int end) {
+        return imageProductDao.getAll(start, end);
+    }
+
+    @Override
+    public int countImage() {
+        return imageProductDao.countImage();
+    }
+
+    @Override
     public List<Image> getByName(String imageName) {
         return imageProductDao.getByName(imageName);
     }

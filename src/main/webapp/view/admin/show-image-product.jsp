@@ -36,7 +36,7 @@
                                             <td scope="row"><%=i++%></td>
                                             <td>${image.id}</td>
                                             <td>${image.productId}</td>
-                                            <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="${image.url}" alt="product image"></td>
+                                            <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/${image.url}" alt="product image"></td>
                                             <input type="hidden"
                                                    value="delete-image-product"
                                                    id="${image.id}"/>
@@ -52,6 +52,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="pagination">
+            <c:if test="${totalPages > 1}">
+                <a onclick="page('prev', ${totalPages})">«</a>
+                <c:forEach var = "i"  begin="1" end="${totalPages}">
+
+                    <c:if test="${i == 1}">
+                        <a class="active" onclick="page(${i}, ${totalPages})">${i}</a>
+                    </c:if>
+                    <c:if test="${i != 1}">
+                        <a onclick="page(${i}, ${totalPages})" >${i}</a>
+                    </c:if>
+
+                </c:forEach>
+                <a onclick="page('next',${totalPages})">»</a>
+            </c:if>
         </div>
     </div>
 </div>
@@ -80,7 +96,7 @@
                         row += '<td scope="row">'+ index++ +'</td> ';
                         row += '<td>'+value.id+'</td>';
                         row += '<td>'+value.productId+'</td>';
-                        row += '  <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="${image.url}" alt="product image"></td>'
+                        row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
 
                         row += '<input type="hidden" value="delete-image-product" id="'+value.id+'" style="display: none;"/>';
                         row += ' <td>';
@@ -96,6 +112,78 @@
             });
         }
     });
+
+
+
+    function page(index, totalPages) {
+
+        const currentPage = getCurrentPage();
+
+        if (index === 'prev') {
+            if (currentPage > 1)
+                index = (parseInt(currentPage) - 1);
+            else return;
+
+        }
+        if (index === 'next') {
+            if (currentPage < totalPages)
+                index = (parseInt(currentPage) + 1) ;
+            else return;
+        }
+        $.ajax({
+            url: "page-image-product",
+            type: 'POST',
+            data: {
+                page: index,
+            },
+            success: function (responseJson) {
+                var row = '';
+                var i = 1;
+                const formatter = new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                    minimumFractionDigits: 2
+                })
+                $.each(responseJson, function (key, value) {
+
+                    if(value == null || value.id <1) return;
+                    var onclick = "JSconfirm("+ value.id + ",'Chắc chắn bạn muốn xóa')";
+
+                    row += '<tr id="'+ value.id+'tr">';
+
+                    row += '<td scope="row">'+ index++ +'</td> ';
+                    row += '<td>'+value.id+'</td>';
+                    row += '<td>'+value.productId+'</td>';
+                    row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
+
+                    row += '<input type="hidden" value="delete-image-product" id="'+value.id+'" style="display: none;"/>';
+                    row += ' <td>';
+                    row += '<button class="btn btn-danger"><a onclick="'+onclick+'">Xóa</a></button> \n';
+                    row += '<button class="btn btn-success"><a href="update-image-product?id='+value.id+'">Sửa</a></button>';
+                    row += '        </td>';
+                    row += '  </tr>';
+
+                });
+
+                document.getElementById("tbody").innerHTML =row;
+                $("html, body").animate({scrollTop: 0}, 600);
+
+
+                $(".pagination a").filter(function () {
+                    return $(this).attr("class") == 'active'
+                }).removeClass("active");
+
+                $(".pagination a").filter(function () {
+                    return $(this).text() == index
+                }).addClass("active");
+
+                collapsePage()
+            }
+        });
+    }
+    $(document).ready(function(){
+        collapsePage()
+    })
 </script>
 
 

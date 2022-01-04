@@ -164,6 +164,57 @@ public class ImageProductDetailDao implements IImageProductDetailDao {
     }
 
     @Override
+    public List<Image> getAll(int start, int end) {
+        List<Image> images = new ArrayList<Image>();
+        Connection conn;
+        conn = ConnectDB.getInstance();
+        String sql = "getImageProductDetailLimitAdmin_proc ?, ?";
+
+
+        try {
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, start);
+            ps.setInt(2, end);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Image image = new Image();
+                setValue(rs,image);
+                images.add(image);
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return images;
+    }
+
+    @Override
+    public int countImage() {
+        Connection conn = ConnectDB.getInstance();
+        int count = 0;
+        String sql = "select count(*) from HINH_MOTA_SANPHAM";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  count;
+    }
+
+    @Override
     public List<Image> getByName(String imageName) {
         List<Image> result = new ArrayList<>();
 

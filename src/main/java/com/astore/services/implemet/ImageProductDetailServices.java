@@ -3,10 +3,11 @@ package com.astore.services.implemet;
 import com.astore.dao.IImageProductDetailDao;
 import com.astore.dao.implement.ImageProductDetailDao;
 import com.astore.model.Image;
+import com.astore.services.IImageProductDetailServices;
 
 import java.util.List;
 
-public class ImageProductDetailServices implements IImageProductDetailDao {
+public class ImageProductDetailServices implements IImageProductDetailServices {
     private static ImageProductDetailServices imageProductDetailServices;
     private ImageProductDetailDao detailDao;
 
@@ -49,6 +50,16 @@ public class ImageProductDetailServices implements IImageProductDetailDao {
     @Override
     public List<Image> getAll() {
         return detailDao.getAll();
+    }
+
+    @Override
+    public List<Image> getAll(int start, int end) {
+        return detailDao.getAll(start,end);
+    }
+
+    @Override
+    public int countImage() {
+        return detailDao.countImage();
     }
 
     @Override

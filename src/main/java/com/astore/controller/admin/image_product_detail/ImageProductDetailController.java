@@ -16,8 +16,17 @@ import java.util.List;
 public class ImageProductDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Image> images = ImageProductDetailServices.getInstance().getAll();
+        int count = ImageProductDetailServices.getInstance().countImage();
+        int totalPages = 0;
+        if(count % 50 > 0){
+            totalPages = count / 50 +1;
+        }else
+            totalPages = count / 50;
+        System.out.println(count+ " "+totalPages);
+
+        List<Image> images = ImageProductDetailServices.getInstance().getAll(1, 50);
         request.setAttribute("images", images);
+        request.setAttribute("totalPages", totalPages);
 
         request.getRequestDispatcher("/view/admin/show-image-product-detail.jsp").forward(request, response);
     }

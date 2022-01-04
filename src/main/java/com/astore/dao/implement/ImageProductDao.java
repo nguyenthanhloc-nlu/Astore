@@ -4,6 +4,7 @@ import com.astore.dao.IImageProductDao;
 import com.astore.jdbc.ConnectDB;
 import com.astore.model.Category;
 import com.astore.model.Image;
+import com.astore.model.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -168,6 +169,57 @@ public class ImageProductDao implements IImageProductDao {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public List<Image> getAll(int start, int end) {
+        List<Image> images = new ArrayList<Image>();
+        Connection conn;
+        conn = ConnectDB.getInstance();
+        String sql = "getImageProductLimitAdmin_proc ?, ?";
+
+
+        try {
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, start);
+            ps.setInt(2, end);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Image image = new Image();
+                setValue(rs,image);
+                images.add(image);
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return images;
+    }
+
+    @Override
+    public int countImage() {
+        Connection conn = ConnectDB.getInstance();
+        int count = 0;
+        String sql = "select count(*) from HINH_SANPHAM";
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  count;
     }
 
     @Override

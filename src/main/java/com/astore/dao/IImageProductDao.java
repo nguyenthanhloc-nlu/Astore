@@ -17,5 +17,9 @@ public interface IImageProductDao {
 
     List<Image> getAll();
 
+    List<Image> getAll(int start, int end);
+
+    int countImage();
+
     List<Image> getByName(String imageName);
 }
