@@ -20,4 +20,7 @@ public interface IUserServices{
     List<User> getByName(int groupId, String name);
 
     List<User> getAllUserByGroup(int groupId); //ds user
+
+
+    User loginAdmin(String userName, String password);
 }

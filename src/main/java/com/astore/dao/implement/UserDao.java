@@ -228,6 +228,44 @@ public class UserDao implements IUserDao {
         return results;
     }
 
+    @Override
+    public User loginAdmin(String userName, String password) {
+
+        try {
+            User user  = new User();
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT * FROM NGUOI_DUNG join PHAN_QUYEN ON NGUOI_DUNG.id = PHAN_QUYEN.id_nguoi_dung where PHAN_QUYEN.id_nhom =? and NGUOI_DUNG.ten_nguoi_dung =? and NGUOI_DUNG.mat_khau = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, 1);
+            ps.setString(2, userName);
+            ps.setString(3,password);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                user.setId(rs.getInt("id"));
+                user.setUserName(rs.getString("ten_nguoi_dung"));
+                user.setName(rs.getString("ho_va_ten"));
+                user.setAvatar(rs.getString("duong_dan_avatar"));
+                user.setPassword(rs.getString("mat_khau"));
+                user.setCreatedAt(rs.getString("thoi_gian_tao"));
+            }
+            if (rs.next()) {
+                rs.close();
+                ps.close();
+                return null;
+            }
+
+            rs.close();
+            ps.close();
+            return user;
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
     private void setValue(User user, ResultSet rs){

@@ -134,7 +134,7 @@
             else return;
         }
         $.ajax({
-            url: "page-image-product",
+            url: "page-image-product-detail",
             type: 'POST',
             data: {
                 page: index,
@@ -154,7 +154,7 @@
 
                     row += '<tr id="'+ value.id+'tr">';
 
-                    row += '<td scope="row">'+ index++ +'</td> ';
+                    row += '<td scope="row">'+ i++ +'</td> ';
                     row += '<td>'+value.id+'</td>';
                     row += '<td>'+value.productId+'</td>';
                     row += '  <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'

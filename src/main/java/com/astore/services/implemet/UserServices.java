@@ -63,4 +63,9 @@ public class UserServices implements IUserServices {
     public List<User> getAllUserByGroup(int groupId) {
         return userdao.getAllUserByGroup(groupId);
     }
+
+    @Override
+    public User loginAdmin(String userName, String password) {
+        return userdao.loginAdmin(userName, password);
+    }
 }

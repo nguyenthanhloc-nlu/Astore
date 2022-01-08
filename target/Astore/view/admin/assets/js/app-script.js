@@ -269,7 +269,7 @@ function collapsePage() {
         for (let i = 2; i < tagA.length-2; i++) {
             if(active < 4){
                 if(i < 6) {
-                    $(tagA[i]).show()
+                    $(tagA[i]).fadeIn()
                 }else{
                     $(tagA[i]).hide()
                 }
@@ -278,7 +278,7 @@ function collapsePage() {
             }else{
 
                 if(Math.abs(active - i) < 2){
-                    $(tagA[i]).show()
+                    $(tagA[i]).fadeIn()
                     if(i < index1)
                         index1 =i;
                 }

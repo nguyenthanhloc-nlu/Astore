@@ -10,7 +10,9 @@
         <location>/page404</location>
     </error-page>
 
-
+    <session-config>
+        <session-timeout>15</session-timeout> <!-- in minutes -->
+    </session-config>
 
 
 </web-app>

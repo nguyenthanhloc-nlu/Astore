@@ -21,4 +21,6 @@ public interface IUserDao {
 
     List<User> getAllUserByGroup(int groupId); // ds khách hàng
 
+    User loginAdmin(String userName, String password);
+
 }
