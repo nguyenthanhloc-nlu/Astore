@@ -43,7 +43,7 @@
 
 <div id="wrapper">
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-        <a class="nav-link toggle-menu my-icon-menu" href="javascript:;" style="display: inline;">
+        <a class="nav-link toggle-menu my-icon-menu" href="javascript:;">
             <i class="icon-menu menu-icon"></i>
         </a>
         <div class="brand-logo" style="justify-content: flex-start;">
@@ -141,6 +141,11 @@
                     <i class="fa fa-question-circle"></i><span>Hỗ trợ</span>
                 </a>
             </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/manage/upload">
+                    <i class="fa fa-upload"></i><span>Upload</span>
+                </a>
+            </li>
 
 
         </ul>
@@ -168,7 +173,7 @@
                                 <div class="media">
                                     <div class="avatar"><img class="align-self-start mr-3" src="<%=request.getContextPath()%>/view/admin/assets/images/avatar-admin.png" alt="user avatar"></div>
                                     <div class="media-body">
-                                        <h6 class="mt-2 user-title"><%=((User)session.getAttribute("admin")).getName()%>></h6>
+                                        <h6 class="mt-2 user-title"><%=((User)session.getAttribute("admin")).getName()%></h6>
                                         <b>admin</b>
                                     </div>
                                 </div>

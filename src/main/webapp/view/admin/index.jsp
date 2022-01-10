@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--<!DOCTYPE html>--%>
 <%--<html>--%>
 <head>
@@ -15,51 +16,51 @@
         <div class="card mt-3">
             <div class="card-content">
                 <div class="row row-group m-0">
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="col-12 col-lg-6 col-xl-4 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">3 <span class="float-right"><i class="fa fa-shopping-cart"></i></span>
+<%--                            số đơn hàng trong tháng --%>
+                            <h5 class="text-white mb-0">${analysis.amountOrder}<i
+                                    class="zmdi zmdi-long-arrow-up"></i></span></p><span class="float-right"><i class="fa fa-shopping-cart"></i></span>
                             </h5>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Đơn hàng (theo tuần)<span class="float-right">+4.2% <i
-                                    class="zmdi zmdi-long-arrow-up"></i></span></p>
+                            <p class="mb-0 text-white small-font">Đơn hàng (theo tháng)<span class="float-right">${analysis.orderRate}% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="col-12 col-lg-6 col-xl-4 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">15.000.000 <span class="float-right">VNĐ</span></h5>
+                            <h5 class="text-white mb-0">${analysis.sales}<span class="float-right">VNĐ</span></h5>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Lợi nhuận (theo tuần)<span
-                                    class="float-right">+1.2% <i
-                                    class="zmdi zmdi-long-arrow-up"></i></span></p>
+                            <p class="mb-0 text-white small-font">Doanh thu (theo tháng)<span
+                                    class="float-right">${analysis.salesRate}% <i class="zmdi zmdi-long-arrow-up"></i></span></p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
+                    <div class="col-12 col-lg-6 col-xl-4 border-light">
                         <div class="card-body">
-                            <h5 class="text-white mb-0">25 <span class="float-right"><i class="fa fa-eye"></i></span>
+                            <h5 class="text-white mb-0">235 <span class="float-right"><i class="fa fa-eye"></i></span>
                             </h5>
                             <div class="progress my-3" style="height:3px;">
                                 <div class="progress-bar" style="width:55%"></div>
                             </div>
-                            <p class="mb-0 text-white small-font">Ghé trang (theo tuần)<span
+                            <p class="mb-0 text-white small-font">Ghé trang (theo tháng)<span
                                     class="float-right">+5.2% <i
                                     class="zmdi zmdi-long-arrow-up"></i></span></p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-xl-3 border-light">
-                        <div class="card-body">
-                            <h5 class="text-white mb-0">3 <span class="float-right"><i class="fa fa-envira"></i></span>
-                            </h5>
-                            <div class="progress my-3" style="height:3px;">
-                                <div class="progress-bar" style="width:55%"></div>
-                            </div>
-                            <p class="mb-0 text-white small-font">Bán ra (theo tuần)<span class="float-right">+2.2% <i
-                                    class="zmdi zmdi-long-arrow-up"></i></span></p>
-                        </div>
-                    </div>
+<%--                    <div class="col-12 col-lg-6 col-xl-3 border-light">--%>
+<%--                        <div class="card-body">--%>
+<%--                            <h5 class="text-white mb-0">3 <span class="float-right"><i class="fa fa-envira"></i></span>--%>
+<%--                            </h5>--%>
+<%--                            <div class="progress my-3" style="height:3px;">--%>
+<%--                                <div class="progress-bar" style="width:55%"></div>--%>
+<%--                            </div>--%>
+<%--                            <p class="mb-0 text-white small-font">Bán ra (theo tháng)<span class="float-right">+2.2% <i--%>
+<%--                                    class="zmdi zmdi-long-arrow-up"></i></span></p>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
         </div>

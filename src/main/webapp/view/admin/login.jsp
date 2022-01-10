@@ -54,7 +54,7 @@
             <div class="card-body">
                 <div class="card-content p-2">
                     <div class="text-center">
-                        <img src="/admin/assets/images/logo-icon.png" alt="logo" style="width:120px">
+                        <img src="<%=request.getContextPath()%>/view/admin/assets/images/logo-icon.png" alt="logo" style="width:120px">
                     </div>
                     <div class="card-title text-uppercase text-center py-3">Đăng nhập</div>
                     <div class="card-title text-danger">${error}</div>

@@ -43,7 +43,7 @@
 
 <div id="wrapper">
     <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
-        <a class="nav-link toggle-menu my-icon-menu" href="javascript:;" style="display: inline;">
+        <a class="nav-link toggle-menu my-icon-menu" href="javascript:;">
             <i class="icon-menu menu-icon"></i>
         </a>
         <div class="brand-logo" style="justify-content: flex-start;">
@@ -139,6 +139,11 @@
             <li>
                 <a href="./show-help.html">
                     <i class="fa fa-question-circle"></i><span>Hỗ trợ</span>
+                </a>
+            </li>
+            <li>
+                <a href="<%=request.getContextPath()%>/manage/upload">
+                    <i class="fa fa-upload"></i><span>Upload</span>
                 </a>
             </li>
 

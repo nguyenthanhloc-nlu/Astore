@@ -1,5 +1,7 @@
 package com.astore.model;
 
+import java.util.Objects;
+
 public class Category {
     private int id;
     private String name;
@@ -41,5 +43,18 @@ public class Category {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Category category = (Category) o;
+        return id == category.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
