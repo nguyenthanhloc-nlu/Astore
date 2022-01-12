@@ -23,4 +23,15 @@ public interface IUserDao {
 
     User loginAdmin(String userName, String password);
 
+    User checkLogin(String userName, String password);//kiểm tra email / sdt và password
+
+    boolean roleLogin(int premission,String userName, String password);//kiểm tra quyền
+
+    boolean checkUserExist(String emailOrPhone);//kiểm tra xem tài khoản đã tồn tại chưa
+
+    boolean updateForgotPwd(String userName ,String pwd);//update lại mật khẩu khi quên
+
+    User getInformationUser(String userName);//lấy ra thông tin người dùng
+
+    public String hashPassword(String pwd);//format mật khẩu
 }

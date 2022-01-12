@@ -33,4 +33,7 @@ public interface IProductServices {
     List<Product> getProductByIdDongSp(int idDongSp, int numTop);
 
     public List<Product> getProductByIdCate(int idCate, int start, int end);
+
+
+    public List<Product> getListProductOrder(int idOrder) ;
 }

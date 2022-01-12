@@ -33,5 +33,8 @@ public interface IProductDao {
 
     List<Integer> getAllIdDongSanPhamByCategory(int idCate);
 
+    List<Product> getListProductOrder(int idOrder);// dánh sách các sản phẩm của đơn hàng của khách hàng
+
+
 
 }
