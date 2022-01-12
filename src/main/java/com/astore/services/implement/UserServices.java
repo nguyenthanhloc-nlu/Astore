@@ -1,4 +1,4 @@
-package com.astore.services.implemet;
+package com.astore.services.implement;
 
 import com.astore.dao.implement.UserDao;
 import com.astore.model.User;

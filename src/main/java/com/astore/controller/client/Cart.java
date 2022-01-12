@@ -1,12 +1,11 @@
 package com.astore.controller.client;
 
-import com.astore.services.implemet.ProductServices;
+import com.astore.services.implement.ProductServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "cart", value = "/cart")
 public class Cart extends HttpServlet {

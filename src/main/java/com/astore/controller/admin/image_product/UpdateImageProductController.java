@@ -1,9 +1,7 @@
 package com.astore.controller.admin.image_product;
 
 import com.astore.model.Image;
-import com.astore.model.SubCategory;
-import com.astore.services.implemet.ImageProductServices;
-import com.astore.services.implemet.SubCategoryServices;
+import com.astore.services.implement.ImageProductServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

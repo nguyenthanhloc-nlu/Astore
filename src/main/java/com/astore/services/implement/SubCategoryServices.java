@@ -1,4 +1,4 @@
-package com.astore.services.implemet;
+package com.astore.services.implement;
 
 import com.astore.dao.implement.SubCategoryDao;
 import com.astore.model.SubCategory;

@@ -1,6 +1,6 @@
 package com.astore.controller.admin.subcategory;
 
-import com.astore.services.implemet.SubCategoryServices;
+import com.astore.services.implement.SubCategoryServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

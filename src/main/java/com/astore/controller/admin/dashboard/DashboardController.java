@@ -1,7 +1,7 @@
 package com.astore.controller.admin.dashboard;
 
 import com.astore.model.Analysis;
-import com.astore.services.implemet.DashboardServices;
+import com.astore.services.implement.DashboardServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

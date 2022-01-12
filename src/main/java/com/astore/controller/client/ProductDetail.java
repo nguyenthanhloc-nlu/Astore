@@ -1,8 +1,8 @@
 package com.astore.controller.client;
 
 import com.astore.model.Product;
-import com.astore.services.implemet.CategoryServices;
-import com.astore.services.implemet.ProductServices;
+import com.astore.services.implement.CategoryServices;
+import com.astore.services.implement.ProductServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

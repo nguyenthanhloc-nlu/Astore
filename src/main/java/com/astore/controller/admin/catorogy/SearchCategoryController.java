@@ -1,9 +1,7 @@
 package com.astore.controller.admin.catorogy;
 
 import com.astore.model.Category;
-import com.astore.model.User;
-import com.astore.services.implemet.CategoryServices;
-import com.astore.services.implemet.UserServices;
+import com.astore.services.implement.CategoryServices;
 import com.google.gson.Gson;
 
 import javax.servlet.*;

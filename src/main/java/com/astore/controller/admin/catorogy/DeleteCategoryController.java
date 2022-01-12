@@ -1,7 +1,6 @@
 package com.astore.controller.admin.catorogy;
 
-import com.astore.services.implemet.CategoryServices;
-import com.astore.services.implemet.ImageProductServices;
+import com.astore.services.implement.CategoryServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

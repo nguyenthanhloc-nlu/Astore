@@ -1,7 +1,6 @@
 package com.astore.controller.admin.image_product_detail;
 
-import com.astore.services.implemet.ImageProductDetailServices;
-import com.astore.services.implemet.ImageProductServices;
+import com.astore.services.implement.ImageProductDetailServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

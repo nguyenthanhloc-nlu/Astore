@@ -1,7 +1,7 @@
 package com.astore.controller.admin.product;
 
 import com.astore.model.Product;
-import com.astore.services.implemet.ProductServices;
+import com.astore.services.implement.ProductServices;
 import com.google.gson.Gson;
 
 import javax.servlet.*;

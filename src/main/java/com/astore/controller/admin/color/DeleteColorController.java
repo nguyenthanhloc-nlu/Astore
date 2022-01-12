@@ -1,7 +1,6 @@
 package com.astore.controller.admin.color;
 
-import com.astore.services.implemet.ColorServices;
-import com.astore.services.implemet.ImageProductServices;
+import com.astore.services.implement.ColorServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

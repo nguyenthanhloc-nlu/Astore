@@ -1,6 +1,5 @@
-package com.astore.services.implemet;
+package com.astore.services.implement;
 
-import com.astore.dao.IImageProductDetailDao;
 import com.astore.dao.implement.ImageProductDetailDao;
 import com.astore.model.Image;
 import com.astore.services.IImageProductDetailServices;

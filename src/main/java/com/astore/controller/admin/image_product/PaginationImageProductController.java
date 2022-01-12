@@ -1,9 +1,7 @@
 package com.astore.controller.admin.image_product;
 
 import com.astore.model.Image;
-import com.astore.model.Product;
-import com.astore.services.implemet.ImageProductServices;
-import com.astore.services.implemet.ProductServices;
+import com.astore.services.implement.ImageProductServices;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;

@@ -1,7 +1,6 @@
 package com.astore.controller.admin.product;
 
-import com.astore.services.implemet.ProductServices;
-import com.astore.services.implemet.UserServices;
+import com.astore.services.implement.ProductServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

@@ -1,7 +1,7 @@
 package com.astore.controller.admin.color;
 
 import com.astore.model.Color;
-import com.astore.services.implemet.ColorServices;
+import com.astore.services.implement.ColorServices;
 import com.google.gson.Gson;
 
 import javax.servlet.*;

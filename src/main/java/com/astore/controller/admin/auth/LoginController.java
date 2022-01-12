@@ -1,7 +1,7 @@
 package com.astore.controller.admin.auth;
 
 import com.astore.model.User;
-import com.astore.services.implemet.UserServices;
+import com.astore.services.implement.UserServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;

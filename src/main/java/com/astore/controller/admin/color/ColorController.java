@@ -1,13 +1,12 @@
 package com.astore.controller.admin.color;
 
 import com.astore.model.Color;
-import com.astore.services.implemet.ColorServices;
+import com.astore.services.implement.ColorServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "ColorController", value = "/manage/color")
