@@ -3,6 +3,7 @@ package com.astore.controller.client.account_information;
 import com.astore.model.User;
 import com.astore.services.implement.InformationAccountServices;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.Format;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -54,7 +55,7 @@ public class RateAccount extends HttpServlet {
         else {
             dotRank=(moneyOrder*470)/50000000;
         }
-        request.setAttribute("sumOrderUser", InformationAccountServices.getInstance().formatMoney(String.valueOf(moneyOrder)));
+        request.setAttribute("sumOrderUser", Format.getInstance().formatMoney(String.valueOf(moneyOrder)));
         request.setAttribute("rankUserSee",InformationAccountServices.getInstance().rankUser(userLogin.getId()));
         request.setAttribute("dotRankUser",dotRank);
         request.getRequestDispatcher("/view/client/information_account/rate-account.jsp").forward(request,response);

@@ -12,11 +12,6 @@ public class UserServices implements IUserServices {
 
     static UserServices userServices = null;
     private UserDao userdao;
-    private static Pattern pattern;
-    private Matcher matcher;
-    private static final String EMAIL_REGEX ="^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-    private static final String NUMBER_PHONE = "((09|03|07|08|05)+([0-9]{8,9})\\b)";
 
 
     private UserServices() {
@@ -93,18 +88,6 @@ public class UserServices implements IUserServices {
     }//kiểm tra tài khoản có tồn tại không
 
     @Override
-    public boolean checkEmail(String email) {
-        return   Pattern.compile(EMAIL_REGEX).matcher(email).matches();
-    }//kiểm tra email
-
-    @Override
-    public boolean checkNumberPhone(String phone) {
-        pattern = Pattern.compile(NUMBER_PHONE);
-        matcher = pattern.matcher(phone);
-        return matcher.matches();
-    }//kiểm tra số điện thoại
-
-    @Override
     public boolean updateForgotPwd(String userName, String pwd) {
         return userdao.updateForgotPwd(userName,pwd);
     }
@@ -114,37 +97,4 @@ public class UserServices implements IUserServices {
         return userdao.getInformationUser(userName);
     }
 
-
-
-    @Override
-    public String formatDate(String date) {
-        char [] arr = date.toCharArray();
-        String resDate ="";
-        String day ="";
-        String month ="";
-        String year="";
-        for (int i=0; i<arr.length;i++){
-            if (arr[i]!=' ') {
-                if (i == 0) {
-                    year += arr[i] + "" + arr[i + 1] + "" + arr[i + 2] + "" + arr[i + 3];
-                }
-                if (i == 3) {
-                    month = arr[i + 2] + "" + arr[i + 3];
-                }
-                if (i == 6) {
-                    day = arr[i + 2] + "" + arr[i + 3];
-                }
-            }
-            else {
-                break;
-            }
-        }
-        resDate=day+"/"+month+"/"+year;
-        return resDate;
-    }
-
-    @Override
-    public String hashPassword(String pwd) {
-        return userdao.hashPassword(pwd);
-    }
 }

@@ -1,7 +1,8 @@
 package com.astore.controller.client.auth;
 
-import com.astore.services.implement.SendMailServices;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.CheckEmail;
+import com.astore.tool.SendMail;
 
 import javax.mail.Session;
 import javax.servlet.*;
@@ -28,15 +29,15 @@ public class SendMailForgotPWD extends HttpServlet {
         HttpSession ss = request.getSession();
         String  emailOrPhone = ss.getAttribute("userNameForgotPWD").toString();
 
-        String codeOTP = SendMailServices.getInstance().ranDomOTP();
+        String codeOTP = SendMail.getInstance().ranDomOTP();
         ss.setAttribute("OTPForgotPWD",codeOTP);
         String messSendMail =codeOTP+" la ma xac thuc OTP lay lai mat khau ASTORE. De tranh bi mat tien, tuyet doi KHONG chia se ma nay voi bat ky ai";
-        Session sessRes = SendMailServices.getInstance().loginMail(userMail,passUserMail);
-        if (UserServices.getInstance().checkEmail(emailOrPhone)){
-            SendMailServices.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
+        Session sessRes = SendMail.getInstance().loginMail(userMail,passUserMail);
+        if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
+            SendMail.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
 
         }
-        if (UserServices.getInstance().checkNumberPhone(emailOrPhone)){
+        if (CheckEmail.getInstance().checkNumberPhone(emailOrPhone)){
 
         }
         request.getRequestDispatcher("/view/client/sign_user/verificationCode.jsp").forward(request,response);

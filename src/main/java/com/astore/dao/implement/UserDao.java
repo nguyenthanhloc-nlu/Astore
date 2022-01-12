@@ -3,6 +3,7 @@ package com.astore.dao.implement;
 import com.astore.dao.IUserDao;
 import com.astore.jdbc.ConnectDB;
 import com.astore.model.User;
+import com.astore.tool.HashPassword;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -305,8 +306,8 @@ public class UserDao implements IUserDao {
             }else{
                 return null;
             }
-            if (!(userEmail.getPassword().equals(hashPassword(password)))){
-                System.out.println(hashPassword(password));
+            if (!(userEmail.getPassword().equals(HashPassword.getInstance().hashPassword(password)))){
+                System.out.println(HashPassword.getInstance().hashPassword(password));
                 return null;
             }else {
                 return userEmail;
@@ -356,8 +357,8 @@ public class UserDao implements IUserDao {
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName);
-            ps.setString(2, hashPassword(pwd));
-            System.out.println(hashPassword(pwd)+"   "+pwd);
+            ps.setString(2, HashPassword.getInstance().hashPassword(pwd));
+            System.out.println(HashPassword.getInstance().hashPassword(pwd)+"   "+pwd);
             int row = ps.executeUpdate();
             ps.close();
             System.out.println(row + " row");
@@ -392,17 +393,7 @@ public class UserDao implements IUserDao {
         }
         return user;
     }
-    public String hashPassword(String pwd){
-        try{
-            MessageDigest sha256 = null;
-            sha256 = MessageDigest.getInstance("SHA-256");
-            byte[] hash = sha256.digest(pwd.getBytes());
-            BigInteger number = new BigInteger(1,hash);
-            return number.toString(16);
-        }catch (NoSuchAlgorithmException e){
-            return  null;
-        }
-    }
+
 
     public static void main(String[] args) {
         UserDao u = new UserDao();

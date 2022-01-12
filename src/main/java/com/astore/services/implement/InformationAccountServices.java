@@ -44,11 +44,6 @@ public class InformationAccountServices  implements IIformationAccountDao {
     }
 
     @Override
-    public String formatMoney(String money) {
-        return informationAccountDao.formatMoney(money);
-    }
-
-    @Override
     public long sumOrderUser(int idUser) {
         return informationAccountDao.sumOrderUser(idUser);
     }

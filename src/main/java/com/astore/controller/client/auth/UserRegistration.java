@@ -1,8 +1,10 @@
 package com.astore.controller.client.auth;
 
 import com.astore.model.*;
-import com.astore.services.implement.SendMailServices;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.CheckEmail;
+import com.astore.tool.HashPassword;
+import com.astore.tool.SendMail;
 
 import javax.mail.Session;
 import javax.servlet.*;
@@ -32,7 +34,7 @@ public class UserRegistration extends HttpServlet {
         String address ="chưa có thông tin";
         String avatar="chưa có thông tin";
         String pwd = request.getParameter("password-sign-up");
-        if (UserServices.getInstance().checkEmail(emailOrPhone)){
+        if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
             emailRegister=emailOrPhone;
         }
         else{
@@ -53,18 +55,18 @@ public class UserRegistration extends HttpServlet {
     request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request,response);
         }
            else {
-               UserServices.getInstance().insertUser(new User(0,userName,fullName,emailRegister,gender,birthday,phoneRegister,address,avatar,UserServices.getInstance().hashPassword(pwd), null));
+               UserServices.getInstance().insertUser(new User(0,userName,fullName,emailRegister,gender,birthday,phoneRegister,address,avatar, HashPassword.getInstance().hashPassword(pwd), null));
                String subjectMail = "Ma Xac Thuc";
-               String codeOTP = SendMailServices.getInstance().ranDomOTP();
+               String codeOTP = SendMail.getInstance().ranDomOTP();
                HttpSession ss = request.getSession();
                ss.setAttribute("OTPRegister",codeOTP);
                ss.setAttribute("emailRegister",emailOrPhone);
                String messSendMail =codeOTP+" la ma xac thuc OTP dang ky tai khoan ASTORE. De tranh bi mat tien, tuyet doi KHONG chia se ma nay voi bat ky ai";
-          Session sessRes = SendMailServices.getInstance().loginMail(userMail,passUserMail);
-          if (UserServices.getInstance().checkEmail(emailOrPhone)){
-              SendMailServices.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
+          Session sessRes = SendMail.getInstance().loginMail(userMail,passUserMail);
+          if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
+              SendMail.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
           }
-          if (UserServices.getInstance().checkEmail(emailOrPhone)){
+          if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
 
           }
           response.sendRedirect("view/client/sign_user/verificationCreate.jsp");

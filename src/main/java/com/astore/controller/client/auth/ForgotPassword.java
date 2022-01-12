@@ -1,7 +1,8 @@
 package com.astore.controller.client.auth;
 
-import com.astore.services.implement.SendMailServices;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.CheckEmail;
+import com.astore.tool.SendMail;
 
 import javax.mail.Session;
 import javax.servlet.*;
@@ -27,15 +28,15 @@ public class ForgotPassword extends HttpServlet {
         System.out.println(emailOrPhone);
     HttpSession ss = request.getSession();
     if (UserServices.getInstance().checkUserExist(emailOrPhone)){
-        if (UserServices.getInstance().checkEmail(emailOrPhone)){
+        if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
             String subjectMail = "Ma Xac Thuc";
-            String codeOTP = SendMailServices.getInstance().ranDomOTP();
+            String codeOTP = SendMail.getInstance().ranDomOTP();
             String messSendMail =codeOTP+" la ma xac thuc OTP lay lai mat khau ASTORE. De tranh bi mat tien, tuyet doi KHONG chia se ma nay voi bat ky ai";request.setAttribute("errorVerificationOTPForgotPWD","");
         request.setAttribute("fromMessErrorOTPForgotPWD","");
         ss.setAttribute("userNameForgotPWD",emailOrPhone);
         ss.setAttribute("OTPForgotPWD",codeOTP);
-       Session ssSendMail= SendMailServices.getInstance().loginMail(userMail,passUserMail);
-       SendMailServices.getInstance().sendMailTo(ssSendMail,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
+       Session ssSendMail= SendMail.getInstance().loginMail(userMail,passUserMail);
+       SendMail.getInstance().sendMailTo(ssSendMail,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
        response.sendRedirect("view/client/sign_user/verificationCode.jsp");
         }
 

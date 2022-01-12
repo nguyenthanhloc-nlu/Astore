@@ -6,6 +6,7 @@ import com.astore.model.GiftUser;
 import com.astore.model.HistoryDelivery;
 import com.astore.model.Product;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.Format;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -93,7 +94,7 @@ public class InformationAccountDao implements IIformationAccountDao {
                 mapRes.put("accessory", String.valueOf(accessory));
                 mapRes.put("accessoryRemaining", String.valueOf(accessoryRemaining));
                 mapRes.put("mobileComeToLife", String.valueOf(mobileComeToLife));
-                mapRes.put("giftBirthday", formatMoney(String.valueOf(giftBirthday)));
+                mapRes.put("giftBirthday", Format.getInstance().formatMoney(String.valueOf(giftBirthday)));
                 mapRes.put("servicePolicy", servicePolicy);
             }
         }catch (SQLException e){
@@ -105,30 +106,6 @@ public class InformationAccountDao implements IIformationAccountDao {
         return mapRes;
     }
 
-    @Override
-    public String formatMoney(String money) {
-        String  res="";
-        char[] moneyFormat = money.toCharArray();
-        String moneySee ="";
-        for (int i=0; i<moneyFormat.length;i++) {
-            if (moneyFormat[i] == '.') {
-                break;
-            } else
-                moneySee+=moneyFormat[i];
-        }
-        char [] moneyRes = moneySee.toCharArray();
-        int size = moneyRes.length;
-        for (int i=moneyRes.length-1; i>=0;i--){
-            if (size-i==4){
-                size=i+1;
-                res=res+'.'+moneyRes[i];
-            }
-            else
-                res+=moneyRes[i];
-        }
-        StringBuffer st = new StringBuffer(res);
-        return st.reverse().toString();
-    }
 
     @Override
     public List<HistoryDelivery> listOrder(int idUser) {
@@ -140,8 +117,8 @@ public class InformationAccountDao implements IIformationAccountDao {
             ps.setInt(1, idUser);
             ResultSet rs =ps.executeQuery();
             while (rs.next()){
-                listOrder.add(new HistoryDelivery(rs.getInt("id"), UserServices.getInstance().formatDate(rs.getString("ngay_giao_hang"))
-                        ,UserServices.getInstance().formatDate( rs.getString("ngay_lap_hoa_don")),formatMoney(rs.getString("tri_gia"))));
+                listOrder.add(new HistoryDelivery(rs.getInt("id"), Format.getInstance().formatDate(rs.getString("ngay_giao_hang"))
+                        , Format.getInstance().formatDate( rs.getString("ngay_lap_hoa_don")),Format.getInstance().formatMoney(rs.getString("tri_gia"))));
             }
 
         }catch (SQLException e){

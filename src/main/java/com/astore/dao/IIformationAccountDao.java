@@ -14,8 +14,6 @@ public interface IIformationAccountDao {
 
     Map<String,String> giftRankUser(String rank); //ưa đãi của từng mức hạng
 
-    String formatMoney(String money);// định dạng số tiền
-
 
     List<HistoryDelivery> listOrder(int idUser);// danh sách đơn hàng của khách hàng
 
