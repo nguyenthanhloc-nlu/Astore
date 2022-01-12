@@ -87,4 +87,8 @@ public class ProductServices implements IProductServices {
     public List<Product> getProductByIdCate(int idCate, int start, int end) {
         return p.getProductByIdCate(idCate,start, end);
     }
+    @Override
+    public List<Product> getListProductOrder(int idOrder) {
+        return p.getListProductOrder(idOrder);
+    }
 }
