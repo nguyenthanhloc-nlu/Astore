@@ -38,9 +38,7 @@ public class UpdateSubCategoryController extends HttpServlet {
             boolean check = SubCategoryServices.getInstance().update(c);
 
             if (check) {
-                List<SubCategory> subCategories = SubCategoryServices.getInstance().getAll();
-                request.setAttribute("subCategories", subCategories);
-                request.getRequestDispatcher("view/admin/show-subcategory.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/manage/subcategory");
             } else {
                 request.setAttribute("subcategory", c);
                 request.setAttribute("error", "Đã xãy ra lỗi");

@@ -16,7 +16,6 @@ public class UpdateProductController extends HttpServlet {
         String id = request.getParameter("id");
         try {
             Product product = ProductServices.getInstance().getById(Integer.parseInt(id));
-            System.out.println(product.getPrice());
             request.setAttribute("product", product);
             request.getRequestDispatcher("/view/admin/edit-product.jsp").forward(request, response);
         }catch (NumberFormatException e){
@@ -53,9 +52,7 @@ public class UpdateProductController extends HttpServlet {
             boolean check = ProductServices.getInstance().update(product);
 
             if(check){
-                List<Product> products = ProductServices.getInstance().getAll();
-                request.setAttribute("products", products);
-                request.getRequestDispatcher("view/admin/show-product.jsp").forward(request,response);
+                response.sendRedirect(request.getContextPath()+"/manage/list-product");
             }else{
                 request.setAttribute("product", product);
                 request.setAttribute("error", "Đã xãy ra lỗi");

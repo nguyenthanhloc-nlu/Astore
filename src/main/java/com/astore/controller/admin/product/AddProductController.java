@@ -46,19 +46,17 @@ public class AddProductController extends HttpServlet {
 
             if(check){
                 List<Product> products = ProductServices.getInstance().getAll();
-                request.setAttribute("products", products);
-                request.getRequestDispatcher("/view/admin/show-product.jsp").forward(request,response);
+                request.setAttribute("success", "Thêm thành công!");
             }else{
                 request.setAttribute("product", product);
                 request.setAttribute("error", "Đã xãy ra lỗi");
-                // chuyển hướng
-                request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request,response);
+
             }
         }catch(Exception e){
             request.setAttribute("product", product);
             request.setAttribute("error", "Đã xãy ra lỗi");
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request,response);
         }
+        // chuyển hướng
+        request.getRequestDispatcher("/view/admin/add-product.jsp").forward(request,response);
     }
 }

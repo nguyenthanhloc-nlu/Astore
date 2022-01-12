@@ -41,8 +41,9 @@ public class UpdateColorController extends HttpServlet {
             boolean check = ColorServices.getInstance().update(color);
             if (check) {
                 List<Color> colors = ColorServices.getInstance().getAll();
-                request.setAttribute("colors", colors);
-                request.getRequestDispatcher("view/admin/show-product-color.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/manage/color");
+//                request.setAttribute("colors", colors);
+//                request.getRequestDispatcher("view/admin/show-product-color.jsp").forward(request, response);
             } else {
                 request.setAttribute("color", color);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");

@@ -11,17 +11,18 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title text-success">${success}</div>
                         <div class="card-title text-danger">${error}</div>
-                        <div class="card-title">Thêm danh mục</div>
+                        <div class="card-title">Thêm mới</div>
                         <hr>
                         <form action="add-category" method="post">
+<%--                            <div class="form-group">--%>
+<%--                                <label for="input-1">Mã danh mục</label>--%>
+<%--                                <input type="text" class="form-control" id="input-1" placeholder="Mã danh mục"--%>
+<%--                                       name="category_id" required value="${category.id}">--%>
+<%--                            </div>--%>
                             <div class="form-group">
-                                <label for="input-1">Mã danh mục</label>
-                                <input type="text" class="form-control" id="input-1" placeholder="Mã danh mục"
-                                       name="category_id" required value="${category.id}">
-                            </div>
-                            <div class="form-group">
-                                <label for="input-2">Tên</label>
+                                <label for="input-2">Tên danh mục</label>
                                 <input type="text" class="form-control" id="input-2" placeholder="Tên danh mục"
                                        name="category_name" required value="${category.name}">
                             </div>

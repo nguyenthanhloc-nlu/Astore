@@ -10,8 +10,9 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title text-success">${success}</div>
                         <div class="card-title text-danger">${error}</div>
-                        <div class="card-title">Thêm hình ảnh sản phẩm</div>
+                        <div class="card-title">Thêm mới</div>
                         <hr>
                         <form action="add-image-product" method="post">
 

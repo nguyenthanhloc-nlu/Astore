@@ -43,19 +43,14 @@ public class UpdateAdminController extends HttpServlet {
 
         boolean check = UserServices.getInstance().updateAdmin(user);
         if(check){
-            // tính toán
-            List<User> users = UserServices.getInstance().getAllUserByGroup(1);
-            request.setAttribute("users", users);
-
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/admin.jsp").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/manage/admin");
         }else{
-            user = null;
-            user = UserServices.getInstance().getById(1,Integer.parseInt(id));
-            if(user != null) {
+//            user = null;
+//            user = UserServices.getInstance().getById(1,Integer.parseInt(id));
+//            if(user != null) {
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("/view/admin/edit-admin.jsp").forward(request, response);
-            }
+//            }
         }
 
     }

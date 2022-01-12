@@ -30,19 +30,18 @@ public class AddColorController extends HttpServlet {
             color.setCodeHex(codeHex);
             boolean check = ColorServices.getInstance().insert(color);
             if (check) {
-                List<Color> colors = ColorServices.getInstance().getAll();
-                request.setAttribute("colors", colors);
-                request.getRequestDispatcher("/view/admin/show-product-color.jsp").forward(request, response);
+                request.setAttribute("success", "Thêm thành công!");
+                request.getRequestDispatcher("/view/admin/add-product-color.jsp").forward(request, response);
             } else {
                 request.setAttribute("color", color);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("/view/admin/add-product-product.jsp").forward(request, response);
+                request.getRequestDispatcher("/view/admin/add-product-color.jsp").forward(request, response);
             }
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
             request.setAttribute("color", color);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("/view/admin/add-product-product.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/admin/add-product-color.jsp").forward(request, response);
         }
 
     }

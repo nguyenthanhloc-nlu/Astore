@@ -18,23 +18,20 @@ public class AddCategoryController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("category_id");
+//        String id = request.getParameter("category_id");
         String name = request.getParameter("category_name");
 
-        Category category = new Category(Integer.parseInt(id), name);
+        Category category = new Category(name);
         boolean check = CategoryServices.getInstance().insert(category);
 
         if (check) {
-            List<Category> categories = CategoryServices.getInstance().getAll();
-            request.setAttribute("category", categories);
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/show-category.jsp").forward(request,response);
+            request.setAttribute("success", "Thêm thành công!");
         }else{
             request.setAttribute("category", category);
             request.setAttribute("error", "Đã xãy ra lỗi");
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/add-category.jsp").forward(request,response);
         }
+        // chuyển hướng
+        request.getRequestDispatcher("/view/admin/add-category.jsp").forward(request,response);
 
     }
 }

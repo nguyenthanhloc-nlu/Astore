@@ -33,14 +33,12 @@ public class AddAdminController extends HttpServlet {
 
         if(check) {
             System.out.println("insert admin ok");
-            List<User> users = UserServices.getInstance().getAllUserByGroup(1);
-            request.setAttribute("users", users);
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/admin.jsp").forward(request,response);
+            request.setAttribute("success", "Thêm thành công!");
         }else{
             request.setAttribute("user", user);
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/add-admin.jsp").forward(request,response);
+            request.setAttribute("error", "Đã xãy ra lỗi");
         }
+        // chuyển hướng
+        request.getRequestDispatcher("/view/admin/add-admin.jsp").forward(request,response);
     }
 }

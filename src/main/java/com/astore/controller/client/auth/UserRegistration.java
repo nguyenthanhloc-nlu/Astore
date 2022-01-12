@@ -1,6 +1,6 @@
 package com.astore.controller.client.auth;
 
-import com.astore.model.User;
+import com.astore.model.*;
 import com.astore.services.implement.SendMailServices;
 import com.astore.services.implement.UserServices;
 

@@ -9,14 +9,15 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title text-success">${success}</div>
                         <div class="card-title text-danger">${error}</div>
                         <div class="card-title">Thêm mới</div>
                         <hr>
                         <form action="add-user" method="post">
-                            <div class="form-group">
-                                <label for="input-1">ID</label>
-                                <input type="text" class="form-control" id="input-1" placeholder="ID" name="user-id">
-                            </div>
+<%--                            <div class="form-group">--%>
+<%--                                <label for="input-1">ID</label>--%>
+<%--                                <input type="text" class="form-control" id="input-1" placeholder="ID" name="user-id">--%>
+<%--                            </div>--%>
                             <div class="form-group">
                                 <label for="input-2">Họ tên</label>
                                 <input type="text" class="form-control" id="input-2" placeholder="Họ tên"

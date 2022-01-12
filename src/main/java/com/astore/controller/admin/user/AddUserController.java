@@ -46,16 +46,12 @@ public class AddUserController extends HttpServlet {
         System.out.println(user);
         boolean check = UserServices.getInstance().insertUser(user);
         if (check) {
-            // tính toán
-            List<User> users = UserServices.getInstance().getAllUserByGroup(2);
-            request.setAttribute("users", users);
-
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/user.jsp").forward(request, response);
+            request.setAttribute("success", "Thêm thành công!");
         } else {
             request.setAttribute("user", user);
-            request.getRequestDispatcher("/view/admin/add-user.jsp").forward(request, response);
+            request.setAttribute("error", "Đã xãy ra lỗi");
         }
+        request.getRequestDispatcher("/view/admin/add-user.jsp").forward(request, response);
     }
 
 

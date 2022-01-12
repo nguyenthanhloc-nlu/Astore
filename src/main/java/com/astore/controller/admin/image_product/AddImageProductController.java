@@ -28,19 +28,15 @@ public class AddImageProductController extends HttpServlet {
             image.setUrl(url);
             boolean check = ImageProductServices.getInstance().insert(image);
             if (check) {
-                List<Image> images = ImageProductServices.getInstance().getAll();
-                request.setAttribute("images", images);
-                request.getRequestDispatcher("/view/admin/show-image-product.jsp").forward(request, response);
+                request.setAttribute("success", "Thêm thành công!");
             } else {
                 request.setAttribute("image", image);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");
-                request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
             }
         }catch(NumberFormatException e){
             request.setAttribute("image", image);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
-            request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
         }
-
+        request.getRequestDispatcher("/view/admin/add-image-product.jsp").forward(request, response);
     }
 }

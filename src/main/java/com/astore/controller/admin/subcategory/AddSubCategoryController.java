@@ -18,7 +18,7 @@ public class AddSubCategoryController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("sub_category_id");
+//        String id = request.getParameter("sub_category_id");
         String idCategory = request.getParameter("category_id");
         String name = request.getParameter("sub_category_name");
 
@@ -27,24 +27,21 @@ public class AddSubCategoryController extends HttpServlet {
         try {
             subCategory.setName(name);
             subCategory.setIdCategory(Integer.parseInt(idCategory));
-            subCategory.setId(Integer.parseInt(id));
+//            subCategory.setId(Integer.parseInt(id));
 
             boolean check = SubCategoryServices.getInstance().insert(subCategory);
             if(check) {
-                List<SubCategory> subCategories = SubCategoryServices.getInstance().getAll();
-                request.setAttribute("subCategories",subCategories);
-                request.getRequestDispatcher("/view/admin/show-subcategory.jsp").forward(request,response);
+                request.setAttribute("success", "Thêm thành công!");
             }else{
                 request.setAttribute("subcategory", subCategory);
                 request.setAttribute("error", "Đã xãy ra lỗi");
-                // chuyển hướng
-                request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
+
             }
         }catch (Exception e) {
             request.setAttribute("subcategory", subCategory);
             request.setAttribute("error", "Đã xãy ra lỗi");
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
         }
+        // chuyển hướng
+        request.getRequestDispatcher("/view/admin/add-subcategory.jsp").forward(request,response);
     }
 }

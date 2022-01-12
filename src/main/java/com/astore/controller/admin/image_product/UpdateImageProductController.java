@@ -17,7 +17,6 @@ public class UpdateImageProductController extends HttpServlet {
         try {
             Image image = ImageProductServices.getInstance().getById(Integer.parseInt(id));
             request.setAttribute("image", image);
-
             request.getRequestDispatcher("/view/admin/edit-image-product.jsp").forward(request,response);
         }catch(NumberFormatException e){
             response.sendError(404);
@@ -40,8 +39,7 @@ public class UpdateImageProductController extends HttpServlet {
             boolean check = ImageProductServices.getInstance().update(image);
             if (check) {
                 List<Image> images = ImageProductServices.getInstance().getAll();
-                request.setAttribute("images", images);
-                request.getRequestDispatcher("/view/admin/show-image-product.jsp").forward(request, response);
+                response.sendRedirect(request.getContextPath()+"/manage/image-product");
             } else {
                 request.setAttribute("image", image);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");

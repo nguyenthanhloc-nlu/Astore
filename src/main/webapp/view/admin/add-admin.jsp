@@ -10,8 +10,9 @@
             <div class="col-lg-8">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title text-success">${success}</div>
                         <div class="card-title text-danger">${error}</div>
-                        <div class="card-title">Thêm Admin</div>
+                        <div class="card-title">Thêm mới</div>
                         <hr>
                         <form action="add-admin" method="post">
 

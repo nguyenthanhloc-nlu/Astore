@@ -62,19 +62,14 @@ public class UpdateUserController extends HttpServlet {
 
         boolean check = UserServices.getInstance().updateUser(user);
         if(check){
-            // tính toán
-            List<User> users = UserServices.getInstance().getAllUserByGroup(2);
-            request.setAttribute("users", users);
-
-            // chuyển hướng
-            request.getRequestDispatcher("/view/admin/user.jsp").forward(request,response);
+            response.sendRedirect(request.getContextPath()+"/manage/user");
         }else{
-            user = null;
-            user = UserServices.getInstance().getById(2, Integer.parseInt(id));
-            if(user != null) {
+//            user = null;
+//            user = UserServices.getInstance().getById(2, Integer.parseInt(id));
+//            if(user != null) {
                 request.setAttribute("user", user);
                 request.getRequestDispatcher("/view/admin/edit-user.jsp").forward(request, response);
-            }
+//            }
         }
 
         System.out.println(birthday);
