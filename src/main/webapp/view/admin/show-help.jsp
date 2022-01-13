@@ -34,19 +34,21 @@
                             </tr>
                             </thead>
                             <tbody>
-
-                            <tr>
-                                <td scope="row">1</td>
-                                <td>3</td>
-                                <td>Thanh Mai</td>
-                                <td>mai@gmail.com</td>
-                                <td>Vui lòng tư vấn cho tôi các sản phẩm dell mới nhất 2021</td>
-                                <td>2021-10-10</td>
-                                <td>
-                                    <button class="btn btn-danger"><a href="#">Xóa</a></button>
-                                    <button class="btn btn-success"><a href="show-help-reply.jsp">Phản hồi</a></button>
-                                </td>
-                            </tr>
+                            <%int i = 1;%>
+                            <c:forEach items="${listHelp}" var="h">
+                                <tr>
+                                    <td scope="row"><%=i++%></td>
+                                    <td>${h.id}</td>
+                                    <td>${h.fullName}</td>
+                                    <td>${h.email}</td>
+                                    <td>${h.content}</td>
+                                    <td>${h.createAt}</td>
+                                    <td>
+                                        <button class="btn btn-danger"><a href="#">Xóa</a></button>
+                                        <button class="btn btn-success"><a href="<%=request.getContextPath()%>/replyToEmail">Phản hồi</a></button>
+                                    </td>
+                                </tr>
+                            </c:forEach>
 
                             </tbody>
                         </table>
