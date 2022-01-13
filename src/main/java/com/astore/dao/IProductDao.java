@@ -3,6 +3,7 @@ package com.astore.dao;
 import com.astore.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IProductDao {
     boolean insert(Product product);
@@ -36,5 +37,6 @@ public interface IProductDao {
     List<Product> getListProductOrder(int idOrder);// dánh sách các sản phẩm của đơn hàng của khách hàng
 
 
+    Map<Integer, Integer> quantilyProductOrder(int idOrder);
 
 }

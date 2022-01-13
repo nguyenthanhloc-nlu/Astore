@@ -220,55 +220,18 @@
                             </div>
                           </div>
                           <div class="l-3 m-12 c-12">
-                            <h1 class="mb-0 font-weight-semibold">${p.price}</h1>
-                            <input
-                              class="up-down-number"
-                              type="number"
-                              id="tentacles"
-                              name="tentacles"
-                              min="0"
-                              max="100000"
-                              value="1"
-                            />
+                            <h1 class="mb-0 font-weight-semibold"><fmt:parseNumber>${p.price}</fmt:parseNumber>VNĐ</h1>
+                            <c:forEach var="m" items="${mapQuantilyProduct}">
+                              <c:if test="${m.key==p.id}">
+                                <div
+                                        class="up-down-number"
+                                        id="tentacles"
+                                >${m.value}</div>
+                              </c:if>
+                            </c:forEach>
                           </div>
                         </div>
                         </c:forEach>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="l-12 m-12 c-12 col-temp-price">
-                    <div class="row">
-                      <div class="l-2 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h2 class="f-h2-temp-price">Tổng cộng</h2>
-                        </div>
-                      </div>
-                      <div class="l-7 m-0 c-0"></div>
-                      <div class="l-3 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${sumOrder}₫</h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="l-12 m-12 c-12 col-temp-price">
-                    <div class="row">
-                      <div class="l-2 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h2
-                            class="f-h2-temp-price"
-                            style="margin-right: 14px"
-                          >
-                            Giảm giá
-                          </h2>
-                        </div>
-                      </div>
-                      <div class="l-7 m-0 c-0"></div>
-                      <div class="l-3 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${saleRate}₫</h1>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -283,7 +246,7 @@
                       <div class="l-7 m-0 c-0"></div>
                       <div class="l-3 m-6 c-12">
                         <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${moneyOrder}₫</h1>
+                          <h1 class="f-h2-temp-price">${moneyOrder}VNĐ</h1>
                         </div>
                       </div>
                     </div>
