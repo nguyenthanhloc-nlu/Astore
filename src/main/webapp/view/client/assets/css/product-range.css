@@ -9,7 +9,6 @@
     border-radius: 20px;
     padding: 10px;
 }
-
 .product-range .item-products img {
     width: 100%;
 }
@@ -36,12 +35,17 @@
 
 .product-range .item-products .add-to-cart {
     width: 80%;
-    margin: auto;
     padding: 10px;
     border: 1px solid #76706f;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin: 15px auto 15px;
     border-radius: 5px;
+}
+
+.product-range .item-products .component {
+    width: 90%;
+    padding: 3px;
+    border: none;
+    margin: 1px;
 }
 
 .product-range .item-products .product-sale-rate {
@@ -56,12 +60,13 @@
     border-radius: 25px;
     color: rgb(216, 216, 32);
 
-    /* padding: 2px 4px;
-    color: black;
-    background-color: white;
-    border-radius: 5px; */
 }
 
 .product-range .item-products .add-to-cart:hover {
     color: rgb(216, 216, 32);
+}
+
+.title-choice {
+    text-align: left;
+    color: white !important;
 }

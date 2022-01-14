@@ -1,12 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iamva
-  Date: 02/01/2022
-  Time: 8:39 CH
-  To change this template use File | Settings | File Templates.
---%>
-
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
