@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="card-title">Phản hồi</div>
                         <hr>
-                        <form action="">
+                        <form method="post" action="<%=request.getContextPath()%>/manage/replyToEmail">
                             <div class="form-group">
                                 <label for="input-1">Mã hỗ trợ</label>
                                 <input type="text" class="form-control" readonly id="input-1" placeholder="ID" value="1"
@@ -31,7 +31,7 @@
                                 <label for="input-4">Người hỗ trợ</label>
                                 <div>
                                     <select class="form-control valid" id="input-4" name="help-author">
-                                        <option>Nguyễn Thành Lộc</option>
+                                        <option></option>
                                     </select>
                                 </div>
                             </div>
@@ -41,8 +41,8 @@
                                        name="help-created ">
                             </div>
                             <div class="form-footer ">
-                                <button class="btn btn-danger "><a href="show-help.jsp">Hủy</a></button>
-                                <button class="btn btn-success"><a href="#">Phản hồi</a></button>
+                                <button class="btn btn-danger "><a href="<%=request.getContextPath()%>/view/admin/show-help.jsp">Hủy</a></button>
+                                <button class="btn btn-success" type="submit"><a href="#">Phản hồi</a></button>
                             </div>
                         </form>
                     </div>

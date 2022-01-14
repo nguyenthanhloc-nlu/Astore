@@ -45,7 +45,7 @@
                                     <td>${h.createAt}</td>
                                     <td>
                                         <button class="btn btn-danger"><a href="#">Xóa</a></button>
-                                        <button class="btn btn-success"><a href="<%=request.getContextPath()%>/replyToEmail">Phản hồi</a></button>
+                                        <button class="btn btn-success"><a href="<%=request.getContextPath()%>/manage/informationHelp?nameUser=${h.fullName}&emailUser=${h.email}">Phản hồi</a></button>
                                     </td>
                                 </tr>
                             </c:forEach>
