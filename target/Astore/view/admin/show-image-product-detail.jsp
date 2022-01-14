@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
 <jsp:include page="./header/header.jsp" flush="true"/>
 <title>Admin | Mô tả sản phẩm</title>
 
@@ -38,7 +39,14 @@
                                         <td scope="row"><%=i++%></td>
                                         <td>${image.id}</td>
                                         <td>${image.productId}</td>
-                                        <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/${image.url}" alt="product image"></td>
+                                        <c:choose>
+                                            <c:when test = "${fn:startsWith(image.url, 'http')}">
+                                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="${image.url}" alt="product image"></td>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/${image.url}" alt="product image"></td>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <input type="hidden"
                                                value="delete-image-product-detail"
                                                id="${image.id}"/>
@@ -100,7 +108,11 @@
                         row += '<td scope="row">'+ index++ +'</td> ';
                         row += '<td>'+value.id+'</td>';
                         row += '<td>'+value.productId+'</td>';
-                        row += '  <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
+                        if((value.url+"").startsWith("http"))
+                            row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="'+value.url+'" alt="product image"></td>'
+                        else
+                            row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
+
                         // row += '<td>'+value.url+'</td>';
                         row += '<input type="hidden" value="delete-image-product-detail" id="'+value.id+'" style="display: none;"/>';
                         row += ' <td>';
@@ -157,7 +169,11 @@
                     row += '<td scope="row">'+ i++ +'</td> ';
                     row += '<td>'+value.id+'</td>';
                     row += '<td>'+value.productId+'</td>';
-                    row += '  <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
+                    if((value.url+"").startsWith("http"))
+                        row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="'+value.url+'" alt="product image"></td>'
+                    else
+                        row += '<td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/'+value.url+'" alt="product image"></td>'
+
                     // row += '<td>'+value.url+'</td>';
                     row += '<input type="hidden" value="delete-image-product-detail" id="'+value.id+'" style="display: none;"/>';
                     row += ' <td>';
