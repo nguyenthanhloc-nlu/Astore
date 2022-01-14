@@ -2,6 +2,7 @@ package com.astore.controller.client.auth;
 
 import com.astore.model.User;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.HashPassword;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -34,7 +35,7 @@ public class LoginGoogle extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 ss.setAttribute("userNameAccountLogin", email);
-                UserServices.getInstance().insertUser(new User(0, name, name, email, gender, birthday, phoneRegister, address, avatar, UserServices.getInstance().hashPassword(pwd), null));
+                UserServices.getInstance().insertUser(new User(0, name, name, email, gender, birthday, phoneRegister, address, avatar, HashPassword.getInstance().hashPassword(pwd), null));
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             }
         }

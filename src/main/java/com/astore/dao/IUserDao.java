@@ -33,5 +33,4 @@ public interface IUserDao {
 
     User getInformationUser(String userName);//lấy ra thông tin người dùng
 
-    public String hashPassword(String pwd);//format mật khẩu
 }

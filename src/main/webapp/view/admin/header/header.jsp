@@ -137,7 +137,7 @@
             </li>
 
             <li>
-                <a href="./show-help.html">
+                <a href="<%=request.getContextPath()%>/manage/help">
                     <i class="fa fa-question-circle"></i><span>Hỗ trợ</span>
                 </a>
             </li>

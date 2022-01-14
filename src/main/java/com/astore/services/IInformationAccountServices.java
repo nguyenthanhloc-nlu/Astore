@@ -11,11 +11,10 @@ public interface IInformationAccountServices {
     String rankUser(int idUser);// xếp loại khách hàng
 
     int countOrderUser(int idUser);// số lượng đơn hàng
+
     Map<String,String> giftRankUser(String rank);//thông tin của từng mức hạng
 
     List<HistoryDelivery> listOrder(int idUser);// danh sách đơn hàng của khách hàng
-
-    String formatMoney(String money);// định dạng số tiền
 
     long sumOrderUser(int idUser);// tổng các hóa đơn
 

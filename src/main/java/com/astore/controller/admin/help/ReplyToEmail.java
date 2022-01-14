@@ -1,7 +1,9 @@
 package com.astore.controller.admin.help;
 
-import com.astore.services.implement.SendMailServices;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.CheckEmail;
+import com.astore.tool.SendMail;
+
 import javax.mail.Session;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,18 +22,18 @@ public class ReplyToEmail extends HttpServlet {
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom ="ASTORE";
         String passUserMail= "xrjlbwixmthlrube";
-        String subjectMail = "Ma Xac Thuc";
-
-        String  emailOrPhone = request.getParameter("emailUser");
-        String nameUser = request.getParameter("nameUser");
-        String messSendMail ="Xin chào !"+nameUser+"\n"+" thông tin hổ trợ của bạn đã được ASTORE ghi nhận, " +
-                "cảm ơn bạn đã sử dụng sản phảm của ASTORE." +
-                " ASTORE sẽ liên hệ với bạn trong thời gian sớm nhất."+"\n"+
+        String subjectMail = request.getParameter("help-title");
+        HttpSession ss = request.getSession();
+        String  emailOrPhone = ss.getAttribute("emailUserHelp").toString();
+        String nameUser = ss.getAttribute("nameUserHelp").toString();
+        String idHelp = request.getParameter("help-id");
+        String contentHelp = request.getParameter("help-content");
+        String messSendMail ="#"+idHelp+"\n"+"Xin chào !"+nameUser+"\n"+contentHelp+"\n"+
                 "Xin vui lòng không trả lời Email này.";
-        Session sessRes = SendMailServices.getInstance().loginMail(userMail,passUserMail);
-        if (UserServices.getInstance().checkEmail(emailOrPhone)){
-            SendMailServices.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
+        Session sessRes = SendMail.getInstance().loginMail(userMail,passUserMail);
+        if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
+            SendMail.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
         }
-        request.getRequestDispatcher("/view/client/sign_user/show-help-reply.jsp").forward(request,response);
+        request.getRequestDispatcher("/view/admin/show-help-reply.jsp").forward(request,response);
     }
 }

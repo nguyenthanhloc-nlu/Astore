@@ -6,9 +6,8 @@ import com.astore.model.Product;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.sql.Date;
+import java.util.*;
 
 public class ProductDao implements IProductDao {
 
@@ -538,7 +537,24 @@ public class ProductDao implements IProductDao {
         }
         return listProduct;
     }
+    @Override
+    public Map<Integer, Integer> quantilyProductOrder(int idOrder) {
+        Map<Integer, Integer> quantilyProduct = new HashMap<>();
+        try{
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT id_san_pham ,so_luong FROM CHI_TIET_HOA_DON where id_hoa_don=?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idOrder);
+            ResultSet rs =ps.executeQuery();
+            while (rs.next()){
+                quantilyProduct.put(rs.getInt("id_san_pham"),rs.getInt("so_luong"));
+            }
 
+        }catch (SQLException e){
+            return null;
+        }
+        return quantilyProduct;
+    }
 
     public static void main(String[] args) {
         ProductDao d = new ProductDao();

@@ -3,6 +3,7 @@ package com.astore.services;
 import com.astore.model.Product;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IProductServices {
     boolean insert(Product product);
@@ -36,4 +37,7 @@ public interface IProductServices {
 
 
     public List<Product> getListProductOrder(int idOrder) ;
+
+
+    Map<Integer,Integer> quantilyProductOrder(int idOrder);//số lượng của sản phẩm trong đơn hàng
 }

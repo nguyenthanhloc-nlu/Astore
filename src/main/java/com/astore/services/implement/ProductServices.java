@@ -5,6 +5,7 @@ import com.astore.model.Product;
 import com.astore.services.IProductServices;
 
 import java.util.List;
+import java.util.Map;
 
 public class ProductServices implements IProductServices {
     private  ProductDao p ;
@@ -90,5 +91,9 @@ public class ProductServices implements IProductServices {
     @Override
     public List<Product> getListProductOrder(int idOrder) {
         return p.getListProductOrder(idOrder);
+    }
+    @Override
+    public Map<Integer, Integer> quantilyProductOrder(int idOrder) {
+        return p.quantilyProductOrder(idOrder);
     }
 }

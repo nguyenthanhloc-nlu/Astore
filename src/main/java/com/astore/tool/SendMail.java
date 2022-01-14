@@ -1,26 +1,21 @@
-package com.astore.services.implement;
-
-import com.astore.services.ISendMailServices;
+package com.astore.tool;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 import java.util.Random;
-import java.util.concurrent.TransferQueue;
 
-public class SendMailServices implements ISendMailServices {
-    final  String userMail = "19130137@st.hcmuaf.edu.vn";
-    final  String pass= "SilKySad135@";
-   final Random rd = new Random() ;
-    private  static  SendMailServices instance;
-    public SendMailServices() {
+public class SendMail {
+    final Random rd = new Random() ;
+    private  static SendMail instance;
+    public SendMail() {
 
     }
 
-    public  static  SendMailServices getInstance(){
+    public  static  SendMail getInstance(){
         if (instance==null){
-            instance = new SendMailServices();
+            instance = new SendMail();
         }
         return  instance;
     }
@@ -34,8 +29,7 @@ public class SendMailServices implements ISendMailServices {
         return resOTP;
     }
 
-    @Override
-    public Session loginMail(String email,String pwd) {
+    public Session loginMail(String email, String pwd) {
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "465");
@@ -52,19 +46,17 @@ public class SendMailServices implements ISendMailServices {
         });
         return resSession;
     }
-
-    @Override
     public void sendMailTo(Session sessMail,String emailFrom,String nameFrom,String emailTo, String subjectEMail, String messMail) {
-         try {
-             Message mess = new MimeMessage(sessMail);
-             mess.setFrom(new InternetAddress(emailFrom,nameFrom));
-             mess.setRecipients(Message.RecipientType.TO,InternetAddress.parse(emailTo));
-             mess.setSubject(subjectEMail);
-             mess.setText(messMail);
-             Transport.send(mess);
-             System.out.println("Send Good");
-         }catch (Exception e){
-             e.printStackTrace();
+        try {
+            Message mess = new MimeMessage(sessMail);
+            mess.setFrom(new InternetAddress(emailFrom,nameFrom));
+            mess.setRecipients(Message.RecipientType.TO,InternetAddress.parse(emailTo));
+            mess.setSubject(subjectEMail);
+            mess.setText(messMail);
+            Transport.send(mess);
+            System.out.println("Send Good");
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
