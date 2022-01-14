@@ -20,7 +20,7 @@ public class Watch extends HttpServlet {
         System.out.println(watch.toString());
         System.out.println("watch.size(): " + watch.size());
         request.setAttribute("watch", watch);
-        request.getRequestDispatcher("/view/client/product-watch.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/client/product-list/product-watch.jsp").forward(request, response);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class Mac extends HttpServlet {
         System.out.println(mac.toString());
         System.out.println("mac.size(): " + mac.size());
         request.setAttribute("mac", mac);
-        request.getRequestDispatcher("/view/client/product-mac.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/client/product-list/product-mac.jsp").forward(request, response);
     }
 
     @Override

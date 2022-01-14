@@ -20,7 +20,7 @@ public class IPad extends HttpServlet {
         System.out.println(ipad.toString());
         System.out.println("ipad.size(): " + ipad.size());
         request.setAttribute("ipad", ipad);
-        request.getRequestDispatcher("/view/client/product-ipad.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/client/product-list/product-ipad.jsp").forward(request, response);
     }
 
     @Override
