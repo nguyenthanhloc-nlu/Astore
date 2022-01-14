@@ -28,7 +28,7 @@ public class ReplyToEmail extends HttpServlet {
         String nameUser = ss.getAttribute("nameUserHelp").toString();
         String idHelp = request.getParameter("help-id");
         String contentHelp = request.getParameter("help-content");
-        String messSendMail =idHelp+"\n"+"Xin chào !"+nameUser+"\n"+contentHelp+"\n"+
+        String messSendMail ="#"+idHelp+"\n"+"Xin chào !"+nameUser+"\n"+contentHelp+"\n"+
                 "Xin vui lòng không trả lời Email này.";
         Session sessRes = SendMail.getInstance().loginMail(userMail,passUserMail);
         if (CheckEmail.getInstance().checkEmail(emailOrPhone)){

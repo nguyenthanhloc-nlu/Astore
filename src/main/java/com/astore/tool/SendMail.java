@@ -7,8 +7,6 @@ import java.util.Properties;
 import java.util.Random;
 
 public class SendMail {
-    final  String userMail = "19130137@st.hcmuaf.edu.vn";
-    final  String pass= "SilKySad135@";
     final Random rd = new Random() ;
     private  static SendMail instance;
     public SendMail() {
