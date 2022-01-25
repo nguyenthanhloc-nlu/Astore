@@ -43,49 +43,7 @@
   </style>
   <body>
     <div class="account-container">
-      <div class="header">
-        <div class="container">
-          <div class="navbar">
-            <div class="logo">
-              <a href="<%=request.getContextPath()%>/index.jsp"
-              ><img src="<%=request.getContextPath()%>/view/client/assets/images/logo2.png" alt="logo" width="150px"
-              /></a>
-            </div>
-            <nav>
-              <ul id="MenuItems">
-                <li><a href="products-iphone.jsp">iPhone</a></li>
-                <li><a href="products-mac.jsp">Mac</a></li>
-                <li><a href="products-ipad.jsp">iPad</a></li>
-                <li><a href="products-watch.html">Watch</a></li>
-              </ul>
-            </nav>
-            <div class="search-box">
-              <button class="btn-search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-              <input
-                      type="text"
-                      class="input-search"
-                      placeholder="iPhone 13..."
-              />
-            </div>
-            <a href="cart.html">
-              <img src="../assets/images/cart.png" width="40px" height="40px" />
-              <span class="header__cart-notice"> 3 </span>
-            </a>
-            <div class="account-heder" id="link-account">
-              <a href="account.jsp"
-              ><i class="fas fa-user-circle fa-2x" style="color: white"></i
-              ></a>
-            </div>
-            <div class="account-heder" id="link-sign-in">
-              <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp">
-                <i class="far fa-user-circle fa-2x" style="color: white"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <jsp:include page="/view/client/header/header.jsp"></jsp:include>
 
       <!-- Single Products -->
       <section class="cps-section">
@@ -227,7 +185,7 @@
                         </div>
                         <div class="header-item w-10 text-center">
                           <a
-                            href="<%=request.getContextPath()%>/informationOrder?idHD=${s.id}"
+                            href="<%=request.getContextPath()%>/informationOrder?idHD=${s.id}&moneyOrder=${s.moneyOrder}"
                             style="color: rgb(85, 194, 230)"
                             ><u>Chi tiết</u></a
                           >

@@ -149,3 +149,10 @@ ul {
     color: #fff;
     margin-bottom: 20px;
 }
+/*icon account*/
+#link-account{
+    display: none;
+}
+#link-account-2{
+    display: none;
+}

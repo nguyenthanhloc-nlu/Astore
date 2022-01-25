@@ -8,6 +8,9 @@ public class Help {
     private String content;
     private String createAt;
 
+    public Help() {
+    }
+
     public Help(int id, String fullName, String email, String numberPhone, String content, String createAt) {
         this.id = id;
         this.fullName = fullName;
@@ -63,5 +66,18 @@ public class Help {
 
     public void setCreateAt(String createAt) {
         this.createAt = createAt;
+    }
+
+    @Override
+    public String
+    toString() {
+        return "Help{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", email='" + email + '\'' +
+                ", numberPhone='" + numberPhone + '\'' +
+                ", content='" + content + '\'' +
+                ", createAt='" + createAt + '\'' +
+                '}';
     }
 }

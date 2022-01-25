@@ -20,8 +20,24 @@ public class HelpServices implements IHelpServices {
         }
         return helpServices;
     }
+
+    @Override
+    public Help getById(int id) {
+        return h.getById(id);
+    }
+
+    @Override
+    public List<Help> getByName(String name) {
+        return h.getByName(name);
+    }
+
     @Override
     public List<Help> getListHelp() {
         return h.getListHelp();
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return h.delete(id);
     }
 }

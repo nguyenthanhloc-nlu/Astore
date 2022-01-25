@@ -165,7 +165,7 @@
     display: block;
     position: fixed;
     left: 0px;
-    top: 70px;
+    top: 113px;
     cursor: pointer;
     z-index: 10;
     border-radius: 5px;
@@ -269,7 +269,7 @@
 }
 @media (max-width: 420px) {
   .account-container section {
-    padding-top: 26px;
+    padding-top: 53px;
   }
   /*header account */
   .header .container {
@@ -344,7 +344,7 @@
     .cps-right-col
     .block-smember-info.account {
     border: 0 white;
-    width: 86%;
+    width: 100%;
     border-radius: 0;
   }
   .account-container section .cps-container .cps-right-col .account-sider-bar {
@@ -420,7 +420,7 @@
   .sidebar {
     position: fixed;
     z-index: 5;
-    top: 0;
+    top: 53px;
     left: 0;
     height: 100%;
     width: 30%;

@@ -13,7 +13,7 @@ public class HelpController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setAttribute("listHelp", HelpServices.getInstance().getListHelp());
-        request.getRequestDispatcher("view/admin/show-help.jsp").forward(request, response);
+        request.getRequestDispatcher("/view/admin/show-help.jsp").forward(request, response);
     }
 
     @Override
