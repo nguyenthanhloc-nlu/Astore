@@ -7,6 +7,8 @@ public class Slide {
     private String content;
     private String createdAt;
 
+    public Slide() {
+    }
     public Slide(int id, String linkImage, String title, String content, String createdAt) {
         this.id = id;
         this.linkImage = linkImage;
