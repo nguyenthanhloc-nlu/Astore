@@ -131,7 +131,7 @@
             </li>
 
             <li>
-                <a href="./show-slider.html">
+                <a href="<%=request.getContextPath()%>/manage/slide">
                     <i class="zmdi zmdi-slideshow"></i><span>Slide</span>
                 </a>
             </li>

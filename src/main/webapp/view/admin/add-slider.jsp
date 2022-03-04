@@ -10,39 +10,42 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title">Sửa Slider</div>
+                        <div class="card-title text-success">${success}</div>
+                        <div class="card-title text-danger">${error}</div>
+                        <div class="card-title">Thêm mới</div>
                         <hr>
-                        <form action="#t">
+                        <form action="add-slide"  method="post">
                             <div class="form-group">
                                 <label for="input-1">Slide ID</label>
-                                <input type="text" class="form-control" id="input-1" placeholder="ID" name="slide-id">
+                                <input type="text" class="form-control" id="input-1" placeholder="ID" name="slide-id"
+                                value="${slide.id}">
                             </div>
                             <div class="form-group">
                                 <label for="input-10">Tiêu đề</label>
                                 <input type="text" class="form-control" id="input-10" placeholder="Tiêu đề"
-                                       name="slide-tittle">
+                                       name="slide-title" value="${slide.title}">
                             </div>
                             <div class="form-group">
                                 <label for="input-2">Nội dung</label>
                                 <textarea name="" class="form-control" placeholder="Nội dung" id="input-2" cols="30"
-                                          rows="5" name="slide-content"></textarea>
+                                          rows="5" name="slide-content" value="${slide.content}"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="input-3">Photo url</label>
                                 <input type="text" class="form-control" id="input-3" placeholder="Photo url"
-                                       name="slide-photourl">
+                                       name="slide-photourl" value="${slide.linkImage}">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-4">Ngày tạo</label>
                                 <input type="date" class="form-control" id="input-4" placeholder="Ngày tạo"
-                                       name="slide-created">
+                                       name="slide-created" value="${slide.createAt}">
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-danger"><a href="show-slider.jsp">Hủy</a></button>
+                                <button class="btn btn-danger"><a onClick="goback()">Hủy</a></button>
 
-                                <button type="submit" class="btn btn-success"><a href="#">Thêm</a></button>
+                                <button type="submit" class="btn btn-success"><a >Thêm</a></button>
                             </div>
                         </form>
                     </div>

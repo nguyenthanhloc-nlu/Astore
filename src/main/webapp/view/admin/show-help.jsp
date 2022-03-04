@@ -42,6 +42,9 @@
                                     <td>${h.email}</td>
                                     <td>${h.content}</td>
                                     <td>${h.createAt}</td>
+                                    <input type="hidden"
+                                           value="delete-help"
+                                           id="${h.id}" style="display:none"/>
                                     <td>
                                         <button class="btn btn-danger"><a onclick="JSconfirm(${h.id},'Chắc chắn bạn muốn xóa')">Xóa</a></button>
                                         <button class="btn btn-success"><a href="<%=request.getContextPath()%>/manage/informationHelp?nameUser=${h.fullName}&emailUser=${h.email}">Phản hồi</a></button>
@@ -81,6 +84,7 @@
                         row += '<td>' + value.email + '</td>';
                         row += '<td>'+value.content+'</td>';
                         row += '<td>'+value.createAt+'</td>';
+                        row += '<input type="hidden" value="delete-help" id="'+value.id+'" style="display: none" />';
                         row += ' <td>';
                         row += '<button class="btn btn-danger"><a onclick="' + onclick + '">Xóa</a></button> \n';
                         row+='<button class="btn btn-success"><a href="<%=request.getContextPath()%>/manage/informationHelp?nameUser='+value.fullName+'&emailUser='+value.email+'">Phản hồi</a></button>';

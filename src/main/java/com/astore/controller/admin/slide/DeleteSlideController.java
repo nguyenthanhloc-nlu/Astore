@@ -1,25 +1,25 @@
-package com.astore.controller.admin.help;
+package com.astore.controller.admin.slide;
 
-import com.astore.services.implement.HelpServices;
+import com.astore.services.implement.SlideServices;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "DeleteHelp", value = "/manage/delete-help")
-public class DeleteHelpController extends HttpServlet {
+@WebServlet(name = "DeleteSlideController", value = "/manage/delete-slide")
+public class DeleteSlideController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         response.setContentType("text/plain");
         String id = request.getParameter("id");
-
         try {
-            int number = Integer.parseInt(id);
-            boolean check = HelpServices.getInstance().delete(number);
+            boolean check = SlideServices.getInstance().delete(Integer.parseInt(id));
             if(check) {
                 response.getWriter().write("done");
 
@@ -31,6 +31,5 @@ public class DeleteHelpController extends HttpServlet {
         }
 
         response.getWriter().close();
-
     }
 }

@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-footer ">
                                 <button class="btn btn-danger "><a href="<%=request.getContextPath()%>/view/admin/show-help.jsp">Hủy</a></button>
-                                <button class="btn btn-success" type="submit"><a href="#">Phản hồi</a></button>
+                                <button class="btn btn-success" type="submit"><a href="<%=request.getContextPath()%>/manage/replyToEmail">Phản hồi</a></button>
                             </div>
                         </form>
                     </div>

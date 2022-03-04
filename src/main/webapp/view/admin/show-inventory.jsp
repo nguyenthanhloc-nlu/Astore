@@ -31,20 +31,21 @@
                                     <th scope="col">Hành động</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-
+                             <tbody id="tbody">
+                             <%int i = 1;%>
+                            <c:forEach items="${listInventory}" var="in">
                                 <tr>
-                                    <td scope="row">1</td>
-                                    <td>00001</td>
-                                    <td>Iphone 12</td>
-                                    <td>105</td>
+                                    <td scope="row"><%=i++%></td>
+                                    <td>${in.id}</td>
+                                    <td>${in.idSp}</td>
+                                    <td>${in.count}</td>
                                     <td>
                                         <button class="btn btn-danger"><a href="#">Xóa</a></button>
                                         <button class="btn btn-success"><a href="edit-inventory.jsp">Sửa</a></button>
                                     </td>
                                 </tr>
 
-
+                            </c:forEach>
                                 </tbody>
                             </table>
                         </div>
