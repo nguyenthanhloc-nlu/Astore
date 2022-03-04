@@ -3,6 +3,7 @@ package com.astore.dao.implement;
 import com.astore.dao.IInventoryDao;
 import com.astore.jdbc.ConnectDB;
 import com.astore.model.Inventory;
+import com.astore.model.Product;
 import com.astore.model.Slide;
 
 
@@ -85,14 +86,16 @@ public class InventoryDao implements IInventoryDao {
         List<Inventory> result = new ArrayList<>();
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT  * FROM TON_KHO order by thoi_gian_tao desc ";
+            String sql = "SELECT  * FROM TON_KHO  order by thoi_gian_tao desc ";
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Inventory inventory =  new Inventory();
+
                 setValue(rs, inventory);
+             inventory.setNameSP(new ProductDao().getById(inventory.getIdSP()).getName());
                 result.add(inventory);
             }
 
@@ -115,6 +118,8 @@ public class InventoryDao implements IInventoryDao {
             while (rs.next()) {
                 inventory = new Inventory();
                 setValue(rs,inventory);
+                inventory.setNameSP(new ProductDao().getById(inventory.getIdSP()).getName());
+
             }
             rs.close();
             ps.close();
@@ -139,6 +144,7 @@ public class InventoryDao implements IInventoryDao {
             while (rs.next()) {
                 inventory = new Inventory();
                 setValue(rs,inventory);
+                inventory.setNameSP(new ProductDao().getById(inventory.getIdSP()).getName());
                 result.add(inventory);
             }
             rs.close();
@@ -148,6 +154,37 @@ public class InventoryDao implements IInventoryDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<Inventory> getByNameSP(String name) {
+        List<Inventory> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectDB.getInstance();
+            List<Product> listP= new ProductDao().getByName(name);
+            for (Product p: listP) {
+               int idsp= p.getId();
+                String sql = "SELECT * FROM TON_KHO where  id_san_pham =?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, idsp);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    Inventory inventory = new Inventory();
+                    setValue(rs,inventory);
+                    inventory.setNameSP(new ProductDao().getById(inventory.getIdSP()).getName());
+                    result.add(inventory);
+                }
+                rs.close();
+                ps.close();
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private void setValue(ResultSet rs, Inventory inventory) {
@@ -162,4 +199,7 @@ public class InventoryDao implements IInventoryDao {
 
 
     }
+
+    public static void main(String[] args) {
+System.out.println(new InventoryDao().getByNameSP("I"));    }
 }

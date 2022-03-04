@@ -43,7 +43,7 @@
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-danger"><a onClick="goback()">Hủy</a></button>
+                                <button class="btn btn-danger"><a href="<%=request.getContextPath()%>/manage/slide">Hủy</a></button>
 
                                 <button type="submit" class="btn btn-success"><a >Thêm</a></button>
                             </div>

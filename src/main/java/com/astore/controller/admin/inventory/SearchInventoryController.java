@@ -24,13 +24,13 @@ public class SearchInventoryController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/json");
         String params = request.getParameter("params");
-        List<Inventory> listInventory = new ArrayList<>();
+        List<Inventory> listInventory ;
 
         try {
             int id = Integer.parseInt(params);
-            listInventory.add(InventoryServices.getInstance().getById(id));
+            listInventory=InventoryServices.getInstance().getByIdSP(id);
         }catch (NumberFormatException e) {
-         e.getMessage();
+        listInventory=InventoryServices.getInstance().getByNameSP(params);
         }
 
         String json = null;

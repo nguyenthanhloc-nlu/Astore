@@ -31,6 +31,7 @@ public class AddInventoryController extends HttpServlet {
             System.out.println(check);
             if (check) {
                 request.setAttribute("success", "Thêm thành công!");
+                System.out.println(check);
             } else {
                 request.setAttribute("inventory", inventory);
                 request.setAttribute("error", "Đã có lỗi xảy ra!");

@@ -36,8 +36,8 @@
                             <c:forEach items="${listInventory}" var="in">
                                 <tr>
                                     <td scope="row"><%=i++%></td>
-                                    <td>${in.id}</td>
                                     <td>${in.idSP}</td>
+                                    <td>${in.nameSP}</td>
                                     <td>${in.count}</td>
                                     <input type="hidden"
                                            value="delete-inventory"
@@ -79,8 +79,8 @@
                         let onclick = "JSconfirm(" + value.id + ",'Chắc chắn bạn muốn xóa')";
                         row += '<tr id="' + value.id + 'tr">';
                         row += '<td scope="row">' + index++ + '</td> ';
-                        row += '<td>' + value.id + '</td>';
-                        row += '<td>' + value.idSp + '</td>';
+                        row += '<td>' + value.idSP + '</td>';
+                        row += '<td>' + value.nameSP + '</td>';
                         row += '<td>' + value.count + '</td>';
                         row += '<input type="hidden" value="delete-inventory" id="'+value.id+'" style="display: none" />';
 

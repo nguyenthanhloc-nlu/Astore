@@ -11,4 +11,5 @@ public interface IInventoryServices {
     public List<Inventory> getAll();
     public Inventory getById(int id);
     public List<Inventory> getByIdSP(int idSP);
+    public List<Inventory> getByNameSP(String name);
 }

@@ -12,4 +12,6 @@ public interface IInventoryDao {
     public Inventory getById(int id);
 
     List<Inventory> getByIdSP(int idSP);
+
+    List<Inventory> getByNameSP(String name);
 }

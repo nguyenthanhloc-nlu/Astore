@@ -54,5 +54,10 @@ public class InventoryServices implements IInventoryServices {
         return inventoryDao.getByIdSP(idSP);
     }
 
+    @Override
+    public List<Inventory> getByNameSP(String name) {
+        return inventoryDao.getByNameSP(name);
+    }
+
 
 }
