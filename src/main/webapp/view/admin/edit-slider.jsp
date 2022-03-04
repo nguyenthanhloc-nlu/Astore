@@ -38,11 +38,11 @@
                             <div class="form-group">
                                 <label for="input-4">Ngày tạo</label>
                                 <input type="date" class="form-control" id="input-4" placeholder="Ngày tạo"
-                                       value="${slide.createAt}" name="slide-created">
+                                       value="${slide.createdAt}" name="slide-created">
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-danger"><a onclick="goback()">Hủy</a></button>
+                                <button class="btn btn-danger"><a href="slide">Hủy</a></button>
 
                                 <button type="submit" class="btn btn-success"><a>Cập nhật</a></button>
                             </div>

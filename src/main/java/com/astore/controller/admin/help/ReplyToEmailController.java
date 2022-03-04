@@ -32,6 +32,6 @@ public class ReplyToEmailController extends HttpServlet {
         if (CheckEmail.getInstance().checkEmail(emailOrPhone)){
             SendMail.getInstance().sendMailTo(sessRes,userMail,nameFrom,emailOrPhone,subjectMail,messSendMail);
         }
-        request.getRequestDispatcher("/view/admin/show-help-reply.jsp").forward(request,response);
+        request.getRequestDispatcher("/manage/help").forward(request,response);
     }
 }

@@ -37,17 +37,16 @@ public class SlideDao implements ISlideDao {
     public boolean update(Slide slide) {
         if(slide != null){
             Connection conn = ConnectDB.getInstance();
-            String sql = "update SLIDER set id=?, link_anh=? , tieu_de=?,  noi_dung=?, thoi_gian_tao=? where id=? ";
+            String sql = "update SLIDER set  link_anh=? , tieu_de=?,  noi_dung=?, thoi_gian_tao=? where id=? ";
 
             PreparedStatement ps = null;
             try {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, slide.getId());
-                ps.setString(2, slide.getLinkImage());
-                ps.setString(3, slide.getTitle());
-                ps.setString(4, slide.getContent());
-                ps.setDate(5, new Date(System.currentTimeMillis()));
-                ps.setInt(6, slide.getId());
+                ps.setString(1, slide.getLinkImage());
+                ps.setString(2, slide.getTitle());
+                ps.setString(3, slide.getContent());
+                ps.setDate(4, new Date(System.currentTimeMillis()));
+                ps.setInt(5, slide.getId());
                 int row = ps.executeUpdate();
                 ps.close();
                 return row == 1;

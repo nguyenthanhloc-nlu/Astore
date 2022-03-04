@@ -9,4 +9,6 @@ public interface IInventoryServices {
     public boolean delete(int id);
     public boolean update(Inventory inventory);
     public List<Inventory> getAll();
+    public Inventory getById(int id);
+    public List<Inventory> getByIdSP(int idSP);
 }

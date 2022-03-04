@@ -3,6 +3,7 @@ package com.astore.dao.implement;
 import com.astore.dao.IInventoryDao;
 import com.astore.jdbc.ConnectDB;
 import com.astore.model.Inventory;
+import com.astore.model.Slide;
 
 
 import java.sql.*;
@@ -14,18 +15,19 @@ public class InventoryDao implements IInventoryDao {
     public boolean insert(Inventory inventory) {
         if(inventory!= null){
             Connection conn = ConnectDB.getInstance();
-            String sql = "insert into TON_KHO(id, id_san_pham, so_luong_con_lai) values (?,?,?)";
+            String sql = "insert into TON_KHO(id_san_pham, so_luong_con_lai) values (?,?)";
 
             PreparedStatement ps = null;
             try {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, inventory.getId());
-                ps.setInt(2,inventory.getIdSP());
-                ps.setLong(3, inventory.getCount());
+                ps.setInt(1,inventory.getIdSP());
+                ps.setLong(2, inventory.getCount());
 
                 int row = ps.executeUpdate();
                 ps.close();
+                System.out.println(row);
                 return row == 1;
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return  false;
@@ -56,16 +58,15 @@ public class InventoryDao implements IInventoryDao {
     public boolean update(Inventory inventory) {
         if (inventory != null) {
             Connection conn = ConnectDB.getInstance();
-            String sql = "update TON_KHO set id=?, id_san_pham=? , so_luong_con_lai=?, thoi_gian_tao=? where id=? ";
+            String sql = "update TON_KHO set  id_san_pham=? , so_luong_con_lai=?, thoi_gian_tao=? where id=? ";
 
             PreparedStatement ps = null;
             try {
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, inventory.getId());
-                ps.setInt(2, inventory.getIdSP());
-                ps.setLong(3, inventory.getCount());
-                ps.setDate(4, new Date(System.currentTimeMillis()));
-                ps.setInt(5, inventory.getId());
+                ps.setInt(1, inventory.getIdSP());
+                ps.setLong(2, inventory.getCount());
+                ps.setDate(3, new Date(System.currentTimeMillis()));
+                ps.setInt(4, inventory.getId());
                 int row = ps.executeUpdate();
                 ps.close();
                 return row == 1;
@@ -99,6 +100,54 @@ public class InventoryDao implements IInventoryDao {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public Inventory getById(int id) {
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT * FROM TON_KHO where id = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            Inventory inventory = null;
+            while (rs.next()) {
+                inventory = new Inventory();
+                setValue(rs,inventory);
+            }
+            rs.close();
+            ps.close();
+            return inventory;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<Inventory> getByIdSP(int idSP) {
+        List<Inventory> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT * FROM TON_KHO where id_san_pham = ?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, idSP);
+            ResultSet rs = ps.executeQuery();
+            Inventory inventory = null;
+            while (rs.next()) {
+                inventory = new Inventory();
+                setValue(rs,inventory);
+                result.add(inventory);
+            }
+            rs.close();
+            ps.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     private void setValue(ResultSet rs, Inventory inventory) {

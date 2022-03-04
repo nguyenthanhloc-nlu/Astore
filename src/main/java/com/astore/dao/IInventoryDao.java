@@ -9,4 +9,7 @@ public interface IInventoryDao {
     public boolean delete(int id);
     public boolean update(Inventory inventory);
     public List<Inventory> getAll();
+    public Inventory getById(int id);
+
+    List<Inventory> getByIdSP(int idSP);
 }

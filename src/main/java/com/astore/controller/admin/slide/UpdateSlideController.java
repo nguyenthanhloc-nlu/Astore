@@ -29,10 +29,10 @@ public class UpdateSlideController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("slide_id");
-        String title = request.getParameter("slide_title");
-        String content = request.getParameter("slide_content");
-        String linkImage = request.getParameter("slide_image");
+        String id = request.getParameter("slide-id");
+        String title = request.getParameter("slide-title");
+        String content = request.getParameter("slide-content");
+        String linkImage = request.getParameter("slide-photourl");
 
 
         Slide slide = new Slide();

@@ -13,6 +13,7 @@ public class InventoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("listInventory", InventoryServices.getInstance().getAll());
+        System.out.println(InventoryServices.getInstance().getAll().toString());
         request.getRequestDispatcher("/view/admin/show-inventory.jsp").forward(request, response);
     }
 

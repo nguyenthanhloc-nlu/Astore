@@ -125,7 +125,7 @@
                 </a>
             </li>
             <li>
-                <a href="./show-tonkho.html">
+                <a href="<%=request.getContextPath()%>/manage/inventory">
                     <i class="zmdi zmdi-storage"></i><span>Tồn kho</span>
                 </a>
             </li>

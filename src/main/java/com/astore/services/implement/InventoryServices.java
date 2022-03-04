@@ -43,4 +43,16 @@ public class InventoryServices implements IInventoryServices {
     public List<Inventory> getAll() {
         return inventoryDao.getAll();
     }
+
+    @Override
+    public Inventory getById(int id) {
+        return inventoryDao.getById(id);
+    }
+
+    @Override
+    public List<Inventory> getByIdSP(int idSP) {
+        return inventoryDao.getByIdSP(idSP);
+    }
+
+
 }
