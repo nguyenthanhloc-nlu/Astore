@@ -60,11 +60,7 @@
 
                     <div class="my-col my-l-12 my-m-6 my-c-12">
                         <div class="my-footer-col-3">
-<<<<<<< HEAD
-                            <a href="<%=request.getContextPath()%>/index.html">
-=======
                             <a href="<%=request.getContextPath()%>#">
->>>>>>> master
                                 <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"/>
                             </a>
                             <p>

@@ -96,4 +96,9 @@ public class ProductServices implements IProductServices {
     public Map<Integer, Integer> quantilyProductOrder(int idOrder) {
         return p.quantilyProductOrder(idOrder);
     }
+
+    @Override
+    public int countProductByCategoryId(int i) {
+        return this.p.countProductByCategoryId(i);
+    }
 }

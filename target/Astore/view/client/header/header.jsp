@@ -55,25 +55,16 @@
                     <div class="my-col my-l-2 my-m-2 my-c-0 ">
                         <div class="my-row">
                             <div class="my-col my-l-6 my-m-6 my-c-6 " style="text-align: end;">
-<<<<<<< HEAD
-                                <a href="<%=request.getContextPath()%>/cart.html">
-                                    <span class="my-header__cart-notice">
-=======
                                 <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
                                    style="color: white;  margin-top: 8px;  text-decoration: none;">
                                     <span class="my-header__cart-notice" style=" top: 3px !important; ">
->>>>>>> master
                                             3
                                         </span>
                                 </a>
                             </div>
                             <div class="my-col my-l-6 my-m-6 my-c-6">
                                 <div class="account-heder" id="link-account">
-<<<<<<< HEAD
-                                    <a href="<%=request.getContextPath()%>/informationAccount"><i
-=======
                                     <a href="<%=request.getContextPath()%>#"><i
->>>>>>> master
                                             class="fas fa-user-circle fa-2x"
                                             style="color: white; margin-top: 8px;"></i></a>
                                 </div>
@@ -95,14 +86,9 @@
                 <div class="my-col my-l-0 my-m-0 my-c-12" style="height: 50px;">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-<<<<<<< HEAD
-                            <a href="<%=request.getContextPath()%>/cart.html">
-                                     <span class="my-header__cart-notice">
-=======
                             <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
                                style="color: white;  margin-top: 8px; text-decoration: none;">
                                      <span class="my-header__cart-notice" style=" top: 3px !important;">
->>>>>>> master
                                         3
                                     </span>
                             </a>
@@ -116,21 +102,12 @@
                         <div class="my-col my-l-0 my-m-0 my-c-2">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-<<<<<<< HEAD
-                                <div class="my-account-heder" id="link-account-2">
-                                    <a href="<%=request.getContextPath()%>/informationAccount">
-                                        <i class="fas fa-user-circle fa-2x"
-                                           style="color: white;  margin-top: 8px;"></i></a>
-                                </div>
-                                <div class="my-account-heder" id="link-sign-in-2">
-=======
                             <div class="my-account-heder" id="link-account-2">
                                 <a href="<%=request.getContextPath()%>/informationAccount">
                                     <i class="fas fa-user-circle fa-2x"
                                        style="color: white;  margin-top: 8px;"></i></a>
                             </div>
                             <div class="my-account-heder" id="link-sign-in-2">
->>>>>>> master
                                     <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp">
                                         <i class="far fa-user-circle fa-2x"
                                             style="color: white;  margin-top: 8px;"></i></a>

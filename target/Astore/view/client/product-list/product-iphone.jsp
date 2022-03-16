@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/boostrap/css/bootstrap.min.css">
     <script src="<%=request.getContextPath()%>/view/client/assets/boostrap/js/bootstrap.min.js"></script>
 
+
 </head>
 
 <body>
@@ -87,45 +88,40 @@
                 </div>
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
-                <div class="my-row">
+                <div class="my-row" id="tbody">
                     <c:forEach items="${iphone}" var="iphone">
                         <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
                             <a href="" style="text-decoration: none;">
                                 <a href="product?id=${iphone.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <div class="my-row" style="position: relative;">
+                                            <div class="my-col my-l-12 my-m-12 my-c-12">
+                                                <a href="" class="component" style="text-decoration: none;">
+                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                         style="max-width: 181px;">
+                                                </a>
+                                                <span class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber value="${iphone.saleRate}" type="number"/>%</p>
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}">
+                                                    <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h4 style="margin-top: 8px">${iphone.name}</h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="my-row">
-                                            <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
-                                                    <h4 style="margin-top: 8px"> ${iphone.rom}GB</h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="my-row">
-                                            <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
-                                                    <p>
-                                                            <fmt:setLocale value="vi_VN"/>
-                                                            <fmt:formatNumber value="${iphone.price}" type="currency"/>
+                                                    <h4>
+                                                        <fmt:setLocale value="vi_VN"/>
+                                                        <fmt:formatNumber value="${iphone.price}" type="currency"/>
+                                                    </h4>
 
-                                                    <p style="margin-left: 5px"> - </p>
-                                                    <fmt:formatNumber value="${iphone.saleRate}" type="number"/>
-                                                    <p> % </p>
-                                                    </p>
                                                 </a>
+
                                             </div>
                                         </div>
                                         <div class="my-row">
@@ -137,23 +133,134 @@
                                         </div>
                                     </div>
                                 </a>
-                                    <%--                            <span class="product-sale-rate">--%>
-                                    <%--                                    <fmt:formatNumber value="${watch.saleRate}" type="number"/>--%>
-                                    <%--                                </span>--%>
+                            </a>
                         </div>
                     </c:forEach>
                 </div>
             </div>
         </div>
+        <br>
+        <div class="pagination">
+            <c:if test="${totalPages > 1}">
+                <a onclick="page('prev', ${totalPages})">«</a>
+                <c:forEach var = "i"  begin="1" end="${totalPages}">
+
+                    <c:if test="${i == 1}">
+                        <a class="active" onclick="page(${i}, ${totalPages})">${i}</a>
+                    </c:if>
+                    <c:if test="${i != 1}">
+                        <a onclick="page(${i}, ${totalPages})" >${i}</a>
+                    </c:if>
+
+                </c:forEach>
+                <a onclick="page('next',${totalPages})">»</a>
+            </c:if>
+        </div>
+
     </div>
+
 </div>
 
-<jsp:include page="/view/client/page-btn/page-btn.jsp"></jsp:include>
 
+
+
+
+<script>
+    function page(index, totalPages) {
+
+        const currentPage = getCurrentPage();
+
+        if (index === 'prev') {
+            if (currentPage > 1)
+                index = (parseInt(currentPage) - 1);
+            else return;
+
+        }
+        if (index === 'next') {
+            if (currentPage < totalPages)
+                index = (parseInt(currentPage) + 1) ;
+            else return;
+        }
+        $.ajax({
+            url: "Product-iphone",
+            type: 'POST',
+            data: {
+                page: index,
+            },
+            success: function (responseJson) {
+                var row = '';
+                var i = 1;
+                const formatter = new Intl.NumberFormat('vi-VN', {
+                    style: 'currency',
+                    currency: 'VND',
+                    minimumFractionDigits: 2
+                })
+                $.each(responseJson, function (key, value) {
+
+                    if(value == null || value.id <1) return;
+                    row += '<div class="my-col my-l-4 my-m-4 my-c-6 item-products">'
+                    row +=    '<a href="" style="text-decoration: none;">'
+                    row +=      '<a href="product?id='+value.id+'" style="text-decoration: none;">'
+                    row +=             '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row +=               '<div class="my-row" style="position: relative;">'
+                    row +=                   '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row +=                        '<a href="" class="component" style="text-decoration: none;">'
+                    row +=                           '<img src="'+value.listPhotoUrl[0]+'" style="max-width: 181px;">'
+                    row +=                        '</a>'
+                    row +=                       '<span class="product-sale-rate">'
+                    row +=                         '<p style="margin: 0px; padding: 5px;">-'+value.saleRate+'%</p>'
+                    row +=                      '</span>'
+                    row +=                  '</div>'
+                    row +=               '</div>'
+                    row +=              '<div class="my-row">'
+                    row +=                   '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row +=                        '<a href="" class="component" style="text-decoration: none;">'
+                    row +=                           '<h5 style="margin-top: 8px">'+value.name+' '+value.rom+'GB'+'</h5>'
+                    row +=                       '</a>'
+                    row +=                     '</div>'
+                    row +=                 '</div>'
+                    row +=                  '<div class="my-row">'
+                    row +=                      '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row +=                          '<a href="" class="component" style="text-decoration: none;">'
+                    row +=                              '<h4>'+formatter.format(value.price)+'</h4>'
+                    row +=                         '</a>'
+                    row +=                      '</div>'
+                    row +=                  '</div>'
+                    row +=                  '<div class="my-row">'
+                    row +=                      '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row +=                         '<a href="" class="add-to-cart" style="text-decoration: none;">Mua ngay</a>'
+                    row +=                     '</div>'
+                    row +=                '</div>'
+                    row +=              '</div>'
+                    row +=          '</a>'
+                    row +=      '</a>'
+                    row +=   '</div>';
+                });
+
+                document.getElementById("tbody").innerHTML =row;
+                $("html, body").animate({scrollTop: 500}, 600);
+                $(".pagination a").filter(function () {
+                    return $(this).attr("class") == 'active'
+                }).removeClass("active");
+                $(".pagination a").filter(function () {
+                    return $(this).text() == index
+                }).addClass("active");
+
+                collapsePage()
+            }
+        });
+    }
+
+    $(document).ready(function(){
+        collapsePage()
+    })
+
+</script>
+
+
+<script src="<%=request.getContextPath()%>/view/client/assets/js/app-script.js" charset="utf-8" ></script>
 
 <!-- Footer -->
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
-
-
 </body>
 </html>

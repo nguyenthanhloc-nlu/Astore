@@ -40,4 +40,6 @@ public interface IProductServices {
 
 
     Map<Integer,Integer> quantilyProductOrder(int idOrder);//số lượng của sản phẩm trong đơn hàng
+
+    int countProductByCategoryId(int i);
 }

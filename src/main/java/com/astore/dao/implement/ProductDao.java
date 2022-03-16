@@ -425,6 +425,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -444,6 +445,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
+            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -484,6 +486,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
+            conn.close();
         }catch (SQLException e){
 
         }
@@ -531,6 +534,9 @@ public class ProductDao implements IProductDao {
                 setValueProduct(product, rs);
                 listProduct.add(product);
             }
+            rs.close();
+            ps.close();
+            conn.close();
 
         }catch (SQLException e){
             return null;
@@ -549,11 +555,40 @@ public class ProductDao implements IProductDao {
             while (rs.next()){
                 quantilyProduct.put(rs.getInt("id_san_pham"),rs.getInt("so_luong"));
             }
+            rs.close();
+            ps.close();
+            conn.close();
 
         }catch (SQLException e){
             return null;
         }
         return quantilyProduct;
+    }
+
+    @Override
+    public int countProductByCategoryId(int i) {
+        Connection conn = ConnectDB.getInstance();
+        int count = 0;
+        String sql = "SELECT count(*)"+
+                "FROM SAN_PHAM " +
+                "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
+                "join LOAI_SAN_PHAM on LOAI_SAN_PHAM.id = DONG_SAN_PHAM.id_loai_san_pham " +
+                "where LOAI_SAN_PHAM.id = " + i;
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+            conn.close();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return  count;
     }
 
     public static void main(String[] args) {

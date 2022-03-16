@@ -56,9 +56,12 @@
     /*line-height: auto !important;*/
     width: auto !important;
     text-align: center;
-    border-radius: 25px !important;
+    border-radius: 27px !important;
     color: rgb(216, 216, 32);
     padding: 5px !important;
+    line-height: 34px;
+    width: 54px;
+    height: 54px;
 
 }
 
@@ -69,4 +72,24 @@
 .title-choice {
     text-align: left;
     color: white !important;
+}
+
+
+/* thiết lập style cho thẻ a */
+.pagination a {
+    color: white !important;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    cursor: pointer;
+}
+/* thiết lập style cho class active */
+.pagination a.active {
+    background-color: dodgerblue;
+    color: white;
+}
+/* thêm màu nền khi người dùng hover vào class không active */
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
 }

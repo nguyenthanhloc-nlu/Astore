@@ -39,4 +39,5 @@ public interface IProductDao {
 
     Map<Integer, Integer> quantilyProductOrder(int idOrder);
 
+    int countProductByCategoryId(int i);
 }
