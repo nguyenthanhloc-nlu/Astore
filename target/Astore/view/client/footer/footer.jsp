@@ -19,7 +19,7 @@
         <div class="my-row">
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Hệ thống cửa hàng</h3>
+                    <h4>Hệ thống cửa hàng</h4>
                     <ul>
                         <li><a href="<%=request.getContextPath()%>/storeRules.html">Nội quy cửa hàng</a></li>
                         <li><a href="<%=request.getContextPath()%>/serviceQuality.html">Chất lượng dịch vụ</a></li>
@@ -33,7 +33,7 @@
             </div>
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Hỗ trợ khách hàng</h3>
+                    <h4>Hỗ trợ khách hàng</h4>
                     <ul>
                         <li><a href="">Điều kiện giao dịch chung</a></li>
                         <li><a href="">Hướng dẫn mua hàng online</a></li>
@@ -44,7 +44,7 @@
             </div>
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Về thương hiệu ASTORE</h3>
+                    <h4>Về thương hiệu ASTORE</h4>
                     <ul>
                         <li><a href="">Giới thiệu về ASTORE</a></li>
                         <li><a href="">Bán hàng doanh nghiệp</a></li>
@@ -60,7 +60,11 @@
 
                     <div class="my-col my-l-12 my-m-6 my-c-12">
                         <div class="my-footer-col-3">
+<<<<<<< HEAD
                             <a href="<%=request.getContextPath()%>/index.html">
+=======
+                            <a href="<%=request.getContextPath()%>#">
+>>>>>>> master
                                 <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"/>
                             </a>
                             <p>

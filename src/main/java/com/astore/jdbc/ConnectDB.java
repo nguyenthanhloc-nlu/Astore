@@ -21,7 +21,7 @@ public class ConnectDB {
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
                     conn=DriverManager.getConnection("jdbc:sqlserver://localhost:1433;databaseName=DBSTORE_2;user=sa;password=123456;useUnicode=true;characterEncoding=UTF-8");
                     System.out.println("Kết nối thành công!");
-                } catch (SQLException | ClassNotFoundException e) {
+                }  catch (SQLException | ClassNotFoundException e) {
                     System.out.println("Kết nối thất bại!" + e.getMessage());
                 }
 

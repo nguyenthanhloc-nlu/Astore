@@ -89,20 +89,20 @@
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
-                    <c:forEach items="${iphone}" var="iphone">
+                    <c:forEach items="${ipad}" var="ipad">
                         <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
                             <a href="" style="text-decoration: none;">
-                                <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                <a href="product?id=${ipad.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                    <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
                                                          style="max-width: 181px;">
                                                 </a>
                                                 <span class="product-sale-rate">
                                                     <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${iphone.saleRate}"
+                                                     ${"-"} <fmt:formatNumber value="${ipad.saleRate}"
                                                                               type="number"/> ${"%"}
                                                     </p>
                                                 </span>
@@ -111,7 +111,7 @@
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
+                                                    <h5 style="margin-top: 8px">${ipad.name} ${ipad.rom}GB</h5>
                                                 </a>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                                 <a href="" class="component" style="text-decoration: none;">
                                                     <h4>
                                                         <fmt:setLocale value="vi_VN"/>
-                                                        <fmt:formatNumber value="${iphone.price}" type="currency"/>
+                                                        <fmt:formatNumber value="${ipad.price}" type="currency"/>
                                                     </h4>
 
                                                 </a>

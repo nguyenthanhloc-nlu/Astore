@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "index", value = "")
-public class Index extends HttpServlet {
+@WebServlet("/home")
+public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductServices ps = new ProductServices();
@@ -29,7 +29,7 @@ public class Index extends HttpServlet {
         response.setContentType("text/html");
 
 
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+        request.getRequestDispatcher("view/client/home.jsp").forward(request, response);
 
     }
 

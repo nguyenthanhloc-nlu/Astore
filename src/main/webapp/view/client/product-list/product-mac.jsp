@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPLE | iPhone</title>
+    <title>APPLE | Mac</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
@@ -24,7 +24,7 @@
 <body>
 
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
-<jsp:include page="/view/client/slider/slider-iphone.jsp"></jsp:include>
+<jsp:include page="/view/client/slider/slider-mac.jsp"></jsp:include>
 
 
 <div class="" style="margin-top: 50px;">
@@ -40,27 +40,22 @@
 
                     <div class="my-col my-l-2 my-m-3 my-c-4">
                         <a href="">
-                            <h4 class="title-choice">iPhone 13</h4>
+                            <h4 class="title-choice">iMac</h4>
                         </a>
                     </div>
 
-                    <div class="my-col my-l-2 my-m-3 my-c-4">
+                    <div class="my-col my-l-3 my-m-3 my-c-4">
                         <a href="">
-                            <h4 class="title-choice">iPhone 12</h4>
+                            <h4 class="title-choice">Macbook Pro</h4>
                         </a>
                     </div>
 
-                    <div class="my-col my-l-2 my-m-3 my-c-0">
+                    <div class="my-col my-l-3 my-m-3 my-c-0">
                         <a href="">
-                            <h4 class="title-choice">iPhone 11</h4>
+                            <h4 class="title-choice">Macbook Air</h4>
                         </a>
                     </div>
 
-                    <div class="my-col my-l-2 my-m-0 my-c-0">
-                        <a href="">
-                            <h4 class="title-choice">iPhone XR</h4>
-                        </a>
-                    </div>
                 </div>
             </div>
 
@@ -83,26 +78,26 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="title-product-range">
                     <h1 style="color: white; margin: 20px;">
-                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> iPhone
+                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> Mac
                     </h1>
                 </div>
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
-                    <c:forEach items="${iphone}" var="iphone">
+                    <c:forEach items="${mac}" var="mac">
                         <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
                             <a href="" style="text-decoration: none;">
-                                <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                <a href="product?id=${mac.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                    <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
                                                          style="max-width: 181px;">
                                                 </a>
                                                 <span class="product-sale-rate">
                                                     <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${iphone.saleRate}"
+                                                     ${"-"} <fmt:formatNumber value="${mac.saleRate}"
                                                                               type="number"/> ${"%"}
                                                     </p>
                                                 </span>
@@ -111,17 +106,17 @@
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
+                                                    <h6 style="margin-top: 8px">${mac.name} ${mac.rom}GB</h6>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h4>
+                                                    <h5>
                                                         <fmt:setLocale value="vi_VN"/>
-                                                        <fmt:formatNumber value="${iphone.price}" type="currency"/>
-                                                    </h4>
+                                                        <fmt:formatNumber value="${mac.price}" type="currency"/>
+                                                    </h5>
 
                                                 </a>
 
