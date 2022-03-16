@@ -1,75 +1,96 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iamva
-  Date: 02/01/2022
-  Time: 9:13 CH
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASTORE | Home</title>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/grid%20copy.css">
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/sl">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
-    <%--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--%>
-    <link rel="icon" href="<%=request.getContextPath()%>/view/client/images/logotitle.png" type="image/x-icon"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <%--    <link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet'>--%>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-    <link
-            rel="stylesheet"
-            href="<%=request.getContextPath()%>/view/client/assets/js/slider.js"
-    />
+    <style>
+        /* Make the image fully responsive */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-<div class="my-slider-w3" style="margin-top: 50px;">
-    <div class="slideshow-container">
-        <div class="my-row">
-            <div class="my-col my-l-12 my-m-12 my-c-0">
-                <div class="mySlides1"><img src="assets/images/slide/slider2.png" style="width:100%">
-                </div>
 
-                <div class="mySlides1"><img src="assets/images/slide/slider5.png" style="width:100%">
-                </div>
-                <div class="mySlides1"><img src="assets/images/slide/slider6.png" style="width:100%">
-                </div>
-                <div class="mySlides1"><img src="assets/images/slide/slider3.png" style="width:100%">
-                </div>
-                <div class="mySlides1"><img src="assets/images/slide/slider4.png" style="width:100%">
-                </div>
+<div class="my-col my-l-12 my-m-12 my-c-0" style="padding: 0px !important;">
+    <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 70px;">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
 
-                <a class="prev" onclick="plusSlides(-1, 0)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1, 0)">&#10095;</a>
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/2880-800-1920x533-9.png"
+                     alt="" width="1100" height="500">
             </div>
-            <div class="my-col my-l-0 my-m-0 my-c-12" style="margin-top:70px">
-                <div class="slideshow-container">
-                    <div class="mySlides2">
-                        <img src="assets/images/slide/720-720-720x720-1.png" style="width:100%">
-                    </div>
-
-                    <div class="mySlides2">
-                        <img src="assets/images/slide/720-720-720x720-2.png" style="width:100%">
-                    </div>
-
-                    <div class="mySlides2">
-                        <img src="assets/images/slide/720-720-720x720-3.png" style="width:100%">
-                    </div>
-
-                    <div class="mySlides2">
-                        <img src="assets/images/slide/720-720-720x720-8.png" style="width:100%">
-                    </div>
-
-                    <a class="prev" onclick="plusSlides(-1, 1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1, 1)">&#10095;</a>
-                </div>
+            <div class="carousel-item">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/top-mac-2880-800-1920x533-2.png"
+                     alt="" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/2880-800-1920x533-9%20(1).png"
+                     alt="" width="1100" height="500">
             </div>
         </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
     </div>
 </div>
+<div class="my-col my-l-0 my-m-0 my-c-12" style=" width: 100%; padding: 0px !important;" >
+    <div class="carousel slide" data-ride="carousel" style="margin-top: 120px;">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/slider-mobile/720-720-720x720-11.png"
+                     alt="" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/slider-mobile/720-720-720x720.png"
+                     alt="" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/slider-mobile/top-mac-720-720-720x720-4.png"
+                     alt="" width="1100" height="500">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+</div>
+
+
+<%--<script src="<%=request.getContextPath()%>/view/client/assets/js/slider.js"></script>--%>
+
 </body>
 </html>

@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPLE | Mac</title>
+    <title>APPLE | Watch</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
@@ -24,7 +24,7 @@
 <body>
 
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
-<jsp:include page="/view/client/slider/slider-mac.jsp"></jsp:include>
+<jsp:include page="/view/client/slider/slider-watch.jsp"></jsp:include>
 
 
 <div class="" style="margin-top: 50px;">
@@ -34,28 +34,27 @@
                 <div class="my-row">
                     <div class="my-col my-l-2 my-m-2 my-c-4">
                         <a href="">
-                            <h4 class="title-choice">Tất cả</h4>
-                        </a>
-                    </div>
-
-                    <div class="my-col my-l-2 my-m-3 my-c-4">
-                        <a href="">
-                            <h4 class="title-choice">iMac</h4>
+                            <h6 class="title-choice">Tất cả</h6>
                         </a>
                     </div>
 
                     <div class="my-col my-l-3 my-m-3 my-c-4">
                         <a href="">
-                            <h4 class="title-choice">Macbook Pro</h4>
+                            <h6 class="title-choice">Apple Watch Series 7</h6>
+                        </a>
+                    </div>
+
+                    <div class="my-col my-l-3 my-m-3 my-c-4">
+                        <a href="">
+                            <h6 class="title-choice">Apple Watch Series 6</h6>
                         </a>
                     </div>
 
                     <div class="my-col my-l-3 my-m-3 my-c-0">
                         <a href="">
-                            <h4 class="title-choice">Macbook Air</h4>
+                            <h6 class="title-choice">Apple Watch Series 5</h6>
                         </a>
                     </div>
-
                 </div>
             </div>
 
@@ -78,26 +77,26 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="title-product-range">
                     <h1 style="color: white; margin: 20px;">
-                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> Mac
+                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> Watch
                     </h1>
                 </div>
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
-                    <c:forEach items="${mac}" var="mac">
+                    <c:forEach items="${watch}" var="watch">
                         <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
                             <a href="" style="text-decoration: none;">
-                                <a href="product?id=${mac.id}" style="text-decoration: none;">
+                                <a href="product?id=${watch.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
+                                                    <img src="<%=request.getContextPath()%>/${watch.listPhotoUrl.get(0)}"
                                                          style="max-width: 181px;">
                                                 </a>
                                                 <span class="product-sale-rate">
                                                     <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${mac.saleRate}"
+                                                     ${"-"} <fmt:formatNumber value="${watch.saleRate}"
                                                                               type="number"/> ${"%"}
                                                     </p>
                                                 </span>
@@ -106,7 +105,7 @@
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h6 style="margin-top: 8px">${mac.name} ${mac.rom}GB</h6>
+                                                    <h6 style="margin-top: 8px">${watch.name} ${watch.rom}GB</h6>
                                                 </a>
                                             </div>
                                         </div>
@@ -115,7 +114,7 @@
                                                 <a href="" class="component" style="text-decoration: none;">
                                                     <h5>
                                                         <fmt:setLocale value="vi_VN"/>
-                                                        <fmt:formatNumber value="${mac.price}" type="currency"/>
+                                                        <fmt:formatNumber value="${watch.price}" type="currency"/>
                                                     </h5>
 
                                                 </a>

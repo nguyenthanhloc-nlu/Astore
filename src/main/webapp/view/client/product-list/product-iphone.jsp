@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/boostrap/css/bootstrap.min.css">
     <script src="<%=request.getContextPath()%>/view/client/assets/boostrap/js/bootstrap.min.js"></script>
 
+
 </head>
 
 <body>
@@ -93,39 +94,37 @@
                             <a href="" style="text-decoration: none;">
                                 <a href="product?id=${iphone.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <div class="my-row">
+                                        <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}">
+                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                         style="max-width: 181px;">
                                                 </a>
-                                            </div>
-                                        </div>
-                                        <div class="my-row">
-                                            <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
-                                                    <h4 style="margin-top: 8px">${iphone.name}</h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="my-row">
-                                            <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
-                                                    <h4 style="margin-top: 8px"> ${iphone.rom}GB</h4>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="my-row">
-                                            <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
-                                                    <p>
-                                                            <fmt:setLocale value="vi_VN"/>
-                                                            <fmt:formatNumber value="${iphone.price}" type="currency"/>
-
-                                                    <p style="margin-left: 5px"> - </p>
-                                                    <fmt:formatNumber value="${iphone.saleRate}" type="number"/>
-                                                    <p> % </p>
+                                                <span class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">
+                                                     ${"-"} <fmt:formatNumber value="${iphone.saleRate}"
+                                                                              type="number"/> ${"%"}
                                                     </p>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="my-row">
+                                            <div class="my-col my-l-12 my-m-12 my-c-12">
+                                                <a href="" class="component" style="text-decoration: none;">
+                                                    <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
                                                 </a>
+                                            </div>
+                                        </div>
+                                        <div class="my-row">
+                                            <div class="my-col my-l-12 my-m-12 my-c-12">
+                                                <a href="" class="component" style="text-decoration: none;">
+                                                    <h4>
+                                                        <fmt:setLocale value="vi_VN"/>
+                                                        <fmt:formatNumber value="${iphone.price}" type="currency"/>
+                                                    </h4>
+
+                                                </a>
+
                                             </div>
                                         </div>
                                         <div class="my-row">
@@ -137,9 +136,7 @@
                                         </div>
                                     </div>
                                 </a>
-                                    <%--                            <span class="product-sale-rate">--%>
-                                    <%--                                    <fmt:formatNumber value="${watch.saleRate}" type="number"/>--%>
-                                    <%--                                </span>--%>
+                            </a>
                         </div>
                     </c:forEach>
                 </div>

@@ -1,12 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iamva
-  Date: 02/01/2022
-  Time: 8:39 CH
-  To change this template use File | Settings | File Templates.
---%>
-
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -26,19 +17,17 @@
     <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
 
 </head>
-
 <body>
-
-
 <div class="my-header" style="margin-bottom: 200px;">
     <div class="my-container my-container">
         <div class="my-row">
             <div class="my-col my-l-12 my-m-12 my-c-0">
                 <div class="my-row">
                     <div class="my-col my-l-2 my-m-3 my-c-0">
-                        <a href="<%=request.getContextPath()%>/index.html"> <img src="assets/images/logo2.png"
-                                                                                 alt="logo" width="150px"
-                                                                                 style="text-align: start;"></a>
+                        <a href="<%=request.getContextPath()%>#"> <img
+                                src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"
+                                alt="logo" width="150px"
+                                style="text-align: start;"></a>
                     </div>
                     <div class="my-col my-l-4 my-m-3 my-c-0 "><input type="search" id="mySearch" name="q"
                                                                      placeholder="iPhone 13 Pro Max..." size="30"
@@ -47,38 +36,41 @@
                     <div class="my-col my-l-4 my-m-4 my-c-0" id="MenuItems">
                         <div class="my-row">
                             <div class="my-col my-l-3 my-m-3 my-c-3 my-div-nav-item">
-                                <a href="<%=request.getContextPath()%>/products-iphone.html">iPhone</a>
+                                <a href="<%=request.getContextPath()%>/Product-iphone">iPhone</a>
                             </div>
 
                             <div class="my-col my-l-3 my-m-3 my-c-3 my-div-nav-item">
-                                <a href="<%=request.getContextPath()%>/products-mac.html">Mac</a>
+                                <a href="<%=request.getContextPath()%>/Product-mac">Mac</a>
                             </div>
 
                             <div class="my-col my-l-3 my-m-3 my-c-3 my-div-nav-item">
-                                <a href="<%=request.getContextPath()%>/products-ipad.html">iPad</a>
+                                <a href="<%=request.getContextPath()%>/Product-ipad">iPad</a>
                             </div>
 
                             <div class="my-col my-l-3 my-m-3 my-c-3 my-div-nav-item">
-                                <a href="<%=request.getContextPath()%>/products-watch.html">Watch</a>
+                                <a href="<%=request.getContextPath()%>/Product-watch">Watch</a>
                             </div>
                         </div>
                     </div>
                     <div class="my-col my-l-2 my-m-2 my-c-0 ">
                         <div class="my-row">
                             <div class="my-col my-l-6 my-m-6 my-c-6 " style="text-align: end;">
-                                <a href="<%=request.getContextPath()%>/cart.html">
-                                    <a href="<%=request.getContextPath()%>/account.html"><i
-                                            class="fa fa-shopping-cart fa-2x"
-                                            style="color: white; margin-top: 8px;"></i></a>
-                                    <span class="my-header__cart-notice">
+                                <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
+                                   style="color: white;  margin-top: 8px;  text-decoration: none;">
+                                    <span class="my-header__cart-notice" style=" top: 3px !important; ">
                                             3
                                         </span>
                                 </a>
                             </div>
                             <div class="my-col my-l-6 my-m-6 my-c-6">
-                                <div class="my-account-heder" id="my-link-account">
-                                    <a href="<%=request.getContextPath()%>/account.html"><i
+                                <div class="account-heder" id="link-account">
+                                    <a href="<%=request.getContextPath()%>#"><i
                                             class="fas fa-user-circle fa-2x"
+                                            style="color: white; margin-top: 8px;"></i></a>
+                                </div>
+                                <div class="account-heder" id="link-sign-in">
+                                    <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp"><i
+                                            class="far fa-user-circle fa-2x"
                                             style="color: white;  margin-top: 8px;"></i></a>
                                 </div>
                             </div>
@@ -94,27 +86,33 @@
                 <div class="my-col my-l-0 my-m-0 my-c-12" style="height: 50px;">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-                            <div class="my-account-heder" id="my-link-account-2">
-                                <a href="<%=request.getContextPath()%>/account.html"><i class="fas fa-user-circle fa-2x"
-                                                                                        style="color: white;  margin-top: 8px;"></i></a>
-                            </div>
+                            <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
+                               style="color: white;  margin-top: 8px; text-decoration: none;">
+                                     <span class="my-header__cart-notice" style=" top: 3px !important;">
+                                        3
+                                    </span>
+                            </a>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-4">
-                            <img src="assets/images/logo2.png" alt="logo" width="100px" style="text-align: start;">
+                            <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png" alt="logo"
+                                 width="100px" style="text-align: start;">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-                            <a href="<%=request.getContextPath()%>/cart.html">
-                                <a href="<%=request.getContextPath()%>/account.html"><i
-                                        class="fa fa-shopping-cart fa-2x"
-                                        style="color: white; margin-top: 8px;"></i></a>
-                                <span class="my-header__cart-notice">
-                                        3
-                                    </span>
-                            </a>
+                            <div class="my-account-heder" id="link-account-2">
+                                <a href="<%=request.getContextPath()%>/informationAccount">
+                                    <i class="fas fa-user-circle fa-2x"
+                                       style="color: white;  margin-top: 8px;"></i></a>
+                            </div>
+                            <div class="my-account-heder" id="link-sign-in-2">
+                                    <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp">
+                                        <i class="far fa-user-circle fa-2x"
+                                            style="color: white;  margin-top: 8px;"></i></a>
+                                </div>
+
                         </div>
                     </div>
                 </div>
@@ -141,6 +139,6 @@
     </div>
 </div>
 
-
+<script src="<%=request.getContextPath()%>/view/client/assets/js/icon_account.js"></script>
 </body>
 </html>

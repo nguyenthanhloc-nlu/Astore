@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,49 +43,7 @@
   </style>
   <body>
     <div class="account-container" style="background: #3e3e3f">
-      <div class="header">
-        <div class="container">
-          <div class="navbar">
-            <div class="logo">
-              <a href="index.html"
-                ><img src="<%=request.getContextPath()%>/view/client/assets/images/logo2.png" alt="logo" width="150px"
-              /></a>
-            </div>
-            <nav>
-              <ul id="MenuItems">
-                <li><a href="products-iphone.jsp">iPhone</a></li>
-                <li><a href="products-mac.jsp">Mac</a></li>
-                <li><a href="products-ipad.jsp">iPad</a></li>
-                <li><a href="products-watch.html">Watch</a></li>
-              </ul>
-            </nav>
-            <div class="search-box">
-              <button class="btn-search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </button>
-              <input
-                type="text"
-                class="input-search"
-                placeholder="iPhone 13..."
-              />
-            </div>
-            <a href="cart.html">
-              <img src="../assets/images/cart.png" width="40px" height="40px" />
-              <span class="header__cart-notice"> 3 </span>
-            </a>
-            <div class="account-heder" id="link-account">
-              <a href="account.jsp"
-                ><i class="fas fa-user-circle fa-2x" style="color: white"></i
-              ></a>
-            </div>
-            <div class="account-heder" id="link-sign-in">
-              <a href="./signIn.html">
-                <i class="far fa-user-circle fa-2x" style="color: white"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <<jsp:include page="/view/client/header/header.jsp"></jsp:include>
 
       <!-- Single Products -->
       <section class="cps-section">
@@ -220,55 +180,19 @@
                             </div>
                           </div>
                           <div class="l-3 m-12 c-12">
-                            <h1 class="mb-0 font-weight-semibold">${p.price}</h1>
-                            <input
-                              class="up-down-number"
-                              type="number"
-                              id="tentacles"
-                              name="tentacles"
-                              min="0"
-                              max="100000"
-                              value="1"
-                            />
+                            <h1 class="mb-0 font-weight-semibold"><fmt:setLocale value="vi_VN"/>
+                              <fmt:formatNumber value="${p.price}" type="currency"/></h1>
+                            <c:forEach var="m" items="${mapQuantilyProduct}">
+                              <c:if test="${m.key==p.id}">
+                                <div
+                                        class="up-down-number"
+                                        id="tentacles"
+                                >${m.value}</div>
+                              </c:if>
+                            </c:forEach>
                           </div>
                         </div>
                         </c:forEach>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="l-12 m-12 c-12 col-temp-price">
-                    <div class="row">
-                      <div class="l-2 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h2 class="f-h2-temp-price">Tổng cộng</h2>
-                        </div>
-                      </div>
-                      <div class="l-7 m-0 c-0"></div>
-                      <div class="l-3 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${sumOrder}₫</h1>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="l-12 m-12 c-12 col-temp-price">
-                    <div class="row">
-                      <div class="l-2 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h2
-                            class="f-h2-temp-price"
-                            style="margin-right: 14px"
-                          >
-                            Giảm giá
-                          </h2>
-                        </div>
-                      </div>
-                      <div class="l-7 m-0 c-0"></div>
-                      <div class="l-3 m-6 c-12">
-                        <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${saleRate}₫</h1>
-                        </div>
                       </div>
                     </div>
                   </div>
@@ -283,7 +207,7 @@
                       <div class="l-7 m-0 c-0"></div>
                       <div class="l-3 m-6 c-12">
                         <div class="mr-2 mb-3 mb-lg-0">
-                          <h1 class="f-h2-temp-price">${moneyOrder}₫</h1>
+                          <h1 class="f-h2-temp-price">${moneyOrder}đ</h1>
                         </div>
                       </div>
                     </div>

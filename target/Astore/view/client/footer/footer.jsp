@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: iamva
-  Date: 02/01/2022
-  Time: 8:52 CH
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -26,13 +19,13 @@
         <div class="my-row">
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Hệ thống cửa hàng</h3>
+                    <h4>Hệ thống cửa hàng</h4>
                     <ul>
-                        <li><a  href="<%=request.getContextPath()%>/storeRules.html">Nội quy cửa hàng</a></li>
-                        <li><a  href="<%=request.getContextPath()%>/serviceQuality.html">Chất lượng dịch vụ</a></li>
-                        <li><a  href="<%=request.getContextPath()%>/systemStore.html">Xem 4 cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/storeRules.html">Nội quy cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/serviceQuality.html">Chất lượng dịch vụ</a></li>
+                        <li><a href="<%=request.getContextPath()%>/systemStore.html">Xem 4 cửa hàng</a></li>
                         <li>
-                            <a  href="<%=request.getContextPath()%>/warrantyAndExchange.html">Bảo hành và đổi trả</a>
+                            <a href="<%=request.getContextPath()%>/warrantyAndExchange.html">Bảo hành và đổi trả</a>
                         </li>
                     </ul>
                 </div>
@@ -40,18 +33,18 @@
             </div>
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Hỗ trợ khách hàng</h3>
+                    <h4>Hỗ trợ khách hàng</h4>
                     <ul>
                         <li><a href="">Điều kiện giao dịch chung</a></li>
                         <li><a href="">Hướng dẫn mua hàng online</a></li>
-                        <li><a  href="<%=request.getContextPath()%>/deliveryPolicy.html">Chính sách giao hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/deliveryPolicy.html">Chính sách giao hàng</a></li>
                         <li><a href="">Hướng dẫn thanh toán</a></li>
                     </ul>
                 </div>
             </div>
             <div class="my-col my-l-3 my-m-6 my-c-12">
                 <div class="my-footer-col-3">
-                    <h3>Về thương hiệu ASTORE</h3>
+                    <h4>Về thương hiệu ASTORE</h4>
                     <ul>
                         <li><a href="">Giới thiệu về ASTORE</a></li>
                         <li><a href="">Bán hàng doanh nghiệp</a></li>
@@ -67,8 +60,8 @@
 
                     <div class="my-col my-l-12 my-m-6 my-c-12">
                         <div class="my-footer-col-3">
-                            <a  href="<%=request.getContextPath()%>/index.html">
-                                <img src="assets/images/logo1.png"/>
+                            <a href="<%=request.getContextPath()%>#">
+                                <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"/>
                             </a>
                             <p>
                                 Trải nghiệm tốt nhất về sản phẩm và dịch vụ của Apple tới toàn bộ
