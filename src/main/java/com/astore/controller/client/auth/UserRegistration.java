@@ -43,7 +43,7 @@ public class UserRegistration extends HttpServlet {
 
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom ="ASTORE";
-        String passUserMail= "xrjlbwixmthlrube";
+        String passUserMail= "bchcvacxfovunoil";
       if (UserServices.getInstance().checkUserExist(emailOrPhone)){
        String errorRegistration= "<div class=\"error-login-user\"><div class=\"img-error-login\"><i class=\"far fa-times-circle\"></i></div>\n" +
             "              <div class=\"text-error-login\">\n" +
