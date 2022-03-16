@@ -24,7 +24,7 @@ $(function () {
     });
 
     function check(a, b) {
-        const data = ['user', 'admin', 'order', 'dashboard', 'color', 'photo', 'delivery'];
+        const data = ['upload','user', 'admin', 'order', 'dashboard', 'color', 'photo', 'delivery'];
         for (const i of data) {
             if (a.indexOf(i) > 0 && b.indexOf(i) > 0) {
                 return true;

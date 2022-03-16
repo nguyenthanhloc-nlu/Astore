@@ -18,7 +18,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="folder">Thư mục</label>
+                                    <label for="folder">Vị trí trên server</label>
                                     <input type="text" class="form-control" id="folder" placeholder="Thư mục" name="folder">
                                 </div>
 
