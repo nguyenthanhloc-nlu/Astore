@@ -125,19 +125,19 @@
                 </a>
             </li>
             <li>
-                <a href="./show-tonkho.html">
+                <a href="<%=request.getContextPath()%>/manage/inventory">
                     <i class="zmdi zmdi-storage"></i><span>Tồn kho</span>
                 </a>
             </li>
 
             <li>
-                <a href="./show-slider.html">
+                <a href="<%=request.getContextPath()%>/manage/slide">
                     <i class="zmdi zmdi-slideshow"></i><span>Slide</span>
                 </a>
             </li>
 
             <li>
-                <a href="./show-help.html">
+                <a href="<%=request.getContextPath()%>/manage/help">
                     <i class="fa fa-question-circle"></i><span>Hỗ trợ</span>
                 </a>
             </li>

@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
         String password = request.getParameter("admin-password") != null ? request.getParameter("admin-password") : "";
 
         User user = UserServices.getInstance().loginAdmin(username, password);
+        System.out.println(user);
 
         if (user != null) {
             if (user.getUserName().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password)) {

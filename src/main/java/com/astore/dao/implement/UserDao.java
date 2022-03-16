@@ -236,7 +236,7 @@ public class UserDao implements IUserDao {
     public User loginAdmin(String userName, String password) {
 
         try {
-            User user  = new User();
+            User user = null;
             Connection conn = ConnectDB.getInstance();
             String sql = "SELECT * FROM NGUOI_DUNG join PHAN_QUYEN ON NGUOI_DUNG.id = PHAN_QUYEN.id_nguoi_dung where PHAN_QUYEN.id_nhom =? and NGUOI_DUNG.ten_nguoi_dung =? and NGUOI_DUNG.mat_khau = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -247,6 +247,7 @@ public class UserDao implements IUserDao {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
+                user = new User();
                 user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("ten_nguoi_dung"));
                 user.setName(rs.getString("ho_va_ten"));

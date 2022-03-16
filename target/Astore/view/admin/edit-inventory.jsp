@@ -13,22 +13,22 @@
                     <div class="card-body">
                         <div class="card-title">Cập nhật sản phẩm tồn kho</div>
                         <hr>
-                        <form action="#t">
+                        <form action="update-inventory" method="post">
                             <div class="form-group">
                                 <label for="input-1">Mã sản phẩm</label>
                                 <input type="text" class="form-control" id="input-1" readonly="readonly"
-                                       placeholder="Mã sản phẩm" value="1111" name="product-id">
+                                       placeholder="Mã sản phẩm" value="${inventory.id}" name="product-id">
                             </div>
                             <div class="form-group">
                                 <label for="input-2">Số lượng</label>
-                                <input type="text" class="form-control" id="input-2" placeholder="Số lượng" value="125"
+                                <input type="text" class="form-control" id="input-2" placeholder="Số lượng" value="${inventory.count}"
                                        name="product-amount">
                             </div>
 
                             <div class="form-group">
-                                <button class="btn btn-danger"><a href="show-inventory.jsp">Hủy</a></button>
+                                <button class="btn btn-danger"><a href="inventory">Hủy</a></button>
 
-                                <button type="submit" class="btn btn-success"><a href="show-inventory.jsp">Cập nhật</a>
+                                <button type="submit" class="btn btn-success"><a>Cập nhật</a>
                                 </button>
                             </div>
                         </form>
