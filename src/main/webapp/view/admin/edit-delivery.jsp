@@ -9,37 +9,39 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-title text-danger">${error}</div>
                         <div class="card-title">Cập nhật giao hàng</div>
                         <hr>
-                        <form>
+                        <form action="update-delivery" method="post">
 
                             <div class="form-group">
                                 <label for="input-1">Mã giao hàng</label>
                                 <input type="text" class="form-control" readonly="readonly" id="input-1"
-                                       name="delivery-id" value="11" placeholder="Mã giao hàng">
+                                       name="delivery-id" value="${delivery.id}" placeholder="Mã giao hàng">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-2">Mã đơn hàng</label>
                                 <input type="text" class="form-control" id="input-2" readonly="readonly" name="order-id"
-                                       value="455" placeholder="Mã Đơn hàng">
+                                       value="${delivery.orderId}" placeholder="Mã Đơn hàng">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-3">Địa chỉ giao hàng</label>
                                 <input type="text" class="form-control" id="input-3" name="delivery-address"
-                                       value="48 Lê Lợi, Bình Chiểu" placeholder="Địa chỉ giao hàng">
+                                       value="${delivery.address}" placeholder="Địa chỉ giao hàng">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-4">Ngày giao hàng</label>
                                 <input type="date" class="form-control" id="input-4" placeholder="Ngày lập hóa đơn"
-                                       name="delivery-date" value="2021-12-25" placeholder="Ngày giao hàng">
+                                       name="delivery-date" value="${delivery.deliveryDate}" placeholder="Ngày giao hàng">
                             </div>
 
                             <div class="form-footer">
-                                <button class="btn btn-danger"><a href="show-delivery.jsp">Hủy</a></button>
-                                <button class="btn btn-success"><a href="#">Cập nhật</a></button>
+                                <button class="btn btn-danger"><a onclick="goback()">Hủy</a></button>
+
+                                <button type="submit" class="btn btn-success"><a>Cập nhật</a></button>
                             </div>
                         </form>
                     </div>

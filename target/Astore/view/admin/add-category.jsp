@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="form-footer">
-                                <button class="btn btn-danger"><a href="goBack()">Hủy</a></button>
+                                <button class="btn btn-danger"><a onclick="goback()">Hủy</a></button>
 
                                 <button type="submit" class="btn btn-success"><a>Thêm</a></button>
                             </div>

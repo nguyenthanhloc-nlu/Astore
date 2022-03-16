@@ -115,7 +115,7 @@
             </li>
 
             <li>
-                <a href="./show-delivery.html">
+                <a href="<%=request.getContextPath()%>/manage/delivery">
                     <i class="zmdi zmdi-car-wash"></i><span>Giao Hàng</span>
                 </a>
             </li>
