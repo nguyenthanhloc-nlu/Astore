@@ -24,7 +24,7 @@ public class ForgotPassword extends HttpServlet {
     String emailOrPhone = request.getParameter("email-phone-rs");
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom ="ASTORE";
-        String passUserMail= "xrjlbwixmthlrube";
+        String passUserMail= "bchcvacxfovunoil";
         System.out.println(emailOrPhone);
     HttpSession ss = request.getSession();
     if (UserServices.getInstance().checkUserExist(emailOrPhone)){
