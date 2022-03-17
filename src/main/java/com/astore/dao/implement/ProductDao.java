@@ -2,6 +2,7 @@ package com.astore.dao.implement;
 
 import com.astore.dao.IProductDao;
 import com.astore.jdbc.ConnectDB;
+import com.astore.model.Color;
 import com.astore.model.Product;
 
 import java.math.BigDecimal;
@@ -114,8 +115,7 @@ public class ProductDao implements IProductDao {
     @Override
     public Product getById(int id) {
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "where SAN_PHAM.id = " + id;
 
@@ -127,11 +127,17 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 ps.close();
                 rs.close();
+                conn.close();
                 return product;
             }
 
@@ -149,8 +155,7 @@ public class ProductDao implements IProductDao {
         List<Product> products = new ArrayList<Product>();
         Connection conn;
         conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "order by SAN_PHAM.thoi_gian_tao desc ";
 
@@ -163,10 +168,16 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 products.add(product);
             }
             ps.close();
             rs.close();
+            conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -193,6 +204,11 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 products.add(product);
             }
             ps.close();
@@ -231,8 +247,7 @@ public class ProductDao implements IProductDao {
     public List<Product> getByName(String productName) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "where DONG_SAN_PHAM.ten_dong_san_pham like ? order by thoi_gian_tao desc";
 
@@ -246,6 +261,11 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
@@ -253,6 +273,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -264,8 +285,7 @@ public class ProductDao implements IProductDao {
     public List<Product> getProductByIdCate(int idCate) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id join LOAI_SAN_PHAM on LOAI_SAN_PHAM.id = DONG_SAN_PHAM.id_loai_san_pham " +
                 "where LOAI_SAN_PHAM.id =" + idCate;
 
@@ -277,6 +297,11 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
@@ -284,6 +309,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -296,8 +322,7 @@ public class ProductDao implements IProductDao {
     public List<Product> getProductByIdDongSp(int idDongSp) {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
-        String sql = "SELECT  SAN_PHAM.*, MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac " +
+        String sql = "SELECT  SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
                 "where DONG_SAN_PHAM.id =" + idDongSp;
 
@@ -309,6 +334,11 @@ public class ProductDao implements IProductDao {
             while (rs.next()) {
                 Product product = new Product();
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
@@ -361,6 +391,12 @@ public class ProductDao implements IProductDao {
                 Product product = new Product();
 
                 setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
+
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
@@ -445,7 +481,7 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -456,14 +492,16 @@ public class ProductDao implements IProductDao {
 
         List<String> photoUrl = new ArrayList<>();
         try {
-            String sql = "select link_hinh_mo_ta_san_pham from HINH_MOTA_SANPHAM where id_dong_san_pham = " + id;
+            String sql = "select link_hinh_mo_ta_san_pham from HINH_MOTA_SANPHAM where id_dong_san_pham = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 photoUrl.add(rs.getString("link_hinh_mo_ta_san_pham"));
             }
             ps.close();
             rs.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -486,11 +524,36 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
+
         }catch (SQLException e){
 
         }
         return result;
+    }
+
+    private Color getColor(Connection conn, int productId){
+        Color color = new Color();
+
+
+        String sql = "SELECT MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex " +
+                "FROM SAN_PHAM join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac where SAN_PHAM.id = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, productId);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                color.setName(rs.getString("ten_mau_sac"));
+                color.setCodeHex(rs.getString("ma_mau_sac_hex"));
+                color.setId(rs.getInt("id_mau_sac"));
+            }
+            ps.close();
+            rs.close();
+
+        }catch (SQLException e){
+
+        }
+        return color;
     }
 
     private void setValueProduct(Product product, ResultSet rs) {
@@ -500,9 +563,9 @@ public class ProductDao implements IProductDao {
             product.setName(rs.getString("ten_dong_san_pham"));
             product.setPrice(rs.getDouble("gia_san_pham"));
 
-            product.setColorName(rs.getString("ten_mau_sac"));
-            product.setColorHex(rs.getString("ma_mau_sac_hex"));
-            product.setColorId(rs.getInt("id_mau_sac"));
+//            product.setColorName(rs.getString("ten_mau_sac"));
+//            product.setColorHex(rs.getString("ma_mau_sac_hex"));
+//            product.setColorId(rs.getInt("id_mau_sac"));
 
             product.setRom(rs.getString("bo_nho_rom"));
             product.setRam(rs.getString("ram"));

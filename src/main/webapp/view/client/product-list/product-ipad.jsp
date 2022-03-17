@@ -97,12 +97,19 @@
                                         <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
-                                                         style="max-width: 181px;">
+                                                    <c:if test="${ipad.listPhotoUrl.size() > 0}">
+                                                        <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
+                                                             style="max-width: 181px;">
+                                                    </c:if>
+                                                    <c:if test="${ipad.listPhotoUrl.size() == 0}">
+                                                        <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                             style="max-width: 181px;" >
+
+                                                    </c:if>
                                                 </a>
-                                                <span class="product-sale-rate">
+                                                <div class="product-sale-rate">
                                                     <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber value="${ipad.saleRate}" type="number"/>%</p>
-                                                </span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="my-row">

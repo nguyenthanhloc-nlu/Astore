@@ -17,7 +17,7 @@ public class Mac extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        int countProduct = ProductServices.getInstance().countProductByCategoryId(1);
+        int countProduct = ProductServices.getInstance().countProductByCategoryId(2);
         int totalPages = 0;
         if(countProduct % 30 > 0){
             totalPages = countProduct / 30 +1;
@@ -43,7 +43,7 @@ public class Mac extends HttpServlet {
             int start = pageInt *30 +1;
             int end = start +29;
 
-            List<Product> products = ProductServices.getInstance().getProductByIdCate(1, start, end);
+            List<Product> products = ProductServices.getInstance().getProductByIdCate(2, start, end);
 
             String json = null;
             response.setContentType("application/json");

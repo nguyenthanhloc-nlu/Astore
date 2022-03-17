@@ -54,15 +54,19 @@
     right: 25px !important;
     background-color: rgb(35, 33, 33);
     /*line-height: auto !important;*/
-    width: auto !important;
+    /*width: auto !important;*/
     text-align: center;
-    border-radius: 27px !important;
+    border-radius: 30px !important;
     color: rgb(216, 216, 32);
-    padding: 5px !important;
-    line-height: 34px;
-    width: 54px;
-    height: 54px;
+    /*padding: 5px !important;*/
 
+    width: 60px !important;
+    height: 60px !important;
+
+}
+
+.product-range .item-products .product-sale-rate {
+    line-height: 50px;
 }
 
 .product-range .item-products .add-to-cart:hover {
