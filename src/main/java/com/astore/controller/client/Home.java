@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/home")
+@WebServlet("")
 public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,6 +20,8 @@ public class Home extends HttpServlet {
         List<Product> mac = ps.getProductByIdCate(2, 4);
         List<Product> ipad = ps.getProductByIdCate(3, 4);
         List<Product> watch = ps.getProductByIdCate(4, 4);
+
+        System.out.println(iphone.size());
 
 
         request.setAttribute("iphone", iphone);

@@ -47,7 +47,7 @@ public class ProductDetail extends HttpServlet {
                 request.setAttribute("productRelative", productRelative);
                 request.setAttribute("rom", rom);
                 request.setAttribute("color", color);
-                request.getRequestDispatcher("view/client/product_details.jsp").forward(request,response);
+                request.getRequestDispatcher("view/client/product-details/product-details.jsp").forward(request,response);
             }
         }catch (Exception e){
             response.setStatus(404);

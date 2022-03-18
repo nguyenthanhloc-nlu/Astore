@@ -1,4 +1,3 @@
-<%@ page import="com.astore.model.Product" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -91,12 +90,12 @@
                 <div class="my-row" id="tbody">
                     <c:forEach items="${iphone}" var="iphone">
                         <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
-                            <a href="" style="text-decoration: none;">
-                                <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                            <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                <a style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <div class="my-row" style="position: relative;">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
+                                                <a class="component" style="text-decoration: none;">
                                                     <c:if test="${iphone.listPhotoUrl.size() > 0}">
                                                         <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
                                                              style="max-width: 181px;">
@@ -114,14 +113,14 @@
                                         </div>
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
+                                                <a  class="component" style="text-decoration: none;">
                                                     <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
                                                 </a>
                                             </div>
                                         </div>
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
-                                                <a href="" class="component" style="text-decoration: none;">
+                                                <a  class="component" style="text-decoration: none;">
                                                     <h4>
                                                         <fmt:setLocale value="vi_VN"/>
                                                         <fmt:formatNumber value="${iphone.price}" type="currency"/>
