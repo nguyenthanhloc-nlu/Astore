@@ -11,35 +11,35 @@
                     <div class="card-body">
                         <div class="card-title">Cập nhật đơn hàng</div>
                         <hr>
-                        <form>
+                        <form action="update-order" method="post">
 
                             <div class="form-group">
                                 <label for="input-1">Mã đơn hàng</label>
                                 <input type="text" class="form-control" readonly="readonly" id="input-1" name="order-id"
-                                       value="2">
+                                       value="${order.id}">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-2">Mã khách hàng</label>
                                 <input type="text" class="form-control" id="input-2" name="user-id"
-                                       value="Nguyễn Thành Lộc">
+                                       value="${order.nameUser}">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-3">Trị giá</label>
                                 <input type="text" class="form-control" id="input-3" name="order-price"
-                                       value="15.000.000">
+                                       value="${order.priceOrder}">
                             </div>
 
                             <div class="form-group">
                                 <label for="input-4">Ngày lập hóa đơn</label>
                                 <input type="date" class="form-control" id="input-4" placeholder="Ngày lập hóa đơn"
-                                       name="order-date" value="2021-2-12">
+                                       name="order-date" value="${order.dateAtOrder}">
                             </div>
 
                             <div class="form-footer">
-                                <button class="btn btn-danger"><a href="show-order.jsp">Hủy</a></button>
-                                <button class="btn btn-success"><a href="#">Cập nhật</a></button>
+                                <button class="btn btn-danger"><a href="order">Hủy</a></button>
+                                <button class="btn btn-success"><a>Cập nhật</a></button>
                             </div>
                         </form>
                     </div>

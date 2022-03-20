@@ -2,9 +2,10 @@ package com.astore.dao.implement;
 
 import com.astore.dao.IDetailedOrderDao;
 import com.astore.jdbc.ConnectDB;
+import com.astore.model.*;
 import com.astore.model.DetailedOrder;
 import com.astore.model.DetailedOrder;
-import com.astore.model.DetailedOrder;
+import com.astore.services.implement.ProductServices;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -97,6 +98,7 @@ public class DetailedOrderDao implements IDetailedOrderDao {
             while (rs.next()) {
                 DetailedOrder detailedOrder =  new DetailedOrder();
                 setValue(rs, detailedOrder);
+                detailedOrder.setNameProduct(ProductServices.getInstance().getById(detailedOrder.getIdProduct()).getName());
                 result.add(detailedOrder);
             }
 
@@ -131,7 +133,33 @@ public class DetailedOrderDao implements IDetailedOrderDao {
 
     @Override
     public List<DetailedOrder> getByNameProduct(String name) {
-        return null;
+        List<DetailedOrder> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectDB.getInstance();
+            List<Product> listP= new ProductDao().getByName(name);
+            for (Product p: listP) {
+                int idsp= p.getId();
+                String sql = "SELECT * FROM TON_KHO where  id_san_pham =?";
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ps.setInt(1, idsp);
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    DetailedOrder detailedOrder = new DetailedOrder();
+                    setValue(rs,detailedOrder);
+                    detailedOrder.setNameProduct(new ProductDao().getById(detailedOrder.getIdProduct()).getName());
+                    result.add(detailedOrder);
+                }
+                rs.close();
+                ps.close();
+            }
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
     public void setValue(ResultSet rs, DetailedOrder detailedOrder){
         try{

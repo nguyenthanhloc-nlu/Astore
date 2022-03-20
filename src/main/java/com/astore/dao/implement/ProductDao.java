@@ -116,7 +116,7 @@ public class ProductDao implements IProductDao {
     public Product getById(int id) {
         Connection conn = ConnectDB.getInstance();
         String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "from SAN_PHAM join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "where SAN_PHAM.id = " + id;
 
         try {
@@ -137,7 +137,6 @@ public class ProductDao implements IProductDao {
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
                 ps.close();
                 rs.close();
-                conn.close();
                 return product;
             }
 
@@ -656,6 +655,6 @@ public class ProductDao implements IProductDao {
 
     public static void main(String[] args) {
         ProductDao d = new ProductDao();
-        System.out.println(d.getListProductOrder(1));
+        System.out.println(d.getById(1));
     }
 }

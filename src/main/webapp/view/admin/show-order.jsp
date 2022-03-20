@@ -11,10 +11,10 @@
         <div class="row">
 
             <div class="col-lg-12 tool-bar">
-                <button class="add-catalog"><a href="add-order.jsp">Thêm mới</a></button>
+                <button class="add-catalog"><a href="add-order">Thêm mới</a></button>
 
                 <div>
-                    <input type="text" name="in-search" class="search" placeholder="Tìm kiếm"/>
+                    <input type="text" id="input-search" name="in-search" class="search" placeholder="Tìm kiếm"/>
                     <i class="fa fa-search"></i>
                 </div>
             </div>
@@ -38,22 +38,24 @@
 
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="tbody">
+                                <%int i = 1;%>
+                                <c:forEach items="${listOrder}" var="order">
 
                                 <tr>
-                                    <td scope="row">1</td>
-                                    <td>11</td>
-                                    <td>455</td>
-                                    <td>Nguyễn Thành Lộc</td>
-                                    <td>15.000.000</td>
-                                    <td>2021-09-25</td>
+                                    <td scope="row"><%=i++%></td>
+                                    <td>${order.id}</td>
+                                    <td>${order.idUser}</td>
+                                    <td>${order.nameUser}</td>
+                                    <td>${order.priceOrder}</td>
+                                    <td>${order.dateAtOrder}</td>
                                     <td>
-                                        <button class="btn btn-danger"><a href="#">Xóa</a></button>
-
-                                        <button class="btn btn-success"><a href="edit-order.jsp">Sửa</a></button>
+                                        <button class="btn btn-danger"><a onclick="JSconfirm(${order.id},'Chắc chắn bạn muốn xóa')">Xóa</a></button>
+                                        <button class="btn btn-success"><a href="update-order?id=${order.id}">Sửa</a>
+                                        </button>
                                     </td>
                                 </tr>
-
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -63,6 +65,47 @@
         </div>
     </div>
 </div>
+<script>
 
+    $("#input-search").keypress(function (e) {
+        const value = $("#input-search").val();
+        if (e.keyCode == 13) {
+            $.ajax({
+                url: "search-order",
+                type: 'POST',
+                data: {
+                    params: value,
+                },
+                success: function (responseJson) {
+                    let row = '';
+                    let index = 1;
+                    $.each(responseJson, function (key, value) {
+                        if(value == null || value.id <1) return;
+                        let onclick = "JSconfirm(" + value.id + ",'Chắc chắn bạn muốn xóa')";
+                        row += '<tr id="' + value.id + 'tr">';
+                        row += '<td scope="row">' + index++ + '</td> ';
+                        row += '<td>' + value.id + '</td>';
+                        row += '<td>' + value.idUser + '</td>';
+                        row += '<td>' + value.nameUser + '</td>';
+                        row += '<td>' + value.priceOrder + '</td>';
+                        row += '<td>' + value.dataAtOrder + '</td>';
+                        row += '<input type="hidden" value="delete-order" id="'+value.id+'" style="display: none" />';
+
+                        row += ' <td>';
+                        row += '<button class="btn btn-danger"><a onclick="' + onclick + '">Xóa</a></button> \n';
+                        row += '<button class="btn btn-success"><a href="update-order?id='+value.id+'">Sửa</a></button>';
+                        row += '        </td>';
+                        row += '  </tr>';
+
+                    });
+                    console.log(row);
+                    document.getElementById("tbody").innerHTML = row;
+
+                }
+            });
+        }
+    });
+
+</script>
 
 <jsp:include page="./footer/footer.jsp" flush="true"/>

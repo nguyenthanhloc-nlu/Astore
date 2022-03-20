@@ -109,7 +109,7 @@
 
 
             <li>
-                <a href="./show-order.html">
+                <a href="<%=request.getContextPath()%>/manage/order">
                     <i class="zmdi zmdi-shopping-cart"></i><span>Đơn Hàng</span>
                 </a>
             </li>
