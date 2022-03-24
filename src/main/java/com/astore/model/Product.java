@@ -216,4 +216,13 @@ public class Product {
                 ", createdAt='" + createdAt + '\'' +
                 '}';
     }
+
+    public String toStringListImgDetails() {
+        return "Product{" +
+                "id=" + id +
+                ", dongSpID=" + subCategoryId +
+                ", name='" + name + '\'' +
+                ", listProductDetail=" + listProductDetail +
+                '}';
+    }
 }

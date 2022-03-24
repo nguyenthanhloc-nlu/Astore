@@ -258,8 +258,9 @@
                                 <div class="my-col my-l-12 my-m-12 my-c-12">
                                     <div class="my-row">
                                         <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;"> <img
-                                                    src="${ipad.listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                            <a href="" class="component"
+                                               style="text-decoration: none; margin-top: 10px;">
+                                                <img src="${ipad.listPhotoUrl.get(0)}" style="max-width: 160px;" alt="">
                                             </a>
                                             <span class="product-sale-rate">
                                                     <p style="margin: 0px; padding: 5px;">

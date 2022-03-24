@@ -21,7 +21,7 @@
 <body>
 <div class="my-container" style="border-radius: 20px">
     <div class="my-row">
-        <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 100px;">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="margin-top: 5px;">
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>

@@ -7,6 +7,11 @@
     <title>Product Details</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/grid copy.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/product-details.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
@@ -14,71 +19,81 @@
 
 <%--<jsp:useBean id="product" scope="request" type="com.astore.model.Product"/>--%>
 <div class="my-product-detail" style="margin-top: 120px;">
-    <div class="my-container-information">
+    <div class="my-container-information" style="padding-bottom: 50px;">
         <div class="my-row">
-            <div class="my-col my-l-6 my-m-6 my-c-12 my-slider-product">
-                <div class="w3-content">
-                    <img alt = "main-info-img" class="mySlides"
-                         src="${product.listPhotoUrl.get(0)}"
-                         style="width:100%;display:none; border-radius: 4px;">
-                    <div class="w3-row-padding w3-section">
-                        <c:forEach items="${product.listPhotoUrl}" var="img">
-                            <div class="w3-col s3">
-                                <img class="demo w3-opacity w3-hover-opacity-off"
-                                     src="${img}"
-                                     style="width:100%;cursor:pointer;  border-radius: 10px;" onclick="currentDiv(i)" alt="">
-                            </div>
-                        </c:forEach>
+
+
+            <div class="my-col my-l-6 my-m-6 my-c-12 my-slider-product" style="height: 100%;">
+                <div class="my-row">
+                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                        <img src="${product.listPhotoUrl.get(0)}" id="ProductImg"
+                             style="width: 100%; border-radius: 8px;">
+                    </div>
+                    <div class="my-col my-l-12 my-m-12 my-c-12" style="margin-top: 25px;">
+                        <div class="small-img-row my-row">
+                            <c:forEach items="${product.listPhotoUrl}" var="img">
+                                <div class="small-img-col my-col my-l-3 my-m-3 my-c-3">
+                                    <img src="${img}" class="small-img" style="width: 100%; border-radius: 5px;">
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
                 </div>
             </div>
+
             <div class="my-col my-l-6 my-m-6 my-c-12 my-infor-product">
                 <div class="my-row my-row-infor-product">
-                    <div class="my-col my-l-12 my-m-12 my-c-12">
-                        <h3 style="font-weight: bolder; ">
+
+
+                    <div class="my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
+                        <h1 style="font-weight: bolder; text-align: left;">
                             ${product.name}
-                        </h3>
-                        <h3 style="font-weight: bolder;">
+                        </h1>
+                        <h1 style="font-weight: bolder; text-align: left;">
                             <fmt:setLocale value="vi_VN"/>
                             <fmt:formatNumber value="${product.price}" type="currency"/>
-                        </h3>
-                        <h4>
+                        </h1>
+                    </div>
+
+                    <div class="my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
+                        <h4 style="font-weight: bolder; text-align: left; margin: 20px 0px 20px 0px;">
                             Dung lượng
                         </h4>
                     </div>
-                    <div class=" my-col my-l-12 my-m-12 my-c-12">
-                        <div class="my-row">
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 mr-bt">
-                                <button type="button">128GB</button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 mr-bt">
-                                <button type="button">256GB</button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 mr-bt">
-                                <button type="button">512GB</button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 mr-bt">
-                                <button type="button">1TB</button>
-                            </div>
+
+                    <div class="my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
+                        <div class="choose-rom my-row">
+                            <c:forEach items="${rom}" var="r">
+                                <c:if test="${r.id == product.id && r.rom == product.rom}">
+                                    <div class=" my-col my-l-2 my-m-2 my-c-2 mr-bt" style="width: 100%;">
+                                        <a href="product?id=${r.id}" class="active-rom">
+                                            <button type="button" style="width: 100%;">  ${r.rom}GB</button>
+                                        </a>
+                                    </div>
+                                </c:if>
+                                <c:if test="${r.id != product.id || r.rom != product.rom}">
+                                    <div class=" my-col my-l-2 my-m-2 my-c-2 mr-bt" style="width: 100%;">
+                                        <a href="product?id=${r.id}">
+                                            <button type="button" style="width: 100%;"> ${r.rom}GB</button>
+                                        </a>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </div>
                     </div>
-                    <div class="my-col my-l-12 my-m-12 my-c-12" style="margin-top: 10px;">
-                        <h4>
+
+                    <div class="my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
+                        <h4 style="font-weight: bolder; text-align: left;  margin: 20px 0px 10px 0px;">
                             Màu sắc
                         </h4>
                     </div>
                     <div class=" my-col my-l-12 my-m-12 my-c-12">
                         <div class="my-row">
-
-
                             <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
                                 <button type="button"
                                         style="width:45px; height:45px; border-radius:50%; background-color:  #54524f;">
                                 </button>
                             </div>
-
-
-
                             <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
                                 <button type="button"
                                         style="width:45px; height:45px;  border-radius:50%; background-color: #a7c1d9;">
@@ -97,15 +112,15 @@
                         </div>
                     </div>
 
-                    <div class=" my-col my-l-12 my-m-12 my-c-12">
+                    <div class=" my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
                         <div class="my-row my-infor-promotion">
-                            <h3 style="display: block; width: 100%;">
+                            <h4 style="display: block; width: 100%; padding: 0px; margin: 0px;">
                                 Khuyến mãi
-                            </h3>
-                            <h4 style="display: block;">
-                                Giá và khuyến mãi dự kiến áp dụng đến 23:00 31/03
                             </h4>
-                            <hr style="width: 100%; height :1px; color: white;">
+                            <h5 style="display: block; padding: 0px; margin: 0px;">
+                                Giá và khuyến mãi dự kiến áp dụng đến 23:00 31/03
+                            </h5>
+                            <hr style="width: 100%; height :1px; color: white; background: white;">
                             <p>
                                 * Tặng Phiếu mua hàng giảm 10% khi mua Apple Watch SE và Series 7 tại ASTORE.
                             </p>
@@ -150,81 +165,113 @@
     </div>
 </div>
 
-<div class="my-container-table">
-    <div class="my-row">
-        <div class="my-col my-l-12 my-m-12 my-c-12">
-            <h3 style="text-align: center; font-weight: bold;">
-                Thông số kỹ thuật
-            </h3>
-        </div>
-        <div class="my-col my-l-12 my-m-12 my-c-12">
-            <table>
-                <tr>
-                    <th>Name:</th>
-                    <td>Bill Gates</td>
-                </tr>
-                <tr>
-                    <th>Telephone:</th>
-                    <td>555 77 854</td>
-                </tr>
-                <tr>
-                    <th>Telephone:</th>
-                    <td>555 77 855</td>
-                </tr>
-                <tr>
-                    <th>Telephone:</th>
-                    <td>555 77 855</td>
-                </tr>
-                <tr>
-                    <th>Telephone:</th>
-                    <td>555 77 855</td>
-                </tr>
-                <tr>
-                    <th>Telephone:</th>
-                    <td>555 77 855</td>
-                </tr>
-            </table>
-        </div>
+<div class="information-table" style="background: white;">
 
-    </div>
-
-    <div class="my-container-img-description">
+    <div class="my-container-table" style="border-radius: 20px !important;">
         <div class="my-row">
+            <div class="my-col my-l-12 my-m-12 my-c-12" style="margin: 39px 0px 25px 0px;">
+                <h1 style="text-align: center; font-weight: bold; ">
+                    Thông số kỹ thuật
+                </h1>
+            </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
+                <table>
 
-                <c:forEach items="${product.listPhotoUrl}" var="img">
-<%--                    <c:forEach items="${product.listProductDetail}" var="img">--%>
-                    <img src="%=request.getContextPath()%>/${img}" width="100%" class="demo w3-opacity w3-hover-opacity-off"  style="width:100%;">
-                </c:forEach>
+                    <c:if test="${product.rom != null}">
+                        <tr>
+                            <td>Rom</td>
+                            <td><c:out value="${product.rom}"/> GB</td>
+                        </tr>
+                    </c:if>
 
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;"> <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                                               src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                                               style="width:100%;">--%>
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;">--%>
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;">--%>
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;">--%>
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;">--%>
-<%--                <img class="demo w3-opacity w3-hover-opacity-off"--%>
-<%--                     src="https://cdn.tgdd.vn/Products/Images/42/250262/s16/iphone-13-pro-max-512gb-071021-083717.jpg"--%>
-<%--                     style="width:100%;">--%>
+
+                    <c:if test="${product.ram != null}">
+                        <tr>
+                            <td>Ram</td>
+                            <td><c:out value="${product.ram}"/> GB</td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${product.sizeScreen != null}">
+                        <tr>
+                            <td>Kích thước màn hình</td>
+                            <td><c:out value="${product.sizeScreen}"/></td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${product.screenResolution != null}">
+                        <tr>
+                            <td>Độ phân giải</td>
+                            <td><c:out value="${product.screenResolution}"/></td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${product.frontCamera != null}">
+                        <tr>
+                            <td>Camera trước</td>
+                            <td><c:out value="${product.frontCamera}"/></td>
+                        </tr>
+                    </c:if>
+
+                    <c:if test="${product.backCamera != null}">
+                        <tr>
+                            <td>Camera sau</td>
+                            <td><c:out value="${product.backCamera}"/></td>
+                        </tr>
+                    </c:if>
+                    <tr>
+                        <td>Thương hiệu</td>
+                        <td>Apple</td>
+                    </tr>
+                    <tr>
+                        <td>Xuất xứ thương hiệu</td>
+                        <td>Mỹ</td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="my-container-img-description">
+            <div class="my-row">
+                <div class="my-col my-l-12 my-m-12 my-c-12">
+                    <c:forEach items="${product.listProductDetail}" var="img">
+                        <img src="${img}" class="" style="width: 100%;  ">
+                    </c:forEach>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Footer -->
-<jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
 
-<script src="<%=request.getContextPath()%>/view/client/assets/js/account.js"></script>
+    <!-- Footer -->
+    <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
+
+    <script src="<%=request.getContextPath()%>/view/client/assets/js/account.js"></script>
+
+    <script>
+
+
+        var ProductImg = document.getElementById("ProductImg");
+        var SmallImg = document.getElementsByClassName("small-img");
+
+        SmallImg[0].onclick = function () {
+            ProductImg.src = SmallImg[0].src;
+        };
+        SmallImg[1].onclick = function () {
+            ProductImg.src = SmallImg[1].src;
+        };
+        SmallImg[2].onclick = function () {
+            ProductImg.src = SmallImg[2].src;
+        };
+        SmallImg[3].onclick = function () {
+            ProductImg.src = SmallImg[3].src;
+        };
+        SmallImg[4].onclick = function () {
+            ProductImg.src = SmallImg[4].src;
+        };
+
+
+    </script>
 </body>
 </html>

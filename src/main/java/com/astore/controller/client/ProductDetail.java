@@ -4,9 +4,11 @@ import com.astore.model.Product;
 import com.astore.services.implement.CategoryServices;
 import com.astore.services.implement.ProductServices;
 
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,11 +27,12 @@ public class ProductDetail extends HttpServlet {
             Product product = p.getById(numId); // lấy thông tin sản phẩm
 
 
+            System.out.println(product.toStringListImgDetails());
 
-            if(product == null){
+            if (product == null) {
                 response.setStatus(404);
                 response.sendError(404);
-            }else{
+            } else {
                 System.out.println(product);
                 List<Product> subProduct = p.getProductByIdDongSp(product.getSubCategoryId());
 
@@ -39,6 +42,8 @@ public class ProductDetail extends HttpServlet {
                 // lấy ds màu sắc thông qua idDongSP
                 List<Product> color = filterByColor(subProduct, product);
 
+                System.out.println("Color: " + color);
+
                 // lấy sản phẩm liên quan
                 List<Product> productRelative = p.getProductByIdCate(CategoryServices.getInstance().getByProductId(product.getId()).getId(), 4);
 
@@ -47,7 +52,7 @@ public class ProductDetail extends HttpServlet {
                 request.setAttribute("productRelative", productRelative);
                 request.setAttribute("rom", rom);
                 request.setAttribute("color", color);
-                request.getRequestDispatcher("view/client/product-details/product-details.jsp").forward(request,response);
+                request.getRequestDispatcher("view/client/product-details/product-details.jsp").forward(request, response);
             }
         }catch (Exception e){
             response.setStatus(404);
@@ -83,26 +88,25 @@ public class ProductDetail extends HttpServlet {
         return result;
     }
 
-    private List<Product> filterByColor(List<Product> list, Product product){
+    private List<Product> filterByColor(List<Product> list, Product product) {
         List<Product> result = new ArrayList<>();
         List<String> ps = new ArrayList<>();
-        ps.add(product.getColorHex());
+        ps.add(product.getColorName());
         result.add(product);
 
         for (Product p : list) {
-            if(!ps.contains(p.getColorId()) && p.getRom().equals(product.getRom())){
-                ps.add(p.getColorHex());
+            if (!ps.contains(p.getColorName())) {
+                ps.add(p.getColorName());
                 result.add(p);
             }
         }
         Comparator<Product> cmp = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                return o1.getColorHex().compareTo(o2.getColorHex());
+                return o1.getColorName().compareTo(o2.getColorName());
             }
         };
         Collections.sort(result, cmp);
-
-        return  result;
+        return result;
     }
 }

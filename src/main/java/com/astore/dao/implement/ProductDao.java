@@ -116,7 +116,7 @@ public class ProductDao implements IProductDao {
     public Product getById(int id) {
         Connection conn = ConnectDB.getInstance();
         String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "from SAN_PHAM join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "where SAN_PHAM.id = " + id;
 
         try {
@@ -134,7 +134,7 @@ public class ProductDao implements IProductDao {
                 product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 ps.close();
                 rs.close();
                 conn.close();
@@ -323,7 +323,7 @@ public class ProductDao implements IProductDao {
         List<Product> products = new ArrayList<Product>();
         Connection conn = ConnectDB.getInstance();
         String sql = "SELECT  SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
-                "join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
+                "FROM SAN_PHAM join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
                 "where DONG_SAN_PHAM.id =" + idDongSp;
 
 
@@ -408,8 +408,6 @@ public class ProductDao implements IProductDao {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
         return  products;
     }
 
@@ -501,11 +499,9 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return photoUrl;
     }
 

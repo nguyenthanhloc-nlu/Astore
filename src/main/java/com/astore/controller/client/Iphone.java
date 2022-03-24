@@ -23,11 +23,7 @@ public class Iphone extends HttpServlet {
             totalPages = countProduct / 30 +1;
         }else
             totalPages = countProduct / 30;
-
-
         request.setAttribute("totalPages", totalPages);
-
-
         ProductServices ps = new ProductServices();
         List<Product> iphone = ps.getProductByIdCate(1, 0, 30);
         System.out.println(iphone.toString());

@@ -35,17 +35,15 @@
 
 .product-range .item-products .add-to-cart {
     width: 80%;
-    padding: 10px;
+    padding: 6px;
     border: 1px solid #76706f;
     margin: 15px auto 15px;
     border-radius: 5px;
 }
 
 .product-range .item-products .component {
-    width: 90%;
     padding: 3px;
     border: none;
-    margin: 1px;
 }
 
 .product-range .item-products .product-sale-rate {
