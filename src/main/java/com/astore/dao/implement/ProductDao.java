@@ -137,7 +137,6 @@ public class ProductDao implements IProductDao {
                 product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 ps.close();
                 rs.close();
-                conn.close();
                 return product;
             }
 
@@ -652,6 +651,6 @@ public class ProductDao implements IProductDao {
 
     public static void main(String[] args) {
         ProductDao d = new ProductDao();
-        System.out.println(d.getListProductOrder(1));
+        System.out.println(d.getById(1));
     }
 }

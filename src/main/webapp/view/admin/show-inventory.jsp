@@ -66,7 +66,7 @@
         const value = $("#input-search").val();
         if (e.keyCode == 13) {
             $.ajax({
-                url: "searchInventory",
+                url: "search-inventory",
                 type: 'POST',
                 data: {
                     params: value,
