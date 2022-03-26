@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <div class="card-title">Phản hồi</div>
                         <hr>
-                        <form method="post" action="<%=request.getContextPath()%>manage/replyToEmail">
+                        <form method="post" action="<%=request.getContextPath()%>/manage/replyToEmail">
                             <div class="form-group">
                                 <label for="input-1">Mã hỗ trợ</label>
                                 <input type="text" class="form-control" readonly id="input-1" placeholder="ID" value="1"

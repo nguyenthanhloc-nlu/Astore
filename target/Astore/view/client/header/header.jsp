@@ -64,7 +64,7 @@
                             </div>
                             <div class="my-col my-l-6 my-m-6 my-c-6">
                                 <div class="account-heder" id="link-account">
-                                    <a href="<%=request.getContextPath()%>#"><i
+                                    <a href="<%=request.getContextPath()%>/informationAccount"><i
                                             class="fas fa-user-circle fa-2x"
                                             style="color: white; margin-top: 8px;"></i></a>
                                 </div>

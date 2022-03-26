@@ -97,6 +97,8 @@
         </div>
     </div>
 </div>
+
+<%-- 4 iphone dai dien--%>
 <div class="product-range" style="margin-top: 50px;">
     <div class="my-container">
         <div class="my-row">
@@ -108,49 +110,57 @@
                 </div>
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
-                <div class="my-row">
+                <div class="my-row" id="tbody">
                     <c:forEach items="${iphone}" var="iphone">
-                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products">
-                            <a href="product?id=${iphone.id}" style="text-decoration: none;">
-                                <div class="my-col my-l-12 my-m-12 my-c-12">
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;"> <img
-                                                    src="${iphone.listPhotoUrl.get(0)}" style="max-width: 160px;">
-                                            </a>
-                                            <span class="product-sale-rate">
-                                                    <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${iphone.saleRate}"
-                                                                              type="number"/> ${"%"}
-                                                    </p>
-                                            </span>
-                                        </div>
+                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                             style="display: flex; flex-direction: column;">
+                            <a href="product?id=${iphone.id}"
+                               style="text-decoration: none; color: white !important;">
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">
+                                        <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                            <div class="component" style="text-decoration: none; margin-top: 8px;">
+                                                <c:if test="${iphone.listPhotoUrl.size() > 0}">
+                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                                <c:if test="${iphone.listPhotoUrl.size() == 0}">
+                                                    <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                            </div>
+                                            <div class="product-sale-rate">
+                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                        value="${iphone.saleRate}" type="number"/>%</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h5 style="margin-top: 10px">${iphone.name} ${iphone.rom}GB</h5>
-                                            </a>
-                                        </div>
+                                </div>
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                            <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h4>
-                                                    <fmt:setLocale value="vi_VN"/>
-                                                    <fmt:formatNumber value="${iphone.price}" type="currency"/>
-                                                </h4>
-                                            </a>
-                                        </div>
+                                </div>
+
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${iphone.id}" style="text-decoration: none;">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${iphone.price}" type="currency"/>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="add-to-cart" style="text-decoration: none;">
-                                                <h6>
-                                                    Thêm vào giỏ hàng
-                                                </h6>
-                                            </a>
-                                        </div>
+                                </div>
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="/view/client/cart/cart.jsp" class="add-to-cart"
+                                           style="text-decoration: none;">
+                                            Mua ngay
+                                        </a>
                                     </div>
                                 </div>
                             </a>
@@ -162,73 +172,72 @@
     </div>
 </div>
 
+<%-- 4 mac dai dien--%>
 <div class="product-range" style="margin-top: 50px;">
     <div class="my-container">
         <div class="my-row">
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="title-product-range">
                     <h1 style="color: white; margin: 20px;">
-                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> Watch
+                        <i class="fa fa-apple" aria-hidden="true" style="margin-right: 15px;"></i> Mac
                     </h1>
                 </div>
             </div>
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
                     <c:forEach items="${mac}" var="mac">
-                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products">
-                            <a href="product?id=${mac.id}" style="text-decoration: none;">
-                                <div class="my-col my-l-12 my-m-12 my-c-12">
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;"> <img
-                                                    src="${mac.listPhotoUrl.get(0)}" style="max-width: 160px;">
-                                            </a>
-                                        </div>
-                                        <span class="product-sale-rate">
-                                                    <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${mac.saleRate}"
-                                                                              type="number"/> ${"%"}
-                                                    </p>
-                                                </span>
+                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                             style="display: flex; flex-direction: column;">
+                            <a href="product?id=${mac.id}"
+                               style="text-decoration: none; color: white !important;">
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">
+                                        <a href="product?id=${mac.id}" style="text-decoration: none;">
+                                            <div class="component" style="text-decoration: none; margin-top: 8px;">
+                                                <c:if test="${mac.listPhotoUrl.size() > 0}">
+                                                    <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                                <c:if test="${mac.listPhotoUrl.size() == 0}">
+                                                    <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                            </div>
+                                            <div class="product-sale-rate">
+                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                        value="${mac.saleRate}" type="number"/>%</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h6 style="margin-top: 10px">${mac.name}</h6>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${mac.id}" style="text-decoration: none;">
+                                            <h6 style="margin-top: 8px">${mac.name}</h6>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h6 style="margin-top: 10px">${mac.rom}GB</h6>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${mac.id}" style="text-decoration: none;">
+                                            <h6 style="margin-top: 8px">${mac.rom}GB</h6>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h5 style="margin-top: 10px"></h5>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${mac.id}" style="text-decoration: none;">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${mac.price}" type="currency"/>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h4>
-                                                    <fmt:setLocale value="vi_VN"/>
-                                                    <fmt:formatNumber value="${mac.price}" type="currency"/>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="add-to-cart" style="text-decoration: none;">
-                                                <h6>
-                                                    Thêm vào giỏ hàng </h6>
-                                            </a>
-                                        </div>
+                                </div>
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="/view/client/cart/cart.jsp" class="add-to-cart"
+                                           style="text-decoration: none;">
+                                            Mua ngay
+                                        </a>
                                     </div>
                                 </div>
                             </a>
@@ -240,6 +249,8 @@
     </div>
 </div>
 
+
+<%-- 4 ipad dai dien--%>
 <div class="product-range" style="margin-top: 50px;">
     <div class="my-container">
         <div class="my-row">
@@ -253,48 +264,55 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
                     <c:forEach items="${ipad}" var="ipad">
-                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products">
-                            <a href="product?id=${ipad.id}" style="text-decoration: none;">
-                                <div class="my-col my-l-12 my-m-12 my-c-12">
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component"
-                                               style="text-decoration: none; margin-top: 10px;">
-                                                <img src="${ipad.listPhotoUrl.get(0)}" style="max-width: 160px;" alt="">
-                                            </a>
-                                            <span class="product-sale-rate">
-                                                    <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${ipad.saleRate}"
-                                                                              type="number"/> ${"%"}
-                                                    </p>
-                                                </span>
-                                        </div>
+                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                             style="display: flex; flex-direction: column;">
+                            <a href="product?id=${ipad.id}"
+                               style="text-decoration: none; color: white !important;">
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">
+                                        <a href="product?id=${ipad.id}" style="text-decoration: none;">
+                                            <div class="component" style="text-decoration: none; margin-top: 8px;">
+                                                <c:if test="${ipad.listPhotoUrl.size() > 0}">
+                                                    <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                                <c:if test="${ipad.listPhotoUrl.size() == 0}">
+                                                    <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                            </div>
+                                            <div class="product-sale-rate">
+                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                        value="${ipad.saleRate}" type="number"/>%</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h5 style="margin-top: 10px">${ipad.name} ${ipad.rom}GB</h5>
-                                            </a>
-                                        </div>
+                                </div>
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${ipad.id}" style="text-decoration: none;">
+                                            <h5 style="margin-top: 8px">${ipad.name} ${ipad.rom}GB</h5>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h4>
-                                                    <fmt:setLocale value="vi_VN"/>
-                                                    <fmt:formatNumber value="${ipad.price}" type="currency"/>
-                                                </h4>
-                                            </a>
-                                        </div>
+                                </div>
+
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${ipad.id}" style="text-decoration: none;">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${ipad.price}" type="currency"/>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="add-to-cart" style="text-decoration: none;">
-                                                <h6>
-                                                    Thêm vào giỏ hàng
-                                                </h6>
-                                            </a>
-                                        </div>
+                                </div>
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="/view/client/cart/cart.jsp" class="add-to-cart"
+                                           style="text-decoration: none;">
+                                            Mua ngay
+                                        </a>
                                     </div>
                                 </div>
                             </a>
@@ -307,6 +325,7 @@
 </div>
 
 
+<%-- 4 iphone dai dien--%>
 <div class="product-range" style="margin-top: 50px;">
     <div class="my-container">
         <div class="my-row">
@@ -320,48 +339,55 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row">
                     <c:forEach items="${watch}" var="watch">
-                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products">
-                            <a href="product?id=${watch.id}" style="text-decoration: none;">
-                                <div class="my-col my-l-12 my-m-12 my-c-12">
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;"> <img
-                                                    src="${watch.listPhotoUrl.get(0)}" style="max-width: 160px;">
-                                            </a>
+                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                             style="display: flex; flex-direction: column;">
+                            <a href="product?id=${watch.id}"
+                               style="text-decoration: none; color: white !important;">
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">
+                                        <a href="product?id=${watch.id}" style="text-decoration: none;">
+                                            <div class="component" style="text-decoration: none; margin-top: 8px;">
+                                                <c:if test="${watch.listPhotoUrl.size() > 0}">
+                                                    <img src="<%=request.getContextPath()%>/${watch.listPhotoUrl.get(0)}"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                                <c:if test="${watch.listPhotoUrl.size() == 0}">
+                                                    <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                         style="max-width: 260px;">
+                                                </c:if>
+                                            </div>
+                                            <div class="product-sale-rate">
+                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                        value="${watch.saleRate}" type="number"/>%</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
 
-                                            <span class="product-sale-rate">
-                                                    <p style="margin: 0px; padding: 5px;">
-                                                     ${"-"} <fmt:formatNumber value="${watch.saleRate}"
-                                                                              type="number"/> ${"%"}
-                                                    </p>
-                                                </span>
-                                        </div>
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${watch.id}" style="text-decoration: none;">
+                                            <h5 style="margin-top: 8px">${watch.name} ${watch.rom}GB</h5>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h5 style="margin-top: 10px">${watch.name} ${watch.rom}GB</h5>
-                                            </a>
-                                        </div>
+                                </div>
+
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="product?id=${watch.id}" style="text-decoration: none;">
+                                            <fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${watch.price}" type="currency"/>
+                                        </a>
                                     </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="component" style="text-decoration: none;">
-                                                <h4>
-                                                    <fmt:setLocale value="vi_VN"/>
-                                                    <fmt:formatNumber value="${watch.price}" type="currency"/>
-                                                </h4>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="my-row">
-                                        <div class="my-col my-l-12 my-m-12 my-c-12">
-                                            <a href="" class="add-to-cart" style="text-decoration: none;">
-                                                <h6>
-                                                    Thêm vào giỏ hàng
-                                                </h6>
-                                            </a>
-                                        </div>
+                                </div>
+
+                                <div class="my-row" style="width: 100%">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12">
+                                        <a href="/view/client/cart/cart.jsp" class="add-to-cart"
+                                           style="text-decoration: none;">
+                                            Mua ngay
+                                        </a>
                                     </div>
                                 </div>
                             </a>
@@ -372,7 +398,6 @@
         </div>
     </div>
 </div>
-
 
 <!-- Footer -->
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>

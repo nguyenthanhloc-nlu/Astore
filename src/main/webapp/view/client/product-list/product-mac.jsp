@@ -191,7 +191,7 @@
             else return;
         }
         $.ajax({
-            url: "Product-iphone",
+            url: "Product-mac",
             type: 'POST',
             data: {
                 page: index,
@@ -207,43 +207,47 @@
                 $.each(responseJson, function (key, value) {
 
                     if (value == null || value.id < 1) return;
-                    row += '<div class="my-col my-l-4 my-m-4 my-c-6 item-products">'
-                    row += '<a href="" style="text-decoration: none;">'
-                    row += '<a href="product?id=' + value.id + '" style="text-decoration: none;">'
-                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row += '<div class="my-row" style="position: relative;">'
-                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row += '<a href="" class="component" style="text-decoration: none;">'
-                    row += '<img src="' + value.listPhotoUrl[0] + '" style="max-width: 181px;">'
-                    row += '</a>'
-                    row += '<span class="product-sale-rate">'
-                    row += '<p style="margin: 0px; padding: 5px;">-' + value.saleRate + '%</p>'
-                    row += '</span>'
-                    row += '</div>'
-                    row += '</div>'
-                    row += '<div class="my-row">'
-                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row += '<a href="" class="component" style="text-decoration: none;">'
-                    row += '<h5 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h5>'
-                    row += '</a>'
-                    row += '</div>'
-                    row += '</div>'
-                    row += '<div class="my-row">'
-                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row += '<a href="" class="component" style="text-decoration: none;">'
-                    row += '<h4>' + formatter.format(value.price) + '</h4>'
-                    row += '</a>'
-                    row += '</div>'
-                    row += '</div>'
-                    row += '<div class="my-row">'
-                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row += '<a href="" class="add-to-cart" style="text-decoration: none;">Mua ngay</a>'
-                    row += '</div>'
-                    row += '</div>'
-                    row += '</div>'
-                    row += '</a>'
-                    row += '</a>'
-                    row += '</div>';
+                    row += '  <div class="my-col my-l-4 my-m-4 my-c-6 item-products" style="display: flex; flex-direction: column;">'
+                    row += '    <a href="product?id=' + value.id + '" style="text-decoration: none; color: white !important;">'
+                    row += '       <div class="my-row" style="width: 100%">'
+                    row += '           <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">'
+                    row += '                <a href="product?id=' + value.id + '" style="text-decoration: none;">'
+                    row += '                    <div class="component" style="text-decoration: none; margin-top: 8px;">'
+                    row += '                            <img href="product?id=' + value.id + '"  src ="' + value.listPhotoUrl[0] + '"  style="max-width: 260px;">'
+                    row += '                </div>'
+                    row += '                   <div class="product-sale-rate">'
+                    row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
+                    row += '           </div>'
+                    row += '                 </a>'
+                    row += '              </div>'
+                    row += '          </div>'
+
+                    row += '       <div class="my-row" style="width: 100%">'
+                    row += '          <div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '              <a href="product?id=' + value.id + '" style="text-decoration: none;">'
+                    row += '                 <h5 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h5>'
+                    row += '              </a>'
+                    row += '          </div>'
+                    row += '      </div>'
+
+
+                    row += '       <div class="my-row" style="width: 100%">'
+                    row += '         <div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '            <a  href="product?id=' + value.id + '" style="text-decoration: none;">'
+                    row += '          ' + formatter.format(value.price) + ''
+                    row += '            </a>'
+                    row += '        </div>'
+                    row += '     </div>'
+
+                    row += '     <div class="my-row" style="width: 100%">'
+                    row += '         <div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '               <a href="/view/client/cart/cart.jsp" class="add-to-cart" style="text-decoration: none;">'
+                    row += '                    Mua ngay'
+                    row += '                </a>'
+                    row += '              </div>'
+                    row += '            </div>'
+                    row += '        </a>'
+                    row += '    </div>';
                 });
 
                 document.getElementById("tbody").innerHTML = row;
