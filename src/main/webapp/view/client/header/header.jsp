@@ -55,7 +55,7 @@
                     <div class="my-col my-l-2 my-m-2 my-c-0 ">
                         <div class="my-row">
                             <div class="my-col my-l-6 my-m-6 my-c-6 " style="text-align: end;">
-                                <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
+                                <a href="<%=request.getContextPath()%>/view/client/cart/cart.jsp" class="fa fa-shopping-cart fa-2x"
                                    style="color: white;  margin-top: 8px;  text-decoration: none;">
                                     <span class="my-header__cart-notice" style=" top: 3px !important; ">
                                             3
@@ -86,7 +86,7 @@
                 <div class="my-col my-l-0 my-m-0 my-c-12" style="height: 50px;">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-                            <a href="<%=request.getContextPath()%>#" class="fa fa-shopping-cart fa-2x"
+                            <a href="<%=request.getContextPath()%>/view/client/cart/cart.jsp" class="fa fa-shopping-cart fa-2x"
                                style="color: white;  margin-top: 8px; text-decoration: none;">
                                      <span class="my-header__cart-notice" style=" top: 3px !important;">
                                         3
