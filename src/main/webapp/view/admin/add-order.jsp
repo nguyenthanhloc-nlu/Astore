@@ -22,12 +22,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="input-2">Tên khách hàng</label>
-                                <input type="text" class="form-control" id="input-2" name="user-name"
-                                       placeholder="Tên khách hàng">
-                            </div>
-
-                            <div class="form-group">
                                 <label for="input-3">Tri giá</label>
                                 <input type="text" class="form-control" id="input-3" name="order-price"
                                        placeholder="Trị giá">

@@ -25,11 +25,6 @@
                                        value="${order.idUser}">
                             </div>
                             <div class="form-group">
-                                <label for="input-3">Tên khách hàng</label>
-                                <input type="text" class="form-control" id="input-3" name="user-name"
-                                       value="${order.nameUser}">
-                            </div>
-                            <div class="form-group">
                                 <label for="input-4">Trị giá</label>
                                 <input type="text" class="form-control" id="input-4" name="order-price"
                                        value="${order.priceOrder}">

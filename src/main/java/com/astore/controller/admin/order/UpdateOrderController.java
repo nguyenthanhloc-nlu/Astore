@@ -33,14 +33,15 @@ public class UpdateOrderController extends HttpServlet {
         HttpSession ss = request.getSession();
         String id = ss.getAttribute("id-update-order").toString();
         String idKH = request.getParameter("user-id");
-        String nameUser = request.getParameter("user-name");
+        String nameUser = UserServices.getInstance().getById(2,Integer.valueOf(idKH)).getUserName();
+
         String priceOrder = request.getParameter("order-price");
         String dateOrder = request.getParameter("order-date");
         Order order = new Order();
         try {
-            if (UserServices.getInstance().getByName(2, nameUser).size() == 0 || UserServices.getInstance().getById(2, Integer.valueOf(idKH)) == null) {
+            if ( UserServices.getInstance().getById(2, Integer.valueOf(idKH)) == null) {
                 request.setAttribute("order", order);
-                request.setAttribute("error", "Mã khách hàng hoặc tên  khách hàng không tồn tại");
+                request.setAttribute("error", "Mã khách hàng  không tồn tại");
             } else {
                 order.setId(Integer.parseInt(id));
                 order.setNameUser(nameUser);

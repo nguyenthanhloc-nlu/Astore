@@ -19,8 +19,9 @@ public class AddOrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String name = request.getParameter("user-name");
+
         String idKH = request.getParameter("user-id");
+        String name = UserServices.getInstance().getById(2,Integer.valueOf(idKH)).getUserName();
         String priceOrder = request.getParameter("order-price");
         String dateOrder = request.getParameter("order-date");
 
@@ -31,9 +32,9 @@ public class AddOrderController extends HttpServlet {
             order.setIdUser(Integer.valueOf(idKH));
             order.setPriceOrder(Double.valueOf(priceOrder));
             order.setDateAtOrder(dateOrder);
-            if (UserServices.getInstance().getByName(2, name).size() == 0 || UserServices.getInstance().getById(2, Integer.valueOf(idKH)) == null) {
+            if (UserServices.getInstance().getById(2, Integer.valueOf(idKH)) == null) {
                 request.setAttribute("order", order);
-                request.setAttribute("error", "Mã khách hàng hoặc tên  khách hàng không tồn tại");
+                request.setAttribute("error", "Mã khách hàng  không tồn tại");
             } else {
                 boolean check = OrderServices.getInstance().insert(order);
                 System.out.println(check);
