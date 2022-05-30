@@ -23,7 +23,7 @@ public class SearchOrderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/json");
-        String params = request.getParameter("params");
+        String params  = request.getParameter("params");
         List<Order> listOrder= new ArrayList<>();
 
         try {
