@@ -50,7 +50,6 @@
                                     <td>${order.priceOrder}</td>
                                     <td>${order.dateAtOrder}</td>
                                     <td>
-                                        <button class="btn btn-danger"><a onclick="JSconfirm(${order.id},'Chắc chắn bạn muốn xóa')">Xóa</a></button>
                                         <button class="btn btn-success"><a href="update-order?id=${order.id}">Sửa</a>
                                         </button>
                                     </td>
@@ -81,7 +80,6 @@
                     let index = 1;
                     $.each(responseJson, function (key, value) {
                         if(value == null || value.id <1) return;
-                        let onclick = "JSconfirm(" + value.id + ",'Chắc chắn bạn muốn xóa')";
                         row += '<tr id="' + value.id + 'tr">';
                         row += '<td scope="row">' + index++ + '</td> ';
                         row += '<td>' + value.id + '</td>';
@@ -89,10 +87,8 @@
                         row += '<td>' + value.nameUser + '</td>';
                         row += '<td>' + value.priceOrder + '</td>';
                         row += '<td>' + value.dataAtOrder + '</td>';
-                        row += '<input type="hidden" value="delete-order" id="'+value.id+'" style="display: none" />';
 
                         row += ' <td>';
-                        row += '<button class="btn btn-danger"><a onclick="' + onclick + '">Xóa</a></button> \n';
                         row += '<button class="btn btn-success"><a href="update-order?id='+value.id+'">Sửa</a></button>';
                         row += '        </td>';
                         row += '  </tr>';

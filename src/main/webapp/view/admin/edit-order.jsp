@@ -22,24 +22,28 @@
                             <div class="form-group">
                                 <label for="input-2">Mã khách hàng</label>
                                 <input type="text" class="form-control" id="input-2" name="user-id"
+                                       value="${order.idUser}">
+                            </div>
+                            <div class="form-group">
+                                <label for="input-3">Tên khách hàng</label>
+                                <input type="text" class="form-control" id="input-3" name="user-name"
                                        value="${order.nameUser}">
                             </div>
-
                             <div class="form-group">
-                                <label for="input-3">Trị giá</label>
-                                <input type="text" class="form-control" id="input-3" name="order-price"
+                                <label for="input-4">Trị giá</label>
+                                <input type="text" class="form-control" id="input-4" name="order-price"
                                        value="${order.priceOrder}">
                             </div>
 
                             <div class="form-group">
-                                <label for="input-4">Ngày lập hóa đơn</label>
-                                <input type="date" class="form-control" id="input-4" placeholder="Ngày lập hóa đơn"
+                                <label for="input-5">Ngày lập hóa đơn</label>
+                                <input type="date" class="form-control" id="input-5" placeholder="Ngày lập hóa đơn"
                                        name="order-date" value="${order.dateAtOrder}">
                             </div>
 
                             <div class="form-footer">
                                 <button class="btn btn-danger"><a href="order">Hủy</a></button>
-                                <button class="btn btn-success"><a>Cập nhật</a></button>
+                                <button type="submit" class="btn btn-success"><a>Cập nhật</a></button>
                             </div>
                         </form>
                     </div>

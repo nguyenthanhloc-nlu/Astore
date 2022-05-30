@@ -2,9 +2,7 @@ package com.astore.dao.implement;
 
 import com.astore.dao.IOrderDao;
 import com.astore.jdbc.ConnectDB;
-import com.astore.model.Inventory;
 import com.astore.model.Order;
-import com.astore.services.implement.UserServices;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ public class OrderDao implements IOrderDao {
     public boolean insert(Order order) {
         if(order!= null){
             Connection conn = ConnectDB.getInstance();
-            String sql = "insert into HOA_DON( ngay_lap_hoa_don,id_khach_hang,ten_nguoi_dung,tri_gia) values (?,?,?,?,?)";
+            String sql = "insert into HOA_DON( ngay_lap_hoa_don,id_khach_hang,ten_nguoi_dung,tri_gia) values (?,?,?,?)";
 
             PreparedStatement ps = null;
             try {
@@ -73,7 +71,9 @@ public class OrderDao implements IOrderDao {
                 ps.setDouble(6, order.getId());
                 int row = ps.executeUpdate();
                 ps.close();
+                System.out.println("update order successful");
                 return row == 1;
+
             } catch (SQLException e) {
                 e.printStackTrace();
                 return false;

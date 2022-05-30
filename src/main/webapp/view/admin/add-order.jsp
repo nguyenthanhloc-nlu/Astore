@@ -16,15 +16,15 @@
                         <form action="add-order" method="post">
 
                             <div class="form-group">
-                                <label for="input-1">Mã đơn hàng</label>
-                                <input type="text" class="form-control" id="input-1" name="order-id"
-                                       placeholder="Mã đơn hàng">
+                                <label for="input-1">Mã khách hàng</label>
+                                <input type="text" class="form-control" id="input-1" name="user-id"
+                                       placeholder="Mã khách hàng">
                             </div>
 
                             <div class="form-group">
-                                <label for="input-2">Mã khách hàng</label>
-                                <input type="text" class="form-control" id="input-2" name="user-id"
-                                       placeholder="Mã khách hàng">
+                                <label for="input-2">Tên khách hàng</label>
+                                <input type="text" class="form-control" id="input-2" name="user-name"
+                                       placeholder="Tên khách hàng">
                             </div>
 
                             <div class="form-group">

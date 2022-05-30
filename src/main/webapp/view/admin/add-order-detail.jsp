@@ -13,12 +13,12 @@
                         <div class="card-title text-danger">${error}</div>
                         <div class="card-title">Thêm mới</div>
                         <hr>
-                        <form action="add-detail-order" method="post">
+                        <form action="add-order-detail" method="post">
 
                             <div class="form-group">
                                 <label for="input-1">Mã đơn hàng</label>
-                                <input type="text" class="form-control" id="input-1" name="order-id" placeholder="Mã
-                                hóa đơn">
+                                <input type="text" class="form-control" id="input-1" name="order-id"
+                                       placeholder="Mã hóa đơn">
                             </div>
 
                             <div class="form-group">
@@ -28,7 +28,7 @@
                             </div>
 
 
-                            <div class="form-group" >
+                            <div class="form-group">
                                 <label for="input-3">Giá</label>
                                 <input type="text" class="form-control" id="input-3" name="product-price"
                                        placeholder="Giá">
@@ -42,8 +42,9 @@
 
 
                             <div class="form-footer">
-                                <button class="btn btn-danger"><a href="<%=request.getContextPath()%>/manage/detailOrder">Hủy</a></button>
-                                <button class="btn btn-success"><a >Thêm</a></button>
+                                <button class="btn btn-danger"><a
+                                        href="<%=request.getContextPath()%>/manage/order-detail">Hủy</a></button>
+                                <button type="submit" class="btn btn-success"><a>Thêm</a></button>
                             </div>
                         </form>
                     </div>

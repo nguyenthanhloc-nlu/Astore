@@ -3,6 +3,7 @@ package com.astore.controller.admin.order;
 
 import com.astore.model.Order;
 import com.astore.services.implement.OrderServices;
+import com.astore.services.implement.UserServices;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,28 +19,33 @@ public class AddOrderController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String id = request.getParameter("order-id");
+        String name = request.getParameter("user-name");
         String idKH = request.getParameter("user-id");
         String priceOrder = request.getParameter("order-price");
-        String dateOrder= request.getParameter("order-date");
+        String dateOrder = request.getParameter("order-date");
 
         Order order = new Order();
 
-        try{
-            order.setId(Integer.valueOf(id));
+        try {
+            order.setNameUser(name);
             order.setIdUser(Integer.valueOf(idKH));
             order.setPriceOrder(Double.valueOf(priceOrder));
             order.setDateAtOrder(dateOrder);
-            boolean check = OrderServices.getInstance().insert(order);
-            System.out.println(check);
-            if (check) {
-                request.setAttribute("success", "Thêm thành công!");
-                System.out.println(check);
-            } else {
+            if (UserServices.getInstance().getByName(2, name).size() == 0 || UserServices.getInstance().getById(2, Integer.valueOf(idKH)) == null) {
                 request.setAttribute("order", order);
-                request.setAttribute("error", "Đã có lỗi xảy ra!");
+                request.setAttribute("error", "Mã khách hàng hoặc tên  khách hàng không tồn tại");
+            } else {
+                boolean check = OrderServices.getInstance().insert(order);
+                System.out.println(check);
+                if (check) {
+                    request.setAttribute("success", "Thêm thành công!");
+                    System.out.println(check);
+                } else {
+                    request.setAttribute("order", order);
+                    request.setAttribute("error", "Đã có lỗi xảy ra!");
+                }
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             request.setAttribute("order", order);
             request.setAttribute("error", "Đã có lỗi xảy ra!");
         }
