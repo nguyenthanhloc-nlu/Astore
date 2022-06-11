@@ -1,7 +1,9 @@
 package com.astore.controller.client;
 
 import com.astore.model.Product;
+import com.astore.model.Store;
 import com.astore.services.implement.ProductServices;
+import com.astore.services.implement.StoreServices;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -12,11 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/Product-watch")
-public class Watch extends HttpServlet {
+@WebServlet("/Product-mac")
+public class Mac extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int countProduct = ProductServices.getInstance().countProductByCategoryId(1);
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",storeName);
+
+        int countProduct = ProductServices.getInstance().countProductByCategoryId(2);
         int totalPages = 0;
         if(countProduct % 30 > 0){
             totalPages = countProduct / 30 +1;
@@ -26,11 +34,11 @@ public class Watch extends HttpServlet {
 
         request.setAttribute("totalPages", totalPages);
         ProductServices ps = new ProductServices();
-        List<Product> watch = ps.getProductByIdCate(4, 0, 30);
-        System.out.println(watch.toString());
-        System.out.println("watch.size(): " + watch.size());
-        request.setAttribute("watch", watch);
-        request.getRequestDispatcher("/view/client/product-list/product-watch.jsp").forward(request, response);
+        List<Product> mac = ps.getProductByIdCate(2, 0, 30);
+        System.out.println(mac.toString());
+        System.out.println("mac.size(): " + mac.size());
+        request.setAttribute("mac", mac);
+        request.getRequestDispatcher("/view/client/product-list/product-mac.jsp").forward(request, response);
     }
 
     @Override
@@ -42,7 +50,7 @@ public class Watch extends HttpServlet {
             int start = pageInt *30 +1;
             int end = start +29;
 
-            List<Product> products = ProductServices.getInstance().getProductByIdCate(1, start, end);
+            List<Product> products = ProductServices.getInstance().getProductByIdCate(2, start, end);
 
             String json = null;
             response.setContentType("application/json");

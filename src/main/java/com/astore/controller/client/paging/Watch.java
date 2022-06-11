@@ -1,7 +1,9 @@
 package com.astore.controller.client;
 
 import com.astore.model.Product;
+import com.astore.model.Store;
 import com.astore.services.implement.ProductServices;
+import com.astore.services.implement.StoreServices;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -12,25 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/Product-iphone")
-public class Iphone extends HttpServlet {
+@WebServlet("/Product-watch")
+public class Watch extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Store store = StoreServices.getInstance().getById(1);
+        String name = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",name);
         int countProduct = ProductServices.getInstance().countProductByCategoryId(1);
         int totalPages = 0;
         if(countProduct % 30 > 0){
             totalPages = countProduct / 30 +1;
         }else
             totalPages = countProduct / 30;
+
+
         request.setAttribute("totalPages", totalPages);
         ProductServices ps = new ProductServices();
-        List<Product> iphone = ps.getProductByIdCate(1, 0, 30);
-        System.out.println(iphone.toString());
-        System.out.println("iphone.size(): " + iphone.size());
-        System.out.println("total page "+ " "+totalPages);
-        request.setAttribute("iphone", iphone);
-        request.getRequestDispatcher("/view/client/product-list/product-iphone.jsp").forward(request, response);
+        List<Product> watch = ps.getProductByIdCate(4, 0, 30);
+        System.out.println(watch.toString());
+        System.out.println("watch.size(): " + watch.size());
+        request.setAttribute("watch", watch);
+        request.getRequestDispatcher("/view/client/product-list/product-watch.jsp").forward(request, response);
     }
 
     @Override

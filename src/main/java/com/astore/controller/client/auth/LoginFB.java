@@ -1,6 +1,8 @@
 package com.astore.controller.client.auth;
 
+import com.astore.model.Store;
 import com.astore.services.implement.RestFBServices;
+import com.astore.services.implement.StoreServices;
 import com.astore.services.implement.UserServices;
 import com.restfb.types.User;
 
@@ -20,7 +22,11 @@ public class LoginFB extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",storeName);
         HttpSession ssFB = request.getSession();
         String code = request.getParameter("code");
 

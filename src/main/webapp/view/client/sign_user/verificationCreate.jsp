@@ -30,8 +30,8 @@
     <div class="container-sign">
       <div class="container-heder">
         <div class="img-logo">
-          <a href="./index.jsp">
-            <img src="<%=request.getContextPath()%>/view/client/assets/images/logo2.png" alt="Astore" width="150px"
+          <a href="#">
+            <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="Astore" width="150px"
           /></a>
         </div>
         <p class="tille-sign" id="tilte-text">Đăng ký</p>
@@ -120,7 +120,7 @@
         document.getElementById("verification-set").value = "";
       }
     </script>
-    <script src="<%=request.getContextPath()%>/view/client/assets/js/script.js"></script>
+    <script src="<%=request.getContextPath()%>/view/client/assets/js/script.js" charset="UTF-8"></script>
 
   </body>
 </html>

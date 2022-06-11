@@ -1,5 +1,7 @@
 package com.astore.controller.client.auth;
 
+import com.astore.model.Store;
+import com.astore.services.implement.StoreServices;
 import com.astore.services.implement.UserServices;
 
 import javax.servlet.*;
@@ -11,7 +13,7 @@ import java.io.IOException;
 public class SetForgotPWD extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doGet(request,response);
+        doGet(request, response);
     }
 
     @Override
@@ -19,13 +21,19 @@ doGet(request,response);
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
 
-    String pwdForgot = request.getParameter("password-set-forgotPWD");
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore", storeName);
+
+        String pwdForgot = request.getParameter("password-set-forgotPWD");
         HttpSession ss = request.getSession();
-       String userForgot= ss.getAttribute("userNameForgotPWD").toString();
-       UserServices.getInstance().updateForgotPwd(userForgot,pwdForgot);
-       request.setAttribute("setPWDForgotSuccess","set-PWD-forgot-success");
-       request.setAttribute("loginSuccessForgotPwd","<button onclick=\"signInNowForgotPWD()\">Đăng nhập ngay</button>");
-       request.getRequestDispatcher("view/client/sign_user/setpwd.jsp").forward(request,response);
+        String userForgot = ss.getAttribute("userNameForgotPWD").toString();
+        UserServices.getInstance().updateForgotPwd(userForgot, pwdForgot);
+        request.setAttribute("setPWDForgotSuccess", "set-PWD-forgot-success");
+        request.setAttribute("loginSuccessForgotPwd", "<button onclick=\"signInNowForgotPWD()\">Đăng nhập ngay</button>");
+        request.getRequestDispatcher("view/client/sign_user/setpwd.jsp").forward(request, response);
 
     }
 }

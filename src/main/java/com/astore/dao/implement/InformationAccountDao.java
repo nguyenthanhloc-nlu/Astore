@@ -30,11 +30,14 @@ public class InformationAccountDao implements IIformationAccountDao {
                 if (rs.getString("rank") == null) return "chưa có hạng";
                 else return rs.getString("rank");
             } else {
+                System.out.println(2);
                 return "chưa có hạng";
             }
 
         } catch (SQLException e) {
+            System.out.println(3);
             return "chưa có hạng";
+
         }
 
     }
@@ -166,7 +169,7 @@ public class InformationAccountDao implements IIformationAccountDao {
     public static void main(String[] args) {
         InformationAccountDao i = new
                 InformationAccountDao();
-        System.out.println(i.sumOrderUser(1));
+        System.out.println(i.rankUser(1));
     }
 
 }

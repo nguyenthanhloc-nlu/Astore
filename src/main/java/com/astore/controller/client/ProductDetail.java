@@ -1,14 +1,17 @@
 package com.astore.controller.client;
 
+import com.astore.model.Cart;
 import com.astore.model.Product;
-import com.astore.services.implement.CategoryServices;
-import com.astore.services.implement.ProductServices;
+import com.astore.model.Store;
+import com.astore.model.User;
+import com.astore.services.implement.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +22,35 @@ import java.util.List;
 public class ProductDetail extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Store store = StoreServices.getInstance().getById(1);
+        String name = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",name);
+        HttpSession ss = request.getSession();
 
+        if (ss.getAttribute("userNameAccountLogin") != null) {
+            String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
+
+            User user = UserServices.getInstance().getInformationUser(userNameAccountLogin);
+            List<Cart> cartData = CartServices.getInstance().getCartForImg(user.getId());
+
+            request.setAttribute("quantityCart", cartData.size());
+
+        } else {
+
+            if (ss.getAttribute("listCart") != null) {
+                List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
+
+                request.setAttribute("quantityCart", cartList.size());
+
+            } else {
+                request.setAttribute("quantityCart", 0);
+
+            }
+
+
+        }
         try {
             String id = request.getParameter("id");
             int numId = Integer.parseInt(id);

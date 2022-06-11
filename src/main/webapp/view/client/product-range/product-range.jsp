@@ -35,14 +35,14 @@
                 <div class="my-row">
 
                     <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
-                        <a href="<%=request.getContextPath()%>/product_details.html"></a>
+                        <a href="<%=request.getContextPath()%>/product"></a>
                         <img src="${p.listPhotoUrl.get(0)}">
                         <h4>${p.name} ${p.rom}GB</h4>
                         <p>
                             <fmt:setLocale value="vi_VN"/>
                             <fmt:formatNumber value="${p.price}" type="currency"/>
                         </p>
-                        <a href="" class="add-to-cart">Thêm vào giỏ hàng</a>
+                        <a href="<%=request.getContextPath()%>/addCart?idSP=${p.id}" class="add-to-cart">Thêm vào giỏ hàng</a>
                         <span class="product-sale-rate">-<fmt:formatNumber value="${p.saleRate}"
                                                                            type="number"/>%</span>
                     </div>

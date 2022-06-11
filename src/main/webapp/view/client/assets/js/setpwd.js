@@ -22,7 +22,7 @@ btnAgreeSet.addEventListener("click", (e) => {
 function checkInputSetClick() {
     var valuePwdSet = pwdSet.value.trim();
     if (!isPwd(valuePwdSet)) {
-        setErrorFor(pwdSet, "Mật khẩu không hợp lệ.");
+        setErrorFor(pwdSet, "Mật khẩu phải có độ dài từ 6 ký tự .");
     } else {
         formSet.onsubmit= function (){
             return true;

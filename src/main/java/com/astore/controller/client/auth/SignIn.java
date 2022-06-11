@@ -1,4 +1,4 @@
-package com.astore.controller.client;
+package com.astore.controller.client.auth;
 
 import com.astore.model.Store;
 import com.astore.services.implement.StoreServices;
@@ -8,16 +8,19 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "help", value = "/help")
-public class Help extends HttpServlet {
+@WebServlet(name = "SignIn", value = "/signIn")
+public class SignIn extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Store store = StoreServices.getInstance().getById(1);
-        String name = store.getName();
+        String storeName = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
-        request.setAttribute("nameStore",name);
-        request.getRequestDispatcher("view/client/help.jsp").forward(request,response);
+        request.setAttribute("nameStore", storeName);
+
+        request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
+
+        doPost(request, response);
     }
 
     @Override

@@ -152,7 +152,12 @@
                     <div class="item-content">
                       <p>Số điện thoại</p>
                       <i class="fas fa-mobile-alt"></i>
-                      <p class="join-date">${phoneAccount}</p>
+                      <c:if test="${phoneAccount != null}">
+                        <p class="join-date">${phoneAccount}</p>
+                      </c:if>
+                      <c:if test="${phoneAccount == null}">
+                        <p class="join-date">Chưa thiếp lập</p>
+                      </c:if>
                     </div>
 
                     <div class="item-content">
@@ -213,9 +218,13 @@
     <!-- javascript -->
     <script>  function signOut() {
       var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut().then(function () {
-        console.log('User signed out.');
-      });
+      auth2.signOut()
+              .then(function () {
+                auth2.disconnect();
+                console.log('User signed out.');
+                //location.reload();
+              });
+
     }</script>
     <script src="<%=request.getContextPath()%>/view/client/assets/js/account.js"></script>
     <script src="<%=request.getContextPath()%>/view/client/assets/js/icon_account.js"></script>

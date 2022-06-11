@@ -15,6 +15,7 @@ function checkInputVerification() {
         setBtnOpacity(btnNextVerification, true);
     }
 }
+
 btnNextVerification.addEventListener("click", (e) => {
     checkInputVerificationClick();
 });
@@ -24,8 +25,8 @@ function checkInputVerificationClick() {
     if (valueVerificationCode.length != 6) {
         setErrorFor(verificationCode, "Mã xác nhận không hợp lệ.");
     } else {
-       // const valueErrorOTP =document.getElementById("from-mess-error-otp");
-        formVarification.onsubmit =function () {
+        // const valueErrorOTP =document.getElementById("from-mess-error-otp");
+        formVarification.onsubmit = function () {
             return true;
         };
 

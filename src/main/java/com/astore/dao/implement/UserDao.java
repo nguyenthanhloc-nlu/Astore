@@ -16,27 +16,27 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean insertUser(User user) {
-        if(user != null){
+        if (user != null) {
             Connection conn = ConnectDB.getInstance();
             // username, fullname, email, gioi_tinh,sdt,ngay_sinh,  dia_chi, duong_dan_avatar, mat_khau
             String sql = "execute insertUser_proc ?, ?, ?, ?, ?, ?, ?, ?, ?";
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1,user.getUserName());
-                ps.setString(2,user.getName());
-                ps.setString(3,user.getEmail());
-                ps.setString(4,user.getGender());
-                ps.setString(5,user.getPhone());
-                ps.setString(6,user.getBirthday());
-                ps.setString(7,user.getAddress());
-                ps.setString(8,user.getAvatar());
-                ps.setString(9,user.getPassword());
-
+                ps.setString(1, user.getUserName());
+                ps.setString(2, user.getName());
+                ps.setString(3, user.getEmail());
+                ps.setString(4, user.getGender());
+                ps.setString(5, user.getPhone());
+                ps.setString(6, user.getBirthday());
+                ps.setString(7, user.getAddress());
+                ps.setString(8, user.getAvatar());
+                ps.setString(9, user.getPassword());
+                System.out.println("pwd ĐK: " + user.getPassword());
 
                 int row = ps.executeUpdate();
                 ps.close();
-                System.out.println(row +" row");
-                if(row != 0) return  true;
+                System.out.println(row + " row");
+                if (row != 0) return true;
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -49,19 +49,19 @@ public class UserDao implements IUserDao {
 
     @Override
     public boolean insertAdmin(User user) {
-        if(user != null){
+        if (user != null) {
             Connection conn = ConnectDB.getInstance();
             String sql = "execute insertAdmin_proc ?, ?, ?"; // username, fullname, password
             try {
                 PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1,user.getUserName());
-                ps.setString(2,user.getName());
-                ps.setString(3,user.getPassword());
+                ps.setString(1, user.getUserName());
+                ps.setString(2, user.getName());
+                ps.setString(3, user.getPassword());
 
                 int row = ps.executeUpdate();
                 ps.close();
-                System.out.println(row +" row");
-                if(row != 0) return  true;
+                System.out.println(row + " row");
+                if (row != 0) return true;
 
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -92,13 +92,12 @@ public class UserDao implements IUserDao {
             ps.setString(9, user.getPassword());
 
 
-
             int row = ps.executeUpdate();
             ps.close();
-            System.out.println("update user row " +row +" " +user);
-            return row != 0 ;
+            System.out.println("update user row " + row + " " + user);
+            return row != 0;
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -117,13 +116,13 @@ public class UserDao implements IUserDao {
             ps.setString(2, user.getName());
             ps.setString(3, user.getPassword());
 
-            System.out.println("update admin " +user.getId() + " " +user.getName() + " " +user.getPassword());
+            System.out.println("update admin " + user.getId() + " " + user.getName() + " " + user.getPassword());
 
             int row = ps.executeUpdate();
             ps.close();
-            return row != 0 ;
+            return row != 0;
 
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
             return false;
         }
@@ -163,7 +162,7 @@ public class UserDao implements IUserDao {
             ResultSet rs = ps.executeQuery();
             User user = new User();
             while (rs.next()) {
-              setValue(user, rs);
+                setValue(user, rs);
             }
 
             rs.close();
@@ -184,7 +183,7 @@ public class UserDao implements IUserDao {
             String sql = "SELECT NGUOI_DUNG.* FROM NGUOI_DUNG join PHAN_QUYEN on NGUOI_DUNG.id= PHAN_QUYEN.id_nguoi_dung  where ho_va_ten  like ? and PHAN_QUYEN.id_nhom = ?";
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            name = "%"+name+"%";
+            name = "%" + name + "%";
             ps.setNString(1, name);
             ps.setInt(2, groupId);
             ResultSet rs = ps.executeQuery();
@@ -243,7 +242,7 @@ public class UserDao implements IUserDao {
 
             ps.setInt(1, 1);
             ps.setString(2, userName);
-            ps.setString(3,password);
+            ps.setString(3, password);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
@@ -273,19 +272,19 @@ public class UserDao implements IUserDao {
     }
 
 
-    private void setValue(User user, ResultSet rs){
-        try{
+    private void setValue(User user, ResultSet rs) {
+        try {
             user.setId(rs.getInt("id"));
             user.setUserName(rs.getString("ten_nguoi_dung"));
             user.setName(rs.getString("ho_va_ten"));
             user.setEmail(rs.getString("email"));
             user.setGender(rs.getString("gioi_tinh"));
-            user.setBirthday(rs.getDate("ngay_sinh") != null ? rs.getDate("ngay_sinh").toString() : "" );
+            user.setBirthday(rs.getDate("ngay_sinh") != null ? rs.getDate("ngay_sinh").toString() : "");
             user.setPhone(rs.getString("sdt"));
             user.setAddress(rs.getString("dia_chi"));
             user.setAvatar(rs.getString("duong_dan_avatar"));
             user.setCreatedAt(rs.getString("thoi_gian_tao"));
-        }catch (SQLException e) {
+        } catch (SQLException e) {
 
         }
     }
@@ -294,23 +293,24 @@ public class UserDao implements IUserDao {
     public User checkLogin(String userName, String password) {
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG where  email =? or sdt=?";
+            String sql = "SELECT * FROM NGUOI_DUNG where  email =? or sdt=? or ten_nguoi_dung=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName);
             ps.setString(2, userName);
+            ps.setString(3, userName);
             ResultSet rsEmail = ps.executeQuery();
             User userEmail = new User();
-            if (rsEmail.next()){
+            if (rsEmail.next()) {
                 setValue(userEmail, rsEmail);
                 userEmail.setPassword(rsEmail.getString("mat_khau"));
                 System.out.println(userEmail);
-            }else{
+            } else {
                 return null;
             }
-            if (!(userEmail.getPassword().equals(HashPassword.getInstance().hashPassword(password)))){
+            if (!(userEmail.getPassword().equals(HashPassword.getInstance().hashPassword(password)))) {
                 System.out.println(HashPassword.getInstance().hashPassword(password));
                 return null;
-            }else {
+            } else {
                 return userEmail;
             }
         } catch (SQLException e) {
@@ -340,10 +340,11 @@ public class UserDao implements IUserDao {
     public boolean checkUserExist(String emailOrPhone) {
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG WHERE email=? or sdt =?";
+            String sql = "SELECT * FROM NGUOI_DUNG WHERE email=? or sdt =? or ten_nguoi_dung=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, emailOrPhone);
             ps.setString(2, emailOrPhone);
+            ps.setString(3, emailOrPhone);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
@@ -359,7 +360,7 @@ public class UserDao implements IUserDao {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName);
             ps.setString(2, HashPassword.getInstance().hashPassword(pwd));
-            System.out.println(HashPassword.getInstance().hashPassword(pwd)+"   "+pwd);
+            System.out.println(HashPassword.getInstance().hashPassword(pwd) + "   " + pwd);
             int row = ps.executeUpdate();
             ps.close();
             System.out.println(row + " row");
@@ -378,14 +379,15 @@ public class UserDao implements IUserDao {
         User user = null;
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM NGUOI_DUNG where  email =? or sdt=?";
+            String sql = "SELECT * FROM NGUOI_DUNG where  email =? or sdt=? or ten_nguoi_dung = ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, userName);
             ps.setString(2, userName);
+            ps.setString(3, userName);
             ResultSet rsEmail = ps.executeQuery();
             if (rsEmail.next()) {
                 user = new User();
-                setValue(user,rsEmail);
+                setValue(user, rsEmail);
             } else {
                 return null;
             }

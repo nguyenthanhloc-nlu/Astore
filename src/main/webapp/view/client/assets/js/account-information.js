@@ -4,32 +4,33 @@ var blockSmemberInfo = document.querySelector(".block-smember-info");
 var blockSmemRank = document.querySelector(".block-smem-rank");
 var accountLink = document.getElementById("account-link");
 var rankLink = document.getElementById("rank-link");
+
 function toggleSidebar() {
-  isShowingSidebar() ? hideSidebar() : showSidebar();
+    isShowingSidebar() ? hideSidebar() : showSidebar();
 }
 
 function showSidebar() {
-  container.classList.add("show-sidebar");
+    container.classList.add("show-sidebar");
 }
 
 function hideSidebar() {
-  container.classList.remove("show-sidebar");
+    container.classList.remove("show-sidebar");
 }
 
 function isShowingSidebar() {
-  return container.classList.contains("show-sidebar");
+    return container.classList.contains("show-sidebar");
 }
 
 document
-  .querySelector(".hamburger")
-  .addEventListener("click", toggleSidebar, false);
+    .querySelector(".hamburger")
+    .addEventListener("click", toggleSidebar, false);
 
 container.addEventListener(
-  "click",
-  function (e) {
-    if (isShowingSidebar() && main.contains(e.target)) {
-      hideSidebar();
-    }
-  },
-  true
+    "click",
+    function (e) {
+        if (isShowingSidebar() && main.contains(e.target)) {
+            hideSidebar();
+        }
+    },
+    true
 );

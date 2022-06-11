@@ -1,7 +1,9 @@
 package com.astore.controller.client;
 
 import com.astore.model.Product;
+import com.astore.model.Store;
 import com.astore.services.implement.ProductServices;
+import com.astore.services.implement.StoreServices;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +22,11 @@ public class Home extends HttpServlet {
         List<Product> mac = ps.getProductByIdCate(2, 4);
         List<Product> ipad = ps.getProductByIdCate(3, 4);
         List<Product> watch = ps.getProductByIdCate(4, 4);
-
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",storeName);
         System.out.println(iphone.size());
 
 

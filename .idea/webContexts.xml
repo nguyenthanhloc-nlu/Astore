@@ -11,12 +11,14 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/footer/footer.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/footer" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/header/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/header" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/index.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/information_account/account.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/information_account" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/order.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/product-list/product-iphone.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/product-list" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/product-range/product-range.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/product-range" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-mac.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-watch.html" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/products-watch.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/sign_user/signIn.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/sign_user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/view/client/slider/slider.jsp" value="file://$PROJECT_DIR$/src/main/webapp/view/client/slider" />
       </map>
     </option>
