@@ -161,6 +161,31 @@ public class DetailedOrderDao implements IDetailedOrderDao {
         }
         return result;
     }
+
+    @Override
+    public List<DetailedOrder> getByIdOrder(int idOrder) {
+        List<DetailedOrder> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT  * FROM CHI_TIET_HOA_DON  where id_hoa_don=?";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,idOrder);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                DetailedOrder detailedOrder =  new DetailedOrder();
+                setValue(rs, detailedOrder);
+                detailedOrder.setNameProduct(ProductServices.getInstance().getById(detailedOrder.getIdProduct()).getName());
+                result.add(detailedOrder);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public void setValue(ResultSet rs, DetailedOrder detailedOrder){
         try{
             detailedOrder.setId(rs.getInt("id"));
@@ -174,4 +199,7 @@ public class DetailedOrderDao implements IDetailedOrderDao {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println(new DetailedOrderDao().getByIdOrder(3).size());
+    }
 }

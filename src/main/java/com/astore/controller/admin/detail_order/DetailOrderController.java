@@ -12,9 +12,9 @@ import java.io.IOException;
 public class DetailOrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        request.setAttribute("listOrderDetail", DetailedOrderServices.getInstance().getAll());
-        System.out.println(InventoryServices.getInstance().getAll().size());
+        String idOder = request.getParameter("idOrder");
+        request.setAttribute("listOrderDetail", DetailedOrderServices.getInstance().getByIdOrder(Integer.valueOf(idOder)));
+        System.out.println(DetailedOrderServices.getInstance().getById(Integer.valueOf(idOder)));
         request.getRequestDispatcher("/view/admin/show-order-detail.jsp").forward(request, response);
     }
 

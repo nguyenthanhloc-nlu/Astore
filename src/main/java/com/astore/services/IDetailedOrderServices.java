@@ -11,4 +11,5 @@ public interface IDetailedOrderServices {
     public List<DetailedOrder> getAll();
     public DetailedOrder getById(int id);
     public List<DetailedOrder> getByNameProduct(String name);
+    public List<DetailedOrder> getByIdOrder(int idOrder);
 }

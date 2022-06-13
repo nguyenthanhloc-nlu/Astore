@@ -50,7 +50,7 @@
                                     <td>${order.priceOrder}</td>
                                     <td>${order.dateAtOrder}</td>
                                     <td>
-                                        <button class="btn btn-success"><a href="update-order?id=${order.id}">Sửa</a>
+                                        <button class="btn btn-success"><a href="order-detail?idOrder=${order.id}">xem</a>
                                         </button>
                                     </td>
                                 </tr>

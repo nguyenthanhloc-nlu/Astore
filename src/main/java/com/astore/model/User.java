@@ -1,6 +1,5 @@
 package com.astore.model;
 
-import java.sql.Date;
 import java.util.Objects;
 
 public class User{

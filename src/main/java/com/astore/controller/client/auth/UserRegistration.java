@@ -39,7 +39,7 @@ public class UserRegistration extends HttpServlet {
         String emailRegister = null;
         String phoneRegister = null;
         String gender = null;
-        String birthday = "2001/01/01";
+        String birthday = "01/01/2001";
         String address = null;
         String avatar = "https://ui-avatars.com/api/?name=" + fullName;
         String pwd = request.getParameter("password-sign-up");
@@ -62,13 +62,13 @@ public class UserRegistration extends HttpServlet {
             request.setAttribute("classRightRegister", "right-panel-active");
             request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
         } else {
-            UserServices.getInstance().insertUser(new User(0, userName, fullName, emailRegister, gender, birthday, phoneRegister, address, avatar, HashPassword.getInstance().hashPassword(pwd), null));
+            UserServices.getInstance().insertUser(new User(0, userName, fullName, emailRegister, gender, birthday.trim(), phoneRegister, address, avatar, HashPassword.getInstance().hashPassword(pwd), null));
             String subjectMail = "Ma Xac Thuc";
             String codeOTP = SendMail.getInstance().ranDomOTP();
             HttpSession ss = request.getSession();
             ss.setAttribute("OTPRegister", codeOTP);
             ss.setAttribute("emailRegister", emailOrPhone);
-            String messSendMail = codeOTP + " la ma xac thuc OTP dang ky tai khoan ASTORE và userName:"+userName+". De tranh bi mat tien, tuyet doi KHONG chia se ma nay voi bat ky ai";
+            String messSendMail = codeOTP + " la ma xac thuc OTP dang ky tai khoan ASTORE và userName: "+userName+". De tranh bi mat tien, tuyet doi KHONG chia se ma nay voi bat ky ai";
             Session sessRes = SendMail.getInstance().loginMail(userMail, passUserMail);
             if (CheckEmail.getInstance().checkEmail(emailOrPhone)) {
                 SendMail.getInstance().sendMailTo(sessRes, userMail, nameFrom, emailOrPhone, subjectMail, messSendMail);

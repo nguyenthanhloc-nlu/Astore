@@ -51,5 +51,10 @@ public class DetailedOrderServices implements IDetailedOrderServices {
         return d.getByNameProduct(name);
     }
 
+    @Override
+    public List<DetailedOrder> getByIdOrder(int idOrder) {
+        return d.getByIdOrder(idOrder);
+    }
+
 
 }

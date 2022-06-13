@@ -30,10 +30,9 @@ public class LoginGoogle extends HttpServlet {
         String email = request.getParameter("email");
         String name = request.getParameter("name");
         String pwd = request.getParameter("id");
-        String date = "2001/01/01";
+        String birthday = "01/01/2001";
         String phoneRegister = null;
         String gender = null;
-        String birthday = date;
         String address = null;
         String avatar = request.getParameter("imageUrl");
         String familyName = request.getParameter("familyName");
