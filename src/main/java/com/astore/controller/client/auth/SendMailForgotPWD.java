@@ -32,7 +32,7 @@ public class SendMailForgotPWD extends HttpServlet {
 
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom = "ASTORE";
-        String passUserMail = "bchcvacxfovunoil";
+        String passUserMail = SendMail.pwdMail;
         String subjectMail = "Ma Xac Thuc";
         HttpSession ss = request.getSession();
         String emailOrPhone = ss.getAttribute("userNameForgotPWD").toString();

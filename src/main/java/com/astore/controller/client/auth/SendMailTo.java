@@ -25,7 +25,7 @@ public class SendMailTo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom = "ASTORE";
-        String passUserMail = "qiswwsjutmgbraru";
+        String passUserMail =SendMail.pwdMail;
         String subjectMail = "Ma Xac Thuc";
         HttpSession ss = request.getSession();
         String emailOrPhone = ss.getAttribute("emailRegister").toString();

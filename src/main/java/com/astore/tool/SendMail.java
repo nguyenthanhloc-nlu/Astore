@@ -9,7 +9,7 @@ import java.util.Random;
 public class SendMail {
     final Random rd = new Random();
     private static SendMail instance;
-
+public static String pwdMail ="qiswwsjutmgbraru";
     public SendMail() {
 
     }

@@ -19,7 +19,7 @@ public class ReplyToEmailController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom ="ASTORE";
-        String passUserMail= "bchcvacxfovunoil";
+        String passUserMail= SendMail.pwdMail;
         String subjectMail = request.getParameter("help-title");
         HttpSession ss = request.getSession();
         String  emailOrPhone = ss.getAttribute("emailUserHelp").toString();
