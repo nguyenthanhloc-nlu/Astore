@@ -32,6 +32,7 @@ public interface IProductDao {
 
     List<Product> getProductByIdDongSp(int idDongSp, int numTop);
 
+
     List<Integer> getAllIdDongSanPhamByCategory(int idCate);
 
     List<Product> getListProductOrder(int idOrder);// dánh sách các sản phẩm của đơn hàng của khách hàng
@@ -40,4 +41,8 @@ public interface IProductDao {
     Map<Integer, Integer> quantilyProductOrder(int idOrder);
 
     int countProductByCategoryId(int i);
+
+    int countProductByName(String search);
+
+    List<Product> getByNameLimit(String search, int start, int end);
 }

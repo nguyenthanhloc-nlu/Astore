@@ -551,6 +551,78 @@ public class ProductDao implements IProductDao {
         return color;
     }
 
+    @Override
+    public int countProductByName(String search) {
+        List<Product> products = new ArrayList<Product>();
+        Connection conn = ConnectDB.getInstance();
+        String sql = "SELECT count(*)" +
+                "from SAN_PHAM join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "where DONG_SAN_PHAM.ten_dong_san_pham like ?";
+
+        int count = 0;
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            search = "%" +search +"%";
+            ps.setNString(1, search);
+            ResultSet rs = ps.executeQuery();
+
+
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+
+            ps.close();
+            rs.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return count;
+    }
+
+    @Override
+    public List<Product> getByNameLimit(String search, int start, int end) {
+        List<Product> products = new ArrayList<Product>();
+        Connection conn = ConnectDB.getInstance();
+        String sql =  "SELECT a.* FROM ( "+
+                " SELECT SAN_PHAM.* , DONG_SAN_PHAM.ten_dong_san_pham, ROW_NUMBER() OVER (ORDER BY SAN_PHAM.thoi_gian_tao desc) as row "+
+                "from SAN_PHAM join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
+                "where DONG_SAN_PHAM.ten_dong_san_pham like ? "+
+                " ) as a WHERE a.row >= ? and a.row <= ?";
+
+
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            search = "%" +search +"%";
+            ps.setNString(1, search);
+            ps.setInt(2,start);
+            ps.setInt(3,end);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Product product = new Product();
+                setValueProduct(product, rs);
+                Color color = getColor(conn, product.getId());
+
+                product.setColorId(color.getId());
+                product.setColorName(color.getName());
+                product.setColorHex(color.getCodeHex());
+                product.setSaleRate(getSaleRate(product.getId()));
+                product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
+                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
+                products.add(product);
+            }
+            ps.close();
+            rs.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return products;
+    }
+
     private void setValueProduct(Product product, ResultSet rs) {
         try {
             product.setId(rs.getInt("id"));
