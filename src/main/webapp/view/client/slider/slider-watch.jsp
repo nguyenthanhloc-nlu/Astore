@@ -32,15 +32,15 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/2880-800-1920x533-9.png"
+                    <img src="<%=request.getContextPath()%>${sliderDesktop1}"
                          alt="" width="1100" height="500" style="border-radius: 20px">
                 </div>
                 <div class="carousel-item">
-                    <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/top-mac-2880-800-1920x533-2.png"
+                    <img src="<%=request.getContextPath()%>${sliderDesktop2}"
                          alt="" width="1100" height="500" style="border-radius: 20px">
                 </div>
                 <div class="carousel-item">
-                    <img src="<%=request.getContextPath()%>/view/client/assets/images/slider/slider-home/2880-800-1920x533-9%20(1).png"
+                    <img src="<%=request.getContextPath()%>${sliderDesktop3}"
                          alt="" width="1100" height="500" style="border-radius: 20px">
                 </div>
             </div>

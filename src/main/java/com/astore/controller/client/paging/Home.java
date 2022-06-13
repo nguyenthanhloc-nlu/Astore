@@ -1,16 +1,21 @@
-package com.astore.controller.client;
+package com.astore.controller.client.paging;
 
+import com.astore.model.Cart;
 import com.astore.model.Product;
 import com.astore.model.Store;
-import com.astore.services.implement.ProductServices;
-import com.astore.services.implement.StoreServices;
+import com.astore.model.User;
+import com.astore.services.implement.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+
+import com.astore.model.Slide;
+
 import java.util.List;
 
 @WebServlet("")
@@ -26,8 +31,44 @@ public class Home extends HttpServlet {
         String storeName = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
-        request.setAttribute("nameStore",storeName);
-        System.out.println(iphone.size());
+        request.setAttribute("nameStore", storeName);
+
+        HttpSession ss = request.getSession();
+
+        if (ss.getAttribute("userNameAccountLogin") != null) {
+            String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
+
+            User user = UserServices.getInstance().getInformationUser(userNameAccountLogin);
+            List<Cart> cartData = CartServices.getInstance().getCartForImg(user.getId());
+
+            request.setAttribute("quantityCart", cartData.size());
+
+        } else {
+
+            if (ss.getAttribute("listCart") != null) {
+                List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
+
+                request.setAttribute("quantityCart", cartList.size());
+
+            } else {
+                request.setAttribute("quantityCart", 0);
+
+            }
+
+
+        }
+        List<Slide> sliderList = SlideServices.getInstance().getByName("home");
+
+        request.setAttribute("sliderDesktop1", sliderList.get(0).getLinkImage());
+        request.setAttribute("sliderDesktop2", sliderList.get(1).getLinkImage());
+        request.setAttribute("sliderDesktop3", sliderList.get(2).getLinkImage());
+
+
+        List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
+
+        request.setAttribute("sliderMobile1", sliderMobile.get(0).getLinkImage());
+        request.setAttribute("sliderMobile2", sliderMobile.get(1).getLinkImage());
+        request.setAttribute("sliderMobile3" , sliderMobile.get(2).getLinkImage());
 
 
         request.setAttribute("iphone", iphone);

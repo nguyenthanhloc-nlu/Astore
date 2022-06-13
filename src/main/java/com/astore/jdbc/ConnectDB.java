@@ -8,9 +8,12 @@ import java.sql.SQLException;
 
 
 public class ConnectDB {
-    private String username = "sa";
-    private String password = "123";
-
+    //    private String username = "sa";
+//    private String password = "123";
+    private static String admin = "adminMaster";
+    private static String pwdAdmin = "123456";
+    private static String nameDB = "DBSTORE_2";
+    private static String localhost = "125";
     private static Connection conn;
 
 
@@ -19,9 +22,9 @@ public class ConnectDB {
             if ((conn == null) || conn.isClosed()) {
                 try {
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                    conn=DriverManager.getConnection("jdbc:sqlserver://localhost:125;databaseName=DATABASE_STORE;user=chucuoi;password=123456;useUnicode=true;characterEncoding=UTF-8");
+                    conn = DriverManager.getConnection("jdbc:sqlserver://localhost:" + localhost + ";databaseName=" + nameDB + ";user=" + admin + ";password=" + pwdAdmin + ";useUnicode=true;characterEncoding=UTF-8");
                     System.out.println("Kết nối thành công!");
-                }  catch (SQLException | ClassNotFoundException e) {
+                } catch (SQLException | ClassNotFoundException e) {
                     System.out.println("Kết nối thất bại!" + e.getMessage());
                 }
 
@@ -36,7 +39,7 @@ public class ConnectDB {
 
     public static void main(String[] args) {
         Connection cnn = ConnectDB.getInstance();
-        ColorDao c = new ColorDao();
+
 
 //		Color cc = c.getById(1);
 //

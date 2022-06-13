@@ -25,7 +25,7 @@
                 <div class="my-row">
                     <div class="my-col my-l-2 my-m-3 my-c-0">
                         <a href="<%=request.getContextPath()%>#"> <img
-                                src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"
+                                src="<%=request.getContextPath()%>${linkLogoStore}"
                                 alt="logo" width="150px"
                                 style="text-align: start;"></a>
                     </div>
@@ -55,10 +55,10 @@
                     <div class="my-col my-l-2 my-m-2 my-c-0 ">
                         <div class="my-row">
                             <div class="my-col my-l-6 my-m-6 my-c-6 " style="text-align: end;">
-                                <a href="<%=request.getContextPath()%>/view/client/cart/cart.jsp" class="fa fa-shopping-cart fa-2x"
+                                <a href="<%=request.getContextPath()%>/cart" class="fa fa-shopping-cart fa-2x"
                                    style="color: white;  margin-top: 8px;  text-decoration: none;">
                                     <span class="my-header__cart-notice" style=" top: 3px !important; ">
-                                            3
+                                            ${quantityCart}
                                         </span>
                                 </a>
                             </div>
@@ -69,7 +69,7 @@
                                             style="color: white; margin-top: 8px;"></i></a>
                                 </div>
                                 <div class="account-heder" id="link-sign-in">
-                                    <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp"><i
+                                    <a href="<%=request.getContextPath()%>/signIn"><i
                                             class="far fa-user-circle fa-2x"
                                             style="color: white;  margin-top: 8px;"></i></a>
                                 </div>
@@ -86,7 +86,7 @@
                 <div class="my-col my-l-0 my-m-0 my-c-12" style="height: 50px;">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-2">
-                            <a href="<%=request.getContextPath()%>/view/client/cart/cart.jsp" class="fa fa-shopping-cart fa-2x"
+                            <a href="<%=request.getContextPath()%>/cart" class="fa fa-shopping-cart fa-2x"
                                style="color: white;  margin-top: 8px; text-decoration: none;">
                                      <span class="my-header__cart-notice" style=" top: 3px !important;">
                                         3
@@ -96,7 +96,7 @@
                         <div class="my-col my-l-0 my-m-0 my-c-2">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-4">
-                            <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png" alt="logo"
+                            <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="logo"
                                  width="100px" style="text-align: start;">
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
@@ -121,16 +121,16 @@
                      style="height: 50px; width: 100%; background-color: white; ">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2"
-                             style="text-align: center;color: black;"><a href="products-iphone.html">iPhone</a>
+                             style="text-align: center;color: black;"><a href="<%=request.getContextPath()%>/Product-iphone">iPhone</a>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2" style="text-align: center;"><a
-                                href="<%=request.getContextPath()%>/products-mac.html">Mac</a>
+                                href="<%=request.getContextPath()%>/Product-mac">Mac</a>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2" style="text-align: center;"><a
-                                href="<%=request.getContextPath()%>/products-ipad.html">iPad</a>
+                                href="<%=request.getContextPath()%>/Product-ipad">iPad</a>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2" style="text-align: center;"><a
-                                href="<%=request.getContextPath()%>/products-watch.html">Watch</a>
+                                href="<%=request.getContextPath()%>/Product-watch">Watch</a>
                         </div>
                     </div>
                 </div>

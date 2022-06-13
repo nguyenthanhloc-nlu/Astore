@@ -135,11 +135,13 @@
                     <div class=" my-col my-l-12 my-m-12 my-c-12">
                         <div class="my-row">
                             <div class=" my-col my-l-12 my-m-12 my-c-12 color-bt">
-                                <button type="button"
-                                        style="margin-top: 20px;
+                                <a href="<%=request.getContextPath()%>/addCart?idSP=${product.id}">
+                                    <button type="button"
+                                            style="margin-top: 20px;
                                         width:100%; height:60px; border-radius:10px; background-color:  #0071e3; color: white; font-size: 23px; font-weight: bold;">
-                                    Mua ngay
-                                </button>
+                                        Mua ngay
+                                    </button>
+                                </a>
                             </div>
                         </div>
                         <div class="my-row">

@@ -21,11 +21,11 @@
                 <div class="my-footer-col-3">
                     <h4>Hệ thống cửa hàng</h4>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/storeRules.html">Nội quy cửa hàng</a></li>
-                        <li><a href="<%=request.getContextPath()%>/serviceQuality.html">Chất lượng dịch vụ</a></li>
-                        <li><a href="<%=request.getContextPath()%>/systemStore.html">Xem 4 cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/storeRules.jsp">Nội quy cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/serviceQuality.jsp">Chất lượng dịch vụ</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/systemStore.jsp">Xem 4 cửa hàng</a></li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/warrantyAndExchange.html">Bảo hành và đổi trả</a>
+                            <a href="<%=request.getContextPath()%>/view/client/warrantyAndExchange.jsp">Bảo hành và đổi trả</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                     <ul>
                         <li><a href="">Điều kiện giao dịch chung</a></li>
                         <li><a href="">Hướng dẫn mua hàng online</a></li>
-                        <li><a href="<%=request.getContextPath()%>/deliveryPolicy.html">Chính sách giao hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/deliveryPolicy.jsp">Chính sách giao hàng</a></li>
                         <li><a href="">Hướng dẫn thanh toán</a></li>
                     </ul>
                 </div>
@@ -61,7 +61,7 @@
                     <div class="my-col my-l-12 my-m-6 my-c-12">
                         <div class="my-footer-col-3">
                             <a href="<%=request.getContextPath()%>#">
-                                <img src="<%=request.getContextPath()%>/view/client/assets/images/logo1.png"/>
+                                <img src="<%=request.getContextPath()%>${linkLogoStore}"/>
                             </a>
                             <p>
                                 Trải nghiệm tốt nhất về sản phẩm và dịch vụ của Apple tới toàn bộ

@@ -137,7 +137,7 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="/view/client/cart/cart.jsp" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${watch.id}" class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>

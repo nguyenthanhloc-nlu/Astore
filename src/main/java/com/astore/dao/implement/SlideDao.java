@@ -11,7 +11,7 @@ import java.util.List;
 public class SlideDao implements ISlideDao {
     @Override
     public boolean insert(Slide slide) {
-        if(slide != null){
+        if (slide != null) {
             Connection conn = ConnectDB.getInstance();
             String sql = "insert into SLIDER( link_anh, tieu_de, noi_dung) values (?,?,?)";
 
@@ -27,7 +27,7 @@ public class SlideDao implements ISlideDao {
                 return row == 1;
             } catch (SQLException e) {
                 e.printStackTrace();
-                return  false;
+                return false;
             }
         }
         return false;
@@ -35,7 +35,7 @@ public class SlideDao implements ISlideDao {
 
     @Override
     public boolean update(Slide slide) {
-        if(slide != null){
+        if (slide != null) {
             Connection conn = ConnectDB.getInstance();
             String sql = "update SLIDER set  link_anh=? , tieu_de=?,  noi_dung=?, thoi_gian_tao=? where id=? ";
 
@@ -52,7 +52,7 @@ public class SlideDao implements ISlideDao {
                 return row == 1;
             } catch (SQLException e) {
                 e.printStackTrace();
-                return  false;
+                return false;
             }
         }
         return false;
@@ -73,7 +73,7 @@ public class SlideDao implements ISlideDao {
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return  false;
+            return false;
         }
     }
 
@@ -89,7 +89,7 @@ public class SlideDao implements ISlideDao {
             Slide slide = null;
             while (rs.next()) {
                 slide = new Slide();
-                setValue(rs,slide);
+                setValue(rs, slide);
             }
             rs.close();
             ps.close();
@@ -105,15 +105,14 @@ public class SlideDao implements ISlideDao {
         List<Slide> result = new ArrayList<>();
         try {
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT * FROM SLIDER where title like ?";
-            name = "%"+name+"%";
+            String sql = "SELECT * FROM SLIDER where tieu_de like ?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setNString(1, name);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-               Slide slide = new Slide();
-                setValue(rs,slide);
+                Slide slide = new Slide();
+                setValue(rs, slide);
                 result.add(slide);
             }
 
@@ -137,7 +136,7 @@ public class SlideDao implements ISlideDao {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-               Slide slide = new Slide();
+                Slide slide = new Slide();
                 setValue(rs, slide);
                 result.add(slide);
             }
@@ -148,20 +147,20 @@ public class SlideDao implements ISlideDao {
         return result;
     }
 
-    private void setValue(ResultSet rs, Slide slide){
-        try{
+    private void setValue(ResultSet rs, Slide slide) {
+        try {
             slide.setId(rs.getInt("id"));
             slide.setLinkImage(rs.getString("link_anh"));
             slide.setTitle(rs.getString("tieu_de"));
             slide.setContent(rs.getString("noi_dung"));
             slide.setCreatedAt(rs.getString("thoi_gian_tao"));
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
 
     }
 
     public static void main(String[] args) {
-        new SlideDao().insert(new Slide(2,"dhg","GIft","Minh", new Date(System.currentTimeMillis()).toString()));
+        System.out.println(new SlideDao().getByName("home"));
     }
 }

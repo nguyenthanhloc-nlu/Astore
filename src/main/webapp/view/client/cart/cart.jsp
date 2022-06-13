@@ -6,15 +6,88 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>ASTORE | Cart</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/grid copy.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/header-n-footer.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
+<style>.choosenumber {
+    float: right;
+    overflow: hidden;
+    position: relative;
+    width: 100px;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    border-radius: 3px;
+    line-height: 30px;
+    font-size: 14px;
+    color: #333;
+}
+
+.choosenumber .minus {
+    float: left;
+    border-right: 1px solid #dfdfdf;
+    background: #fff;
+    width: 32%;
+    height: 30px;
+    position: relative;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.choosenumber .number {
+    font-size: 14px;
+    color: #333;
+    float: left;
+    width: 33%;
+    height: 30px;
+    text-align: center;
+}
+
+.choosenumber .minus i {
+    width: 12px;
+    height: 2px;
+    background: #288ad6;
+    display: block;
+    margin: 14px auto;
+}
+
+.choosenumber .plus {
+    float: right;
+    border-left: 1px solid #dfdfdf;
+    background: #fff;
+    width: 32%;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+}
+
+.choosenumber .plus i:first-child {
+    width: 12px;
+    height: 2px;
+    background: #288ad6;
+    display: block;
+    margin: 14px auto;
+}
+
+.choosenumber .plus i:nth-child(2) {
+    width: 2px;
+    height: 12px;
+    background: #288ad6;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 9px;
+    left: 0;
+    right: 0;
+}</style>
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
 
@@ -22,55 +95,68 @@
     <div class="my-container" style="background: transparent; max-width: 690px;">
         <div class="my-row row-cart-payment row-cart-payment-1">
             <div class="my-l-12 my-m-12 my-c-12 col-infor-products col-infor-customer">
-                <div class="my-row a-product" style="margin-bottom: 20px;">
-                    <div class="my-l-2 my-m-2 my-c-2">
-                        <div class="my-row">
-                            <img src="https://cdn.tgdd.vn/Products/Images/42/228744/s16/iphone-12-promax-golden-1-650x650.png"
-                                 alt="" style="max-width: 100%;">
-                        </div>
-                        <div class="my-row">
-                            <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 10px;">
-                                <button type="button" class="btn-del">
-                                    <i class="icon-del">xóa</i>
-                                </button>
+                <c:forEach items="${listCart}" var="cart">
+                    <div class="my-row a-product" style="margin-bottom: 20px;">
+                        <div class="my-l-2 my-m-2 my-c-2">
+                            <div class="my-row">
+                                <img src="<%=request.getContextPath()%>/${cart.linkImgProduct}"
+                                     alt="" style="max-width: 100%;">
+                            </div>
+                            <div class="my-row">
+                                <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 10px;">
+                                    <button type="button" class="btn-del" style="border: 1px solid black;">
+                                        <a style="text-decoration: none;color: #0a1219"
+                                           href="<%=request.getContextPath()%>/deleteCart?idCart=${cart.id}"><p
+                                                class="icon-del">xóa</p>
+                                        </a>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my-l-1 my-m-1 my-c-3">
-                    </div>
-                    <div class="my-l-5 my-m-5 my-c-6" style=" display: flex; ">
-                        <div class="my-row"
-                             style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
-                            <div>
-                                <h4 style="margin-top: 10px;"> iPhone 13 Pro Max </h4>
-                            </div>
+                        <div class="my-l-1 my-m-1 my-c-3">
+                        </div>
+                        <div class="my-l-5 my-m-5 my-c-6" style=" display: flex; ">
+                            <div class="my-row"
+                                 style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                                <div>
+                                    <h4 style="margin-top: 10px;">${cart.nameProduct} </h4>
+                                </div>
 
-                            <div>
-                                <h5>512GB</h5>
+                                <div>
+                                    <h5>${cart.rom}GB</h5>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="my-l-3 my-m-3 my-c-3" style="display: flex;">
-                        <div class="my-row" style="align-items:  center;">
-                            <h4>36.990.000₫</h4>
+                        <div class="my-l-3 my-m-3 my-c-3" style="display: flex;">
+                            <div class="my-row" style="align-items:  center;">
+                                <h4><fmt:setLocale value="vi_VN"/>
+                                    <fmt:formatNumber value="${cart.price}" type="currency"/></h4>
+                            </div>
+                        </div>
+                        <div class="choosenumber">
+                            <a href="<%=request.getContextPath()%>/removeCart?idSP=${cart.idProduct}">
+                                <div id="btnRemoveCart" onclick="removeCart()" class="minus" style="pointer-events:all;"><i
+                                        style="background-color: rgb(40, 138, 214);"></i></div>
+                            </a>
+                            <input id="quantityNumber" type="text" maxlength="3" class="number" value="${cart.quantity}"
+                                   style="border: medium none; pointer-events: all;">
+                            <a href="<%=request.getContextPath()%>/addCart?idSP=${cart.idProduct}">
+                                <div class="plus" style="pointer-events: all;">
+                                    <i style="background-color: rgb(40, 138, 214);"></i>
+                                    <i style="background-color: rgb(40, 138, 214);"></i></div>
+                            </a>
                         </div>
                     </div>
-                    <div class="my-l-1 my-m-1 my-c-1" style="display: flex;">
-                        <div class="my-row" style="align-items:  center;">
-                            <input class="up-down-number" type="number" id="tentacles" name="tentacles" min="0"
-                                   max="100000" value="1">
-                        </div>
-                    </div>
-                </div>
-
+                </c:forEach>
                 <div class="my-row a-product" style="margin-top: 30px;">
                     <div class="my-l-3 my-m-3 my-c-3">
-                        <h4 style="text-align: left;">Tạm tính </h4>
                     </div>
                     <div class="my-l-6 my-m-6 my-c-6">
                     </div>
                     <div class="my-l-3 my-m-3 my-c-3">
-                        <h4>Tạm tính </h4>
+                        <h4>${titleSumCart}</h4>
+                        <h4><fmt:setLocale value="vi_VN"/>
+                            <fmt:formatNumber value="${sumCart}" type="currency"/></h4>
                     </div>
                 </div>
             </div>
@@ -91,7 +177,7 @@
                         <form action="" class="text-align-left form-radio">
                             <div class="my-row">
                                 <div class="my-col my-l-6 my-m-6 my-c-6">
-                                    <input type="radio" id="" name="sex" value="Nam">
+                                    <input checked="checked" type="radio" id="" name="sex" value="Nam">
                                     <label for="" style="font-size: 18px;">Anh</label>
                                 </div>
                                 <div class="my-col my-l-6 my-m-6 my-c-6">
@@ -109,11 +195,11 @@
                 <form action="">
                     <div class="my-row" style="margin-bottom: 20px;">
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="text" id="name" name="name"
+                            <input class="input-chung" type="text" id="fullNameCustomer" name="name"
                                    placeholder="Họ và tên"><br>
                         </div>
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="tel" id="name" name="tel"
+                            <input class="input-chung" type="tel" id="phoneCustomer" name="tel"
                                    placeholder="Số điện thoại"><br>
                         </div>
                     </div>
@@ -135,12 +221,12 @@
                         <form action="" class="text-align-left">
                             <div class="my-row">
                                 <div class="my-col my-l-6 my-m-6 my-c-6" style="text-align: left;">
-                                    <input type="radio">
-                                    <label for="age1" style="font-size: 18px;">Giao tận nơi</label>
+                                    <input checked="checked" name="deliveryForm" type="radio">
+                                    <label for="" style="font-size: 18px;">Giao tận nơi</label>
                                 </div>
                                 <div class="my-col my-l-6 my-m-6 my-c-6" style="text-align: left;">
-                                    <input type="radio">
-                                    <label for="age1" style="font-size: 18px;">Nhận tại cửa hàng</label>
+                                    <input name="deliveryForm" type="radio">
+                                    <label for="" style="font-size: 18px;">Nhận tại cửa hàng</label>
                                 </div>
                             </div>
                         </form>
@@ -177,12 +263,11 @@
             <div class="my-l-12 my-m-12 my-c-12 col-temp-price col-infor-customer">
                 <div class="my-row a-product" style="margin-top: 30px;">
                     <div class="my-l-3 my-m-3 my-c-3">
-                        <h3 style="text-align: left;">Tạm tính </h3>
                     </div>
                     <div class="my-l-6 my-m-6 my-c-6">
                     </div>
                     <div class="my-l-3 my-m-3 my-c-3">
-                        <h3 style="text-align: right; color: red;">Tạm tính </h3>
+                        <h3 style="text-align: right"></h3>
                     </div>
                 </div>
             </div>
@@ -199,6 +284,17 @@
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
+<script>
+    function removeCart() {
+        var quantity = document.getElementById("quantityNumber").value;
+        if (quantity > 1) {
+            document.getElementById("btnRemoveCart").style.pointerEvents = "all";
+        } else {
+            document.getElementById("btnRemoveCart").style.pointerEvents = "none";
+        }
+    }
+
+</script>
 <script>
     if (address_2 = localStorage.getItem('address_2_saved')) {
         $('select[name="calc_shipping_district"] option').each(function () {

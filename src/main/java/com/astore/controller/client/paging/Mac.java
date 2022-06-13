@@ -1,9 +1,7 @@
-package com.astore.controller.client;
+package com.astore.controller.client.paging;
 
-import com.astore.model.Product;
-import com.astore.model.Store;
-import com.astore.services.implement.ProductServices;
-import com.astore.services.implement.StoreServices;
+import com.astore.model.*;
+import com.astore.services.implement.*;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -11,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -23,6 +22,19 @@ public class Mac extends HttpServlet {
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
         request.setAttribute("nameStore",storeName);
+
+        List<Slide> sliderList = SlideServices.getInstance().getByName("home");
+
+        request.setAttribute("sliderDesktop1", sliderList.get(0).getLinkImage());
+        request.setAttribute("sliderDesktop2", sliderList.get(1).getLinkImage());
+        request.setAttribute("sliderDesktop3", sliderList.get(2).getLinkImage());
+
+
+        List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
+
+        request.setAttribute("sliderMobile1", sliderMobile.get(0).getLinkImage());
+        request.setAttribute("sliderMobile2", sliderMobile.get(1).getLinkImage());
+        request.setAttribute("sliderMobile3" , sliderMobile.get(2).getLinkImage());
 
         int countProduct = ProductServices.getInstance().countProductByCategoryId(2);
         int totalPages = 0;
@@ -38,6 +50,31 @@ public class Mac extends HttpServlet {
         System.out.println(mac.toString());
         System.out.println("mac.size(): " + mac.size());
         request.setAttribute("mac", mac);
+
+        HttpSession ss = request.getSession();
+
+        if (ss.getAttribute("userNameAccountLogin") != null) {
+            String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
+
+            User user = UserServices.getInstance().getInformationUser(userNameAccountLogin);
+            List<Cart> cartData = CartServices.getInstance().getCartForImg(user.getId());
+
+            request.setAttribute("quantityCart", cartData.size());
+
+        } else {
+
+            if (ss.getAttribute("listCart") != null) {
+                List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
+
+                request.setAttribute("quantityCart", cartList.size());
+
+            } else {
+                request.setAttribute("quantityCart", 0);
+
+            }
+
+
+        }
         request.getRequestDispatcher("/view/client/product-list/product-mac.jsp").forward(request, response);
     }
 
