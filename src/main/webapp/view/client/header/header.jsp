@@ -29,9 +29,12 @@
                                 alt="logo" width="150px"
                                 style="text-align: start;"></a>
                     </div>
-                    <div class="my-col my-l-4 my-m-3 my-c-0 "><input type="search" id="mySearch" name="q"
-                                                                     placeholder="iPhone 13 Pro Max..." size="30"
-                                                                     style="margin-top: 6px; height: 38px; border-radius: 8px; padding: 5px; width: 100%;">
+                    <div class="my-col my-l-4 my-m-3 my-c-0 ">
+                        <form action="search" method="get">
+                            <input type="search" id="mySearch" name="search"
+                                   placeholder="iPhone 13 Pro Max..." size="30"
+                                   style="margin-top: 6px; height: 38px; border-radius: 8px; padding: 5px; width: 100%;">
+                        </form>
                     </div>
                     <div class="my-col my-l-4 my-m-4 my-c-0" id="MenuItems">
                         <div class="my-row">

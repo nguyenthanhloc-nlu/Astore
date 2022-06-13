@@ -101,4 +101,14 @@ public class ProductServices implements IProductServices {
     public int countProductByCategoryId(int i) {
         return this.p.countProductByCategoryId(i);
     }
+
+    @Override
+    public int countProductByName(String search) {
+        return this.p.countProductByName(search);
+    }
+
+    @Override
+    public List<Product> getByNameLimit(String search, int start, int end) {
+        return this.p.getByNameLimit(search,start, end);
+    }
 }

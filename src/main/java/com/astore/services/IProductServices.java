@@ -42,4 +42,8 @@ public interface IProductServices {
     Map<Integer,Integer> quantilyProductOrder(int idOrder);//số lượng của sản phẩm trong đơn hàng
 
     int countProductByCategoryId(int i);
+
+    int countProductByName(String search);
+
+    List<Product> getByNameLimit(String search, int i, int i1);
 }
