@@ -42,18 +42,17 @@
                 <a href="#">Giới thiệu AStore</a>
             </li>
             <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/informationStore/storeRules.jspre/storeRules.jsp">Nội quy cửa hàng</a>
+                <a href="<%=request.getContextPath()%>/storeRules">Nội quy cửa hàng</a>
             </li>
             <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/informationStore/serviceQuality.jsperviceQuality.jsp">Chất lượng phục vụ</a>
+                <a href="<%=request.getContextPath()%>/serviceQuality">Chất lượng phục vụ</a>
+            </li>
+            <li class="tab-link">
+                <a href="<%=request.getContextPath()%>/warrantyAndExchange">Chính sách bảo hành & đổi trả</a>
             </li>
             <li class="tab-link current">
-                <a href="<%=request.getContextPath()%>/view/client/informationStore/warrantyAndExchange.jsp">Chính sách bảo hành & đổi trả</a>
+                <a href="<%=request.getContextPath()%>/deliveryPolicy">Chính sách giao hàng</a>
             </li>
-            <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/informationStore/deliveryPolicy.jspeliveryPolicy.jsp">Chính sách giao hàng</a>
-            </li>
-
         </ul>
         <div class="tab-content current" id="warranty1">
             <h2>CHÍNH SÁCH BẢO HÀNH, ĐỔI TRẢ SẢN PHẨM ASTORE.VN</h2>

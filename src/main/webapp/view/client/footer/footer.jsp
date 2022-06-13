@@ -21,12 +21,11 @@
                 <div class="my-footer-col-3">
                     <h4>Hệ thống cửa hàng</h4>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/storeRules.jsp">Nội quy cửa hàng</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/serviceQuality.jsp">Chất lượng dịch vụ</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/systemStore.jsp">Xem 4 cửa hàng</a></li>
-                        <li>
-                            <a href="<%=request.getContextPath()%>/view/client/informationStore/warrantyAndExchange.jsp">Bảo hành và đổi trả</a>
-                        </li>
+                        <li><a href="<%=request.getContextPath()%>/systemStore">Xem 4
+                            cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/storeRules">Nội quy
+                            cửa hàng</a></li>
+
                     </ul>
                 </div>
 
@@ -35,10 +34,16 @@
                 <div class="my-footer-col-3">
                     <h4>Hỗ trợ khách hàng</h4>
                     <ul>
-                        <li><a href="">Điều kiện giao dịch chung</a></li>
-                        <li><a href="">Hướng dẫn mua hàng online</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/deliveryPolicy.jsp">Chính sách giao hàng</a></li>
-                        <li><a href="">Hướng dẫn thanh toán</a></li>
+
+
+                        <li><a href="<%=request.getContextPath()%>/serviceQuality">Chất
+                            lượng dịch vụ</a></li>
+                        <li>
+
+                            <a href="<%=request.getContextPath()%>/warrantyAndExchange">Bảo
+                                hành và đổi trả</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -47,9 +52,8 @@
                     <h4>Về thương hiệu ASTORE</h4>
                     <ul>
                         <li><a href="">Giới thiệu về ASTORE</a></li>
-                        <li><a href="">Bán hàng doanh nghiệp</a></li>
-                        <li><a href="">Chính sách bảo mật thông tin</a></li>
-                        <li><a href="">Chính sách ưu đãi</a></li>
+                        <li><a href="<%=request.getContextPath()%>/deliveryPolicy">Chính
+                            sách giao hàng</a></li>
                     </ul>
                 </div>
             </div>

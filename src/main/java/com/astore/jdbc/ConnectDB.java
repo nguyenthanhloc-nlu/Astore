@@ -10,10 +10,10 @@ import java.sql.SQLException;
 public class ConnectDB {
     //    private String username = "sa";
 //    private String password = "123";
-    private static String admin = "sa";
+    private static String admin = "adminMaster";
     private static String pwdAdmin = "123456";
     private static String nameDB = "DBSTORE_2";
-    private static String localhost = "1433";
+    private static String localhost = "125";
     private static Connection conn;
 
 

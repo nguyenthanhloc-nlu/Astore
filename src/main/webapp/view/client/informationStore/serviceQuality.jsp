@@ -32,21 +32,20 @@
     <div class="warranty">
         <ul class="tabs">
             <li class="tab-link">
-                <a href="gioi-thieu.html">Giới thiệu AStore</a>
+                <a href="#">Giới thiệu AStore</a>
             </li>
             <li class="tab-link">
-                <a href="storeRules.jsp">Nội quy cửa hàng</a>
+                <a href="<%=request.getContextPath()%>/storeRules">Nội quy cửa hàng</a>
+            </li>
+            <li class="tab-link">
+                <a href="<%=request.getContextPath()%>/serviceQuality">Chất lượng phục vụ</a>
+            </li>
+            <li class="tab-link">
+                <a href="<%=request.getContextPath()%>/warrantyAndExchange">Chính sách bảo hành & đổi trả</a>
             </li>
             <li class="tab-link current">
-                <a href="serviceQuality.jsp">Chất lượng phục vụ</a>
+                <a href="<%=request.getContextPath()%>/deliveryPolicy">Chính sách giao hàng</a>
             </li>
-            <li class="tab-link">
-                <a href="warrantyAndExchange.jsp">Chính sách bảo hành & đổi trả</a>
-            </li>
-            <li class="tab-link">
-                <a href="deliveryPolicy.jsp">Chính sách giao hàng</a>
-            </li>
-
         </ul>
         <div class="tab-content current" id="warranty1">
             <h2>
