@@ -1,7 +1,7 @@
 package com.astore.controller.client;
 
-import com.astore.model.Product;
-import com.astore.services.implement.ProductServices;
+import com.astore.model.*;
+import com.astore.services.implement.*;
 import com.google.gson.Gson;
 
 import javax.servlet.*;
@@ -21,6 +21,45 @@ public class SearchProduct extends HttpServlet {
             request.getRequestDispatcher("/view/client/product-list/ResultSearch.jsp").forward(request, response);
             return;
         }
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore", storeName);
+
+        HttpSession ss = request.getSession();
+
+        if (ss.getAttribute("userNameAccountLogin") != null) {
+            String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
+
+            User user = UserServices.getInstance().getInformationUser(userNameAccountLogin);
+            List<Cart> cartData = CartServices.getInstance().getCartForImg(user.getId());
+
+            request.setAttribute("quantityCart", cartData.size());
+
+        } else {
+
+            if (ss.getAttribute("listCart") != null) {
+                List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
+
+                request.setAttribute("quantityCart", cartList.size());
+
+            } else {
+                request.setAttribute("quantityCart", 0);
+
+            }
+
+
+        }
+        List<Slide> sliderList = SlideServices.getInstance().getByName("home");
+
+        request.setAttribute("listSliderDesktop", sliderList);
+
+
+
+        List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
+
+        request.setAttribute("listSliderMobile", sliderMobile);
 
 
         //  tính tông số sp theo tên

@@ -25,17 +25,13 @@ public class Mac extends HttpServlet {
 
         List<Slide> sliderList = SlideServices.getInstance().getByName("home");
 
-        request.setAttribute("sliderDesktop1", sliderList.get(0).getLinkImage());
-        request.setAttribute("sliderDesktop2", sliderList.get(1).getLinkImage());
-        request.setAttribute("sliderDesktop3", sliderList.get(2).getLinkImage());
+        request.setAttribute("listSliderDesktop", sliderList);
+
 
 
         List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
 
-        request.setAttribute("sliderMobile1", sliderMobile.get(0).getLinkImage());
-        request.setAttribute("sliderMobile2", sliderMobile.get(1).getLinkImage());
-        request.setAttribute("sliderMobile3" , sliderMobile.get(2).getLinkImage());
-
+        request.setAttribute("listSliderMobile", sliderMobile);
         int countProduct = ProductServices.getInstance().countProductByCategoryId(2);
         int totalPages = 0;
         if(countProduct % 30 > 0){

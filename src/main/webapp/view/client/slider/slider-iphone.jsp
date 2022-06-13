@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,13 +33,13 @@
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <c:forEach items="${listSliderDesktop}" var="slider">
-                    <c:if test="${slider.id==0}">
+                    <c:if test="${slider.id==1}">
                         <div class="carousel-item active">
                             <img src="<%=request.getContextPath()%>${slider.linkImage}"
                                  alt="" width="1100" height="500">
                         </div>
                     </c:if>
-                    <c:if test="${slider.id!=0}">
+                    <c:if test="${slider.id!=1}">
                         <div class="carousel-item">
                             <img src="<%=request.getContextPath()%>${slider.linkImage}"
                                  alt="" width="1100" height="500">
