@@ -45,7 +45,7 @@
                 <li>
                     <div class="info-store">
                         <a
-                                href="sieu-thi-670-au-co-p-10-q-tan-binh-thanh-pho-ho-chi-minh-id-9816.html"
+                                href="#"
                         >
                             <strong>AStore Gò Vấp</strong>
                             <span
@@ -56,7 +56,7 @@
                     </div>
                     <div class="direct">
                         <a
-                                href="sieu-thi-670-au-co-p-10-q-tan-binh-thanh-pho-ho-chi-minh-id-9816.html"
+                                href="#"
                         >Xem chỉ đường</a
                         >
                     </div>
@@ -65,7 +65,7 @@
                 <li>
                     <div class="info-store">
                         <a
-                                href="sieu-thi-191-dien-bien-phu-p-6-q-3-thanh-pho-ho-chi-minh-id-9815.html"
+                                href="#"
                         >
                             <strong>AStore Bình Tân</strong>
                             <span
@@ -76,7 +76,7 @@
                     </div>
                     <div class="direct">
                         <a
-                                href="sieu-thi-191-dien-bien-phu-p-6-q-3-thanh-pho-ho-chi-minh-id-9815.html"
+                                href="#"
                         >Xem chỉ đường</a
                         >
                     </div>
@@ -89,7 +89,7 @@
                 <li>
                     <div class="info-store">
                         <a
-                                href="sieu-thi-291-nguyen-van-cu-pngoc-lam-qlong-bien-ha-noi-id-9818.html"
+                                href="#"
                         >
                             <strong>AStore Bạch Mai</strong>
                             <span
@@ -99,7 +99,7 @@
                     </div>
                     <div class="direct">
                         <a
-                                href="sieu-thi-291-nguyen-van-cu-pngoc-lam-qlong-bien-ha-noi-id-9818.html"
+                                href="#"
                         >Xem chỉ đường</a
                         >
                     </div>
@@ -108,7 +108,7 @@
                 <li>
                     <div class="info-store">
                         <a
-                                href="sieu-thi-238-nguyen-trai-p-trung-van-q-nam-tu-liem-ha-noi-id-9817.html"
+                                href="#"
                         >
                             <strong>AStore Văn Điển</strong>
                             <span>379 Đ. Ngọc Hồi, Văn Điển, Thanh Trì, Hà Nội</span>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="direct">
                         <a
-                                href="sieu-thi-238-nguyen-trai-p-trung-van-q-nam-tu-liem-ha-noi-id-9817.html"
+                                href="#"
                         >Xem chỉ đường</a
                         >
                     </div>
@@ -129,40 +129,40 @@
             <strong>CÁC TIỆN ÍCH TẠI CỬA HÀNG</strong>
             <div>
                 <p>
-                    <img src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/10Refresh-48x48.png"/>Hư
+                    <img src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/10Refresh-48x48.png"/>Hư
                     g&igrave; đổi nấy 12 th&aacute;ng (miễn ph&iacute; th&aacute;ng
                     đầu).
                 </p>
                 <p>
-                    <img src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/08BaoHanh-48x48.png"/>Bảo
+                    <img src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/08BaoHanh-48x48.png"/>Bảo
                     h&agrave;nh ch&iacute;nh h&atilde;ng 1 năm c&oacute; cam kết.
                 </p>
                 <p>
-                    <img src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/06MayCaThe-48x48.png"/>Giao
+                    <img src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/06MayCaThe-48x48.png"/>Giao
                     h&agrave;ng tận nơi, mang m&aacute;y c&agrave; thẻ đến tận
                     nh&agrave;, kh&ocirc;ng mua kh&ocirc;ng sao.
                 </p>
                 <p>
                     <img
-                            src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/02NhanVien-48x48.png"
+                            src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/02NhanVien-48x48.png"
                     />Nh&acirc;n vi&ecirc;n tư vấn sản phẩm nhiệt t&igrave;nh, nhiều
                     kinh nghiệm.
                 </p>
                 <p>
                     <img
-                            src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/01BaiGiuXe-48x48.png"
+                            src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/01BaiGiuXe-48x48.png"
                     />B&atilde;i giữ xe miễn ph&iacute; rộng r&atilde;i, tho&aacute;ng
                     m&aacute;t, nh&acirc;n vi&ecirc;n giữ xe chu đ&aacute;o dắt xe cho
                     kh&aacute;ch h&agrave;ng.
                 </p>
                 <p>
-                    <img src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/09Wifi-48x48.png"/>Miễn
+                    <img src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/09Wifi-48x48.png"/>Miễn
                     ph&iacute; Wifi tại si&ecirc;u thị cho kh&aacute;ch h&agrave;ng
                     đến mua sắm.
                 </p>
                 <p>
                     <img
-                            src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/systemStore/04QuayTraiNghiem-48x48.png"
+                            src="<%=request.getContextPath()%>/view/client/assets/images/systemStore/04QuayTraiNghiem-48x48.png"
                     />Xem v&agrave; trải nghiệm thử sản phẩm miễn ph&iacute; trực tiếp
                     tại si&ecirc;u thị.
                 </p>

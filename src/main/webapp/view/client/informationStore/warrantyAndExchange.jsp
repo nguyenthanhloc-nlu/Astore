@@ -42,23 +42,18 @@
                 <a href="#">Giới thiệu AStore</a>
             </li>
             <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/storeRules.jsp">Nội quy cửa hàng</a>
+                <a href="<%=request.getContextPath()%>/view/client/informationStore/storeRules.jspre/storeRules.jsp">Nội quy cửa hàng</a>
             </li>
             <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/serviceQuality.jsp">Chất lượng phục vụ</a>
+                <a href="<%=request.getContextPath()%>/view/client/informationStore/serviceQuality.jsperviceQuality.jsp">Chất lượng phục vụ</a>
             </li>
             <li class="tab-link current">
-                <a href="<%=request.getContextPath()%>/view/client/warrantyAndExchange.jsp">Chính sách bảo hành & đổi trả</a>
+                <a href="<%=request.getContextPath()%>/view/client/informationStore/warrantyAndExchange.jsp">Chính sách bảo hành & đổi trả</a>
             </li>
             <li class="tab-link">
-                <a href="<%=request.getContextPath()%>/view/client/deliveryPolicy.jsp">Chính sách giao hàng</a>
+                <a href="<%=request.getContextPath()%>/view/client/informationStore/deliveryPolicy.jspeliveryPolicy.jsp">Chính sách giao hàng</a>
             </li>
-            <li class="tab-link">
-                <a href="#">Hướng dẫn mua hàng online</a>
-            </li>
-            <li class="tab-link">
-                <a href="#">Quy chế hoạt động</a>
-            </li>
+
         </ul>
         <div class="tab-content current" id="warranty1">
             <h2>CHÍNH SÁCH BẢO HÀNH, ĐỔI TRẢ SẢN PHẨM ASTORE.VN</h2>
@@ -291,8 +286,8 @@
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
 
 <div id="help">
-    <a href="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/help.jsp"
-    ><img src="../../../../../../../../../../Lab_LTWeb/AStore-master/back_End/Astore/src/main/webapp/view/client/assets/images/help.png"
+    <a href="<%=request.getContextPath()%>/view/client/help.jsp"
+    ><img src="<%=request.getContextPath()%>/view/client/view/client/assets/images/help.png"
           alt="help"
     /></a>
 </div>

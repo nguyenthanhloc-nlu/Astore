@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ASTORE | Chính sách giao hàng</title>
     <link rel="stylesheet"
+          href="<%=request.getContextPath()%>/view/client/assets/css/style.css"/>
+    <link rel="stylesheet"
           href="<%=request.getContextPath()%>/view/client/assets/css/grid%20copy.css"/>
     <link rel="stylesheet"
           href="<%=request.getContextPath()%>/view/client/assets/css/header-n-footer.css"/>
@@ -46,12 +48,6 @@
             </li>
             <li class="tab-link current">
                 <a href="deliveryPolicy.jsp">Chính sách giao hàng</a>
-            </li>
-            <li class="tab-link">
-                <a href="huong-dan-mua-hang.html">Hướng dẫn mua hàng online</a>
-            </li>
-            <li class="tab-link">
-                <a href="quy-che-hoat-dong.html">Quy chế hoạt động</a>
             </li>
         </ul>
         <div class="tab-content current" id="warranty1">

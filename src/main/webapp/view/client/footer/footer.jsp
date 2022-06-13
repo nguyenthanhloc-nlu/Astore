@@ -21,11 +21,11 @@
                 <div class="my-footer-col-3">
                     <h4>Hệ thống cửa hàng</h4>
                     <ul>
-                        <li><a href="<%=request.getContextPath()%>/view/client/storeRules.jsp">Nội quy cửa hàng</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/serviceQuality.jsp">Chất lượng dịch vụ</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/systemStore.jsp">Xem 4 cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/storeRules.jsp">Nội quy cửa hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/serviceQuality.jsp">Chất lượng dịch vụ</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/systemStore.jsp">Xem 4 cửa hàng</a></li>
                         <li>
-                            <a href="<%=request.getContextPath()%>/view/client/warrantyAndExchange.jsp">Bảo hành và đổi trả</a>
+                            <a href="<%=request.getContextPath()%>/view/client/informationStore/warrantyAndExchange.jsp">Bảo hành và đổi trả</a>
                         </li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                     <ul>
                         <li><a href="">Điều kiện giao dịch chung</a></li>
                         <li><a href="">Hướng dẫn mua hàng online</a></li>
-                        <li><a href="<%=request.getContextPath()%>/view/client/deliveryPolicy.jsp">Chính sách giao hàng</a></li>
+                        <li><a href="<%=request.getContextPath()%>/view/client/informationStore/deliveryPolicy.jsp">Chính sách giao hàng</a></li>
                         <li><a href="">Hướng dẫn thanh toán</a></li>
                     </ul>
                 </div>

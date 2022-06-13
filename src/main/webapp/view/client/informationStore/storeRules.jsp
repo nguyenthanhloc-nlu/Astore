@@ -47,12 +47,7 @@
             <li class="tab-link">
                 <a href="deliveryPolicy.jsp">Chính sách giao hàng</a>
             </li>
-            <li class="tab-link">
-                <a href="huong-dan-mua-hang.html">Hướng dẫn mua hàng online</a>
-            </li>
-            <li class="tab-link">
-                <a href="quy-che-hoat-dong.html">Quy chế hoạt động</a>
-            </li>
+
         </ul>
         <div class="tab-content current" id="warranty1">
             <h2 style="text-align: left" align="center">
