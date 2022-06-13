@@ -13,12 +13,13 @@ public class Insurance {
     private double rateInsurance;
     private String note;
     private int status;
+    private String contentStatus;
     private String createAt;
 
     public Insurance() {
     }
 
-    public Insurance(int id, int idProduct, int idOrder, int idUser, String nameUser, String dateTake, String datePay, double rateInsurance, String note, int status, String createAt) {
+    public Insurance(int id, int idProduct, int idOrder, int idUser, String nameUser, String dateTake, String datePay, double rateInsurance, String note, int status, String contentStatus, String createAt) {
         this.id = id;
         this.idProduct = idProduct;
         this.idOrder = idOrder;
@@ -29,6 +30,7 @@ public class Insurance {
         this.rateInsurance = rateInsurance;
         this.note = note;
         this.status = status;
+        this.contentStatus = contentStatus;
         this.createAt = createAt;
     }
 
@@ -112,41 +114,19 @@ public class Insurance {
         this.status = status;
     }
 
+    public String getContentStatus() {
+        return contentStatus;
+    }
+
+    public void setContentStatus(String contentStatus) {
+        this.contentStatus = contentStatus;
+    }
+
     public String getCreateAt() {
         return createAt;
     }
 
     public void setCreateAt(String createAt) {
         this.createAt = createAt;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Insurance insurance = (Insurance) o;
-        return id == insurance.id && idProduct == insurance.idProduct && idOrder == insurance.idOrder && idUser == insurance.idUser && Double.compare(insurance.rateInsurance, rateInsurance) == 0 && status == insurance.status && Objects.equals(nameUser, insurance.nameUser) && Objects.equals(dateTake, insurance.dateTake) && Objects.equals(datePay, insurance.datePay) && Objects.equals(note, insurance.note) && Objects.equals(createAt, insurance.createAt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, idProduct, idOrder, idUser, nameUser, dateTake, datePay, rateInsurance, note, status, createAt);
-    }
-
-    @Override
-    public String toString() {
-        return "Insurance{" +
-                "id=" + id +
-                ", idProduct=" + idProduct +
-                ", idOrder=" + idOrder +
-                ", idUser=" + idUser +
-                ", nameUser='" + nameUser + '\'' +
-                ", dateTake='" + dateTake + '\'' +
-                ", datePay='" + datePay + '\'' +
-                ", rateInsurance=" + rateInsurance +
-                ", note='" + note + '\'' +
-                ", status=" + status +
-                ", createAt='" + createAt + '\'' +
-                '}';
     }
 }
