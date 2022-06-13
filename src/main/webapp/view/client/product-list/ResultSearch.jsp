@@ -31,6 +31,16 @@
 <body>
 
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
+<div class="product-range" style="margin-top: 100px;">
+    <div class="my-container">
+        <div class="my-row">
+            <div class="my-col my-l-12 my-m-12 my-c-12">
+                <div class="title-product-range">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <jsp:include page="/view/client/slider/slider-iphone.jsp"></jsp:include>
 
 

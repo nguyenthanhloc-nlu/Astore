@@ -95,6 +95,7 @@
     <div class="my-container" style="background: transparent; max-width: 690px;">
         <div class="my-row row-cart-payment row-cart-payment-1">
             <div class="my-l-12 my-m-12 my-c-12 col-infor-products col-infor-customer">
+                <div class="not-product" style="font-size: 20px">${notProduct}</div>
                 <c:forEach items="${listCart}" var="cart">
                     <div class="my-row a-product" style="margin-bottom: 20px;">
                         <div class="my-l-2 my-m-2 my-c-2">
@@ -195,7 +196,7 @@
                 <form action="">
                     <div class="my-row" style="margin-bottom: 20px;">
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="text" id="fullNameCustomer" name="name"
+                            <input class="input-chung" type="text" id="fullNameCustomer" name="fullNameCustomer"
                                    placeholder="Họ và tên"><br>
                         </div>
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">

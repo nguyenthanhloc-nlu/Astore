@@ -89,7 +89,7 @@
                         row += '<td>' + value.dataAtOrder + '</td>';
 
                         row += ' <td>';
-                        row += '<button class="btn btn-success"><a href="update-order?id='+value.id+'">Sửa</a></button>';
+                        row += '<button class="btn btn-success"><a href="order-detail?idOrder='+value.id+'">Xem</a></button>';
                         row += '        </td>';
                         row += '  </tr>';
 
