@@ -148,7 +148,7 @@
         border-radius: 10px;
     }
 
-    }</style>
+    </style>
 
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
