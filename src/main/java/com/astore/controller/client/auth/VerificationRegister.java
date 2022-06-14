@@ -34,14 +34,14 @@ public class VerificationRegister extends HttpServlet {
         if (codeOTP.equals(codeOTPInput)) {
             request.setAttribute("successVerificationOTP", "successVerificationOTP");
             request.setAttribute("loginSuccessOTP", "<button onclick=\"signInNowRegister()\">Đăng nhập ngay</button>");
-            request.getRequestDispatcher("/view/client/sign_user/verificationCreate.jsp").forward(request, response);
+            request.getRequestDispatcher("verificationCreate").forward(request, response);
             request.setAttribute("errorVerificationOTP", "");
             System.out.println("successVerificationOTP");
         } else {
             request.setAttribute("successVerificationOTP", "errorVerificationOTP");
             request.setAttribute("fromMessErrorOTP", "from-mess-error-otp");
             request.setAttribute("errorVerificationOTP", "Mã xác thực không đúng. vui lòng nhập lại");
-            request.getRequestDispatcher("/view/client/sign_user/verificationCreate.jsp").forward(request, response);
+            request.getRequestDispatcher("verificationCreate").forward(request, response);
             System.out.println("errorVerificationOTP");
         }
 

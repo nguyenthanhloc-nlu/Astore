@@ -46,6 +46,6 @@ public class SendMailTo extends HttpServlet {
         if (CheckEmail.getInstance().checkNumberPhone(emailOrPhone)) {
 
         }
-        request.getRequestDispatcher("/view/client/sign_user/verificationCreate.jsp").forward(request, response);
+        request.getRequestDispatcher("verificationCreate").forward(request, response);
     }
 }

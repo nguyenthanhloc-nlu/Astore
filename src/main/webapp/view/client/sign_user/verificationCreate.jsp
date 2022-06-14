@@ -120,7 +120,7 @@
     function signInNowRegister() {
         document.querySelector(".popUpBox").style.display = "none";
         document.getElementById("popUpOverlay").style.display = "none";
-        window.location.href = "view/client/sign_user/signIn.jsp";
+        window.location.href = "<%=request.getContextPath()%>/signIn";
         document.getElementById("verification-set").value = "";
     }
 </script>

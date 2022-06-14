@@ -48,7 +48,7 @@ public class LoginGoogle extends HttpServlet {
                 request.getRequestDispatcher("#").forward(request, response);
             }
         } else
-            request.getRequestDispatcher("view/client/sign_user/signIn.jsp").forward(request, response);
+            request.getRequestDispatcher("signIn").forward(request, response);
 
     }
 

@@ -44,7 +44,7 @@ public class UserLogin extends HttpServlet {
                     "              </div>" +
                     " </div>";
             request.setAttribute("errorLogin", errorLogin);
-            request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
+            request.getRequestDispatcher("signIn").forward(request, response);
 
         }
 

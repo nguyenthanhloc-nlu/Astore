@@ -36,7 +36,7 @@ public class VerificationForgotPWD extends HttpServlet {
         } else {
             request.setAttribute("fromMessErrorOTPForgotPWD", "from-mess-error-otp");
             request.setAttribute("errorVerificationOTPForgotPWD", "Mã xác thực không đúng. vui lòng nhập lại");
-            request.getRequestDispatcher("/view/client/sign_user/verificationCode").forward(request, response);
+            request.getRequestDispatcher("verificationCode").forward(request, response);
             System.out.println("errorVerificationOTP");
         }
     }

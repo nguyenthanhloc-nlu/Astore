@@ -130,7 +130,25 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<Order> getByNameUser(String name) {
-        return null;
+        List<Order> result = new ArrayList<>();
+        try {
+            Connection conn = ConnectDB.getInstance();
+            String sql = "SELECT  * FROM HOA_DON  where ten_nguoi_dung = ? ";
+
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1,name);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Order order =  new Order();
+                setValue(rs, order);
+                result.add(order);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
     public void setValue(ResultSet rs, Order order) {
         try{

@@ -8,86 +8,148 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
+<html lang="vi">
 <head>
+    <meta charset="UTF-8">
     <title>ASTORE | Cart</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/grid copy.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/header-n-footer.css">
     <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 
-<style>.choosenumber {
-    float: right;
-    overflow: hidden;
-    position: relative;
-    width: 100px;
-    border: 1px solid #dfdfdf;
-    background: #fff;
-    border-radius: 3px;
-    line-height: 30px;
-    font-size: 14px;
-    color: #333;
-}
+<style>
+    #successfulOrder {
+        display: block;
+    }
 
-.choosenumber .minus {
-    float: left;
-    border-right: 1px solid #dfdfdf;
-    background: #fff;
-    width: 32%;
-    height: 30px;
-    position: relative;
-    pointer-events: none;
-    cursor: pointer;
-}
+    .choosenumber {
+        float: right;
+        overflow: hidden;
+        position: relative;
+        width: 100px;
+        border: 1px solid #dfdfdf;
+        background: #fff;
+        border-radius: 3px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #333;
+    }
 
-.choosenumber .number {
-    font-size: 14px;
-    color: #333;
-    float: left;
-    width: 33%;
-    height: 30px;
-    text-align: center;
-}
+    .choosenumber .minus {
+        float: left;
+        border-right: 1px solid #dfdfdf;
+        background: #fff;
+        width: 32%;
+        height: 30px;
+        position: relative;
+        pointer-events: none;
+        cursor: pointer;
+    }
 
-.choosenumber .minus i {
-    width: 12px;
-    height: 2px;
-    background: #288ad6;
-    display: block;
-    margin: 14px auto;
-}
+    .choosenumber .number {
+        font-size: 14px;
+        color: #333;
+        float: left;
+        width: 33%;
+        height: 30px;
+        text-align: center;
+    }
 
-.choosenumber .plus {
-    float: right;
-    border-left: 1px solid #dfdfdf;
-    background: #fff;
-    width: 32%;
-    height: 30px;
-    position: relative;
-    cursor: pointer;
-}
+    .choosenumber .minus i {
+        width: 12px;
+        height: 2px;
+        background: #288ad6;
+        display: block;
+        margin: 14px auto;
+    }
 
-.choosenumber .plus i:first-child {
-    width: 12px;
-    height: 2px;
-    background: #288ad6;
-    display: block;
-    margin: 14px auto;
-}
+    .choosenumber .plus {
+        float: right;
+        border-left: 1px solid #dfdfdf;
+        background: #fff;
+        width: 32%;
+        height: 30px;
+        position: relative;
+        cursor: pointer;
+    }
 
-.choosenumber .plus i:nth-child(2) {
-    width: 2px;
-    height: 12px;
-    background: #288ad6;
-    display: block;
-    margin: 0 auto;
-    position: absolute;
-    top: 9px;
-    left: 0;
-    right: 0;
-}</style>
+    .choosenumber .plus i:first-child {
+        width: 12px;
+        height: 2px;
+        background: #288ad6;
+        display: block;
+        margin: 14px auto;
+    }
+
+    .choosenumber .plus i:nth-child(2) {
+        width: 2px;
+        height: 12px;
+        background: #288ad6;
+        display: block;
+        margin: 0 auto;
+        position: absolute;
+        top: 9px;
+        left: 0;
+        right: 0;
+    }
+
+    .error-address {
+        display: block;
+        overflow: hidden;
+        color: #dd4b39;
+        font-size: 12px;
+        padding-top: 5px;
+        margin-left: -42px;
+    }
+
+    .error-fulfill-information {
+        display: block;
+        overflow: hidden;
+        padding-top: 5px;
+        color: #dd4b39;
+        font-size: 12px;
+    }
+
+    .form-group.error small {
+        visibility: visible;
+    }
+
+    .form-group.success small {
+        visibility: hidden;
+    }
+
+    .popUpBox {
+        width: 243px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 0 10px black;
+        border-radius: 10px;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        padding: 10px;
+        text-align: center;
+        display: none;
+    }
+
+    .btn-back-home {
+        width: 100%;
+        border: none;
+        background: black;
+        color: #FFF;
+        margin: 0 0 5px;
+        padding: 10px;
+        font-size: 15px;
+        border-radius: 10px;
+    }
+
+    }</style>
+
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
 
@@ -136,7 +198,8 @@
                         </div>
                         <div class="choosenumber">
                             <a href="<%=request.getContextPath()%>/removeCart?idSP=${cart.idProduct}">
-                                <div id="btnRemoveCart" onclick="removeCart()" class="minus" style="pointer-events:all;"><i
+                                <div id="btnRemoveCart" onclick="removeCart()" class="minus"
+                                     style="pointer-events:all;"><i
                                         style="background-color: rgb(40, 138, 214);"></i></div>
                             </a>
                             <input id="quantityNumber" type="text" maxlength="3" class="number" value="${cart.quantity}"
@@ -164,127 +227,129 @@
         </div>
     </div>
 </div>
-
-
-<div class="cart-payment  cart-payment-2" style="margin-top: 2px;">
-    <div class="my-container" style="background: transparent; max-width: 690px;">
-        <div class="my-row row-cart-payment row-cart-payment-2">
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer text-align-left">
-                <h3>Thông tin khách hàng</h3>
-            </div>
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
-                <div class="my-row">
-                    <div class="my-col my-l-4 my-m-4 my-c-6">
-                        <form action="" class="text-align-left form-radio">
+<form method="post" action="<%=request.getContextPath()%>/orderAddress" onsubmit="${onSubmitOrder}" id="order-form">
+    <div style="margin-top: 2px; display:${informationCustomer}" class="cart-payment display-customer  cart-payment-2">
+        <div class="my-container" style="background: transparent; max-width: 690px;">
+            <div class="my-row row-cart-payment row-cart-payment-2">
+                <div class="my-l-12 my-m-12 my-c-12 col-infor-customer text-align-left">
+                    <h3>Thông tin khách hàng</h3>
+                </div>
+                <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
+                    <div class="my-row">
+                        <div class="my-col my-l-4 my-m-4 my-c-6">
                             <div class="my-row">
                                 <div class="my-col my-l-6 my-m-6 my-c-6">
-                                    <input checked="checked" type="radio" id="" name="sex" value="Nam">
+                                    <input checked="checked" type="radio" id="" name="sexCustomer" value="Nam">
                                     <label for="" style="font-size: 18px;">Anh</label>
                                 </div>
                                 <div class="my-col my-l-6 my-m-6 my-c-6">
-                                    <input type="radio" id="age1" name="sex" value="Nữ">
+                                    <input type="radio" id="age1" name="sexCustomer" value="Nữ">
                                     <label for="" style="font-size: 18px;">Chị</label>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="my-col my-l-8 my-m-8 my-c-6">
+                        </div>
+                        <div class="my-col my-l-8 my-m-8 my-c-6">
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
-                <form action="">
+                <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
                     <div class="my-row" style="margin-bottom: 20px;">
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="text" id="fullNameCustomer" name="fullNameCustomer"
-                                   placeholder="Họ và tên"><br>
+                            <div class="form-group">
+                                <input class="input-chung" type="text" id="fullNameCustomer" name="fullNameCustomer"
+                                       placeholder="Họ và tên"><br>
+                                <small class="error-fulfill-information" style=" margin-left: -92px;"></small>
+                            </div>
                         </div>
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="tel" id="phoneCustomer" name="tel"
-                                   placeholder="Số điện thoại"><br>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                            <div class="form-group">
+                                <input class="input-chung" type="tel" id="telephoneCustomer" name="telephoneCustomer"
+                                       placeholder="Số điện thoại"><br>
+                                <small class="error-fulfill-information" style=" margin-left: -63px;"></small>
 
-<div class="cart-payment  cart-payment-3" style="margin-top: 3px;">
-    <div class="my-container" style="background: transparent; max-width: 690px;">
-        <div class="my-row row-cart-payment row-cart-payment-3">
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer text-align-left">
-                <h3>Thông tin giao hàng</h3>
-            </div>
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
-                <div class="my-row">
-                    <div class="my-col my-l-10 my-m-12 my-c-12">
-                        <form action="" class="text-align-left">
-                            <div class="my-row">
-                                <div class="my-col my-l-6 my-m-6 my-c-6" style="text-align: left;">
-                                    <input checked="checked" name="deliveryForm" type="radio">
-                                    <label for="" style="font-size: 18px;">Giao tận nơi</label>
-                                </div>
-                                <div class="my-col my-l-6 my-m-6 my-c-6" style="text-align: left;">
-                                    <input name="deliveryForm" type="radio">
-                                    <label for="" style="font-size: 18px;">Nhận tại cửa hàng</label>
-                                </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="my-col my-l-4 my-m-0 my-c-0">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-customer">
-                <form action="" class="form-tinh-thanh">
+        </div>
+    </div>
+
+    <div class="cart-payment  cart-payment-3" style="margin-top: 3px;">
+        <div class="my-container" style="background: transparent; max-width: 690px;">
+            <div class="my-row row-cart-payment row-cart-payment-3">
+                <div style="display:${informationDelivery}"
+                     class="my-l-12 my-m-12 my-c-12 col-infor-customer text-align-left">
+                    <h3>Thông tin giao hàng</h3>
+                </div>
+                <div style="display:${informationDelivery}" class="my-l-12 my-m-12 my-c-12 col-infor-customer">
+
                     <div class="my-row">
                         <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <select class="input-chung" name="calc_shipping_provinces" required="">
-                                <option value="">Tỉnh / Thành phố</option>
-                            </select>
-                        </div>
-                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <select class="input-chung" name="calc_shipping_district" required="">
-                                <option value="">Quận / Huyện</option>
-                            </select>
-                        </div>
-                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="text" id="address" name="calc_shipping_district"
-                                   placeholder="Xã"><br>
-                        </div>
-                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
-                            <input class="input-chung" type="text" name="calc_shipping_district"
-                                   placeholder="Số nhà, tên đường"><br>
-                        </div>
-                    </div>
-                </form>
-            </div>
+                            <div class="form-group">
+                                <select class="input-chung" id="calc_shipping_provinces" name="calc_shipping_provinces"
+                                        required="">
+                                    <option value="">Tỉnh / Thành phố</option>
+                                </select><small class="error-address"></small>
+                            </div>
 
-            <div class="my-l-12 my-m-12 my-c-12 col-temp-price col-infor-customer">
-                <div class="my-row a-product" style="margin-top: 30px;">
-                    <div class="my-l-3 my-m-3 my-c-3">
+                        </div>
+                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
+                            <div class="form-group">
+                                <select class="input-chung" id="calc_shipping_district" name="calc_shipping_district"
+                                        required="">
+                                    <option value="">Quận / Huyện</option>
+                                </select>
+                                <small style="margin-left: -71px" class="error-address"></small>
+
+                            </div>
+                        </div>
+                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
+                            <div class="form-group">
+                                <input class="input-chung" type="text" id="calc_shipping_ward" name="calc_shipping_ward"
+                                       placeholder="Xã"><br>
+                                <small style="margin-left: -61px" class="error-address"></small>
+
+                            </div>
+                        </div>
+                        <div class="my-col my-l-6 my-m-6 my-c-12 col-input-form">
+                            <div class="form-group">
+                                <input id="calc_shipping_detail_address" class="input-chung" type="text"
+                                       name="calc_shipping_detail_address"
+                                       placeholder="Số nhà, tên đường"><br>
+                                <small style="margin-left: -90px" class="error-address"></small>
+
+
+                            </div>
+                        </div>
                     </div>
-                    <div class="my-l-6 my-m-6 my-c-6">
-                    </div>
-                    <div class="my-l-3 my-m-3 my-c-3">
-                        <h3 style="text-align: right"></h3>
-                    </div>
+
                 </div>
-            </div>
-            <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 20px;">
-                <button class="button-order">ĐẶT HÀNG</button>
+
+
+                <div style="display:${btnOrder}" class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 20px;">
+                    <button type="submit" class="button-order">ĐẶT HÀNG</button>
+                </div>
             </div>
         </div>
     </div>
+</form>
+<div id="popUpOverlay"></div>
+<div id="${successfulOrder}" class="popUpBox">
+    <div id="box">
+        <i class="far fa-check-circle fa-3x" style="color: lime"></i>
+        <p>ASTORE chân thành cảm ơn bạn!</p>
+        <p style="font-size: 15px">Bạn đã đặt hàng thành công.</p>
+        <div id="closeModal">${btnOrderSuccessful}</div>
+    </div>
 </div>
-
 
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
 
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
 <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
+<script charset="UTF-8" src="<%=request.getContextPath()%>/view/client/assets/js/validateInformation.js"></script>
 <script>
     function removeCart() {
         var quantity = document.getElementById("quantityNumber").value;
@@ -293,6 +358,12 @@
         } else {
             document.getElementById("btnRemoveCart").style.pointerEvents = "none";
         }
+    }
+
+    function okOrder() {
+        document.querySelector(".popUpBox").style.display = "none";
+        document.getElementById("popUpOverlay").style.display = "none";
+        window.location.href = "<%=request.getContextPath()%>/#";
     }
 
 </script>
@@ -323,7 +394,7 @@
             stc = ''
         c.forEach(function (i, e) {
             e += +1
-            stc += '<option value=' + e + '>' + i + '</option>'
+            stc += '<option value="' + i + '">' + i + '</option>'
             $this.html('<option value="">Tỉnh / Thành phố</option>' + stc)
             if (address_1 = localStorage.getItem('address_1_saved')) {
                 $('select[name="calc_shipping_provinces"] option').each(function () {

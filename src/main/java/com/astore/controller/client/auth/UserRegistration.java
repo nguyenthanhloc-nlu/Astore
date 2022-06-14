@@ -60,7 +60,7 @@ public class UserRegistration extends HttpServlet {
                     " </div>";
             request.setAttribute("errorRegistration", errorRegistration);
             request.setAttribute("classRightRegister", "right-panel-active");
-            request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
+            request.getRequestDispatcher("signIn").forward(request, response);
         } else {
             UserServices.getInstance().insertUser(new User(0, userName, fullName, emailRegister, gender, birthday.trim(), phoneRegister, address, avatar, HashPassword.getInstance().hashPassword(pwd), null));
             String subjectMail = "Ma Xac Thuc";
