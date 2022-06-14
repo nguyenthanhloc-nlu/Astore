@@ -18,20 +18,25 @@ public class ForgotPassword extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        doPost(request, response);
         Store store = StoreServices.getInstance().getById(1);
         String storeName = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
         request.setAttribute("nameStore",storeName);
+        doPost(request,response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Store store = StoreServices.getInstance().getById(1);
+        String storeName = store.getName();
+        String linkLogo = store.getLinkLogo();
+        request.setAttribute("linkLogoStore", linkLogo);
+        request.setAttribute("nameStore",storeName);
         String emailOrPhone = request.getParameter("email-phone-rs");
         String userMail = "19130137@st.hcmuaf.edu.vn";
         String nameFrom = "ASTORE";
-        String passUserMail = "bchcvacxfovunoil";
+        String passUserMail = SendMail.pwdMail;
         System.out.println(emailOrPhone);
         HttpSession ss = request.getSession();
         if (UserServices.getInstance().checkUserExist(emailOrPhone)) {
@@ -45,13 +50,13 @@ public class ForgotPassword extends HttpServlet {
                 ss.setAttribute("OTPForgotPWD", codeOTP);
                 Session ssSendMail = SendMail.getInstance().loginMail(userMail, passUserMail);
                 SendMail.getInstance().sendMailTo(ssSendMail, userMail, nameFrom, emailOrPhone, subjectMail, messSendMail);
-                response.sendRedirect("view/client/sign_user/verificationCode.jsp");
+                response.sendRedirect("verificationCode");
             }
 
         } else {
             request.setAttribute("errorVerificationOTPForgotPWD", "Tài khoản của bạn chưa được đăng ký");
             request.setAttribute("fromMessErrorOTPForgotPWD", "from-mess-error-OTP-forgot-PWD");
-            request.getRequestDispatcher("view/client/sign_user/resetPassword.jsp").forward(request, response);
+            request.getRequestDispatcher("resetPWD").forward(request, response);
         }
     }
 }

@@ -80,7 +80,7 @@
 <div class="container-sign">
     <div class="container-heder">
         <div class="img-logo">
-            <a href="#">
+            <a href="<%=request.getContextPath()%>#">
                 <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="Astore" width="150px"
                 /></a>
         </div>
@@ -209,7 +209,7 @@
                         />
                         <small class="form-message"></small>
                     </div>
-                    <a class="forgot" href="<%=request.getContextPath()%>/view/client/sign_user/resetPassword.jsp">Quên
+                    <a class="forgot" href="<%=request.getContextPath()%>/resetPWD">Quên
                         mật khẩu?</a>
                     <button
                             type="submit"

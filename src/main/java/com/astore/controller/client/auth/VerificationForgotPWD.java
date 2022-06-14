@@ -32,11 +32,11 @@ public class VerificationForgotPWD extends HttpServlet {
         String OTPForgotPWDsesion = ss.getAttribute("OTPForgotPWD").toString();
         System.out.println(OTPForgotPWDInput + " ; " + OTPForgotPWDsesion);
         if (OTPForgotPWDInput.equals(OTPForgotPWDsesion)) {
-            response.sendRedirect("view/client/sign_user/setpwd.jsp");
+            response.sendRedirect("setPWD");
         } else {
             request.setAttribute("fromMessErrorOTPForgotPWD", "from-mess-error-otp");
             request.setAttribute("errorVerificationOTPForgotPWD", "Mã xác thực không đúng. vui lòng nhập lại");
-            request.getRequestDispatcher("/view/client/sign_user/verificationCode.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/client/sign_user/verificationCode").forward(request, response);
             System.out.println("errorVerificationOTP");
         }
     }

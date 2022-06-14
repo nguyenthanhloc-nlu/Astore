@@ -33,7 +33,7 @@ public class SetForgotPWD extends HttpServlet {
         UserServices.getInstance().updateForgotPwd(userForgot, pwdForgot);
         request.setAttribute("setPWDForgotSuccess", "set-PWD-forgot-success");
         request.setAttribute("loginSuccessForgotPwd", "<button onclick=\"signInNowForgotPWD()\">Đăng nhập ngay</button>");
-        request.getRequestDispatcher("view/client/sign_user/setpwd.jsp").forward(request, response);
+        request.getRequestDispatcher("setPWD").forward(request, response);
 
     }
 }

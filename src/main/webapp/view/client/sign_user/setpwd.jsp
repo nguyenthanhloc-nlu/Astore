@@ -34,7 +34,7 @@
 <div class="container-sign">
     <div class="container-heder">
         <div class="img-logo">
-            <a href="#">
+            <a href="<%=request.getContextPath()%>#">
                 <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="Astore" width="150px"
                 /></a>
         </div>
@@ -48,8 +48,10 @@
     <div class="container-section">
         <div class="container-reset">
             <div class="heder-reset" id="heder-set">
-                <div class="back-reset" id="back-set" onclick="history.back()">
-                    <i class="fas fa-chevron-left fa-2x"></i>
+                <div class="back-reset" id="back-set">
+                    <a href="<%=request.getContextPath()%>/verificationCode">
+                        <i class="fas fa-chevron-left fa-2x"></i>
+                    </a>
                 </div>
                 <div class="text-reset">
                     <p id="text-rs">Thiết Lập Mật Khẩu</p>
@@ -69,8 +71,7 @@
                         <small class="form-message"></small>
                     </div>
                     <p class="text-condition-set" style="margin: 5px; margin-left:-46px">
-                        Mật khẩu phải có độ dài từ 8-16 ký tự (bao gồm ít nhất 1 ký tự
-                        <br/>viết hoa và 1 ký tự viết thường).
+                        Mật khẩu phải có độ dài từ 6-16 ký tự.
                     </p>
                     <button type="submit" class="btn-form-sign" id="agree-set" disabled>ĐỒNG Ý</button>
                 </form>

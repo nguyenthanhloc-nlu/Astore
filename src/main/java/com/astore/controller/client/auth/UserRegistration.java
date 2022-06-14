@@ -76,7 +76,7 @@ public class UserRegistration extends HttpServlet {
             if (CheckEmail.getInstance().checkEmail(emailOrPhone)) {
 
             }
-            response.sendRedirect("view/client/sign_user/verificationCreate.jsp");
+            response.sendRedirect("verificationCreate");
         }
     }
 }

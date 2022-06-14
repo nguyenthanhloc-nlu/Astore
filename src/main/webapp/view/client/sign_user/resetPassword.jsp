@@ -26,7 +26,7 @@
     <div class="container-sign">
       <div class="container-heder">
         <div class="img-logo">
-          <a href="#">
+          <a href="<%=request.getContextPath()%>#">
             <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="Astore" width="150px"
           /></a>
         </div>
@@ -41,8 +41,10 @@
       <div class="container-section">
         <div class="container-reset" id="pwd-rs-containter">
           <div class="heder-reset" id="heder-rs">
-            <div class="back-reset" id="back-rs" onclick="history.back()">
+            <div class="back-reset" id="back-rs" >
+              <a href="<%=request.getContextPath()%>/signIn">
               <i class="fas fa-chevron-left fa-2x"></i>
+              </a>
             </div>
             <div class="text-reset">
               <p id="text-rs">Đặt Lại Mật Khẩu</p>

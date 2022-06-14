@@ -48,7 +48,7 @@ public class SendMailForgotPWD extends HttpServlet {
         if (CheckEmail.getInstance().checkNumberPhone(emailOrPhone)) {
 
         }
-        request.getRequestDispatcher("/view/client/sign_user/verificationCode.jsp").forward(request, response);
+        request.getRequestDispatcher("verificationCode").forward(request, response);
     }
 }
 
