@@ -28,4 +28,9 @@ public class HashPassword {
             return  null;
         }
     }
+
+    public static void main(String[] args) {
+       String s =  HashPassword.getInstance().hashPassword("123456");
+        System.out.println(s);
+    }
 }

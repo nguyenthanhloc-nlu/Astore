@@ -41,7 +41,7 @@ public class Iphone extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         ProductServices ps = new ProductServices();
         List<Product> iphone = ps.getProductByIdCate(1, 0, 30);
-        System.out.println(iphone.toString());
+//        System.out.println(iphone.toString());
         System.out.println("iphone.size(): " + iphone.size());
         System.out.println("total page "+ " "+totalPages);
         request.setAttribute("iphone", iphone);

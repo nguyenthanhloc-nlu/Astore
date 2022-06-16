@@ -139,8 +139,6 @@ public class ProductDao implements IProductDao {
                 rs.close();
                 return product;
             }
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -157,8 +155,6 @@ public class ProductDao implements IProductDao {
         String sql = "SELECT SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "join DONG_SAN_PHAM on DONG_SAN_PHAM.id = SAN_PHAM.id_dong_san_pham " +
                 "order by SAN_PHAM.thoi_gian_tao desc ";
-
-
         try {
 
             PreparedStatement ps = conn.prepareStatement(sql);
@@ -176,7 +172,6 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -272,7 +267,6 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -308,7 +302,6 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -403,7 +396,6 @@ public class ProductDao implements IProductDao {
             }
             rs.close();
             ps.close();
-            conn.close();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -435,7 +427,6 @@ public class ProductDao implements IProductDao {
             }
             rs.close();
             ps.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -458,7 +449,6 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -573,7 +563,6 @@ public class ProductDao implements IProductDao {
 
             ps.close();
             rs.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -615,7 +604,6 @@ public class ProductDao implements IProductDao {
             }
             ps.close();
             rs.close();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -668,8 +656,6 @@ public class ProductDao implements IProductDao {
             }
             rs.close();
             ps.close();
-            conn.close();
-
         }catch (SQLException e){
             return null;
         }
@@ -689,8 +675,6 @@ public class ProductDao implements IProductDao {
             }
             rs.close();
             ps.close();
-            conn.close();
-
         }catch (SQLException e){
             return null;
         }
@@ -716,7 +700,6 @@ public class ProductDao implements IProductDao {
             }
             rs.close();
             ps.close();
-            conn.close();
         }catch (SQLException e){
             e.printStackTrace();
         }
