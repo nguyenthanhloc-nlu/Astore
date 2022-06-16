@@ -2,6 +2,7 @@ package com.astore.controller.admin.auth;
 
 import com.astore.model.User;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.HashPassword;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -25,13 +26,13 @@ public class LoginController extends HttpServlet {
 
         String username = request.getParameter("admin-username") != null ? request.getParameter("admin-username") : "";
         String password = request.getParameter("admin-password") != null ? request.getParameter("admin-password") : "";
-
-        User user = UserServices.getInstance().loginAdmin(username, password);
-        System.out.println(user);
-
+        String passHash = HashPassword.getInstance().hashPassword(password);
+        User user = UserServices.getInstance().loginAdmin(username, passHash);
         if (user != null) {
-            if (user.getUserName().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(password)) {
+
+            if (user.getUserName().equalsIgnoreCase(username) && user.getPassword().equalsIgnoreCase(passHash)) {
                 HttpSession session = request.getSession();
+
 
                 session.setAttribute("admin", user);
 
