@@ -653,15 +653,17 @@ public class ProductDao implements IProductDao {
         List<Product> listProduct = new ArrayList<>();
         try{
             Connection conn = ConnectDB.getInstance();
-            String sql = "SELECT SAN_PHAM.*,MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham\n" +
-                    "FROM CHI_TIET_HOA_DON join SAN_PHAM on SAN_PHAM.id=CHI_TIET_HOA_DON.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id\n" +
-                    "                where CHI_TIET_HOA_DON.id_hoa_don=?";
+            String sql = "SELECT SAN_PHAM.*,MAU_SAC.ten_mau_sac, MAU_SAC.ma_mau_sac_hex, DONG_SAN_PHAM.ten_dong_san_pham, h.link_hinh_san_pham\n" +
+                    "FROM CHI_TIET_HOA_DON join SAN_PHAM on SAN_PHAM.id=CHI_TIET_HOA_DON.id_san_pham join MAU_SAC on MAU_SAC.id = SAN_PHAM.id_mau_sac join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id join HINH_SANPHAM h on h.id_san_pham= SAN_PHAM.id\n" +
+                    "     where CHI_TIET_HOA_DON.id_hoa_don=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, idOrder);
             ResultSet rs =ps.executeQuery();
             while (rs.next()){
                 Product product = new Product();
                 setValueProduct(product, rs);
+                product.setListPhotoUrl(getLinkPhotoProduct(conn,product.getId()));
+
                 listProduct.add(product);
             }
             rs.close();

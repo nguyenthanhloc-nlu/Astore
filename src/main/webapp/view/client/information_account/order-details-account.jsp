@@ -160,7 +160,7 @@
                           <div class="l-2 m-12 c-12">
                             <div class="mr-2 mb-3 mb-lg-0">
                               <img
-                                src="#"
+                                src="<%=request.getContextPath()%>/${p.listPhotoUrl.get(0)}"
                                 width="150"
                                 height="150"
                                 alt="apple"
