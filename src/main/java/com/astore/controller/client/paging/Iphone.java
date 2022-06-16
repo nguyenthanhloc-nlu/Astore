@@ -24,14 +24,10 @@ public class Iphone extends HttpServlet {
         request.setAttribute("nameStore",storeName);
 
         List<Slide> sliderList = SlideServices.getInstance().getByName("home");
-
         request.setAttribute("listSliderDesktop", sliderList);
-
-
-
         List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
-
         request.setAttribute("listSliderMobile", sliderMobile);
+
         int countProduct = ProductServices.getInstance().countProductByCategoryId(1);
         int totalPages = 0;
         if(countProduct % 30 > 0){
@@ -39,8 +35,7 @@ public class Iphone extends HttpServlet {
         }else
             totalPages = countProduct / 30;
         request.setAttribute("totalPages", totalPages);
-        ProductServices ps = new ProductServices();
-        List<Product> iphone = ps.getProductByIdCate(1, 0, 30);
+        List<Product> iphone = ProductServices.getInstance().getProductByIdCate(1, 0, 30);
 //        System.out.println(iphone.toString());
         System.out.println("iphone.size(): " + iphone.size());
         System.out.println("total page "+ " "+totalPages);

@@ -43,7 +43,7 @@ public class Mac extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         ProductServices ps = new ProductServices();
         List<Product> mac = ps.getProductByIdCate(2, 0, 30);
-        System.out.println(mac.toString());
+//        System.out.println(mac.toString());
         System.out.println("mac.size(): " + mac.size());
         request.setAttribute("mac", mac);
 

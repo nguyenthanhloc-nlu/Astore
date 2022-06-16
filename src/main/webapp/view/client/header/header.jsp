@@ -24,7 +24,7 @@
             <div class="my-col my-l-12 my-m-12 my-c-0">
                 <div class="my-row">
                     <div class="my-col my-l-2 my-m-3 my-c-0">
-                        <a href="<%=request.getContextPath()%>#"> <img
+                        <a href="<%=request.getContextPath()%>/"> <img
                                 src="<%=request.getContextPath()%>${linkLogoStore}"
                                 alt="logo" width="150px"
                                 style="text-align: start;"></a>

@@ -42,7 +42,7 @@ public class Watch extends HttpServlet {
         request.setAttribute("totalPages", totalPages);
         ProductServices ps = new ProductServices();
         List<Product> watch = ps.getProductByIdCate(4, 0, 30);
-        System.out.println(watch.toString());
+//        System.out.println(watch.toString());
         System.out.println("watch.size(): " + watch.size());
         request.setAttribute("watch", watch);
 

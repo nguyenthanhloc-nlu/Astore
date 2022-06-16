@@ -134,9 +134,9 @@ public class SlideDao implements ISlideDao {
 
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-
+            Slide slide = null;
             while (rs.next()) {
-                Slide slide = new Slide();
+                slide = new Slide();
                 setValue(rs, slide);
                 result.add(slide);
             }

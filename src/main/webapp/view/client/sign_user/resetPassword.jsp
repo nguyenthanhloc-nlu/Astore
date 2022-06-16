@@ -26,7 +26,7 @@
     <div class="container-sign">
       <div class="container-heder">
         <div class="img-logo">
-          <a href="<%=request.getContextPath()%>#">
+          <a href="<%=request.getContextPath()%>/">
             <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="Astore" width="150px"
           /></a>
         </div>

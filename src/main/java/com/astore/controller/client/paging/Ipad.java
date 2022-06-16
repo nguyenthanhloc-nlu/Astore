@@ -35,7 +35,7 @@ public class Ipad extends HttpServlet {
 
         ProductServices ps = new ProductServices();
         List<Product> ipad = ps.getProductByIdCate(3, 0, 30);
-        System.out.println(ipad.toString());
+//        System.out.println(ipad.toString());
         System.out.println("ipad.size(): " + ipad.size());
         request.setAttribute("ipad", ipad);
 
