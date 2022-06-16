@@ -53,7 +53,6 @@ public class InformationOrder extends HttpServlet {
         String idHd = request.getParameter("idHD");
         List<Product> lProOrder = ProductServices.getInstance().getListProductOrder(Integer.valueOf(idHd));
         Map<Integer,Integer> quantilyProduct = ProductServices.getInstance().quantilyProductOrder(Integer.valueOf(idHd));
-System.out.println(lProOrder.get(0).getListPhotoUrl().get(0));
      String sumOrder = request.getParameter("moneyOrder");
        if (lProOrder.size()==0){
            System.out.println("không có sản phẩm");
