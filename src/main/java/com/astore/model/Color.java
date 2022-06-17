@@ -47,4 +47,14 @@ public class Color {
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "Color{" +
+                "id=" + id +
+                ", codeHex='" + codeHex + '\'' +
+                ", name='" + name + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
+    }
 }

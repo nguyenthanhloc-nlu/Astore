@@ -320,17 +320,19 @@ public class ProductDao implements IProductDao {
         Connection conn = ConnectDB.getInstance();
         String sql = "SELECT  SAN_PHAM.*, DONG_SAN_PHAM.ten_dong_san_pham " +
                 "FROM SAN_PHAM join DONG_SAN_PHAM on SAN_PHAM.id_dong_san_pham = DONG_SAN_PHAM.id " +
-                "where DONG_SAN_PHAM.id =" + idDongSp;
+                "where DONG_SAN_PHAM.id = ?";
 
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1,idDongSp);
             ResultSet rs = ps.executeQuery();
             Product product = null;
             while (rs.next()) {
                 product = new Product();
                 setValueProduct(product, rs);
                 Color color = getColor(conn, product.getId());
+                System.out.println(color);
 
                 product.setColorId(color.getId());
                 product.setColorName(color.getName());
@@ -544,8 +546,8 @@ public class ProductDao implements IProductDao {
                 color.setCodeHex(rs.getString("ma_mau_sac_hex"));
                 color.setId(rs.getInt("id_mau_sac"));
             }
-            ps.close();
-            rs.close();
+//            ps.close();
+//            rs.close();
 
         }catch (SQLException e){
 

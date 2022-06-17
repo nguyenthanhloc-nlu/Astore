@@ -13,6 +13,20 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<style>
+    .active-rom {
+        background-color: cornflowerblue!important;
+    }
+    .my-color{
+        border-color: white;
+        border-width: 1px;
+        border-style: solid;
+    }
+    .active-color{
+        border-color: white;
+        border-width: 7px!important;
+    }
+</style>
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
 
@@ -67,7 +81,7 @@
                                 <c:if test="${r.id == product.id && r.rom == product.rom}">
                                     <div class=" my-col my-l-2 my-m-2 my-c-2 mr-bt" style="width: 100%;">
                                         <a href="product?id=${r.id}" class="active-rom">
-                                            <button type="button" style="width: 100%;">  ${r.rom}GB</button>
+                                            <button class="active-rom" type="button" style="width: 100%;">  ${r.rom}GB</button>
                                         </a>
                                     </div>
                                 </c:if>
@@ -87,30 +101,52 @@
                             Màu sắc
                         </h4>
                     </div>
-                    <div class=" my-col my-l-12 my-m-12 my-c-12">
+                    <div class="my-col my-l-12 my-m-12 my-c-12">\
                         <div class="my-row">
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                <button type="button"
-                                        style="width:45px; height:45px; border-radius:50%; background-color:  #54524f;">
-                                </button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                <button type="button"
-                                        style="width:45px; height:45px;  border-radius:50%; background-color: #a7c1d9;">
-                                </button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                <button type="button"
-                                        style="width:45px; height:45px;  border-radius:50%; background-color: #f1f2ed;">
-                                </button>
-                            </div>
-                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                <button type="button"
-                                        style="width:45px; height:45px;   border-radius:50%; background-color: #fae7cf;">
-                                </button>
-                            </div>
+                            <c:forEach items="${color}" var="c">
+
+
+                                <c:if test="${c.id == product.id && c.colorId == product.colorId}">
+                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
+                                        <button id="${c.id}" class="my-color active-color"type="button" onclick="changeColor('${c.id}')"
+                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}" >
+                                        </button>
+                                    </div>
+                                </c:if>
+                                <c:if test="${c.id != product.id || c.colorId != product.colorId}">
+                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
+                                        <button id="${c.id}" class="my-color"type="button" onclick="changeColor('${c.id}')"
+                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}" >
+                                        </button>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
                         </div>
                     </div>
+                    <%--                    <div class=" my-col my-l-12 my-m-12 my-c-12">--%>
+                    <%--                        <div class="my-row">--%>
+                    <%--                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">--%>
+                    <%--                                <button type="button"--%>
+                    <%--                                        style="width:45px; height:45px; border-radius:50%; background-color:  #54524f;">--%>
+                    <%--                                </button>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">--%>
+                    <%--                                <button type="button"--%>
+                    <%--                                        style="width:45px; height:45px;  border-radius:50%; background-color: #a7c1d9;">--%>
+                    <%--                                </button>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">--%>
+                    <%--                                <button type="button"--%>
+                    <%--                                        style="width:45px; height:45px;  border-radius:50%; background-color: #f1f2ed;">--%>
+                    <%--                                </button>--%>
+                    <%--                            </div>--%>
+                    <%--                            <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">--%>
+                    <%--                                <button type="button"--%>
+                    <%--                                        style="width:45px; height:45px;   border-radius:50%; background-color: #fae7cf;">--%>
+                    <%--                                </button>--%>
+                    <%--                            </div>--%>
+                    <%--                        </div>--%>
+                    <%--                    </div>--%>
 
                     <div class=" my-col my-l-12 my-m-12 my-c-12" style="text-align: left !important;">
                         <div class="my-row my-infor-promotion">
@@ -135,7 +171,7 @@
                     <div class=" my-col my-l-12 my-m-12 my-c-12">
                         <div class="my-row">
                             <div class=" my-col my-l-12 my-m-12 my-c-12 color-bt">
-                                <a href="<%=request.getContextPath()%>/addCart?idSP=${product.id}">
+                                <a id="buy" href="<%=request.getContextPath()%>/addCart?idSP=${product.id}">
                                     <button type="button"
                                             style="margin-top: 20px;
                                         width:100%; height:60px; border-radius:10px; background-color:  #0071e3; color: white; font-size: 23px; font-weight: bold;">
@@ -252,7 +288,18 @@
     <script src="<%=request.getContextPath()%>/view/client/assets/js/account.js"></script>
 
     <script>
+        function changeColor(id) {
+            const colorChose = document.getElementById(id);
+            const buy = document.getElementById('buy');
+            buy.setAttribute("href", "addCart?idSP=" + id);
 
+            const color = document.getElementsByClassName("my-color");
+            for (const c of color) {
+                c.setAttribute("class", "my-color");
+            }
+
+            colorChose.setAttribute("class", "my-color active-color");
+        }
 
         var ProductImg = document.getElementById("ProductImg");
         var SmallImg = document.getElementsByClassName("small-img");

@@ -64,28 +64,29 @@ public class ProductDetail extends HttpServlet {
                 response.setStatus(404);
                 response.sendError(404);
             } else {
-                System.out.println(product);
-                List<Product> subProduct = p.getProductByIdDongSp(product.getSubCategoryId());
 
+                List<Product> subProduct = p.getProductByIdDongSp(product.getSubCategoryId());
+                System.out.println(product);
                 // lấy ds bộ nhớ thông qua idDongSP
                 List<Product> rom = filterByRom(subProduct, product);
 
                 // lấy ds màu sắc thông qua idDongSP
                 List<Product> color = filterByColor(subProduct, product);
 
-                System.out.println("Color: " + color);
+//                System.out.println("Color: " + color);
 
                 // lấy sản phẩm liên quan
-                List<Product> productRelative = p.getProductByIdCate(CategoryServices.getInstance().getByProductId(product.getId()).getId(), 4);
+//                List<Product> productRelative = p.getProductByIdCate(CategoryServices.getInstance().getByProductId(product.getId()).getId(), 4);
 
 
                 request.setAttribute("product", product);
-                request.setAttribute("productRelative", productRelative);
+//                request.setAttribute("productRelative", productRelative);
                 request.setAttribute("rom", rom);
                 request.setAttribute("color", color);
                 request.getRequestDispatcher("view/client/product-details/product-details.jsp").forward(request, response);
             }
         }catch (Exception e){
+            System.err.println(e);
             response.setStatus(404);
             response.sendError(404);
         }

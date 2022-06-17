@@ -12,7 +12,7 @@ public class Page404 extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         response.setContentType("text/html");
-        request.getRequestDispatcher("/view/client/page404.jsp").forward(request,response);
+        request.getRequestDispatcher("view/client/page404.jsp").forward(request,response);
     }
 
     @Override
