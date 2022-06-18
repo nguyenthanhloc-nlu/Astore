@@ -33,4 +33,6 @@ public interface IUserServices{
 
     User getInformationUser(String userName);//lấy ra thông tin người dùng
 
+    boolean updateAvatarCustomer(int id, String urlAvt);
+
 }

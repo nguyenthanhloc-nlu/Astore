@@ -36,36 +36,34 @@ public class InformationAccount extends HttpServlet {
 
             request.setAttribute("quantityCart", cartData.size());
 
-        } else {
+//            String userNameAccountLogin = ss.getAttribute("userNameAccountLogin").toString();
+            User userLogin = UserServices.getInstance().getInformationUser(userNameAccountLogin);
+            request.setAttribute("id",userLogin.getId());
+            request.setAttribute("imgAccount",userLogin.getAvatar());
+            request.setAttribute("fullNameAccount",userLogin.getName());
+            request.setAttribute("birthdayAccount", Format.getInstance().formatDate(userLogin.getBirthday()));
+            request.setAttribute("phoneAccount",userLogin.getPhone());
+            request.setAttribute("rankAccount", InformationAccountServices.getInstance().rankUser(userLogin.getId()));
+            request.setAttribute("quantilyOrderAccount",InformationAccountServices.getInstance().countOrderUser(userLogin.getId())+" đơn hàng");
+            request.setAttribute("levelRankAccount",InformationAccountServices.getInstance().rankUser(userLogin.getId()));
+            request.setAttribute("giftAccount","chưa có ưu đãi");
+            request.setAttribute("dateEmbarkAccount",Format.getInstance().formatDate(userLogin.getCreatedAt()));
+            request.getRequestDispatcher("view/client/information_account/account.jsp").forward(request,response);
 
+        } else {
             if (ss.getAttribute("listCart") != null) {
                 List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
-
                 request.setAttribute("quantityCart", cartList.size());
-
             } else {
                 request.setAttribute("quantityCart", 0);
-
             }
-
-
+            request.getRequestDispatcher("view/client/sign_user/signIn.jsp").forward(request,response);
         }
-        String userNameAccountLogin = ss.getAttribute("userNameAccountLogin").toString();
-        User userLogin = UserServices.getInstance().getInformationUser(userNameAccountLogin);
-        request.setAttribute("imgAccount",userLogin.getAvatar());
-        request.setAttribute("fullNameAccount",userLogin.getName());
-        request.setAttribute("birthdayAccount", Format.getInstance().formatDate(userLogin.getBirthday()));
-        request.setAttribute("phoneAccount",userLogin.getPhone());
-        request.setAttribute("rankAccount", InformationAccountServices.getInstance().rankUser(userLogin.getId()));
-        request.setAttribute("quantilyOrderAccount",InformationAccountServices.getInstance().countOrderUser(userLogin.getId())+" đơn hàng");
-        request.setAttribute("levelRankAccount",InformationAccountServices.getInstance().rankUser(userLogin.getId()));
-        request.setAttribute("giftAccount","chưa có ưu đãi");
-        request.setAttribute("dateEmbarkAccount",Format.getInstance().formatDate(userLogin.getCreatedAt()));
-        request.getRequestDispatcher("view/client/information_account/account.jsp").forward(request,response);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-doGet(request,response);
+//doGet(request,response);
     }
 }

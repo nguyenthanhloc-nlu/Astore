@@ -397,6 +397,23 @@ public class UserDao implements IUserDao {
         return user;
     }
 
+    @Override
+    public boolean updateAvatarCustomer(int id, String urlAvt) {
+        try {
+            Connection conn = ConnectDB.getInstance();
+            // id, fullname, email, gioitinh,  ngaysinh,  sdt, diachi, avt, password
+            String sql = "update NGUOI_DUNG SET duong_dan_avatar = ? where id = ?";
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, urlAvt);
+            ps.setInt(2,id);
+            int row = ps.executeUpdate();
+            return row != 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public static void main(String[] args) {
         UserDao u = new UserDao();

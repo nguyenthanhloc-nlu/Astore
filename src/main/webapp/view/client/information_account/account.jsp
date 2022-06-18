@@ -138,10 +138,14 @@
                         </div>
                         <div class="block-smember-info account">
                             <div class="block-smember-info__avatar">
-                                <img
-                                        src="${imgAccount}"
-                                        alt="avatar"
-                                />
+                                <button style="border: gray solid 0px;position: relative; background-color: transparent">
+                                    <img id="avatar" src="${imgAccount}" alt="avatar" style="height: 90px; width: 90px;  object-fit: cover;"/>
+                                    <input style="opacity: 0;width: 60px;position: absolute;left: 0px;height: 60px;" type="file"
+                                           id="avatar-chose" name="avatar"
+                                           accept="image/png, image/jpeg">
+                                    <input hidden type="text" id="id" value="${id}"/>
+
+                                </button>
                             </div>
                             <div class="block-smember-info__box-title">
                                 <span>Xin chào!</span>
@@ -230,6 +234,10 @@
 </div>
 <!-- javascript -->
 <script>  function signOut() {
+    const element = document.getElementById("myBtn");
+    element.addEventListener("click", function() {
+        alert("ok")
+    });
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut()
         .then(function () {
@@ -239,6 +247,91 @@
         });
 
 }</script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+    import { getStorage, ref, uploadString , uploadBytes, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyBFW0A9DRfzSEkJEJoz-xZtmROoWWXguBM",
+        authDomain: "astore-22bfb.firebaseapp.com",
+        projectId: "astore-22bfb",
+        storageBucket: "astore-22bfb.appspot.com",
+        messagingSenderId: "546166628108",
+        appId: "1:546166628108:web:79e3fe210f06cc15c93329",
+        measurementId: "G-C5VKPQKBC2"
+    };
+
+    // Initialize Firebase
+    var app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    console.log(app);
+
+    const storage = getStorage(app,"astore-22bfb.appspot.com");
+    // const storageRef = ref(storage, 'ok2.jpg');
+    var file;
+    const fileInput = document.getElementById("avatar-chose")
+    const id = document.getElementById("id").value
+    fileInput.addEventListener("change",function(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        // FileList object.
+        var files = evt.target.files;
+
+        file = files[0];
+
+        const storage = getStorage(app,"astore-22bfb.appspot.com");
+        const storageRef = ref(storage, 'avatar/'+id);
+        const uploadTask = uploadBytesResumable(storageRef, file);
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // Observe state change eventsFber of bytes uploaded and the total number of bytes to be uploaded
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case 'paused':
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':
+                        console.log('Upload is running');
+                        break;
+                }
+            },
+            (error) => {
+                // Handle unsuccessful uploads
+            },
+            () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    console.log('File available at', downloadURL);
+
+                    $.ajax({
+                        url: "UpdateAvatarCustomer",
+                        type: 'POST',
+                        data: {
+                            urlAvt: downloadURL,
+                            id:id
+                        },
+                        success: function (responseJson) {
+                            console.log(responseJson)
+                            if(responseJson)
+                            <%--<img id="avatar" src="${imgAccount}" alt="avatar" />--%>
+
+                            document.getElementById("avatar").setAttribute("src",responseJson)
+                        }
+                    });
+
+
+
+                });
+            }
+        );
+    })
+
+</script>
 <script src="<%=request.getContextPath()%>/view/client/assets/js/account.js"></script>
 <script src="<%=request.getContextPath()%>/view/client/assets/js/icon_account.js"></script>
 <script src="<%=request.getContextPath()%>/view/client/assets/js/account-information.js"></script>

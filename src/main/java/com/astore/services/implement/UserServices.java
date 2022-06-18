@@ -97,4 +97,9 @@ public class UserServices implements IUserServices {
         return userdao.getInformationUser(userName);
     }
 
+    @Override
+    public boolean updateAvatarCustomer(int id, String urlAvt) {
+        return userdao.updateAvatarCustomer(id, urlAvt);
+    }
+
 }
