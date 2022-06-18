@@ -163,3 +163,37 @@ ul {
 #link-account-2{
     display: none;
 }
+
+
+/* help */
+#help {
+    position: fixed;
+    right: 25px;
+    bottom: 100px;
+    background: #456bd9;
+    clip-path: circle(50%);
+    height: 60px;
+    width: 60px;
+    background-color: #333;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    border-color: black;
+}
+
+#help :hover {
+    background-color: silver;
+}
+#help i {
+    font-size: 45px;
+}
+#help a {
+    display: block;
+    color: white;
+    padding: 0;
+    margin: 0;
+}
+#help a img{
+    height: 60px;
+    width: 60px;
+}

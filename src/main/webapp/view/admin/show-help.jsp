@@ -35,11 +35,11 @@
                             <tbody id="tbody">
                             <%int i = 1;%>
                             <c:forEach items="${listHelp}" var="h">
-                                <tr>
+                                <tr id="${h.id}tr">
                                     <td scope="row"><%=i++%></td>
                                     <td>${h.id}</td>
                                     <td>${h.fullName}</td>
-                                    <td>${h.email}</td>
+                                    <td>${h.contact}</td>
                                     <td>${h.content}</td>
                                     <td>${h.createAt}</td>
                                     <input type="hidden"
@@ -81,7 +81,7 @@
                         row += '<td scope="row">' + index++ + '</td> ';
                         row += '<td>' + value.id + '</td>';
                         row += '<td>' + value.fullName + '</td>';
-                        row += '<td>' + value.email + '</td>';
+                        row += '<td>' + value.contact + '</td>';
                         row += '<td>'+value.content+'</td>';
                         row += '<td>'+value.createAt+'</td>';
                         row += '<input type="hidden" value="delete-help" id="'+value.id+'" style="display: none" />';

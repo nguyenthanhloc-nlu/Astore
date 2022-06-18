@@ -173,12 +173,7 @@
 <!-- Footer -->
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
 
-<div id="help">
-    <a href="<%=request.getContextPath()%>/view/client/help.jsp"
-    ><img src="<%=request.getContextPath()%>/view/client/view/client/assets/images/help.png"
-          alt="help"
-    /></a>
-</div>
+
 </body>
 <!-- javascript -->
 <script>

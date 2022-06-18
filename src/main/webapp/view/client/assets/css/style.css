@@ -1125,35 +1125,6 @@ form a {
   margin-bottom: 40px;
 }
 
-/* help */
-#help {
-  position: fixed;
-  right: 25px;
-  bottom: 100px;
-  background: #456bd9;
-  clip-path: circle(50%);
-  height: 45px;
-  width: 45px;
-  background-color: #333;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-  border-color: black;
-}
-
-#help :hover {
-  background-color: silver;
-}
-#help i {
-  font-size: 45px;
-}
-#help a {
-  display: block;
-  color: white;
-  padding: 0;
-  margin: 0;
-}
-
 .header__cart-notice {
   position: absolute;
   padding: 2px 4px;

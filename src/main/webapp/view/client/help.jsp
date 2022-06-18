@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASTORE | Chăm sóc khách hàng</title>
-    <link rel="icon" href="assets/images/mac/macbook-pro-16-m1-pro-2021-bac-650x650.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" href="<%=request.getContextPath()%>/view/client/assets/images/mac/macbook-pro-16-m1-pro-2021-bac-650x650.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/view/client/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
     <link
@@ -29,28 +29,31 @@
     <div id="help-inner">
 
 
-        <form>
+        <form action="help" method="post" >
             <p id="message">Bạn vui lòng điền vào các thông tin bên dưới để được tư vấn kĩ hơn</p>
             <br>
+            <p style="color: red; text-align: center">${error}</p>
+            <p style="color: green; text-align: center">${success}</p>
+            <p style="color: red; text-align: center" id="validContact"></p>
             <div class="my-form-group">
                 <label for="input-1">Họ tên</label>
-                <input type="text" class="my-form-control" id="input-1" placeholder="Họ tên" name="help-name">
+                <input type="text" class="my-form-control" id="input-1" placeholder="Họ tên" name="help-name" value="${help.fullName}">
             </div>
 
             <div class="my-form-group">
-                <label for="input-2">Email - SĐT</label>
-                <input type="text" class="my-form-control" id="input-2" placeholder="Email - Số điện thoại"
-                       name="help-name">
+                <label for="help-contact">Email - SĐT</label>
+                <input type="text" class="my-form-control" id="help-contact" placeholder="Email - Số điện thoại"
+                       name="help-contact" value="${help.contact}" onchange="onchangeText()" >
             </div>
 
             <div class="my-form-group">
                 <label for="input-3">Nội dung yêu cầu</label>
                 <textarea class="my-form-control" rows="7" id="input-3" name="help-content"
-                          placeholder="Message"></textarea>
+                          placeholder="Message">${help.content}</textarea>
             </div>
 
             <div class="submit">
-                <button type="submit">Gửi</button>
+                <button id="btnSubmit" type="submit" disabled>Gửi</button>
             </div>
         </form>
 
@@ -61,21 +64,31 @@
 
 <!-- Footer -->
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>
-<div id="help">
-    <a href="<%=request.getContextPath()%>/view/client/help.jsp"
-    ><img src="<%=request.getContextPath()%>/view/client/view/client/assets/images/help.png"
-          alt="help"
-    /></a>
-</div>
 
-<!-- scroll to top -->
-<a id="button-scroll" onclick="topFunction()"></a>
+
 
 <!-- javascript -->
 
-<script src="assets/js/format-page.js"></script>
-<script src="assets/js/home.js"></script>
+<script>
+    function onchangeText(e){
+        const text = document.getElementById('help-contact').value
+        const btnSubmit = document.getElementById('btnSubmit')
 
+        const regexEmail =
+            /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const regexPhone = /^\d{8,15}$/;
+
+        if (regexEmail.test(String(text).toLocaleLowerCase())  || regexPhone.test(String(text).toLocaleLowerCase())) {
+            document.getElementById('validContact').innerText = ""
+            btnSubmit.removeAttribute("disabled")
+        }else{
+            document.getElementById('validContact').innerText = "Email hoặc số điện thoại không hợp lệ"
+            btnSubmit.setAttribute("disabled","true")
+         }
+    }
+
+
+</script>
 </body>
 
 </html>

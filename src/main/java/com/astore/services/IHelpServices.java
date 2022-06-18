@@ -13,4 +13,6 @@ public interface IHelpServices {
     List<Help> getListHelp();// danh sách all khách hàng cần hổ trợ
 
     boolean delete(int id);
+
+    boolean insert(Help help);
 }

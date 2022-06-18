@@ -87,6 +87,42 @@
             </div>
         </div>
     </div>
+    <div id="help">
+        <a href="<%=request.getContextPath()%>/help"
+        ><img src="<%=request.getContextPath()%>/view/client/assets/images/help.png"
+              alt="help"
+        /></a>
+    </div>
+
+    <!-- scroll to top -->
+    <button id="btn-scroll" onclick="topFunction()" title="Lên đầu trang"><i class="fas fa-chevron-up"></i></button>
+    <!-- javascript -->
+    <script>
+        var mybutton = document.getElementById("btn-scroll");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction();
+        };
+
+        function scrollFunction() {
+            if (
+                document.body.scrollTop > 400 ||
+                document.documentElement.scrollTop > 400
+            ) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
 </div>
 </body>
 </html>

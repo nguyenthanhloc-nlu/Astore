@@ -20,9 +20,11 @@ public class HelpDao implements IHelpDao {
             String sql = "SELECT * FROM HO_TRO";
             PreparedStatement ps = conn.prepareStatement(sql);
             ResultSet rs =ps.executeQuery();
+            Help help = null;
             while (rs.next()){
-                listHelp.add(new Help(rs.getInt("id"),rs.getString("ho_va_ten"),
-                        rs.getString("email"),rs.getString("sdt"),rs.getString("noi_dung_ho_tro"), rs.getString("thoi_gian_tao")));
+                help = new Help();
+                setValue(help, rs);
+                listHelp.add(help);
             }
 
         }catch (SQLException e){
@@ -94,13 +96,35 @@ public class HelpDao implements IHelpDao {
         }
     }
 
+    @Override
+    public boolean insert(Help help) {
+        if(help != null){
+            Connection conn = ConnectDB.getInstance();
+            String sql = "insert into HO_TRO(ho_va_ten, lien_lac, noi_dung_ho_tro) values (?,?,?)";
+            PreparedStatement ps = null;
+            try {
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, help.getFullName());
+                ps.setString(2, help.getContact());
+                ps.setString(3, help.getContent());
+                int row = ps.executeUpdate();
+                return row == 1;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return  false;
+            }
+        }
+        return false;
+    }
+
 
     public void setValue(Help help, ResultSet rs) {
         try {
             help.setId(rs.getInt("id"));
             help.setFullName(rs.getString("ho_va_ten"));
-            help.setEmail(rs.getString("email"));
-            help.setNumberPhone(rs.getString("sdt"));
+//            help.setEmail(rs.getString("email"));
+//            help.setNumberPhone(rs.getString("sdt"));
+            help.setContact(rs.getString("lien_lac"));
             help.setContent(rs.getString("noi_dung_ho_tro"));
             help.setCreateAt(rs.getString("thoi_gian_tao"));
         }catch (SQLException e){

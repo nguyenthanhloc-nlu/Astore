@@ -13,4 +13,6 @@ public interface IHelpDao {
 
     boolean delete(int id);
 
+    boolean insert(Help help);
+
 }

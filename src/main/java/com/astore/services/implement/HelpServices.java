@@ -40,4 +40,9 @@ public class HelpServices implements IHelpServices {
     public boolean delete(int id) {
         return h.delete(id);
     }
+
+    @Override
+    public boolean insert(Help help) {
+        return h.insert(help);
+    }
 }
