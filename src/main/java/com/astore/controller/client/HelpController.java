@@ -31,7 +31,7 @@ public class HelpController extends HttpServlet {
         request.setAttribute("nameStore",name);
 
         String helpName = request.getParameter("help-name");
-        String helpContact = request.getParameter("help-contact");
+        String helpContact = request.getParameter("help-email");
         String helpContent = request.getParameter("help-content");
 
         Help help = new Help(helpName, helpContent, helpContact);

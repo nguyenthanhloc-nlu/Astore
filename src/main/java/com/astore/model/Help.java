@@ -7,7 +7,6 @@ public class Help {
     private String numberPhone;
     private String content;
     private String createAt;
-    private String contact;
 
     public Help() {
     }
@@ -21,10 +20,10 @@ public class Help {
         this.createAt = createAt;
     }
 
-    public Help(String fullName, String content, String contact) {
+    public Help(String fullName, String content, String email) {
         this.fullName = fullName;
         this.content = content;
-        this.contact = contact;
+        this.email = email;
     }
 
     public int getId() {
@@ -73,14 +72,6 @@ public class Help {
 
     public void setCreateAt(String createAt) {
         this.createAt = createAt;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     @Override

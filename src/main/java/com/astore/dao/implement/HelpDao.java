@@ -100,12 +100,12 @@ public class HelpDao implements IHelpDao {
     public boolean insert(Help help) {
         if(help != null){
             Connection conn = ConnectDB.getInstance();
-            String sql = "insert into HO_TRO(ho_va_ten, lien_lac, noi_dung_ho_tro) values (?,?,?)";
+            String sql = "insert into HO_TRO(ho_va_ten, email, noi_dung_ho_tro) values (?,?,?)";
             PreparedStatement ps = null;
             try {
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, help.getFullName());
-                ps.setString(2, help.getContact());
+                ps.setString(2, help.getEmail());
                 ps.setString(3, help.getContent());
                 int row = ps.executeUpdate();
                 return row == 1;
@@ -122,9 +122,8 @@ public class HelpDao implements IHelpDao {
         try {
             help.setId(rs.getInt("id"));
             help.setFullName(rs.getString("ho_va_ten"));
-//            help.setEmail(rs.getString("email"));
+            help.setEmail(rs.getString("email"));
 //            help.setNumberPhone(rs.getString("sdt"));
-            help.setContact(rs.getString("lien_lac"));
             help.setContent(rs.getString("noi_dung_ho_tro"));
             help.setCreateAt(rs.getString("thoi_gian_tao"));
         }catch (SQLException e){

@@ -41,9 +41,9 @@
             </div>
 
             <div class="my-form-group">
-                <label for="help-contact">Email - SĐT</label>
-                <input type="text" class="my-form-control" id="help-contact" placeholder="Email - Số điện thoại"
-                       name="help-contact" value="${help.contact}" onchange="onchangeText()" >
+                <label for="help-email">Email - SĐT</label>
+                <input type="text" class="my-form-control" id="help-email" placeholder="Email"
+                       name="help-email" value="${help.email}" oninput="onchangeText()" >
             </div>
 
             <div class="my-form-group">
@@ -71,18 +71,17 @@
 
 <script>
     function onchangeText(e){
-        const text = document.getElementById('help-contact').value
+        const text = document.getElementById('help-email').value
         const btnSubmit = document.getElementById('btnSubmit')
 
         const regexEmail =
             /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        const regexPhone = /^\d{8,15}$/;
 
-        if (regexEmail.test(String(text).toLocaleLowerCase())  || regexPhone.test(String(text).toLocaleLowerCase())) {
+        if (regexEmail.test(String(text).toLocaleLowerCase())) {
             document.getElementById('validContact').innerText = ""
             btnSubmit.removeAttribute("disabled")
         }else{
-            document.getElementById('validContact').innerText = "Email hoặc số điện thoại không hợp lệ"
+            document.getElementById('validContact').innerText = "Email  không hợp lệ"
             btnSubmit.setAttribute("disabled","true")
          }
     }
