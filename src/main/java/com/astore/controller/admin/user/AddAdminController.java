@@ -26,6 +26,8 @@ public class AddAdminController extends HttpServlet {
 
         String passHash = HashPassword.getInstance().hashPassword(password);
 
+
+
         User user = new User();
         user.setUserName(username);
         user.setName(name);

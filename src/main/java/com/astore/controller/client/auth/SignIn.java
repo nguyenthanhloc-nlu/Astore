@@ -20,7 +20,7 @@ public class SignIn extends HttpServlet {
 
         request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
 
-        doPost(request, response);
+//        doPost(request, response);
     }
 
     @Override
