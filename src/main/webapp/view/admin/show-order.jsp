@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header/header.jsp" flush="true"/>
 <title>Admin | Đơn hàng</title>
 
@@ -42,18 +43,21 @@
                                 <%int i = 1;%>
                                 <c:forEach items="${listOrder}" var="order">
 
-                                <tr>
-                                    <td scope="row"><%=i++%></td>
-                                    <td>${order.id}</td>
-                                    <td>${order.idUser}</td>
-                                    <td>${order.nameUser}</td>
-                                    <td>${order.priceOrder}</td>
-                                    <td>${order.dateAtOrder}</td>
-                                    <td>
-                                        <button class="btn btn-success"><a href="order-detail?idOrder=${order.id}">xem</a>
-                                        </button>
-                                    </td>
-                                </tr>
+                                    <tr id="${order.id}tr">
+                                        <td scope="row"><%=i++%>
+                                        </td>
+                                        <td>${order.id}</td>
+                                        <td>${order.idUser}</td>
+                                        <td>${order.nameUser}</td>
+                                        <td><fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${order.priceOrder}" type="currency"
+                                                              minFractionDigits="2"/></td>
+                                        <td>${order.dateAtOrder}</td>
+                                        <td>
+                                            <button class="btn btn-success"><a href="order-detail?idOrder=${order.id}">xem</a>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 </c:forEach>
                                 </tbody>
                             </table>
@@ -79,17 +83,17 @@
                     let row = '';
                     let index = 1;
                     $.each(responseJson, function (key, value) {
-                        if(value == null || value.id <1) return;
+                        if (value == null || value.id < 1) return;
                         row += '<tr id="' + value.id + 'tr">';
                         row += '<td scope="row">' + index++ + '</td> ';
                         row += '<td>' + value.id + '</td>';
                         row += '<td>' + value.idUser + '</td>';
                         row += '<td>' + value.nameUser + '</td>';
-                        row += '<td>' + value.priceOrder + '</td>';
+                        row += '<td>' + formatter.format(value.priceOrder) + '</td>';
                         row += '<td>' + value.dataAtOrder + '</td>';
 
                         row += ' <td>';
-                        row += '<button class="btn btn-success"><a href="order-detail?idOrder='+value.id+'">Xem</a></button>';
+                        row += '<button class="btn btn-success"><a href="order-detail?idOrder=' + value.id + '">Xem</a></button>';
                         row += '        </td>';
                         row += '  </tr>';
 

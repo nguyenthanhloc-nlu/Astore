@@ -61,13 +61,14 @@ public class Home extends HttpServlet {
 
         request.setAttribute("listSliderDesktop", sliderList);
 
-
+        System.out.println(sliderList.toString());
 
         List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
 
         request.setAttribute("listSliderMobile", sliderMobile);
 
 
+        System.out.println(sliderMobile.toString());
         request.setAttribute("iphone", iphone);
         request.setAttribute("mac", mac);
         request.setAttribute("watch", watch);

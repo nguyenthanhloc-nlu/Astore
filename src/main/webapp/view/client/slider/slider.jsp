@@ -32,20 +32,30 @@
 
         <!-- The slideshow -->
         <div class="carousel-inner">
+            <%int i = 1;%>
             <c:forEach items="${listSliderDesktop}" var="slider">
-                <c:if test="${slider.id==1}">
+
+                <c:if test="${i==1}">
                     <div class="carousel-item active">
+                            <%--                        <c:choose>--%>
+                            <%--                            <c:when test = "${fn:startsWith(image.url, 'http')}">--%>
+                            <%--                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="${image.url}" alt="product image"></td>--%>
+                            <%--                            </c:when>--%>
+                            <%--                            <c:otherwise>--%>
+                            <%--                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/${image.url}" alt="product image"></td>--%>
+                            <%--                            </c:otherwise>--%>
+                            <%--                        </c:choose>--%>
                         <img src="<%=request.getContextPath()%>${slider.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-                <c:if test="${slider.id!=1}">
+                <c:if test="${i!=1}">
                     <div class="carousel-item">
                         <img src="<%=request.getContextPath()%>${slider.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-
+                <%i++;%>
             </c:forEach>
         </div>
 
@@ -69,20 +79,22 @@
 
         <!-- The slideshow -->
         <div class="carousel-inner">
+            <%int y = 1;%>
             <c:forEach items="${listSliderMobile}" var="sliderMobile">
-                <c:if test="${sliderMobile.id==1}">
+
+                <c:if test="${y==1}">
                     <div class="carousel-item active">
                         <img src="<%=request.getContextPath()%>${sliderMobile.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-                <c:if test="${sliderMobile.id!=1}">
+                <c:if test="${y!=1}">
                     <div class="carousel-item">
                         <img src="<%=request.getContextPath()%>${sliderMobile.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-
+                <%y++;%>
             </c:forEach>
 
         </div>

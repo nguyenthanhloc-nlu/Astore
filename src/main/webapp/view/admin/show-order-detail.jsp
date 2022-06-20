@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:include page="header/header.jsp" flush="true"/>
 <title>Admin | Chi tiết đơn hàng</title>
 
@@ -42,13 +43,14 @@
                                 <%int i = 1;%>
                                 <c:forEach items="${listOrderDetail}" var="d">
 
-                                    <tr>
+                                    <tr id="${d.id}tr">
                                         <td scope="row"><%=i++%>
                                         </td>
                                         <td>${d.idOrder}</td>
                                         <td>${d.idProduct}</td>
                                         <td>${d.nameProduct}</td>
-                                        <td>${d.priceProduct}</td>
+                                        <td><fmt:setLocale value="vi_VN"/>
+                                            <fmt:formatNumber value="${d.priceProduct}" type="currency"  minFractionDigits="2"/></td>
                                         <td>${d.count}</td>
                                         <td>
                                             <button class="btn btn-success"><a
@@ -87,7 +89,7 @@
                         row += '<td>' + value.idOrder + '</td>';
                         row += '<td>' + value.idProduct + '</td>';
                         row += '<td>' + value.nameProduct + '</td>';
-                        row += '<td>' + value.priceProduct + '</td>';
+                        row += '<td>'+formatter.format(value.priceProduct)+'</td>';
                         row += '<td>' + value.count + '</td>';
 
                         row += ' <td>';

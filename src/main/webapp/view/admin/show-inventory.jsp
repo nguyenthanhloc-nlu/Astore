@@ -34,7 +34,7 @@
                              <tbody id="tbody">
                              <%int i = 1;%>
                             <c:forEach items="${listInventory}" var="in">
-                                <tr>
+                                <tr id="${in.id}tr">
                                     <td scope="row"><%=i++%></td>
                                     <td>${in.idSP}</td>
                                     <td>${in.nameSP}</td>
