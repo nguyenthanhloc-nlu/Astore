@@ -148,86 +148,86 @@
         border-radius: 10px;
     }
 
-    </style>
+</style>
 
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
+<form method="post" action="orderAddress" onsubmit="${onSubmitOrder}" id="order-form">
+    <div class="cart-payment cart-payment-1">
+        <div class="my-container" style="background: transparent; max-width: 690px;">
+            <div class="my-row row-cart-payment row-cart-payment-1">
+                <div class="my-l-12 my-m-12 my-c-12 col-infor-products col-infor-customer">
+                    <div class="not-product" style="font-size: 20px">${notProduct}</div>
+                    <c:forEach items="${listCart}" var="cart">
+                        <div class="my-row a-product" style="margin-bottom: 20px;">
+                            <div class="my-l-2 my-m-2 my-c-2">
+                                <div class="my-row">
+                                    <img src="<%=request.getContextPath()%>/${cart.linkImgProduct}"
+                                         alt="" style="max-width: 100%;">
+                                </div>
+                                <div class="my-row">
+                                    <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 10px;">
+                                        <button type="button" class="btn-del" style="border: 1px solid black;">
+                                            <a style="text-decoration: none;color: #0a1219"
+                                               href="<%=request.getContextPath()%>/deleteCart?idCart=${cart.id}"><p
+                                                    class="icon-del">xóa</p>
+                                            </a>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="my-l-1 my-m-1 my-c-3">
+                            </div>
+                            <div class="my-l-5 my-m-5 my-c-6" style=" display: flex; ">
+                                <div class="my-row"
+                                     style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
+                                    <div>
+                                        <h4 style="margin-top: 10px;">${cart.nameProduct} </h4>
+                                    </div>
 
-<div class="cart-payment cart-payment-1">
-    <div class="my-container" style="background: transparent; max-width: 690px;">
-        <div class="my-row row-cart-payment row-cart-payment-1">
-            <div class="my-l-12 my-m-12 my-c-12 col-infor-products col-infor-customer">
-                <div class="not-product" style="font-size: 20px">${notProduct}</div>
-                <c:forEach items="${listCart}" var="cart">
-                    <div class="my-row a-product" style="margin-bottom: 20px;">
-                        <div class="my-l-2 my-m-2 my-c-2">
-                            <div class="my-row">
-                                <img src="<%=request.getContextPath()%>/${cart.linkImgProduct}"
-                                     alt="" style="max-width: 100%;">
-                            </div>
-                            <div class="my-row">
-                                <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 10px;">
-                                    <button type="button" class="btn-del" style="border: 1px solid black;">
-                                        <a style="text-decoration: none;color: #0a1219"
-                                           href="<%=request.getContextPath()%>/deleteCart?idCart=${cart.id}"><p
-                                                class="icon-del">xóa</p>
-                                        </a>
-                                    </button>
+                                    <div>
+                                        <h5>${cart.rom}GB</h5>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="my-l-1 my-m-1 my-c-3">
-                        </div>
-                        <div class="my-l-5 my-m-5 my-c-6" style=" display: flex; ">
-                            <div class="my-row"
-                                 style="display: flex; flex-direction: column; justify-content: center; align-items: flex-start;">
-                                <div>
-                                    <h4 style="margin-top: 10px;">${cart.nameProduct} </h4>
-                                </div>
-
-                                <div>
-                                    <h5>${cart.rom}GB</h5>
+                            <div class="my-l-3 my-m-3 my-c-3" style="display: flex;">
+                                <div class="my-row" style="align-items:  center;">
+                                    <h4><fmt:setLocale value="vi_VN"/>
+                                        <fmt:formatNumber value="${cart.price}" type="currency"/></h4>
                                 </div>
                             </div>
-                        </div>
-                        <div class="my-l-3 my-m-3 my-c-3" style="display: flex;">
-                            <div class="my-row" style="align-items:  center;">
-                                <h4><fmt:setLocale value="vi_VN"/>
-                                    <fmt:formatNumber value="${cart.price}" type="currency"/></h4>
+                            <div class="choosenumber">
+                                <a href="<%=request.getContextPath()%>/removeCart?idSP=${cart.idProduct}">
+                                    <div id="btnRemoveCart" onclick="removeCart()" class="minus"
+                                         style="pointer-events:all;"><i
+                                            style="background-color: rgb(40, 138, 214);"></i></div>
+                                </a>
+                                <input id="quantityNumber" type="text" maxlength="3" class="number"
+                                       value="${cart.quantity}"
+                                       style="border: medium none; pointer-events: all;">
+                                <a href="<%=request.getContextPath()%>/addCart?idSP=${cart.idProduct}">
+                                    <div class="plus" style="pointer-events: all;">
+                                        <i style="background-color: rgb(40, 138, 214);"></i>
+                                        <i style="background-color: rgb(40, 138, 214);"></i></div>
+                                </a>
                             </div>
                         </div>
-                        <div class="choosenumber">
-                            <a href="<%=request.getContextPath()%>/removeCart?idSP=${cart.idProduct}">
-                                <div id="btnRemoveCart" onclick="removeCart()" class="minus"
-                                     style="pointer-events:all;"><i
-                                        style="background-color: rgb(40, 138, 214);"></i></div>
-                            </a>
-                            <input id="quantityNumber" type="text" maxlength="3" class="number" value="${cart.quantity}"
-                                   style="border: medium none; pointer-events: all;">
-                            <a href="<%=request.getContextPath()%>/addCart?idSP=${cart.idProduct}">
-                                <div class="plus" style="pointer-events: all;">
-                                    <i style="background-color: rgb(40, 138, 214);"></i>
-                                    <i style="background-color: rgb(40, 138, 214);"></i></div>
-                            </a>
+                    </c:forEach>
+                    <div class="my-row a-product" style="margin-top: 30px;">
+                        <div class="my-l-3 my-m-3 my-c-3">
                         </div>
-                    </div>
-                </c:forEach>
-                <div class="my-row a-product" style="margin-top: 30px;">
-                    <div class="my-l-3 my-m-3 my-c-3">
-                    </div>
-                    <div class="my-l-6 my-m-6 my-c-6">
-                    </div>
-                    <div class="my-l-3 my-m-3 my-c-3">
-                        <h4>${titleSumCart}</h4>
-                        <h4><fmt:setLocale value="vi_VN"/>
-                            <fmt:formatNumber value="${sumCart}" type="currency"/></h4>
+                        <div class="my-l-6 my-m-6 my-c-6">
+                        </div>
+                        <div class="my-l-3 my-m-3 my-c-3">
+                            <h4>${titleSumCart}</h4>
+                            <h4><fmt:setLocale value="vi_VN"/>
+                                <fmt:formatNumber value="${sumCart}" type="currency"/></h4>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<form method="post" action="<%=request.getContextPath()%>/orderAddress" onsubmit="${onSubmitOrder}" id="order-form">
     <div style="margin-top: 2px; display:${informationCustomer}" class="cart-payment display-customer  cart-payment-2">
         <div class="my-container" style="background: transparent; max-width: 690px;">
             <div class="my-row row-cart-payment row-cart-payment-2">

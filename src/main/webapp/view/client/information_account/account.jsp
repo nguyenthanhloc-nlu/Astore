@@ -139,8 +139,10 @@
                         <div class="block-smember-info account">
                             <div class="block-smember-info__avatar">
                                 <button style="border: gray solid 0px;position: relative; background-color: transparent">
-                                    <img id="avatar" src="${imgAccount}" alt="avatar" style="height: 90px; width: 90px;  object-fit: cover;"/>
-                                    <input style="opacity: 0;width: 60px;position: absolute;left: 0px;height: 60px;" type="file"
+                                    <img id="avatar" src="${imgAccount}" alt="avatar"
+                                         style="height: 90px; width: 90px;  object-fit: cover;"/>
+                                    <input style="opacity: 0;width: 60px;position: absolute;left: 0px;height: 60px;"
+                                           type="file"
                                            id="avatar-chose" name="avatar"
                                            accept="image/png, image/jpeg">
                                     <input hidden type="text" id="id" value="${id}"/>
@@ -150,9 +152,10 @@
                             <div class="block-smember-info__box-title">
                                 <span>Xin chào!</span>
                                 <p>${fullNameAccount}</p>
-                                <%--                   <button class="btn-item-management">
-                                                     <a href="<%=request.getContextPath()%>/view/client/404.jsp">management</a>
-                                                   </button>--%>
+                                <button class="btn-item-management">
+                                    <a href="<%=request.getContextPath()%>/edit-information-account">Sửa
+                                        thông tin</a>
+                                </button>
                             </div>
                             <div class="block-smember-info__box-content">
                                 <div class="item-content">
@@ -235,7 +238,7 @@
 <!-- javascript -->
 <script>  function signOut() {
     const element = document.getElementById("myBtn");
-    element.addEventListener("click", function() {
+    element.addEventListener("click", function () {
         alert("ok")
     });
     var auth2 = gapi.auth2.getAuthInstance();
@@ -249,9 +252,16 @@
 }</script>
 <script type="module">
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
-    import { getStorage, ref, uploadString , uploadBytes, uploadBytesResumable, getDownloadURL} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-app.js";
+    import {
+        getStorage,
+        ref,
+        uploadString,
+        uploadBytes,
+        uploadBytesResumable,
+        getDownloadURL
+    } from "https://www.gstatic.com/firebasejs/9.6.2/firebase-storage.js";
+    import {getAnalytics} from "https://www.gstatic.com/firebasejs/9.6.2/firebase-analytics.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyBFW0A9DRfzSEkJEJoz-xZtmROoWWXguBM",
@@ -268,12 +278,12 @@
     const analytics = getAnalytics(app);
     console.log(app);
 
-    const storage = getStorage(app,"astore-22bfb.appspot.com");
+    const storage = getStorage(app, "astore-22bfb.appspot.com");
     // const storageRef = ref(storage, 'ok2.jpg');
     var file;
     const fileInput = document.getElementById("avatar-chose")
     const id = document.getElementById("id").value
-    fileInput.addEventListener("change",function(evt) {
+    fileInput.addEventListener("change", function (evt) {
         evt.stopPropagation();
         evt.preventDefault();
 
@@ -282,8 +292,8 @@
 
         file = files[0];
 
-        const storage = getStorage(app,"astore-22bfb.appspot.com");
-        const storageRef = ref(storage, 'avatar/'+id);
+        const storage = getStorage(app, "astore-22bfb.appspot.com");
+        const storageRef = ref(storage, 'avatar/' + id);
         const uploadTask = uploadBytesResumable(storageRef, file);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -313,17 +323,16 @@
                         type: 'POST',
                         data: {
                             urlAvt: downloadURL,
-                            id:id
+                            id: id
                         },
                         success: function (responseJson) {
                             console.log(responseJson)
-                            if(responseJson)
-                            <%--<img id="avatar" src="${imgAccount}" alt="avatar" />--%>
+                            if (responseJson)
+                                <%--<img id="avatar" src="${imgAccount}" alt="avatar" />--%>
 
-                            document.getElementById("avatar").setAttribute("src",responseJson)
+                                document.getElementById("avatar").setAttribute("src", responseJson)
                         }
                     });
-
 
 
                 });

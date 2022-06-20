@@ -60,7 +60,7 @@ public class UserRegistration extends HttpServlet {
                     " </div>";
             request.setAttribute("errorRegistration", errorRegistration);
             request.setAttribute("classRightRegister", "right-panel-active");
-            request.getRequestDispatcher("signIn").forward(request, response);
+            request.getRequestDispatcher("/view/client/sign_user/signIn.jsp").forward(request, response);
         } else {
             UserServices.getInstance().insertUser(new User(0, userName, fullName, emailRegister, gender, birthday.trim(), phoneRegister, address, avatar, HashPassword.getInstance().hashPassword(pwd), null));
             String subjectMail = "Ma Xac Thuc";
@@ -72,9 +72,6 @@ public class UserRegistration extends HttpServlet {
             Session sessRes = SendMail.getInstance().loginMail(userMail, passUserMail);
             if (CheckEmail.getInstance().checkEmail(emailOrPhone)) {
                 SendMail.getInstance().sendMailTo(sessRes, userMail, nameFrom, emailOrPhone, subjectMail, messSendMail);
-            }
-            if (CheckEmail.getInstance().checkEmail(emailOrPhone)) {
-
             }
             response.sendRedirect("verificationCreate");
         }

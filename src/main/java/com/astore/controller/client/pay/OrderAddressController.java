@@ -47,56 +47,105 @@ public class OrderAddressController extends HttpServlet {
                 customer.setAddress(detailAddress);
                 boolean createCustomer = UserServices.getInstance().insertUser(customer);
                 if (createCustomer) userName = customer.getUserName();
+                customer = UserServices.getInstance().getInformationUser(userName);
 
-            } else {
-                userName = ss.getAttribute("userNameAccountLogin").toString();
-
-                cartList = CartServices.getInstance().getByIdCustomer(UserServices.getInstance().getInformationUser(userName).getId());
-
-            }
-            customer = UserServices.getInstance().getInformationUser(userName);
-
-            Order order = new Order();
-            order.setNameUser(customer.getUserName());
-            order.setIdUser(customer.getId());
-            long sumCart = 0;
-            for (Cart c : cartList) {
-                sumCart += c.getQuantity() * c.getPrice();
-            }
-            order.setPriceOrder(sumCart);
-            order.setDateAtOrder(LocalDate.now().toString());
-            boolean createOrder = OrderServices.getInstance().insert(order);
-            List<Order> orderList = OrderServices.getInstance().getByNameUser(customer.getUserName());
-            int idOrder = orderList.get(orderList.size() - 1).getId();
-            System.out.println("idOrder" + idOrder);
-            boolean createDetail = false;
-            for (Cart c : cartList) {
-                DetailedOrder detailedOrder = new DetailedOrder();
-                detailedOrder.setIdOrder(idOrder);
-                detailedOrder.setIdProduct(c.getIdProduct());
-                detailedOrder.setCount((int) c.getQuantity());
-                detailedOrder.setNameProduct(c.getNameProduct());
-                detailedOrder.setPriceProduct(c.getPrice());
-                createDetail = DetailedOrderServices.getInstance().insert(detailedOrder);
-
-            }
-            Delivery delivery = new Delivery();
-            delivery.setOrderId(idOrder);
-            delivery.setAddress(customer.getAddress());
-            delivery.setDeliveryDate(LocalDate.now().toString());
-            boolean createDelivery = DeliveryServices.getInstance().insert(delivery);
-            if (createOrder && createDelivery && createDetail) {
-                ss.setAttribute("listCart", null);
+                Order order = new Order();
+                order.setNameUser(customer.getUserName());
+                order.setIdUser(customer.getId());
+                long sumCart = 0;
                 for (Cart c : cartList) {
-                    CartServices.getInstance().delete(c.getId());
+                    sumCart += c.getQuantity() * c.getPrice();
+                }
+                order.setPriceOrder(sumCart);
+                order.setDateAtOrder(LocalDate.now().toString());
+                boolean createOrder = OrderServices.getInstance().insert(order);
+                List<Order> orderList = OrderServices.getInstance().getByNameUser(customer.getUserName());
+                int idOrder = orderList.get(orderList.size() - 1).getId();
+                System.out.println("idOrder" + idOrder);
+                boolean createDetail = false;
+                for (Cart c : cartList) {
+                    DetailedOrder detailedOrder = new DetailedOrder();
+                    detailedOrder.setIdOrder(idOrder);
+                    detailedOrder.setIdProduct(c.getIdProduct());
+                    detailedOrder.setCount((int) c.getQuantity());
+                    detailedOrder.setNameProduct(c.getNameProduct());
+                    detailedOrder.setPriceProduct(c.getPrice());
+                    createDetail = DetailedOrderServices.getInstance().insert(detailedOrder);
 
                 }
-                request.setAttribute("successfulOrder", "successfulOrder");
-                request.setAttribute("btnOrderSuccessful", "<button class=\"btn-back-home\" onclick=\"okOrder()\">Quay Lại</button>");
-                System.out.println("Bạn đã đặt hàng thành công");
-                request.getRequestDispatcher("/cart").forward(request, response);
+                Delivery delivery = new Delivery();
+                delivery.setOrderId(idOrder);
+                delivery.setAddress(customer.getAddress());
+                delivery.setDeliveryDate(LocalDate.now().toString());
+                boolean createDelivery = DeliveryServices.getInstance().insert(delivery);
+                if (createOrder && createDelivery && createDetail) {
+                    ss.setAttribute("listCart", null);
+                    for (Cart c : cartList) {
+                        CartServices.getInstance().delete(c.getId());
+
+                    }
+                    request.setAttribute("successfulOrder", "successfulOrder");
+                    request.setAttribute("btnOrderSuccessful", "<button class=\"btn-back-home\" onclick=\"okOrder()\">Quay Lại</button>");
+                    System.out.println("Bạn đã đặt hàng thành công");
+                    request.getRequestDispatcher("/cart").forward(request, response);
+
+                }
+            } else {
+                userName = ss.getAttribute("userNameAccountLogin").toString();
+                User userCheck = UserServices.getInstance().getInformationUser(userName);
+                if (userCheck.getAddress() == null || userCheck.getName() == null || userCheck.getPhone() == null) {
+                    request.setAttribute("edit", userCheck);
+                    request.getRequestDispatcher("/edit-screen").forward(request, response);
+
+                } else {
+                    customer = UserServices.getInstance().getInformationUser(userName);
+                    cartList = CartServices.getInstance().getByIdCustomer(UserServices.getInstance().getInformationUser(userName).getId());
+
+                    Order order = new Order();
+                    order.setNameUser(customer.getUserName());
+                    order.setIdUser(customer.getId());
+                    long sumCart = 0;
+                    for (Cart c : cartList) {
+                        sumCart += c.getQuantity() * c.getPrice();
+                    }
+                    order.setPriceOrder(sumCart);
+                    order.setDateAtOrder(LocalDate.now().toString());
+                    boolean createOrder = OrderServices.getInstance().insert(order);
+                    List<Order> orderList = OrderServices.getInstance().getByNameUser(customer.getUserName());
+                    int idOrder = orderList.get(orderList.size() - 1).getId();
+                    System.out.println("idOrder" + idOrder);
+                    boolean createDetail = false;
+                    for (Cart c : cartList) {
+                        DetailedOrder detailedOrder = new DetailedOrder();
+                        detailedOrder.setIdOrder(idOrder);
+                        detailedOrder.setIdProduct(c.getIdProduct());
+                        detailedOrder.setCount((int) c.getQuantity());
+                        detailedOrder.setNameProduct(c.getNameProduct());
+                        detailedOrder.setPriceProduct(c.getPrice());
+                        createDetail = DetailedOrderServices.getInstance().insert(detailedOrder);
+
+                    }
+                    Delivery delivery = new Delivery();
+                    delivery.setOrderId(idOrder);
+                    delivery.setAddress(customer.getAddress());
+                    delivery.setDeliveryDate(LocalDate.now().toString());
+                    boolean createDelivery = DeliveryServices.getInstance().insert(delivery);
+                    if (createOrder && createDelivery && createDetail) {
+                        ss.setAttribute("listCart", null);
+                        for (Cart c : cartList) {
+                            CartServices.getInstance().delete(c.getId());
+
+                        }
+                        request.setAttribute("successfulOrder", "successfulOrder");
+                        request.setAttribute("btnOrderSuccessful", "<button class=\"btn-back-home\" onclick=\"okOrder()\">Quay Lại</button>");
+                        System.out.println("Bạn đã đặt hàng thành công");
+                        request.getRequestDispatcher("/cart").forward(request, response);
+
+                    }
+                }
 
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
