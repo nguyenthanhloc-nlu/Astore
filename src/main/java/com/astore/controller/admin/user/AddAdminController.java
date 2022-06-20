@@ -2,6 +2,7 @@ package com.astore.controller.admin.user;
 
 import com.astore.model.User;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.HashPassword;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -23,10 +24,12 @@ public class AddAdminController extends HttpServlet {
         String name = request.getParameter("admin-name");
         String password = request.getParameter("admin-password");
 
+        String passHash = HashPassword.getInstance().hashPassword(password);
+
         User user = new User();
         user.setUserName(username);
         user.setName(name);
-        user.setPassword(password);
+        user.setPassword(passHash);
 
 
         boolean check = UserServices.getInstance().insertAdmin(user);
