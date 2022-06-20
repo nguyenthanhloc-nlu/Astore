@@ -1215,31 +1215,7 @@ form a {
   font-size: 30px !important;
 }
 
-/* scroll to top */
-#btn-scroll {
-  display: none;
-  position: fixed;
-  bottom: 40px;
-  right: 30px;
-  z-index: 99;
-  border: none;
-  outline: none;
-  background: white;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  border-radius: 30px;
-  opacity: 0.7;
-  clip-path: circle(60%);
-  height: 40px;
-  width: 40px;
-}
-#btn-scroll i {
-  font-size: 25px;
-  color: #333;
-}
-#btn-scroll i:hover {
-  color: #f1f1f1;
-}
+
 
 /*footer page*/
 .container-rule {
