@@ -37,8 +37,17 @@
                         <a href="<%=request.getContextPath()%>/Product-iphone" style="text-decoration: none;">
                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                 <div class="my-row">
-                                    <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
-                                        <img src="${iphone.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                    <div class="my-col my-l-12 my-m-12 my-c-12 item-products">                                      
+                                         <c:choose>
+                                            <c:when test="${fn:startsWith(slider.linkImage, 'http')}">
+                                                <img src="${iphone.get(2).listPhotoUrl.get(0)"
+                                                     style="max-width: 160px;">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="<%=request.getContextPath()%>${iphone.get(2).listPhotoUrl.get(0)"
+                                                     style="max-width: 160px;">
+                                            </c:otherwise>
+                                        </c:choose>                                       
                                     </div>
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
                                         <h4 style="margin-top: 10px;">iPhone</h4>
