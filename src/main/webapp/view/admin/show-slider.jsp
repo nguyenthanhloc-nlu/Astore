@@ -34,7 +34,7 @@
                                 <tbody id="tbody">
                                 <%int i = 1;%>
                                 <c:forEach items="${listSlide}" var="h">
-                                    <tr>
+                                    <tr id="${h.id}tr">
                                         <td scope="row"><%=i++%></td>
                                         <td>${h.id}</td>
                                         <td>${h.title}</td>
