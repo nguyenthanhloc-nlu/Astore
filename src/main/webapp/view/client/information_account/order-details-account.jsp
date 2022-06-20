@@ -170,7 +170,7 @@
                           <div class="l-7 m-12 c-12">
                             <div class="infor-prd">
                               <h2 class="media-title font-weight-semibold">
-                                <a href="#">Apple ${p.name}(${p.colorName}, ${p.rom})</a>
+                                <a href="#">Apple ${p.name}</a>
                               </h2>
                               <p class="mt-10">
                                 ${p.ram}GB RAM | (${p.sizeScreen} inch) Display ${p.frontCamera}
