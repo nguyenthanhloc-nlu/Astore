@@ -113,11 +113,7 @@
                     <i class="zmdi zmdi-shopping-cart"></i><span>Đơn Hàng</span>
                 </a>
             </li>
-            <li>
-                <a href="<%=request.getContextPath()%>/manage/order-detail">
-                    <i class="zmdi zmdi-shopping-cart"></i><span>Chi tiết đơn hàng</span>
-                </a>
-            </li>
+
             <li>
                 <a href="<%=request.getContextPath()%>/manage/delivery">
                     <i class="zmdi zmdi-car-wash"></i><span>Giao Hàng</span>
