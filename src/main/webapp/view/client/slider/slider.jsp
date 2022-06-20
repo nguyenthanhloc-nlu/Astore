@@ -34,9 +34,17 @@
         <div class="carousel-inner">
             <%int i = 1;%>
             <c:forEach items="${listSliderDesktop}" var="slider">
-                <%=i++%>
+
                 <c:if test="${i==1}">
                     <div class="carousel-item active">
+                            <%--                        <c:choose>--%>
+                            <%--                            <c:when test = "${fn:startsWith(image.url, 'http')}">--%>
+                            <%--                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="${image.url}" alt="product image"></td>--%>
+                            <%--                            </c:when>--%>
+                            <%--                            <c:otherwise>--%>
+                            <%--                                <td><img style=" width: 110px;height: 67px; object-fit: scale-down;border: 1px solid #fff;" src="<%=request.getContextPath()%>/${image.url}" alt="product image"></td>--%>
+                            <%--                            </c:otherwise>--%>
+                            <%--                        </c:choose>--%>
                         <img src="<%=request.getContextPath()%>${slider.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
@@ -47,7 +55,7 @@
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-
+                <%i++;%>
             </c:forEach>
         </div>
 
@@ -73,7 +81,7 @@
         <div class="carousel-inner">
             <%int y = 1;%>
             <c:forEach items="${listSliderMobile}" var="sliderMobile">
-                <%=y++%>
+
                 <c:if test="${y==1}">
                     <div class="carousel-item active">
                         <img src="<%=request.getContextPath()%>${sliderMobile.linkImage}"
@@ -86,7 +94,7 @@
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-
+                <%y++;%>
             </c:forEach>
 
         </div>
