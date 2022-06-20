@@ -1,3 +1,5 @@
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -66,7 +68,14 @@
                     <div class="my-col my-l-12 my-m-6 my-c-12">
                         <div class="my-footer-col-3">
                             <a href="<%=request.getContextPath()%>#">
-                                <img src="<%=request.getContextPath()%>${linkLogoStore}"/>
+                                <c:choose>
+                                    <c:when test="${fn:startsWith(linkLogoStore, 'http')}">
+                                        <img src="${linkLogoStore}">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="<%=request.getContextPath()%>${linkLogoStore}">
+                                    </c:otherwise>
+                                </c:choose>
                             </a>
                             <p>
                                 Trải nghiệm tốt nhất về sản phẩm và dịch vụ của Apple tới toàn bộ

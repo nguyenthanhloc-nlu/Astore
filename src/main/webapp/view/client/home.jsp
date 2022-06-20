@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -37,17 +38,17 @@
                         <a href="<%=request.getContextPath()%>/Product-iphone" style="text-decoration: none;">
                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                 <div class="my-row">
-                                    <div class="my-col my-l-12 my-m-12 my-c-12 item-products">                                      
-                                         <c:choose>
-                                            <c:when test="${fn:startsWith(slider.linkImage, 'http')}">
-                                                <img src="${iphone.get(2).listPhotoUrl.get(0)"
+                                    <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(iphone.get(2).listPhotoUrl.get(0), 'http')}">
+                                                <img src="${iphone.get(2).listPhotoUrl.get(0)}"
                                                      style="max-width: 160px;">
                                             </c:when>
                                             <c:otherwise>
-                                                <img src="<%=request.getContextPath()%>${iphone.get(2).listPhotoUrl.get(0)"
+                                                <img src="${iphone.get(2).listPhotoUrl.get(0)}"
                                                      style="max-width: 160px;">
                                             </c:otherwise>
-                                        </c:choose>                                       
+                                        </c:choose>
                                     </div>
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
                                         <h4 style="margin-top: 10px;">iPhone</h4>
@@ -61,7 +62,15 @@
                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                 <div class="my-row">
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
-                                        <img src="${mac.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(mac.get(2).listPhotoUrl.get(0), 'http')}">
+                                                <img src="${mac.get(2).listPhotoUrl.get(0)}"
+                                                     style="max-width: 160px;">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${mac.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
                                         <h4 style="margin-top: 10px; text-decoration: none;">Mac</h4>
@@ -77,7 +86,15 @@
                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                 <div class="my-row">
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
-                                        <img src="${ipad.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(ipad.get(2).listPhotoUrl.get(0), 'http')}">
+                                                <img src="${ipad.get(2).listPhotoUrl.get(0)}"
+                                                     style="max-width: 160px;">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${ipad.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
                                         <h4 style="margin-top: 10px; text-decoration: none;">iPad</h4>
@@ -92,7 +109,16 @@
                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                 <div class="my-row">
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
-                                        <img src="${watch.get(2).listPhotoUrl.get(0)}" style="max-width: 160px;">
+                                        <c:choose>
+                                            <c:when test="${fn:startsWith(watch.get(2).listPhotoUrl.get(0), 'http')}">
+                                                <img src="${watch.get(2).listPhotoUrl.get(0)}"
+                                                     style="max-width: 160px;">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${watch.get(2).listPhotoUrl.get(0)}"
+                                                     style="max-width: 160px;">
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="my-col my-l-12 my-m-12 my-c-12 item-products">
                                         <h4 style="margin-top: 10px; text-decoration: none;">Watch</h4>
@@ -130,8 +156,16 @@
                                         <a href="product?id=${iphone.id}" style="text-decoration: none;">
                                             <div class="component" style="text-decoration: none; margin-top: 8px;">
                                                 <c:if test="${iphone.listPhotoUrl.size() > 0}">
-                                                    <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
-                                                         style="max-width: 260px;">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(iphone.listPhotoUrl.get(0), 'http')}">
+                                                            <img src="${iphone.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<%=request.getContextPath()%>/${iphone.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                                 <c:if test="${iphone.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
@@ -166,7 +200,8 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${iphone.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${iphone.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>
@@ -204,8 +239,16 @@
                                         <a href="product?id=${mac.id}" style="text-decoration: none;">
                                             <div class="component" style="text-decoration: none; margin-top: 8px;">
                                                 <c:if test="${mac.listPhotoUrl.size() > 0}">
-                                                    <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
-                                                         style="max-width: 260px;">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(mac.listPhotoUrl.get(0), 'http')}">
+                                                            <img src="${mac.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                                 <c:if test="${mac.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
@@ -243,7 +286,8 @@
                                 </div>
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${mac.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${mac.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>
@@ -282,8 +326,16 @@
                                         <a href="product?id=${ipad.id}" style="text-decoration: none;">
                                             <div class="component" style="text-decoration: none; margin-top: 8px;">
                                                 <c:if test="${ipad.listPhotoUrl.size() > 0}">
-                                                    <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
-                                                         style="max-width: 260px;">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(ipad.listPhotoUrl.get(0), 'http')}">
+                                                            <img src="${ipad.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<%=request.getContextPath()%>/${ipad.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                                 <c:if test="${ipad.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
@@ -318,7 +370,8 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${ipad.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${ipad.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>
@@ -357,8 +410,16 @@
                                         <a href="product?id=${watch.id}" style="text-decoration: none;">
                                             <div class="component" style="text-decoration: none; margin-top: 8px;">
                                                 <c:if test="${watch.listPhotoUrl.size() > 0}">
-                                                    <img src="<%=request.getContextPath()%>/${watch.listPhotoUrl.get(0)}"
-                                                         style="max-width: 260px;">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(watch.listPhotoUrl.get(0), 'http')}">
+                                                            <img src="${watch.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<%=request.getContextPath()%>/${watch.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                                 <c:if test="${watch.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
@@ -393,7 +454,8 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${watch.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${watch.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>

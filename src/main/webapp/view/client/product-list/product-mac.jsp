@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 
@@ -101,8 +102,16 @@
                                         <a href="product?id=${mac.id}" style="text-decoration: none;">
                                             <div class="component" style="text-decoration: none; margin-top: 8px;">
                                                 <c:if test="${mac.listPhotoUrl.size() > 0}">
-                                                    <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
-                                                         style="max-width: 260px;">
+                                                    <c:choose>
+                                                        <c:when test="${fn:startsWith(mac.listPhotoUrl.get(0), 'http')}">
+                                                            <img src="${mac.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <img src="<%=request.getContextPath()%>/${mac.listPhotoUrl.get(0)}"
+                                                                 style="max-width: 260px;">
+                                                        </c:otherwise>
+                                                    </c:choose>
                                                 </c:if>
                                                 <c:if test="${mac.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"

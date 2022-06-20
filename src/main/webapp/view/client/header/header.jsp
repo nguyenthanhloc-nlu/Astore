@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,10 +25,9 @@
             <div class="my-col my-l-12 my-m-12 my-c-0">
                 <div class="my-row">
                     <div class="my-col my-l-2 my-m-3 my-c-0">
-                        <a href="<%=request.getContextPath()%>/"> <img
-                                src="<%=request.getContextPath()%>${linkLogoStore}"
-                                alt="logo" width="150px"
-                                style="text-align: start;"></a>
+                        <a href="<%=request.getContextPath()%>/">
+                            <img src="<%=request.getContextPath()%>${linkLogoStore}"
+                                 alt="logo" width="150px" style="text-align: start;"></a>
                     </div>
                     <div class="my-col my-l-4 my-m-3 my-c-0 ">
                         <form action="search" method="get">
@@ -61,8 +61,8 @@
                                 <a href="<%=request.getContextPath()%>/cart" class="fa fa-shopping-cart fa-2x"
                                    style="color: white;  margin-top: 8px;  text-decoration: none;">
                                     <span class="my-header__cart-notice" style=" top: 3px !important; ">
-                                            ${quantityCart}
-                                        </span>
+                                        ${quantityCart}
+                                    </span>
                                 </a>
                             </div>
                             <div class="my-col my-l-6 my-m-6 my-c-6">
@@ -101,6 +101,19 @@
                         <div class="my-col my-l-0 my-m-0 my-c-4">
                             <img src="<%=request.getContextPath()%>${linkLogoStore}" alt="logo"
                                  width="100px" style="text-align: start;">
+
+                            <c:choose>
+                                <c:when test="${fn:startsWith(linkImgProduct, 'http')}">
+                                    <img src="${linkImgProduct}"
+                                         alt="logo"
+                                         width="100px" style="text-align: start;">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<%=request.getContextPath()%>/${linkImgProduct}"
+                                         alt="logo"
+                                         width="100px" style="text-align: start;">
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-2">
                         </div>
@@ -111,10 +124,10 @@
                                        style="color: white;  margin-top: 8px;"></i></a>
                             </div>
                             <div class="my-account-heder" id="link-sign-in-2">
-                                    <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp">
-                                        <i class="far fa-user-circle fa-2x"
-                                            style="color: white;  margin-top: 8px;"></i></a>
-                                </div>
+                                <a href="<%=request.getContextPath()%>/view/client/sign_user/signIn.jsp">
+                                    <i class="far fa-user-circle fa-2x"
+                                       style="color: white;  margin-top: 8px;"></i></a>
+                            </div>
 
                         </div>
                     </div>
@@ -124,7 +137,8 @@
                      style="height: 50px; width: 100%; background-color: white; ">
                     <div class="my-row">
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2"
-                             style="text-align: center;color: black;"><a href="<%=request.getContextPath()%>/Product-iphone">iPhone</a>
+                             style="text-align: center;color: black;"><a
+                                href="<%=request.getContextPath()%>/Product-iphone">iPhone</a>
                         </div>
                         <div class="my-col my-l-0 my-m-0 my-c-3 my-div-nav-item-2" style="text-align: center;"><a
                                 href="<%=request.getContextPath()%>/Product-mac">Mac</a>

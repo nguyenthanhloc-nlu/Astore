@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -162,8 +163,16 @@
                         <div class="my-row a-product" style="margin-bottom: 20px;">
                             <div class="my-l-2 my-m-2 my-c-2">
                                 <div class="my-row">
-                                    <img src="<%=request.getContextPath()%>/${cart.linkImgProduct}"
-                                         alt="" style="max-width: 100%;">
+                                    <c:choose>
+                                        <c:when test="${fn:startsWith(cart.linkImgProduct, 'http')}">
+                                            <img src="${cart.linkImgProduct}"
+                                                 alt="" style="max-width: 100%;">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="<%=request.getContextPath()%>/${cart.linkImgProduct}"
+                                                 alt="" style="max-width: 100%;">
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <div class="my-row">
                                     <div class="my-l-12 my-m-12 my-c-12" style="margin-bottom: 10px;">

@@ -2,6 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <html>
 <head>
     <title>Product Details</title>
@@ -15,16 +16,18 @@
 </head>
 <style>
     .active-rom {
-        background-color: cornflowerblue!important;
+        background-color: cornflowerblue !important;
     }
-    .my-color{
+
+    .my-color {
         border-color: white;
         border-width: 1px;
         border-style: solid;
     }
-    .active-color{
+
+    .active-color {
         border-color: white;
-        border-width: 7px!important;
+        border-width: 7px !important;
     }
 </style>
 <body>
@@ -47,7 +50,16 @@
                         <div class="small-img-row my-row">
                             <c:forEach items="${product.listPhotoUrl}" var="img">
                                 <div class="small-img-col my-col my-l-3 my-m-3 my-c-3">
-                                    <img src="${img}" class="small-img" style="width: 100%; border-radius: 5px;">
+                                    <c:choose>
+                                        <c:when test="${fn:startsWith(img, 'http')}">
+                                            <img src="${img}"
+                                                 class="small-img" style="width: 100%; border-radius: 5px;">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="<%=request.getContextPath()%>/${img}"
+                                                 class="small-img" style="width: 100%; border-radius: 5px;">
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                             </c:forEach>
                         </div>
@@ -81,7 +93,8 @@
                                 <c:if test="${r.id == product.id && r.rom == product.rom}">
                                     <div class=" my-col my-l-2 my-m-2 my-c-2 mr-bt" style="width: 100%;">
                                         <a href="product?id=${r.id}" class="active-rom">
-                                            <button class="active-rom" type="button" style="width: 100%;">  ${r.rom}GB</button>
+                                            <button class="active-rom" type="button" style="width: 100%;">  ${r.rom}GB
+                                            </button>
                                         </a>
                                     </div>
                                 </c:if>
@@ -108,15 +121,17 @@
 
                                 <c:if test="${c.id == product.id && c.colorId == product.colorId}">
                                     <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                        <button id="${c.id}" class="my-color active-color"type="button" onclick="changeColor('${c.id}')"
-                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}" >
+                                        <button id="${c.id}" class="my-color active-color" type="button"
+                                                onclick="changeColor('${c.id}')"
+                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}">
                                         </button>
                                     </div>
                                 </c:if>
                                 <c:if test="${c.id != product.id || c.colorId != product.colorId}">
                                     <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
-                                        <button id="${c.id}" class="my-color"type="button" onclick="changeColor('${c.id}')"
-                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}" >
+                                        <button id="${c.id}" class="my-color" type="button"
+                                                onclick="changeColor('${c.id}')"
+                                                style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}">
                                         </button>
                                     </div>
                                 </c:if>
@@ -274,7 +289,18 @@
             <div class="my-row">
                 <div class="my-col my-l-12 my-m-12 my-c-12">
                     <c:forEach items="${product.listProductDetail}" var="img">
-                        <img src="${img}" class="" style="width: 100%;  ">
+                        <c:choose>
+                            <c:when test="${fn:startsWith(img, 'http')}">
+                                <img src="${img}"
+                                     class="" style="width: 100%;  ">
+                            </c:when>
+                            <c:otherwise>
+                                <img src="<%=request.getContextPath()%>/${img}"
+                                     class="" style="width: 100%;  ">
+                            </c:otherwise>
+                        </c:choose>
+
+
                     </c:forEach>
                 </div>
             </div>
