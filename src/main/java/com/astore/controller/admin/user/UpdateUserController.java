@@ -2,6 +2,7 @@ package com.astore.controller.admin.user;
 
 import com.astore.model.User;
 import com.astore.services.implement.UserServices;
+import com.astore.tool.HashPassword;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -47,6 +48,7 @@ public class UpdateUserController extends HttpServlet {
         String address = request.getParameter("user-address");
         String photoUrl = request.getParameter("user-photoUrl");
         String password = request.getParameter("user-password");
+        String passHash = HashPassword.getInstance().hashPassword(password);
 
         User user = new User();
         user.setId(Integer.parseInt(id));
@@ -58,7 +60,7 @@ public class UpdateUserController extends HttpServlet {
         user.setBirthday(birthday);
         user.setAddress(address);
         user.setAvatar(photoUrl);
-        user.setPassword(password);
+        user.setPassword(passHash);
 
         boolean check = UserServices.getInstance().updateUser(user);
         if(check){
