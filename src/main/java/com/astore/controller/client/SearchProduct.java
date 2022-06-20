@@ -66,10 +66,10 @@ public class SearchProduct extends HttpServlet {
         int countProduct = ProductServices.getInstance().countProductByName(search);
 
         int totalPages = 0;
-        if(countProduct % 30 > 0){
-            totalPages = countProduct / 30 +1;
+        if(countProduct % 20 > 0){
+            totalPages = countProduct / 20 +1;
         }else
-            totalPages = countProduct / 30;
+            totalPages = countProduct / 20;
 
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("search", search);
@@ -86,8 +86,8 @@ public class SearchProduct extends HttpServlet {
         System.out.println(page +"page");
         try {
             int pageInt = Integer.parseInt(page) - 1;
-            int start = pageInt *30 +1;
-            int end = start +29;
+            int start = pageInt *20 +1;
+            int end = start +19;
 
             List<Product> products = ProductServices.getInstance().getByNameLimit(search, start, end);
 
