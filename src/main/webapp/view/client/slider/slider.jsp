@@ -32,8 +32,9 @@
 
         <!-- The slideshow -->
         <div class="carousel-inner">
+            <%int i = 1;%>
             <c:forEach items="${listSliderDesktop}" var="slider">
-                <%int i = 1;%>
+                <%=i++%>
                 <c:if test="${i==1}">
                     <div class="carousel-item active">
                         <img src="<%=request.getContextPath()%>${slider.linkImage}"
@@ -70,15 +71,16 @@
 
         <!-- The slideshow -->
         <div class="carousel-inner">
+            <%int y = 1;%>
             <c:forEach items="${listSliderMobile}" var="sliderMobile">
-                <%int i = 1;%>
-                <c:if test="${i==1}">
+                <%=y++%>
+                <c:if test="${y==1}">
                     <div class="carousel-item active">
                         <img src="<%=request.getContextPath()%>${sliderMobile.linkImage}"
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-                <c:if test="${i!=1}">
+                <c:if test="${y!=1}">
                     <div class="carousel-item">
                         <img src="<%=request.getContextPath()%>${sliderMobile.linkImage}"
                              alt="" width="1100" height="500">
