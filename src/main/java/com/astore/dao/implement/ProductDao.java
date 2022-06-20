@@ -602,22 +602,23 @@ public class ProductDao implements IProductDao {
             ps.setInt(2,start);
             ps.setInt(3,end);
             ResultSet rs = ps.executeQuery();
-
+            Product product = null;
+            Color color = null;
             while (rs.next()) {
-                Product product = new Product();
+                product = new Product();
                 setValueProduct(product, rs);
-                Color color = getColor(conn, product.getId());
-
-                product.setColorId(color.getId());
-                product.setColorName(color.getName());
-                product.setColorHex(color.getCodeHex());
+//                color = getColor(conn, product.getId());
+//
+//                product.setColorId(color.getId());
+//                product.setColorName(color.getName());
+//                product.setColorHex(color.getCodeHex());
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));
-                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
+//                product.setListProductDetail(getLinkDetailProduct(conn, product.getSubCategoryId()));
                 products.add(product);
             }
-            ps.close();
-            rs.close();
+//            ps.close();
+//            rs.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
