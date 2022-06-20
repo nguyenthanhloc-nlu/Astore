@@ -35,7 +35,7 @@
             <%int i = 1;%>
             <c:forEach items="${listSliderDesktop}" var="slider">
 
-                <c:if test="${i==1}">
+                <c:if test="<%= i == 1%>">
                     <div class="carousel-item active">
                             <%--                        <c:choose>--%>
                             <%--                            <c:when test = "${fn:startsWith(image.url, 'http')}">--%>
@@ -49,7 +49,7 @@
                              alt="" width="1100" height="500">
                     </div>
                 </c:if>
-                <c:if test="${i!=1}">
+                <c:if test="<%= i != 1%>">
                     <div class="carousel-item">
                         <img src="<%=request.getContextPath()%>${slider.linkImage}"
                              alt="" width="1100" height="500">
