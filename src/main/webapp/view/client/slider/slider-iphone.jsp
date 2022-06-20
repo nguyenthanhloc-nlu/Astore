@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,20 +34,39 @@
 
             <!-- The slideshow -->
             <div class="carousel-inner">
+                <%int i = 1;%>
                 <c:forEach items="${listSliderDesktop}" var="slider">
-                    <c:if test="${slider.id==1}">
-                        <div class="carousel-item active">
-                            <img src="<%=request.getContextPath()%>${slider.linkImage}"
-                                 alt="" width="1100" height="500">
-                        </div>
-                    </c:if>
-                    <c:if test="${slider.id!=1}">
-                        <div class="carousel-item">
-                            <img src="<%=request.getContextPath()%>${slider.linkImage}"
-                                 alt="" width="1100" height="500">
-                        </div>
-                    </c:if>
 
+                    <c:if test="<%= i == 1%>">
+                        <div class="carousel-item active">
+                            <c:choose>
+                                <c:when test="${fn:startsWith(slider.linkImage, 'http')}">
+                                    <img src="${slider.linkImage}"
+                                         alt="" width="1100" height="500">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<%=request.getContextPath()%>${slider.linkImage}"
+                                         alt="" width="1100" height="500">
+                                </c:otherwise>
+                            </c:choose>
+
+                        </div>
+                    </c:if>
+                    <c:if test="<%= i != 1%>">
+                        <div class="carousel-item">
+                            <c:choose>
+                                <c:when test="${fn:startsWith(slider.linkImage, 'http')}">
+                                    <img src="${slider.linkImage}"
+                                         alt="" width="1100" height="500">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<%=request.getContextPath()%>${slider.linkImage}"
+                                         alt="" width="1100" height="500">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
+                    </c:if>
+                    <%i++;%>
                 </c:forEach>
             </div>
 
