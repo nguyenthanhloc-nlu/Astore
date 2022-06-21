@@ -29,6 +29,15 @@
         border-color: white;
         border-width: 7px !important;
     }
+    .color{
+        background-color: #0aa60f;
+        height: 8px;width: 8px;
+        border-radius: 4px;
+        display: none;
+    }
+    .color-active{
+       display: block !important;
+    }
 </style>
 <body>
 <jsp:include page="/view/client/header/header.jsp"></jsp:include>
@@ -120,19 +129,21 @@
 
 
                                 <c:if test="${c.id == product.id && c.colorId == product.colorId}">
-                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
+                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt" style="display: flex; justify-content: center; align-items: center; flex-direction: column">
                                         <button id="${c.id}" class="my-color active-color" type="button"
                                                 onclick="changeColor('${c.id}')"
                                                 style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}">
                                         </button>
+                                        <div  id="${c.id}color" class="color color-active"></div>
                                     </div>
                                 </c:if>
                                 <c:if test="${c.id != product.id || c.colorId != product.colorId}">
-                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt">
+                                    <div class=" my-col my-l-1 my-m-1 my-c-1 color-bt"  style="display: flex; justify-content: center; align-items: center; flex-direction: column">
                                         <button id="${c.id}" class="my-color" type="button"
                                                 onclick="changeColor('${c.id}')"
                                                 style="width:45px; height:45px;  border-radius:50%; background-color: <%='#'%>${c.colorHex}">
                                         </button>
+                                        <div id="${c.id}color" class="color"></div>
                                     </div>
                                 </c:if>
                             </c:forEach>
@@ -325,6 +336,16 @@
             }
 
             colorChose.setAttribute("class", "my-color active-color");
+
+
+            const colorLine = document.getElementById(id+"color");
+
+            const colors = document.getElementsByClassName("color");
+            for (const c of colors) {
+                c.setAttribute("class", "color");
+            }
+
+            colorLine.setAttribute("class", "color color-active");
         }
 
         var ProductImg = document.getElementById("ProductImg");
