@@ -31,7 +31,7 @@
                                 <label for="input-4">Người hỗ trợ</label>
                                 <div>
                                     <select class="form-control valid" id="input-4" name="help-author">
-                                        <option></option>
+                                        <option value="${idPeopleHelp}">${namePeopleHelp}</option>
                                     </select>
                                 </div>
                             </div>
