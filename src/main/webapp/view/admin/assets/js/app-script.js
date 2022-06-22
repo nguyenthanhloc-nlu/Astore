@@ -24,14 +24,18 @@ $(function () {
     });
 
     function check(a, b) {
-        const data = ['upload','user', 'admin', 'order', 'dashboard', 'color', 'photo', 'delivery'];
+        const data = ['upload','user', 'admin', 'order', 'dashboard', 'color', 'photo', 'delivery','insurance','inventory','slide','help'];
         for (const i of data) {
-            if (a.indexOf(i) > 0 && b.indexOf(i) > 0) {
+            if (a.indexOf(i) > -1 && b.indexOf(i) > -1) {
                 return true;
             }
         }
 
-        if (a.indexOf('subcategory') > 0 && b.indexOf('subcategory') > 0) {
+        if (a.indexOf('Help') > -1 && b.indexOf('help') > -1) {
+            return true;
+        }
+
+        if (a.indexOf('subcategory') > -1 && b.indexOf('subcategory') > -1) {
             return true;
         }
 
