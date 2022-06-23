@@ -80,7 +80,9 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row" id="tbody">
                     <c:forEach items="${products}" var="p">
-                        <div class="my-col my-l-4 my-m-4 my-c-6 item-products">
+<%--                        <div class="my-col my-l-4 my-m-4 my-c-6 item-products">--%>
+                            <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                                 style="display: flex; flex-direction: column; align-items: center">
                             <a href="" style="text-decoration: none;">
                                 <a href="product?id=${p.id}" style="text-decoration: none;">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
@@ -212,7 +214,7 @@
                 $.each(responseJson, function (key, value) {
 
                     if (value == null || value.id < 1) return;
-                    row += '<div class="my-col my-l-4 my-m-4 my-c-6 item-products">'
+                    row += '<div  class="my-col my-l-3 my-m-3 my-c-6 item-products" style="display: flex; flex-direction: column;align-items: center">'
                     row += '<a href="" style="text-decoration: none;">'
                     row += '<a href="product?id=' + value.id + '" style="text-decoration: none;">'
                     row += '<div class="my-col my-l-12 my-m-12 my-c-12">'

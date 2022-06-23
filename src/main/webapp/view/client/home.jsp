@@ -148,7 +148,7 @@
                 <div class="my-row" id="tbody">
                     <c:forEach items="${iphone}" var="iphone">
                         <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
-                             style="display: flex; flex-direction: column;">
+                             style="display: flex; flex-direction: column; align-items: center">
                             <a href="product?id=${iphone.id}"
                                style="text-decoration: none; color: white !important;">
                                 <div class="my-row" style="width: 100%">
@@ -237,7 +237,7 @@
                 <div class="my-row">
                     <c:forEach items="${mac}" var="mac">
                         <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
-                             style="display: flex; flex-direction: column;">
+                             style="display: flex; flex-direction: column; align-items: center">
                             <a href="product?id=${mac.id}"
                                style="text-decoration: none; color: white !important;">
                                 <div class="my-row" style="width: 100%">
@@ -330,7 +330,7 @@
                 <div class="my-row">
                     <c:forEach items="${ipad}" var="ipad">
                         <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
-                             style="display: flex; flex-direction: column;">
+                             style="display: flex; flex-direction: column; align-items: center">
                             <a href="product?id=${ipad.id}"
                                style="text-decoration: none; color: white !important;">
                                 <div class="my-row" style="width: 100%">
@@ -420,7 +420,7 @@
                 <div class="my-row">
                     <c:forEach items="${watch}" var="watch">
                         <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
-                             style="display: flex; flex-direction: column;">
+                             style="display: flex; flex-direction: column; align-items: center">
                             <a href="product?id=${watch.id}"
                                style="text-decoration: none; color: white !important;">
                                 <div class="my-row" style="width: 100%">

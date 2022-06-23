@@ -93,8 +93,8 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="my-row" id="tbody">
                     <c:forEach items="${watch}" var="watch">
-                        <div class="my-col my-l-4 my-m-4 my-c-6 item-products"
-                             style="display: flex; flex-direction: column;">
+                        <div class="my-col my-l-3 my-m-3 my-c-6 item-products"
+                             style="display: flex; flex-direction: column; align-items: center">
                             <a href="product?id=${watch.id}"
                                style="text-decoration: none; color: white !important;">
                                 <div class="my-row" style="width: 100%">
@@ -223,7 +223,7 @@
                 $.each(responseJson, function (key, value) {
 
                     if (value == null || value.id < 1) return;
-                    row += '  <div class="my-col my-l-4 my-m-4 my-c-6 item-products" style="display: flex; flex-direction: column;">'
+                    row += '  <div  class="my-col my-l-3 my-m-3 my-c-6 item-products" style="display: flex; flex-direction: column;align-items: center">'
                     row += '    <a href="product?id=' + value.id + '" style="text-decoration: none; color: white !important;">'
                     row += '       <div class="my-row" style="width: 100%">'
                     row += '           <div class="my-col my-l-12 my-m-12 my-c-12" style="position: relative;">'
