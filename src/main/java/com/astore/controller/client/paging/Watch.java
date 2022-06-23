@@ -31,7 +31,7 @@ public class Watch extends HttpServlet {
         List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
 
         request.setAttribute("listSliderMobile", sliderMobile);
-        int countProduct = ProductServices.getInstance().countProductByCategoryId(1);
+        int countProduct = ProductServices.getInstance().countProductByCategoryId(4);
         int totalPages = 0;
         if(countProduct % 30 > 0){
             totalPages = countProduct / 30 +1;
@@ -83,7 +83,7 @@ public class Watch extends HttpServlet {
             int start = pageInt *30 +1;
             int end = start +29;
 
-            List<Product> products = ProductServices.getInstance().getProductByIdCate(1, start, end);
+            List<Product> products = ProductServices.getInstance().getProductByIdCate(4, start, end);
 
             String json = null;
             response.setContentType("application/json");

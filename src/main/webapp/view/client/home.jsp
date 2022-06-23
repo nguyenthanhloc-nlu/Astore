@@ -172,10 +172,16 @@
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${iphone.saleRate}" type="number"/>%</p>
-                                            </div>
+<%--                                            <div class="product-sale-rate">--%>
+<%--                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber--%>
+<%--                                                        value="${iphone.saleRate}" type="number"/>%</p>--%>
+<%--                                            </div>--%>
+                                            <c:if test="${iphone.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${iphone.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
                                         </a>
                                     </div>
                                 </div>
@@ -255,10 +261,16 @@
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${mac.saleRate}" type="number"/>%</p>
-                                            </div>
+<%--                                            <div class="product-sale-rate">--%>
+<%--                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber--%>
+<%--                                                        value="${mac.saleRate}" type="number"/>%</p>--%>
+<%--                                            </div>--%>
+                                            <c:if test="${mac.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${mac.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
                                         </a>
                                     </div>
                                 </div>
@@ -342,10 +354,16 @@
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${ipad.saleRate}" type="number"/>%</p>
-                                            </div>
+<%--                                            <div class="product-sale-rate">--%>
+<%--                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber--%>
+<%--                                                        value="${ipad.saleRate}" type="number"/>%</p>--%>
+<%--                                            </div>--%>
+                                            <c:if test="${ipad.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${ipad.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
                                         </a>
                                     </div>
                                 </div>
@@ -426,10 +444,16 @@
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${watch.saleRate}" type="number"/>%</p>
-                                            </div>
+<%--                                            <div class="product-sale-rate">--%>
+<%--                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber--%>
+<%--                                                        value="${watch.saleRate}" type="number"/>%</p>--%>
+<%--                                            </div>--%>
+                                            <c:if test="${watch.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${watch.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
                                         </a>
                                     </div>
                                 </div>

@@ -6,7 +6,7 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">  
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APPLE | iPad</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -121,17 +121,20 @@
                                                     </c:choose>
 
 
-
                                                 </c:if>
                                                 <c:if test="${ipad.listPhotoUrl.size() == 0}">
                                                     <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${ipad.saleRate}" type="number"/>%</p>
-                                            </div>
+
+                                            <c:if test="${ipad.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${ipad.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
+
                                         </a>
                                     </div>
                                 </div>
@@ -156,7 +159,8 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${ipad.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${ipad.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>
@@ -234,9 +238,14 @@
                     row += '                    <div class="component" style="text-decoration: none; margin-top: 8px;">'
                     row += '                            <img href="product?id=' + value.id + '"  src ="' + value.listPhotoUrl[0] + '"  style="max-width: 260px;">'
                     row += '                </div>'
-                    row += '                   <div class="product-sale-rate">'
-                    row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
-                    row += '           </div>'
+                    // row += '                   <div class="product-sale-rate">'
+                    // row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
+                    // row += '           </div>'
+                    if (value.saleRate > 0) {
+                        row += '                   <div class="product-sale-rate">'
+                        row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
+                        row += '           </div>'
+                    }
                     row += '                 </a>'
                     row += '              </div>'
                     row += '          </div>'

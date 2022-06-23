@@ -9,7 +9,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/functions" prefix = "fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,8 @@
             <div class="my-col my-l-12 my-m-12 my-c-12">
                 <div class="title-product-range">
                     <h1 style="color: white; margin: 20px;">
-                        <i class="fa fa-product-hunt" aria-hidden="true" style="margin-right: 15px;"></i> Kết quả tìm kiếm
+                        <i class="fa fa-product-hunt" aria-hidden="true" style="margin-right: 15px;"></i> Kết quả tìm
+                        kiếm
                     </h1>
                 </div>
             </div>
@@ -88,7 +89,7 @@
                                                 <a href="" class="component" style="text-decoration: none;">
                                                     <c:if test="${p.listPhotoUrl.size() > 0}">
                                                         <c:choose>
-                                                            <c:when test = "${fn:startsWith(image.url, 'http')}">
+                                                            <c:when test="${fn:startsWith(image.url, 'http')}">
                                                                 <img src="${p.listPhotoUrl.get(0)}"
                                                                      style="max-width: 181px;">
                                                             </c:when>
@@ -102,13 +103,19 @@
 
                                                     <c:if test="${p.listPhotoUrl.size() == 0}">
                                                         <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
-                                                             style="max-width: 181px;" >
+                                                             style="max-width: 181px;">
 
                                                     </c:if>
                                                 </a>
-                                                <div class="product-sale-rate">
-                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</p>
-                                                </div>
+                                                    <%--                                                <div class="product-sale-rate">--%>
+                                                    <%--                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber value="${p.saleRate}" type="number"/>%</p>--%>
+                                                    <%--                                                </div>--%>
+                                                <c:if test="${p.saleRate > 0}">
+                                                    <div class="product-sale-rate">
+                                                        <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                                value="${p.saleRate}" type="number"/>%</p>
+                                                    </div>
+                                                </c:if>
                                             </div>
                                         </div>
                                         <div class="my-row">
@@ -149,13 +156,13 @@
         <div class="pagination">
             <c:if test="${totalPages > 1}">
                 <a onclick="page('prev', ${totalPages})">«</a>
-                <c:forEach var = "i"  begin="1" end="${totalPages}">
+                <c:forEach var="i" begin="1" end="${totalPages}">
 
                     <c:if test="${i == 1}">
                         <a class="active" onclick="page(${i}, ${totalPages})">${i}</a>
                     </c:if>
                     <c:if test="${i != 1}">
-                        <a onclick="page(${i}, ${totalPages})" >${i}</a>
+                        <a onclick="page(${i}, ${totalPages})">${i}</a>
                     </c:if>
 
                 </c:forEach>
@@ -168,8 +175,6 @@
 </div>
 
 <input type="text" hidden value="${search}" id="search">
-
-
 
 
 <script>
@@ -186,7 +191,7 @@
         }
         if (index === 'next') {
             if (currentPage < totalPages)
-                index = (parseInt(currentPage) + 1) ;
+                index = (parseInt(currentPage) + 1);
             else return;
         }
         $.ajax({
@@ -194,7 +199,7 @@
             type: 'POST',
             data: {
                 page: index,
-                search:search
+                search: search
             },
             success: function (responseJson) {
                 var row = '';
@@ -206,52 +211,57 @@
                 })
                 $.each(responseJson, function (key, value) {
 
-                    if(value == null || value.id <1) return;
+                    if (value == null || value.id < 1) return;
                     row += '<div class="my-col my-l-4 my-m-4 my-c-6 item-products">'
-                    row +=    '<a href="" style="text-decoration: none;">'
-                    row +=      '<a href="product?id='+value.id+'" style="text-decoration: none;">'
-                    row +=             '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row +=               '<div class="my-row" style="position: relative;">'
-                    row +=                   '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row +=                        '<a href="" class="component" style="text-decoration: none;">'
+                    row += '<a href="" style="text-decoration: none;">'
+                    row += '<a href="product?id=' + value.id + '" style="text-decoration: none;">'
+                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '<div class="my-row" style="position: relative;">'
+                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '<a href="" class="component" style="text-decoration: none;">'
 
-                    if((value.url+"").startsWith("http"))
-                        row += '<img src="'+value.listPhotoUrl[0]+'" style="max-width: 181px;">'
+                    if ((value.url + "").startsWith("http"))
+                        row += '<img src="' + value.listPhotoUrl[0] + '" style="max-width: 181px;">'
                     else
-                        row += '<img src="<%=request.getContextPath()%>/'+value.listPhotoUrl[0]+'" style="max-width: 181px;">'
+                        row += '<img src="<%=request.getContextPath()%>/' + value.listPhotoUrl[0] + '" style="max-width: 181px;">'
 
-                    row +=                        '</a>'
-                    row +=                       '<span class="product-sale-rate">'
-                    row +=                         '<p style="margin: 0px; padding: 5px;">-'+value.saleRate+'%</p>'
-                    row +=                      '</span>'
-                    row +=                  '</div>'
-                    row +=               '</div>'
-                    row +=              '<div class="my-row">'
-                    row +=                   '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row +=                        '<a href="" class="component" style="text-decoration: none;">'
-                    row +=                           '<h5 style="margin-top: 8px">'+value.name+' '+value.rom+'GB'+'</h5>'
-                    row +=                       '</a>'
-                    row +=                     '</div>'
-                    row +=                 '</div>'
-                    row +=                  '<div class="my-row">'
-                    row +=                      '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row +=                          '<a href="" class="component" style="text-decoration: none;">'
-                    row +=                              '<h4>'+formatter.format(value.price)+'</h4>'
-                    row +=                         '</a>'
-                    row +=                      '</div>'
-                    row +=                  '</div>'
-                    row +=                  '<div class="my-row">'
-                    row +=                      '<div class="my-col my-l-12 my-m-12 my-c-12">'
-                    row +=                         '<a href="" class="add-to-cart" style="text-decoration: none;">Mua ngay</a>'
-                    row +=                     '</div>'
-                    row +=                '</div>'
-                    row +=              '</div>'
-                    row +=          '</a>'
-                    row +=      '</a>'
-                    row +=   '</div>';
+                    row += '</a>'
+                    // row +=                       '<span class="product-sale-rate">'
+                    // row +=                         '<p style="margin: 0px; padding: 5px;">-'+value.saleRate+'%</p>'
+                    // row +=                      '</span>'
+                    if (value.saleRate > 0) {
+                        row += '<span class="product-sale-rate">'
+                        row += '<p style="margin: 0px; padding: 5px;">-' + value.saleRate + '%</p>'
+                        row += '</span>'
+                    }
+                    row += '</div>'
+                    row += '</div>'
+                    row += '<div class="my-row">'
+                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '<a href="" class="component" style="text-decoration: none;">'
+                    row += '<h5 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h5>'
+                    row += '</a>'
+                    row += '</div>'
+                    row += '</div>'
+                    row += '<div class="my-row">'
+                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '<a href="" class="component" style="text-decoration: none;">'
+                    row += '<h4>' + formatter.format(value.price) + '</h4>'
+                    row += '</a>'
+                    row += '</div>'
+                    row += '</div>'
+                    row += '<div class="my-row">'
+                    row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
+                    row += '<a href="" class="add-to-cart" style="text-decoration: none;">Mua ngay</a>'
+                    row += '</div>'
+                    row += '</div>'
+                    row += '</div>'
+                    row += '</a>'
+                    row += '</a>'
+                    row += '</div>';
                 });
 
-                document.getElementById("tbody").innerHTML =row;
+                document.getElementById("tbody").innerHTML = row;
                 $("html, body").animate({scrollTop: 200}, 600);
                 $(".pagination a").filter(function () {
                     return $(this).attr("class") == 'active'
@@ -265,14 +275,14 @@
         });
     }
 
-    $(document).ready(function(){
+    $(document).ready(function () {
         collapsePage()
     })
 
 </script>
 
 
-<script src="<%=request.getContextPath()%>/view/client/assets/js/app-script.js" charset="utf-8" ></script>
+<script src="<%=request.getContextPath()%>/view/client/assets/js/app-script.js" charset="utf-8"></script>
 
 <!-- Footer -->
 <jsp:include page="/view/client/footer/footer.jsp"></jsp:include>

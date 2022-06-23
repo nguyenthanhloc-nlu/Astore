@@ -396,11 +396,11 @@ public class ProductDao implements IProductDao {
                 product = new Product();
 
                 setValueProduct(product, rs);
-                color = getColor(conn, product.getId());
-
-                product.setColorId(color.getId());
-                product.setColorName(color.getName());
-                product.setColorHex(color.getCodeHex());
+//                color = getColor(conn, product.getId());
+//
+//                product.setColorId(color.getId());
+//                product.setColorName(color.getName());
+//                product.setColorHex(color.getCodeHex());
 
                 product.setSaleRate(getSaleRate(product.getId()));
                 product.setListPhotoUrl(getLinkPhotoProduct(conn, product.getId()));

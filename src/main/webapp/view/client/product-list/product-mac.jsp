@@ -118,10 +118,16 @@
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>
-                                            <div class="product-sale-rate">
-                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
-                                                        value="${mac.saleRate}" type="number"/>%</p>
-                                            </div>
+                                                <%--                                            <div class="product-sale-rate">--%>
+                                                <%--                                                <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber--%>
+                                                <%--                                                        value="${mac.saleRate}" type="number"/>%</p>--%>
+                                                <%--                                            </div>--%>
+                                            <c:if test="${mac.saleRate > 0}">
+                                                <div class="product-sale-rate">
+                                                    <p style="margin: 0px; padding: 5px;">-<fmt:formatNumber
+                                                            value="${mac.saleRate}" type="number"/>%</p>
+                                                </div>
+                                            </c:if>
                                         </a>
                                     </div>
                                 </div>
@@ -146,7 +152,8 @@
 
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${mac.id}" class="add-to-cart"
+                                        <a href="<%=request.getContextPath()%>/addCart?idSP=${mac.id}"
+                                           class="add-to-cart"
                                            style="text-decoration: none;">
                                             Mua ngay
                                         </a>
@@ -224,9 +231,14 @@
                     row += '                    <div class="component" style="text-decoration: none; margin-top: 8px;">'
                     row += '                            <img href="product?id=' + value.id + '"  src ="' + value.listPhotoUrl[0] + '"  style="max-width: 260px;">'
                     row += '                </div>'
-                    row += '                   <div class="product-sale-rate">'
-                    row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
-                    row += '           </div>'
+                    // row += '                   <div class="product-sale-rate">'
+                    // row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
+                    // row += '           </div>'
+                    if (value.saleRate > 0) {
+                        row += '                   <div class="product-sale-rate">'
+                        row += '                         <p style="margin: 0px; padding: 5px;">  -' + value.saleRate + '% </p>'
+                        row += '           </div>'
+                    }
                     row += '                 </a>'
                     row += '              </div>'
                     row += '          </div>'
