@@ -61,6 +61,7 @@
                     <form action="login" method="post">
                         <div class="form-group">
                             <label for="exampleInputUsername" class="sr-only">Username</label>
+                            <p id="errorFullName" style="color: red; font-size: 12px"></p>
                             <div class="position-relative has-icon-right">
                                 <input type="text" id="exampleInputUsername" class="form-control input-shadow" placeholder="Username" name="admin-username" required value="${user.userName}">
                                 <div class="form-control-position">
@@ -70,6 +71,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword" class="sr-only">Password</label>
+                            <p id="errorPassword" style="color: red; font-size: 12px"></p>
                             <div class="position-relative has-icon-right">
                                 <input type="password" id="exampleInputPassword" class="form-control input-shadow" placeholder="Password" name="admin-password" required value="${user.password}">
                                 <div class="form-control-position">
@@ -86,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button  class="btn btn-light btn-block"><a>Đăng nhập</a></button>
+                        <button id="btn-submit"  class="btn btn-light btn-block"><a>Đăng nhập</a></button>
                     </form>
                 </div>
             </div>
@@ -98,5 +100,58 @@
     </div>
 
 </body>
+<script>
+    isValidFullName()
+    isValidPassword()
+    function isValidFullName() {
+        var fullName = document.getElementById("exampleInputUsername");
+        var errorFullName = document.getElementById("errorFullName");
+        fullName.addEventListener("input", (e) => {
+            let value = fullName.value;
+            var regexName = /^[^\d+]*[\d+]{0}[^\d+]*$/;
+            console.log(e.target.value)
+            if (value == "" || value == null) {
+                errorFullName.innerText = "username không được để trống !";
+                console.log("trogn")
+            } else if (!regexName.test(value)) {
+                errorFullName.innerText = "Tên không hợp lệ!";
+            } else {
+                errorFullName.innerText = "";
+                return true;
+            }
+            return false;
+        })
+    }
+    // password
+    function isValidPassword() {
+        var password = document.getElementById("exampleInputPassword");
+        var errorPassword = document.getElementById("errorPassword");
+        password.addEventListener("input", () => {
+            let value = password.value;
+            var regexpassword = /[\s]/;
+            if (value == "" || value == null) {
+                errorPassword.innerText = "mật khẩu không được để trống !";
+            } else if (regexpassword.test(value)) {
+                errorPassword.innerText = "mật khẩu không hợp lệ!";
+            } else if (value.length > 20 || value.length < 6) {
+                errorPassword.innerText = "password phải lơn hơn 6 kí tự và nhỏ hơn 20 kí tự !";
+            } else {
+                errorPassword.innerText = "";
+                return true;
+            }
+            return false;
+        })
+    }
+    // // submit
+    // submit();
+    // function submit() {
+    //     document.getElementById("btn-submit").addEventListener("click", (e) => {
+    //         if(!isValidFullName() || !isValidPassword()){
+    //             e.preventDefault()
+    //         }else{
+    //         }
+    //     })
+    // }
+</script>
 
 </html>
