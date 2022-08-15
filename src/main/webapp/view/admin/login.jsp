@@ -131,10 +131,6 @@
             var regexpassword = /[\s]/;
             if (value == "" || value == null) {
                 errorPassword.innerText = "mật khẩu không được để trống !";
-            } else if (regexpassword.test(value)) {
-                errorPassword.innerText = "mật khẩu không hợp lệ!";
-            } else if (value.length > 20 || value.length < 6) {
-                errorPassword.innerText = "password phải lơn hơn 6 kí tự và nhỏ hơn 20 kí tự !";
             } else {
                 errorPassword.innerText = "";
                 return true;

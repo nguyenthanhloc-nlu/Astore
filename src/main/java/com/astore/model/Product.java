@@ -169,7 +169,7 @@ public class Product {
 
     public List<String> getListPhotoUrl() {
         if (listPhotoUrl.size() == 0 || listPhotoUrl == null)
-            this.listPhotoUrl.add("này m thêm link cố đinh vô");
+            this.listPhotoUrl.add("https://firebasestorage.googleapis.com/v0/b/astore-22bfb.appspot.com/o/default-placeholder.png?alt=media&token=e141cbf9-d365-4a47-8334-9a24f7a5e55c");
         return listPhotoUrl;
     }
 
