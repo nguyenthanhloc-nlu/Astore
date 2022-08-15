@@ -91,7 +91,7 @@
                                                 <a href="" class="component" style="text-decoration: none;">
                                                     <c:if test="${p.listPhotoUrl.size() > 0}">
                                                         <c:choose>
-                                                            <c:when test="${fn:startsWith(image.url, 'http')}">
+                                                            <c:when test="${fn:startsWith(p.listPhotoUrl.get(0), 'http')}">
                                                                 <img src="${p.listPhotoUrl.get(0)}"
                                                                      style="max-width: 181px;">
                                                             </c:when>
@@ -123,7 +123,7 @@
                                         <div class="my-row">
                                             <div class="my-col my-l-12 my-m-12 my-c-12">
                                                 <a href="" class="component" style="text-decoration: none;">
-                                                    <h5 style="margin-top: 8px">${p.name} ${p.rom}GB</h5>
+                                                    <h6 style="margin-top: 8px">${p.name} ${p.rom}GB</h6>
                                                 </a>
                                             </div>
                                         </div>
@@ -241,7 +241,7 @@
                     row += '<div class="my-row">'
                     row += '<div class="my-col my-l-12 my-m-12 my-c-12">'
                     row += '<a href="" class="component" style="text-decoration: none;">'
-                    row += '<h5 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h5>'
+                    row += '<h6 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h6>'
                     row += '</a>'
                     row += '</div>'
                     row += '</div>'

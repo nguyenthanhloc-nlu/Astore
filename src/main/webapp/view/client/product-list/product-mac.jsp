@@ -135,7 +135,7 @@
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <a href="product?id=${mac.id}" style="text-decoration: none;">
-                                            <h5 style="margin-top: 8px">${mac.name} ${mac.rom}GB</h5>
+                                            <h6 style="margin-top: 8px">${mac.name} ${mac.rom}GB</h6>
                                         </a>
                                     </div>
                                 </div>
@@ -246,7 +246,7 @@
                     row += '       <div class="my-row" style="width: 100%">'
                     row += '          <div class="my-col my-l-12 my-m-12 my-c-12">'
                     row += '              <a href="product?id=' + value.id + '" style="text-decoration: none;">'
-                    row += '                 <h5 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h5>'
+                    row += '                 <h6 style="margin-top: 8px">' + value.name + ' ' + value.rom + 'GB' + '</h6>'
                     row += '              </a>'
                     row += '          </div>'
                     row += '      </div>'
