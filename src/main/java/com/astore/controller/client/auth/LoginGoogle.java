@@ -34,7 +34,7 @@ public class LoginGoogle extends HttpServlet {
         String phoneRegister = null;
         String gender = null;
         String address = null;
-        String avatar = request.getParameter("imageUrl");
+        String  avatar = request.getParameter("imageUrl");
         String familyName = request.getParameter("familyName");
         String givenName = request.getParameter("givenName");
         System.out.println(email + " " + name + " " + pwd + " " + avatar + " " + familyName + " " + givenName);

@@ -417,8 +417,8 @@ public class UserDao implements IUserDao {
 
     public static void main(String[] args) {
         UserDao u = new UserDao();
-        System.out.println(u.getById(1,12));
-//        System.out.println(u.insertUser(new User(0,"minh00","minh@gmail","minh@gmail","nam","01/01/2001",null,null,null,"ưihdi",null)));
+//        System.out.println(u.getById(1,12));
+        System.out.println(u.insertAdmin(new User(0,"minh123","minh@gmail","minh@gmail","nam","01/01/2001",null,null,null,"123",null)));
     }
 
 }

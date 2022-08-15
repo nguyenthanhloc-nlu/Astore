@@ -34,14 +34,10 @@ public class AddCartController extends HttpServlet {
 
             if (ss.getAttribute("listCart") != null) {
                 List<Cart> cartList = (List<Cart>) ss.getAttribute("listCart");
-
                 request.setAttribute("quantityCart", cartList.size());
-
             } else {
                 request.setAttribute("quantityCart", 0);
-
             }
-
 
         }
         doPost(request, response);
