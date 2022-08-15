@@ -124,14 +124,21 @@ public class ProductDetail extends HttpServlet {
         List<Product> result = new ArrayList<>();
         List<String> ps = new ArrayList<>();
         ps.add(product.getColorName());
-        result.add(product);
+//        result.add(product);
 
+//        for (Product p : list) {
+//            if (!ps.contains(p.getColorName())) {
+//                ps.add(p.getColorName());
+//                result.add(p);
+//            }
+//        }
         for (Product p : list) {
-            if (!ps.contains(p.getColorName())) {
+            if (p.getRom().equalsIgnoreCase(product.getRom())) {
                 ps.add(p.getColorName());
                 result.add(p);
             }
         }
+//        result.remove(product);
         Comparator<Product> cmp = new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {

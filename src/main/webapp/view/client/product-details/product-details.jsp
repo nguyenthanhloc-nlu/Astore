@@ -58,7 +58,7 @@
                         <c:if test="${product.listPhotoUrl.size() > 0}">
 
                             <c:choose>
-                                <c:when test="${fn:startsWith(ipad.listPhotoUrl.get(0), 'http')}">
+                                <c:when test="${fn:startsWith(product.listPhotoUrl.get(0), 'http')}">
                                     <img src="${product.listPhotoUrl.get(0)}" id="ProductImg"
                                          style="width: 100%; border-radius: 8px;">
                                 </c:when>
