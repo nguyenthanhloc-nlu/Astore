@@ -189,7 +189,7 @@
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <a href="product?id=${iphone.id}" style="text-decoration: none;">
-                                            <h5 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h5>
+                                            <h6 style="margin-top: 8px">${iphone.name} ${iphone.rom}GB</h6>
                                         </a>
                                     </div>
                                 </div>
@@ -371,7 +371,7 @@
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <a href="product?id=${ipad.id}" style="text-decoration: none;">
-                                            <h5 style="margin-top: 8px">${ipad.name} ${ipad.rom}GB</h5>
+                                            <h6 style="margin-top: 8px">${ipad.name} ${ipad.rom}GB</h6>
                                         </a>
                                     </div>
                                 </div>
@@ -461,7 +461,7 @@
                                 <div class="my-row" style="width: 100%">
                                     <div class="my-col my-l-12 my-m-12 my-c-12">
                                         <a href="product?id=${watch.id}" style="text-decoration: none;">
-                                            <h5 style="margin-top: 8px">${watch.name} ${watch.rom}GB</h5>
+                                            <h6 style="margin-top: 8px">${watch.name} ${watch.rom}GB</h6>
                                         </a>
                                     </div>
                                 </div>
