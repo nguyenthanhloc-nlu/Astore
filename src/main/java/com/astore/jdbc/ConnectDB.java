@@ -12,14 +12,8 @@ public class ConnectDB {
 //    private String password = "123";
     private static String admin = "sa";
     private static String pwdAdmin = "Goboi123";
-    private static String nameDB = "DB_Astore";
-    private static String localhost = "9943";
-    private static String host = "45.119.212.77";
-//    private static String admin = "thanhlocpc";
-//    private static String pwdAdmin = "nguyenthanhloc1@";
-//    private static String nameDB = "Thanhloc";
-//    private static String localhost = "1433";
-//    private static String host = "thanhloc.database.windows.net";
+    private static String nameDB = "DBSTORE_2";
+    private static String localhost = "10052";
     private static Connection conn;
 
 
@@ -28,7 +22,7 @@ public class ConnectDB {
             if ((conn == null) || conn.isClosed()) {
                 try {
                     Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-                    conn = DriverManager.getConnection("jdbc:sqlserver://"+host+":" + localhost + ";databaseName=" + nameDB + ";user=" + admin + ";password=" + pwdAdmin + ";useUnicode=true;characterEncoding=UTF-8");
+                    conn = DriverManager.getConnection("jdbc:sqlserver://103.125.170.20:" + localhost + ";databaseName=" + nameDB + ";user=" + admin + ";password=" + pwdAdmin + ";useUnicode=true;characterEncoding=UTF-8");
                     System.out.println("Kết nối thành công!");
                 } catch (SQLException | ClassNotFoundException e) {
                     System.out.println("Kết nối thất bại!" + e.getMessage());
