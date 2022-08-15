@@ -16,7 +16,7 @@ public class SearchProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String search = request.getParameter("search");
-        if(search == null) {
+        if (search == null) {
             request.setAttribute("products", new ArrayList<Product>());
             request.getRequestDispatcher("/view/client/product-list/ResultSearch.jsp").forward(request, response);
             return;
@@ -56,7 +56,6 @@ public class SearchProduct extends HttpServlet {
         request.setAttribute("listSliderDesktop", sliderList);
 
 
-
         List<Slide> sliderMobile = SlideServices.getInstance().getByName("homeMobile");
 
         request.setAttribute("listSliderMobile", sliderMobile);
@@ -66,9 +65,9 @@ public class SearchProduct extends HttpServlet {
         int countProduct = ProductServices.getInstance().countProductByName(search);
 
         int totalPages = 0;
-        if(countProduct % 20 > 0){
-            totalPages = countProduct / 20 +1;
-        }else
+        if (countProduct % 20 > 0) {
+            totalPages = countProduct / 20 + 1;
+        } else
             totalPages = countProduct / 20;
 
         request.setAttribute("totalPages", totalPages);
@@ -83,11 +82,11 @@ public class SearchProduct extends HttpServlet {
 //        doGet(request,response);
         String page = request.getParameter("page");
         String search = request.getParameter("search");
-        System.out.println(page +"page");
+        System.out.println(page + "page");
         try {
             int pageInt = Integer.parseInt(page) - 1;
-            int start = pageInt *20 +1;
-            int end = start +19;
+            int start = pageInt * 20 + 1;
+            int end = start + 19;
 
             List<Product> products = ProductServices.getInstance().getByNameLimit(search, start, end);
 
@@ -99,7 +98,7 @@ public class SearchProduct extends HttpServlet {
             response.getWriter().write(json);
 
 
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
 
         }
     }

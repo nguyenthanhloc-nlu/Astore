@@ -9,7 +9,7 @@ public class Product {
     private int colorId;
     private String colorName;
     private String colorHex;
-    private double price;
+    private double price = 0;
     private String rom;
     private String ram;
     private String sizeScreen;
@@ -21,8 +21,6 @@ public class Product {
     private List<String> listPhotoUrl;
     private List<String> listProductDetail;
     private String createdAt;
-
-
 
 
     public Product() {
@@ -55,7 +53,6 @@ public class Product {
     public void setId(int id) {
         this.id = id;
     }
-
 
 
     public void setSubCategoryId(int subCategoryId) {
@@ -171,6 +168,8 @@ public class Product {
     }
 
     public List<String> getListPhotoUrl() {
+        if (listPhotoUrl.size() == 0 || listPhotoUrl == null)
+            this.listPhotoUrl.add("này m thêm link cố đinh vô");
         return listPhotoUrl;
     }
 

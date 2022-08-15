@@ -16,11 +16,10 @@ public class Payment extends HttpServlet {
         String idCart = request.getParameter("id");
 
 
-
         ProductServices ps = new ProductServices();
         List<Product> watch = ps.getProductByIdCate(4, 0, 20);
         request.setAttribute("watch", watch);
-        request.getRequestDispatcher("view/client/products-watch.jsp").forward(request,response);
+        request.getRequestDispatcher("view/client/products-watch.jsp").forward(request, response);
     }
 
     @Override

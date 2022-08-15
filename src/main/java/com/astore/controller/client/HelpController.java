@@ -23,7 +23,7 @@ public class HelpController extends HttpServlet {
         String name = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
-        request.setAttribute("nameStore",name);
+        request.setAttribute("nameStore", name);
         HttpSession ss = request.getSession();
         if (ss.getAttribute("userNameAccountLogin") != null) {
             String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
@@ -47,7 +47,7 @@ public class HelpController extends HttpServlet {
 
 
         }
-        request.getRequestDispatcher("view/client/help.jsp").forward(request,response);
+        request.getRequestDispatcher("view/client/help.jsp").forward(request, response);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class HelpController extends HttpServlet {
         String name = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
-        request.setAttribute("nameStore",name);
+        request.setAttribute("nameStore", name);
         HttpSession ss = request.getSession();
         if (ss.getAttribute("userNameAccountLogin") != null) {
             String userNameAccountLogin = (String) ss.getAttribute("userNameAccountLogin");
@@ -87,13 +87,13 @@ public class HelpController extends HttpServlet {
         Help help = new Help(helpName, helpContent, helpContact);
 
         boolean check = HelpServices.getInstance().insert(help);
-        if(check){
+        if (check) {
             request.setAttribute("success", "Gửi thành công");
-        }else{
+        } else {
             request.setAttribute("error", "Gửi không thành công");
             request.setAttribute("help", help);
         }
 
-        request.getRequestDispatcher("view/client/help.jsp").forward(request,response);
+        request.getRequestDispatcher("view/client/help.jsp").forward(request, response);
     }
 }

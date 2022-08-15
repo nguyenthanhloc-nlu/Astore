@@ -2,7 +2,7 @@ package com.astore.model;
 
 import java.util.Objects;
 
-public class User{
+public class User {
     private int id;
     private String userName;
     private String name;
@@ -16,8 +16,8 @@ public class User{
     private String createdAt;
 
 
-
-    public User(){}
+    public User() {
+    }
 
     public User(int id, String userName, String name, String email, String gender, String birthday, String phone, String address, String avatar, String password, String createdAt) {
         this.id = id;

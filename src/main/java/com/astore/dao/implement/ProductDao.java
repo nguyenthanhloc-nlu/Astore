@@ -724,6 +724,6 @@ public class ProductDao implements IProductDao {
 
     public static void main(String[] args) {
         ProductDao d = new ProductDao();
-        System.out.println(d.getById(1));
+        System.out.println(d.getById(188));
     }
 }

@@ -26,7 +26,7 @@ public class ProductDetail extends HttpServlet {
         String name = store.getName();
         String linkLogo = store.getLinkLogo();
         request.setAttribute("linkLogoStore", linkLogo);
-        request.setAttribute("nameStore",name);
+        request.setAttribute("nameStore", name);
         HttpSession ss = request.getSession();
 
         if (ss.getAttribute("userNameAccountLogin") != null) {
@@ -85,7 +85,7 @@ public class ProductDetail extends HttpServlet {
                 request.setAttribute("color", color);
                 request.getRequestDispatcher("view/client/product-details/product-details.jsp").forward(request, response);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             System.err.println(e);
             response.setStatus(404);
             response.sendError(404);
@@ -98,14 +98,14 @@ public class ProductDetail extends HttpServlet {
         doGet(request, response);
     }
 
-    private List<Product> filterByRom(List<Product> list, Product product){
+    private List<Product> filterByRom(List<Product> list, Product product) {
         List<Product> result = new ArrayList<>();
         List<String> ps = new ArrayList<>();
         ps.add(product.getRom());
         result.add(product);
 
         for (Product p : list) {
-            if(!ps.contains(p.getRom())){
+            if (!ps.contains(p.getRom())) {
                 ps.add(p.getRom());
                 result.add(p);
             }
