@@ -135,9 +135,9 @@ CREATE TABLE HINH_MOTA_SANPHAM
 CREATE TABLE HO_TRO
 (
     id INT IDENTITY(1,1),
-    ho_va_ten NVARCHAR(50) NOT NULL,
-    email NVARCHAR(50) NOT NULL,
-    sdt varchar(15) not null,
+    ho_va_ten NVARCHAR(50) ,
+    email NVARCHAR(50),
+    sdt varchar(15) ,
     noi_dung_ho_tro NVARCHAR(255),
     thoi_gian_tao DATETIME NOT NULL DEFAULT GetDate() PRIMARY KEY(id)
 );
