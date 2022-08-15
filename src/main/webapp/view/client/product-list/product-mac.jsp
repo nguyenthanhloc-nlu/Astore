@@ -114,7 +114,7 @@
                                                     </c:choose>
                                                 </c:if>
                                                 <c:if test="${mac.listPhotoUrl.size() == 0}">
-                                                    <img src="https://img.icons8.com/carbon-copy/100/000000/no-image.png"
+                                                    <img src="https://vanhoadoanhnghiepvn.vn/wp-content/uploads/2020/08/112815953-stock-vector-no-image-available-icon-flat-vector.jpg"
                                                          style="max-width: 260px;">
                                                 </c:if>
                                             </div>

@@ -22,18 +22,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="input-2">Mã dòng sản phẩm</label>
-                                <input type="text" class="form-control" id="input-2" name="subcategory_id" required placeholder="Mã dòng sản phẩm" value="${product.subCategoryId}">
+                                <label for="input-subCatogory">Mã dòng sản phẩm</label>
+                                <input type="text" class="form-control" id="input-subCatogory" name="subcategory_id" required placeholder="Mã dòng sản phẩm" value="${product.subCategoryId}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-subCatogory"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="input-4">Giá</label>
-                                <input type="text" class="form-control" id="input-4" name="product_price" required placeholder="Giá" value="<fmt:formatNumber type = "number" groupingUsed = "false"  value = "${product.price}" />">
+                                <label for="input-price">Giá</label>
+                                <input type="text" class="form-control" id="input-price" name="product_price" required placeholder="Giá" value="${product.price}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-price"></p>
                             </div>
 
                             <div class="form-group">
-                                <label for="input-7" class="col-form-label">Mã màu sắc</label>
-                                <input type="text" class="form-control" id="input-7" name="product_color_id" required placeholder="Mã màu" value="${product.colorId}">
+                                <label for="input-color" class="col-form-label">Mã màu sắc</label>
+                                <input type="text" class="form-control" id="input-color" name="product_color_id" required placeholder="Mã màu" value="${product.colorId}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-color"></p>
                             </div>
                             <div class="form-group">
                                 <label for="input-8" class="col-form-label">Kích thước màn hình</label>
@@ -46,21 +49,26 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="input-10" class="col-form-label">Camera trước</label>
-                                <input type="text" class="form-control" id="input-10" name="product_frontcam" placeholder="Camera trước" value="${product.frontCamera}">
+                                <label for="input-frontCamera" class="col-form-label">Camera trước</label>
+                                <input type="text" class="form-control" id="input-frontCamera" name="product_frontcam" placeholder="Camera trước" value="${product.frontCamera}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-frontCamera"></p>
                             </div>
                             <div class="form-group">
-                                <label for="input-11" class="col-form-label">Camera sau</label>
-                                <input type="text" class="form-control" id="input-11" name="product_backcam" placeholder="Camera sau" value="${product.backCamera}">
+                                <label for="input-backCamera" class="col-form-label">Camera sau</label>
+                                <input type="text" class="form-control" id="input-backCamera" name="product_backcam" placeholder="Camera sau" value="${product.backCamera}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-backCamera"></p>
                             </div>
                             <div class="form-group">
-                                <label for="input-12" class="col-form-label">Ram</label>
-                                <input type="text" class="form-control" id="input-12" name="product_ram" required placeholder="Ram" value="${product.ram}">
+                                <label for="input-ram" class="col-form-label">Ram</label>
+                                <input type="text" class="form-control" id="input-ram" name="product_ram" required placeholder="Ram" value="${product.ram}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-ram"></p>
                             </div>
                             <div class="form-group">
-                                <label for="input-13" class="col-form-label">Rom</label>
-                                <input type="text" class="form-control" id="input-13" name="product_rom" required placeholder="Rom" value="${product.rom}">
+                                <label for="input-rom" class="col-form-label"></label>Rom</label>
+                                <input type="text" class="form-control" id="input-rom" name="product_rom" required placeholder="Rom" value="${product.rom}">
+                                <p style="font-size:12px; color:red; margin-bottom: 0px " id="error-rom"></p>
                             </div>
+
 
 
                             <div class="form-footer">
@@ -76,6 +84,65 @@
         <div class="overlay toggle-menu"></div>
     </div>
 </div>
+
+<script>
+    isValidInt('input-subCatogory','error-subCatogory','Mã dòng sản phẩm', true)
+    isValidFloat('input-price','error-price','Giá',true)
+    isValidInt('input-color','error-color','Mã màu',true)
+    isValidInt('input-frontCamera','error-frontCamera','Độ phân giải camera',false)
+    isValidInt('input-backCamera','error-backCamera','Độ phân giải camera',false)
+    isValidInt('input-rom','error-rom','Rom')
+    isValidInt('input-ram','error-ram','Ram')
+
+    function isValidInt(inputId,errorId,inputName,require) {
+        var input = document.getElementById(inputId);
+        var error = document.getElementById(errorId);
+        input.addEventListener("input", (e) => {
+            let value = input.value;
+
+            if (value == "" || value == null) {
+                if(require){
+                    error.innerText = inputName + ' không được để trống !'
+                }else {
+                    error.innerText = ''
+                }
+            } else {
+                if(isNaN(parseInt(value))){
+                    error.innerText = inputName +" không hợp lệ!";
+                }else{
+                    error.innerText = "";
+                    return true;
+                }
+            }
+            return false;
+        })
+    }
+
+    function isValidFloat(inputId,errorId,inputName,require) {
+        var input = document.getElementById(inputId);
+        var error = document.getElementById(errorId);
+        input.addEventListener("input", (e) => {
+            let value = input.value;
+
+            if (value == "" || value == null) {
+                if(require){
+                    error.innerText = inputName + ' không được để trống !'
+                }else {
+                    error.innerText = ''
+                }
+            } else {
+                if(isNaN(parseFloat(value))){
+                    error.innerText = inputName +" không hợp lệ!";
+                }else{
+                    error.innerText = "";
+                    return true;
+                }
+            }
+            return false;
+        })
+    }
+</script>
+
 
 
 <jsp:include page="footer/footer.jsp" flush="true"/>

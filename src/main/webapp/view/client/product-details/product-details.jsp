@@ -52,8 +52,28 @@
             <div class="my-col my-l-6 my-m-6 my-c-12 my-slider-product" style="height: 100%;">
                 <div class="my-row">
                     <div class="my-col my-l-12 my-m-12 my-c-12">
-                        <img src="${product.listPhotoUrl.get(0)}" id="ProductImg"
-                             style="width: 100%; border-radius: 8px;">
+<%--                        <img src="${product.listPhotoUrl.get(0)}" id="ProductImg"--%>
+<%--                             style="width: 100%; border-radius: 8px;">--%>
+
+                        <c:if test="${product.listPhotoUrl.size() > 0}">
+
+                            <c:choose>
+                                <c:when test="${fn:startsWith(product.listPhotoUrl.get(0), 'http')}">
+                                    <img src="${product.listPhotoUrl.get(0)}" id="ProductImg"
+                                         style="width: 100%; border-radius: 8px;">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="<%=request.getContextPath()%>/${product.listPhotoUrl.get(0)}" id="ProductImg"
+                                         style="width: 100%; border-radius: 8px;">
+                                </c:otherwise>
+                            </c:choose>
+
+
+                        </c:if>
+                        <c:if test="${product.listPhotoUrl.size() == 0}">
+                            <img src="https://vanhoadoanhnghiepvn.vn/wp-content/uploads/2020/08/112815953-stock-vector-no-image-available-icon-flat-vector.jpg"
+                                 id="ProductImg" style="max-width: 260px;">
+                        </c:if>
                     </div>
                     <div class="my-col my-l-12 my-m-12 my-c-12" style="margin-top: 25px;">
                         <div class="small-img-row my-row">
